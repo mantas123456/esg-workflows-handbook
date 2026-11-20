@@ -4,6 +4,46 @@ What changed in the handbook, newest first. Regulatory updates are listed
 here too, with the date the facts were re-checked. See the
 [roadmap](roadmap.md) for what comes next.
 
+## 0.4 VSME track (20 November 2026)
+
+The voluntary standard for smaller companies, with Gozo Fresh Foods Ltd
+(fictional, Malta) reusing its Scope 3 data. All pages are drafts, not yet
+reviewed by a practitioner.
+
+**New pages (draft)**
+
+- [V1 Choosing the modules](vsme/v1-modules.md),
+  [V2 Basic Module data collection](vsme/v2-basic.md),
+  [V3 GHG emissions for VSME](vsme/v3-ghg.md),
+  [V4 Comprehensive module](vsme/v4-comprehensive.md),
+  [V5 Answering customer and bank requests](vsme/v5-requests.md),
+  [V6 Publishing and updating](vsme/v6-publishing.md).
+
+**New tools and templates**
+
+- [VSME readiness](tools/vsme-readiness.md): completeness by module and a
+  to-do list, in your browser.
+- Downloads: VSME Basic Module workbook (Excel, generated from the
+  handbook's datapoint list) and questionnaire response bank (Word).
+- `esgcalc.vsme`: energy total, GHG intensity, accident rate, water
+  consumption, pay gap, turnover rate, target path and readiness.
+- `data/vsme_datapoints.yml`: every Basic datapoint and Comprehensive
+  disclosure in the handbook's own words, with how far each was checked.
+
+**Facts and sources (checked 20 November 2026)**
+
+- The voluntary standard is Delegated Regulation (EU) 2026/1560, published
+  21 September 2026, applying from financial year 2027.
+- Module structure, Basic metrics, and EFRAG's digital template and XBRL
+  taxonomy (version 2.0.0, 4 November 2026).
+- The value-chain cap, now with its article (Directive 2013/34/EU, Article
+  29b(4)) and conditions.
+
+**Known gaps:** the full wording of the 2026 act's Annex I and II was not
+re-read (most Basic metric details come from the 2025 Recommendation); the
+Comprehensive Module is covered at topic level; two definitions (pay gap,
+turnover rate) are flagged for checking.
+
 ## 0.3 Scope 3 track (20 November 2026)
 
 The full Scope 3 track, from boundary to reporting, with one fictional
