@@ -18,9 +18,10 @@ One page per step: what it is, inputs, steps, a worked example with made-up
 numbers, common mistakes, templates, tools and sources. Emissions numbers
 are treated as measurements, with traceable inputs and stated uncertainty.
 
-**Status:** version 0.1 (skeleton) released 20 November 2026: triage,
-regulation timeline, evidence locker and data reuse map are drafted; every
-other step has a placeholder. Next: 0.2 CBAM track. See the
+**Status:** version 0.2 released 20 November 2026: the full CBAM track
+(CB1-CB10, drafts) with a browser calculator, Excel and Word templates and
+the `esgcalc` package, on top of 0.1 (triage, timeline, evidence locker,
+data reuse map). Next: 0.3 Scope 3. See the
 [changelog](docs/changelog.md), the [roadmap](docs/roadmap.md),
 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) and the
 [staged build prompts](prompts/STAGED_PROMPTS.md).
