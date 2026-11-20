@@ -7,7 +7,7 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | T1 | Start here | [Which regime applies to me?](start-here/triage.md) | 0.1 | draft |
 | T2 | Start here | [Regulation timeline](start-here/timeline.md) | 0.1 | draft |
 | F1 | Foundations | [Evidence locker and audit trail](foundations/evidence-locker.md) | 0.1 | draft |
-| F2 | Foundations | [Data quality and uncertainty](foundations/data-quality.md) | 0.3 | planned |
+| F2 | Foundations | [Data quality and uncertainty](foundations/data-quality.md) | 0.3 | draft |
 | F3 | Foundations | [One dataset, many reports](foundations/one-dataset-many-reports.md) | 0.1 | draft |
 | F4 | Foundations | [Keeping up with changes](foundations/keeping-up.md) | 0.6 | planned |
 | CB1 | CBAM | [Scope check - CN codes and the 50 t threshold](cbam/cb1-scope-check.md) | 0.2 | draft |
@@ -20,15 +20,15 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | CB8 | CBAM | [Certificates - buying, holding, surrendering](cbam/cb8-certificates.md) | 0.2 | draft |
 | CB9 | CBAM | [The annual CBAM declaration](cbam/cb9-declaration.md) | 0.2 | draft |
 | CB10 | CBAM | [Records and evidence for CBAM](cbam/cb10-records.md) | 0.2 | draft |
-| S1 | Scope 3 | [Boundary and organisational approach](scope3/s1-boundary.md) | 0.3 | planned |
-| S2 | Scope 3 | [Screening the 15 categories](scope3/s2-screening.md) | 0.3 | planned |
-| S3 | Scope 3 | [Data collection plan](scope3/s3-data-plan.md) | 0.3 | planned |
-| S4 | Scope 3 | [Calculation methods](scope3/s4-methods.md) | 0.3 | planned |
-| S5 | Scope 3 | [Choosing emission factors](scope3/s5-emission-factors.md) | 0.3 | planned |
-| S6 | Scope 3 | [Data quality scoring](scope3/s6-data-quality.md) | 0.3 | planned |
-| S7 | Scope 3 | [Supplier engagement](scope3/s7-suppliers.md) | 0.3 | planned |
-| S8 | Scope 3 | [Base year and recalculation](scope3/s8-base-year.md) | 0.3 | planned |
-| S9 | Scope 3 | [Reporting the inventory](scope3/s9-reporting.md) | 0.3 | planned |
+| S1 | Scope 3 | [Boundary and organisational approach](scope3/s1-boundary.md) | 0.3 | draft |
+| S2 | Scope 3 | [Screening the 15 categories](scope3/s2-screening.md) | 0.3 | draft |
+| S3 | Scope 3 | [Data collection plan](scope3/s3-data-plan.md) | 0.3 | draft |
+| S4 | Scope 3 | [Calculation methods](scope3/s4-methods.md) | 0.3 | draft |
+| S5 | Scope 3 | [Choosing emission factors](scope3/s5-emission-factors.md) | 0.3 | draft |
+| S6 | Scope 3 | [Data quality scoring](scope3/s6-data-quality.md) | 0.3 | draft |
+| S7 | Scope 3 | [Supplier engagement](scope3/s7-suppliers.md) | 0.3 | draft |
+| S8 | Scope 3 | [Base year and recalculation](scope3/s8-base-year.md) | 0.3 | draft |
+| S9 | Scope 3 | [Reporting the inventory](scope3/s9-reporting.md) | 0.3 | draft |
 | V1 | VSME | [Choosing the modules](vsme/v1-modules.md) | 0.4 | planned |
 | V2 | VSME | [Basic module data collection](vsme/v2-basic.md) | 0.4 | planned |
 | V3 | VSME | [GHG emissions for VSME](vsme/v3-ghg.md) | 0.4 | planned |

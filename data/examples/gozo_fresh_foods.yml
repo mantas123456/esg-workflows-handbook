@@ -1,0 +1,202 @@
+# Fictional worked example used through the Scope 3 track (S1-S9, F2).
+# Gozo Fresh Foods Ltd, Malta. All companies and numbers are made up.
+# Every number shown on a page is recomputed from this file by
+# tests/test_examples_scope3.py using esgcalc.
+
+company:
+  name: Gozo Fresh Foods Ltd
+  country: Malta
+  activity: Food processing (prepared vegetables, sauces and ready meals)
+  employees: 140
+  reporting_year: 2026
+  request: A large supermarket chain that reports under the CSRD asks for the company's Scope 3 emissions.
+
+# S1: the group and its links. Scope 1 and 2 at 100% of each entity, tCO2e, 2026.
+entities:
+  - {name: Gozo Fresh Foods Ltd (processing plant), scope12_tco2e: 1200, equity_share: 1.00, financial_control: true, operational_control: true}
+  - {name: Gozo Fresh Logistics Ltd, scope12_tco2e: 400, equity_share: 0.60, financial_control: true, operational_control: true}
+  - {name: Harbour Packing Ltd (joint venture run by Gozo Fresh Foods), scope12_tco2e: 200, equity_share: 0.50, financial_control: false, operational_control: true}
+  - {name: Island Cold Store Ltd (associate), scope12_tco2e: 300, equity_share: 0.25, financial_control: false, operational_control: false}
+chosen_approach: operational_control
+
+# S2: screening estimates for 2026. Rough data and MADE-UP factors for
+# illustration (S5 shows where to find real ones). Units:
+#   spend_based: spend_eur x factor (kg CO2e per EUR)
+#   average_data: activity x factor (kg CO2e per unit of activity)
+#   supplier_specific: supplier_total_tco2e x purchased / total
+screening:
+  size_threshold_share: 0.02          # Gozo Fresh Foods' own choice: 2% of the screened total
+  lines:
+    - {category: 1, description: "Ingredients", method: spend_based, spend_eur: 6000000, factor: 0.9}
+    - {category: 1, description: "Packaging", method: spend_based, spend_eur: 1500000, factor: 0.6}
+    - {category: 1, description: "Services (cleaning, IT, maintenance)", method: spend_based, spend_eur: 500000, factor: 0.15}
+    - {category: 2, description: "Machinery and equipment bought in 2026", method: spend_based, spend_eur: 400000, factor: 0.4}
+    - {category: 3, description: "Upstream emissions of purchased electricity (3,000 MWh)", method: average_data, activity: 3000, unit: MWh, factor: 40}
+    - {category: 3, description: "Upstream emissions of fuels burned (2,000 MWh)", method: average_data, activity: 2000, unit: MWh, factor: 30}
+    - {category: 4, description: "Inbound road freight by hauliers", method: average_data, activity: 900000, unit: tonne.km, factor: 0.10}
+    - {category: 4, description: "Chilled storage at Island Cold Store (30% of its capacity)", method: supplier_specific, supplier_total_tco2e: 300, purchased: 30, total: 100}
+    - {category: 5, description: "Food waste to anaerobic digestion", method: average_data, activity: 600000, unit: kg, factor: 0.01}
+    - {category: 5, description: "General waste to landfill", method: average_data, activity: 50000, unit: kg, factor: 0.5}
+    - {category: 6, description: "Flights and hotels", method: spend_based, spend_eur: 40000, factor: 0.25}
+    - {category: 7, description: "Commuting by car: 140 staff x 220 days x 30 km", method: average_data, activity: 924000, unit: km, factor: 0.17}
+    - {category: 9, description: "Chilled storage of Gozo products at the supermarket", method: average_data, activity: 3000000, unit: kg, factor: 0.03}
+    - {category: 9, description: "Supermarket transport to its stores", method: average_data, activity: 360000, unit: tonne.km, factor: 0.10}
+    - {category: 12, description: "Packaging thrown away by consumers", method: average_data, activity: 300000, unit: kg, factor: 0.4}
+    - {category: 12, description: "Food wasted by consumers", method: average_data, activity: 150000, unit: kg, factor: 0.5}
+    - {category: 15, description: "25% equity in Island Cold Store (Scope 1 and 2: 300 t)", method: supplier_specific, supplier_total_tco2e: 300, purchased: 25, total: 100}
+  not_applicable:
+    8: No leased assets outside the boundary. The warehouse Gozo leases is operated by Gozo, so it is in Scope 1 and 2.
+    10: Products are sold ready to heat or eat. Nobody processes them further.
+    11: Food products use no energy and release no gases in use. Home cooking and refrigeration are not estimated.
+    13: Gozo leases out no assets.
+    14: Gozo has no franchises.
+  other_reasons:
+    9: The supermarket asked for it, and Gozo can reduce it through packaging and shelf life.
+
+# S3: data collection plan. Ingredient spend 2026 by supplier, EUR (made up; sums to 6,000,000).
+ingredient_spend_by_supplier:
+  Maltese Farmers Cooperative: 1800000
+  Sicilian Tomato Co: 1200000
+  Gozo Greens Ltd: 900000
+  Island Dairy Ltd: 700000
+  Mediterranean Oils: 500000
+  Spice Traders Ltd: 300000
+  Valletta Grain Mill: 250000
+  Ghajnsielem Egg Farm: 200000
+  Herb Garden Gozo: 100000
+  Other small suppliers: 50000
+supplier_target_share: 0.80
+inventory_deadline: 2027-04-30     # the supermarket wants the 2026 inventory by this date
+data_plan:     # one row per significant category from S2
+  - {category: 1, data: "Spend by supplier; tonnes bought from the top 5 ingredient suppliers; their emissions data; packaging tonnes by material", screening: Spend-based, target: "Supplier-specific for the top 5 ingredient suppliers; average-data for packaging; spend-based for the rest", owner: Purchasing, source: "Purchase ledger, supplier questionnaires (S7), packaging specifications", ready_by: 31 Mar 2027}
+  - {category: 2, data: "Assets bought in 2026, by type and cost", screening: Spend-based, target: Spend-based, owner: Finance, source: Fixed asset register, ready_by: 31 Jan 2027}
+  - {category: 3, data: "MWh of electricity and of each fuel", screening: Average-data, target: "Average-data with sourced factors (S5)", owner: Facilities, source: Energy invoices and meter readings, ready_by: 31 Jan 2027}
+  - {category: 4, data: "Tonne.km per haulier; Island Cold Store's emissions and Gozo's share of its capacity", screening: "Average-data and supplier-specific", target: "Average-data from haulier records; supplier-specific for the cold store", owner: Logistics, source: "Haulier invoices, Island Cold Store's emissions report", ready_by: 28 Feb 2027}
+  - {category: 7, data: "Distance, transport mode and days on site per employee", screening: "Average-data (estimate)", target: Average-data from a staff survey, owner: HR, source: Staff survey, ready_by: 31 Jan 2027}
+  - {category: 9, data: "Storage time and transport distance of Gozo products at the supermarket", screening: "Average-data (estimate)", target: Average-data from the supermarket's figures, owner: Sales, source: The supermarket, ready_by: 28 Feb 2027}
+  - {category: 12, data: "Packaging tonnes by material; share of food wasted by consumers", screening: Average-data, target: Average-data with material-specific factors, owner: Quality and packaging, source: "Packaging specifications, published food-waste studies", ready_by: 31 Jan 2027}
+
+# S4: the 2026 inventory with better data (MADE-UP numbers and factors).
+# Spend-based factors are priced in 2022; producer price index 2022 = 100, 2026 = 118.
+inventory:
+  price_index_factor_year: 100
+  price_index_spend_year: 118
+  lines:
+    - {category: 1, description: Maltese Farmers Cooperative, method: supplier_specific, supplier_total_tco2e: 12000, purchased: 3000, total: 40000}
+    - {category: 1, description: Sicilian Tomato Co, method: supplier_specific, supplier_total_tco2e: 30000, purchased: 2400, total: 60000}
+    - {category: 1, description: Gozo Greens Ltd, method: supplier_specific, supplier_total_tco2e: 2500, purchased: 1600, total: 8000}
+    - {category: 1, description: Island Dairy Ltd, method: supplier_specific, supplier_total_tco2e: 9000, purchased: 700, total: 15000}
+    - {category: 1, description: Mediterranean Oils, method: supplier_specific, supplier_total_tco2e: 20000, purchased: 250, total: 25000}
+    - {category: 1, description: Other ingredient suppliers, method: spend_based, spend_eur: 900000, factor: 0.9}
+    - {category: 1, description: "Services (cleaning, IT, maintenance)", method: spend_based, spend_eur: 500000, factor: 0.15}
+    - {category: 1, description: Cardboard packaging, method: average_data, activity: 400000, unit: kg, factor: 0.8}
+    - {category: 1, description: Plastic film packaging, method: average_data, activity: 150000, unit: kg, factor: 2.5}
+    - {category: 1, description: Glass jars, method: average_data, activity: 200000, unit: kg, factor: 0.9}
+    - {category: 2, description: Machinery and equipment bought in 2026, method: spend_based, spend_eur: 400000, factor: 0.4}
+    - {category: 3, description: Upstream emissions of purchased electricity, method: average_data, activity: 3000, unit: MWh, factor: 40}
+    - {category: 3, description: Upstream emissions of fuels burned, method: average_data, activity: 2000, unit: MWh, factor: 30}
+    - {category: 4, description: Road freight from haulier records, method: average_data, activity: 850000, unit: tonne.km, factor: 0.10}
+    - {category: 4, description: Chilled storage at Island Cold Store (30% of its capacity), method: supplier_specific, supplier_total_tco2e: 300, purchased: 30, total: 100}
+    - {category: 7, description: "Commuting by car (staff survey)", method: average_data, activity: 600000, unit: km, factor: 0.17}
+    - {category: 7, description: "Commuting by bus (staff survey)", method: average_data, activity: 150000, unit: passenger.km, factor: 0.10}
+    - {category: 9, description: Chilled storage at the supermarket (its figures), method: average_data, activity: 2800000, unit: kg, factor: 0.03}
+    - {category: 9, description: Supermarket transport to its stores (its figures), method: average_data, activity: 300000, unit: tonne.km, factor: 0.10}
+    - {category: 12, description: Cardboard at end of life, method: average_data, activity: 400000, unit: kg, factor: 0.02}
+    - {category: 12, description: Plastic film at end of life, method: average_data, activity: 150000, unit: kg, factor: 0.05}
+    - {category: 12, description: Glass at end of life, method: average_data, activity: 200000, unit: kg, factor: 0.01}
+    - {category: 12, description: Food wasted by consumers, method: average_data, activity: 150000, unit: kg, factor: 0.5}
+  kept_from_screening: [5, 6, 15]     # not significant: screening estimates carried over
+
+# S5: choosing a factor for plastic film packaging (scores 1 = very good, 5 = very poor).
+factor_choice:
+  line: Plastic film packaging
+  reporting_year: 2026
+  options:
+    - {name: "ecoinvent dataset for plastic film", source_id: ecoinvent, version: not tracked, year: 2024, unit: kg CO2e/kg,
+       quality: {technology: 2, time: 2, geography: 3, completeness: 1, reliability: 2}, licence_allows_use: false,
+       why: "Gozo holds no ecoinvent licence"}
+    - {name: "DESNZ 2026 material-use factor for plastic film", source_id: desnz-2026, version: "2026", year: 2026, unit: kg CO2e/kg,
+       quality: {technology: 2, time: 1, geography: 3, completeness: 2, reliability: 2}, licence_allows_use: true,
+       why: "Open Government Licence v3.0"}
+    - {name: "EXIOBASE multiplier for plastic products (spend-based)", source_id: exiobase-3, version: "3.11.2", year: 2022, unit: kg CO2e/EUR,
+       quality: {technology: 4, time: 3, geography: 2, completeness: 3, reliability: 3}, licence_allows_use: false,
+       why: "v3.9 and later: non-commercial academic use only"}
+
+# S5: factor register for the S4 inventory lines (values are the made-up ones from S4).
+# source_id: an id in data/factor_sources.yml, or "to-choose" where no usable source is settled yet.
+factor_register:
+  Other ingredient suppliers: to-choose
+  "Services (cleaning, IT, maintenance)": to-choose
+  Machinery and equipment bought in 2026: to-choose
+  Cardboard packaging: desnz-2026
+  Plastic film packaging: desnz-2026
+  Glass jars: desnz-2026
+  Upstream emissions of purchased electricity: desnz-2026
+  Upstream emissions of fuels burned: desnz-2026
+  Road freight from haulier records: desnz-2026
+  "Commuting by car (staff survey)": desnz-2026
+  "Commuting by bus (staff survey)": desnz-2026
+  Chilled storage at the supermarket (its figures): to-choose
+  Supermarket transport to its stores (its figures): desnz-2026
+  Cardboard at end of life: desnz-2026
+  Plastic film at end of life: desnz-2026
+  Glass at end of life: desnz-2026
+  Food wasted by consumers: desnz-2026
+
+# F2: data quality and stated 95% uncertainties for the category 1 lines of S4 (made up).
+# quality: technology, time, geography, completeness, reliability (1 = very good, 5 = very poor)
+# u95: relative half-width of the 95% interval of the line; for average-data lines it is
+#      combined from the activity and the factor (product rule).
+uncertainty_category_1:
+  monte_carlo: {n: 200000, seed: 20260101}
+  lines:
+    - {description: Maltese Farmers Cooperative, quality: [1, 1, 1, 2, 1], u95: 0.10, basis: "Supplier figure, verified"}
+    - {description: Sicilian Tomato Co, quality: [1, 1, 1, 2, 2], u95: 0.10, basis: "Supplier figure, verified"}
+    - {description: Gozo Greens Ltd, quality: [1, 1, 1, 3, 3], u95: 0.15, basis: "Supplier figure, not verified"}
+    - {description: Island Dairy Ltd, quality: [2, 1, 1, 2, 3], u95: 0.15, basis: "Supplier figure, not verified"}
+    - {description: Mediterranean Oils, quality: [2, 2, 2, 3, 3], u95: 0.20, basis: "Supplier figure, partial year"}
+    - {description: Other ingredient suppliers, quality: [4, 3, 3, 3, 3], u95: 0.50, basis: Spend-based sector factor}
+    - {description: "Services (cleaning, IT, maintenance)", quality: [4, 3, 3, 3, 3], u95: 0.50, basis: Spend-based sector factor}
+    - {description: Cardboard packaging, quality: [2, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.20, basis: "Weighed tonnes, DESNZ factor"}
+    - {description: Plastic film packaging, quality: [2, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.20, basis: "Weighed tonnes, DESNZ factor"}
+    - {description: Glass jars, quality: [2, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.20, basis: "Weighed tonnes, DESNZ factor"}
+
+# S6, S9: data quality and stated 95% uncertainty for every other inventory line (made up).
+# Category 1 lines are in uncertainty_category_1 above. Same keys.
+line_quality:
+  - {description: Machinery and equipment bought in 2026, quality: [4, 2, 3, 3, 3], u95: 0.50, basis: Spend-based sector factor}
+  - {description: Upstream emissions of purchased electricity, quality: [2, 1, 3, 2, 2], activity_u95: 0.02, factor_u95: 0.20, basis: "Metered MWh, DESNZ factor"}
+  - {description: Upstream emissions of fuels burned, quality: [2, 1, 3, 2, 2], activity_u95: 0.02, factor_u95: 0.20, basis: "Invoiced fuel, DESNZ factor"}
+  - {description: Road freight from haulier records, quality: [2, 1, 3, 2, 2], activity_u95: 0.10, factor_u95: 0.20, basis: "Haulier records, DESNZ factor"}
+  - {description: Chilled storage at Island Cold Store (30% of its capacity), quality: [1, 1, 1, 2, 3], u95: 0.15, basis: "Supplier figure, not verified"}
+  - {description: Food waste to anaerobic digestion, quality: [3, 2, 3, 3, 3], u95: 0.50, basis: Screening estimate}
+  - {description: General waste to landfill, quality: [3, 2, 3, 3, 3], u95: 0.50, basis: Screening estimate}
+  - {description: Flights and hotels, quality: [4, 2, 3, 3, 3], u95: 0.50, basis: Screening estimate}
+  - {description: "Commuting by car (staff survey)", quality: [2, 1, 2, 3, 3], activity_u95: 0.20, factor_u95: 0.15, basis: "Staff survey, DESNZ factor"}
+  - {description: "Commuting by bus (staff survey)", quality: [2, 1, 2, 3, 3], activity_u95: 0.20, factor_u95: 0.15, basis: "Staff survey, DESNZ factor"}
+  - {description: Chilled storage at the supermarket (its figures), quality: [3, 2, 2, 3, 3], activity_u95: 0.10, factor_u95: 0.40, basis: "Customer figures, factor to choose"}
+  - {description: Supermarket transport to its stores (its figures), quality: [2, 2, 2, 3, 3], activity_u95: 0.10, factor_u95: 0.20, basis: "Customer figures, DESNZ factor"}
+  - {description: Cardboard at end of life, quality: [3, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.40, basis: "Weighed tonnes, DESNZ factor"}
+  - {description: Plastic film at end of life, quality: [3, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.40, basis: "Weighed tonnes, DESNZ factor"}
+  - {description: Glass at end of life, quality: [3, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.40, basis: "Weighed tonnes, DESNZ factor"}
+  - {description: Food wasted by consumers, quality: [3, 2, 3, 3, 4], activity_u95: 0.30, factor_u95: 0.40, basis: "Published food-waste rate, DESNZ factor"}
+  - {description: "25% equity in Island Cold Store (Scope 1 and 2: 300 t)", quality: [2, 1, 1, 2, 3], u95: 0.15, basis: "Associate's own figure"}
+quality_target: 2.5        # S6: Gozo's target score for each significant category
+
+# S7: supplier answers for 2026 (the top 5 from S3).
+supplier_answers:
+  - {supplier: Maltese Farmers Cooperative, answered: true, verified: true}
+  - {supplier: Sicilian Tomato Co, answered: true, verified: true}
+  - {supplier: Gozo Greens Ltd, answered: true, verified: false}
+  - {supplier: Island Dairy Ltd, answered: true, verified: false}
+  - {supplier: Mediterranean Oils, answered: true, verified: false}
+next_year_target_share: 0.90
+next_supplier_estimate: {supplier: Spice Traders Ltd, tco2e: 150, u95: 0.15}   # made up, for the what-if
+
+# S8: base year 2026 and changes found in 2027 (made up).
+base_year: 2026
+recalculation_threshold_share: 0.05
+changes_2027:
+  - {name: "Acquisition of 100% of Island Cold Store (1 July 2027)", kind: Structural, effect: "Its emissions move into Scope 1 and 2: remove category 4 storage (90 t) and category 15 equity (75 t) from the base year", tco2e: -165}
+  - {name: New spend factor for other ingredient suppliers, kind: Methodology, effect: "Factor source chosen (S5): 1.1 instead of 0.9 kg/EUR, same deflation", new_factor: 1.1}
+  - {name: Commuting survey counted part-time staff as full-time, kind: Error, effect: "Car km corrected from 600,000 to 560,000", corrected_activity: 560000}

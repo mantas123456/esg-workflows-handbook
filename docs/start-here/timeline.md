@@ -76,6 +76,10 @@ your customer or bank asks for the data.
 
 ### Scope 3
 
+| Date | What happens | Who it affects | Source |
+|---|---|---|---|
+| 1 Jan 2027 | GHG Protocol Land Sector and Removals Standard takes effect; reports in 2028 on 2027 data need to follow it | Companies with land emissions or removals in their operations or value chain, such as food and farm-based businesses | [GHG Protocol](https://ghgprotocol.org/land-sector-and-removals-standard) |
+
 Scope 3 has no legal deadline of its own. It feeds ESRS E1 (climate) and
 VSME, so it follows their dates, and the dates your customers set in
 their supplier questionnaires.

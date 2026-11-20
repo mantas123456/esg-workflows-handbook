@@ -15,7 +15,7 @@ tracks:
     folder: foundations
     steps:
       - {id: F1, title: "Evidence locker and audit trail", file: evidence-locker.md, release: "0.1", status: draft}
-      - {id: F2, title: "Data quality and uncertainty", file: data-quality.md, release: "0.3", status: planned}
+      - {id: F2, title: "Data quality and uncertainty", file: data-quality.md, release: "0.3", status: draft}
       - {id: F3, title: "One dataset, many reports", file: one-dataset-many-reports.md, release: "0.1", status: draft}
       - {id: F4, title: "Keeping up with changes", file: keeping-up.md, release: "0.6", status: planned}
 
@@ -38,15 +38,15 @@ tracks:
     title: Scope 3
     folder: scope3
     steps:
-      - {id: S1, title: "Boundary and organisational approach", file: s1-boundary.md, release: "0.3", status: planned}
-      - {id: S2, title: "Screening the 15 categories", file: s2-screening.md, release: "0.3", status: planned, tools: [scope3-screening], templates: [scope3-screening-matrix]}
-      - {id: S3, title: "Data collection plan", file: s3-data-plan.md, release: "0.3", status: planned}
-      - {id: S4, title: "Calculation methods", file: s4-methods.md, release: "0.3", status: planned, templates: [scope3-inventory]}
-      - {id: S5, title: "Choosing emission factors", file: s5-emission-factors.md, release: "0.3", status: planned}
-      - {id: S6, title: "Data quality scoring", file: s6-data-quality.md, release: "0.3", status: planned}
-      - {id: S7, title: "Supplier engagement", file: s7-suppliers.md, release: "0.3", status: planned, templates: [supplier-letter]}
-      - {id: S8, title: "Base year and recalculation", file: s8-base-year.md, release: "0.3", status: planned}
-      - {id: S9, title: "Reporting the inventory", file: s9-reporting.md, release: "0.3", status: planned}
+      - {id: S1, title: "Boundary and organisational approach", file: s1-boundary.md, release: "0.3", status: draft}
+      - {id: S2, title: "Screening the 15 categories", file: s2-screening.md, release: "0.3", status: draft, tools: [scope3-screening], templates: [scope3-screening-matrix]}
+      - {id: S3, title: "Data collection plan", file: s3-data-plan.md, release: "0.3", status: draft}
+      - {id: S4, title: "Calculation methods", file: s4-methods.md, release: "0.3", status: draft, templates: [scope3-inventory]}
+      - {id: S5, title: "Choosing emission factors", file: s5-emission-factors.md, release: "0.3", status: draft}
+      - {id: S6, title: "Data quality scoring", file: s6-data-quality.md, release: "0.3", status: draft, templates: [scope3-inventory]}
+      - {id: S7, title: "Supplier engagement", file: s7-suppliers.md, release: "0.3", status: draft, templates: [supplier-letter]}
+      - {id: S8, title: "Base year and recalculation", file: s8-base-year.md, release: "0.3", status: draft, templates: [recalculation-policy]}
+      - {id: S9, title: "Reporting the inventory", file: s9-reporting.md, release: "0.3", status: draft, templates: [scope3-inventory]}
 
   - id: vsme
     title: VSME

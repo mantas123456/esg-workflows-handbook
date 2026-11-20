@@ -21,7 +21,8 @@ spec.loader.exec_module(bt)
 
 EXAMPLE = yaml.safe_load((ROOT / "data/examples/melita_metals.yml").read_text(encoding="utf-8"))
 WORKFLOWS = yaml.safe_load((ROOT / "data/workflows.yml").read_text(encoding="utf-8"))
-EXPECTED_IDS = {"cbam-goods-register", "cbam-emissions-workbook", "cbam-supplier-request", "cbam-declaration-checklist"}
+EXPECTED_IDS = {"cbam-goods-register", "cbam-emissions-workbook", "cbam-supplier-request", "cbam-declaration-checklist",
+                "scope3-screening-matrix", "scope3-inventory", "supplier-letter", "recalculation-policy"}
 
 
 @pytest.fixture(scope="session")
@@ -266,3 +267,37 @@ def test_declaration_checklist_covers_every_cbam_step(built) -> None:
                     "Declaration and surrender (CB9)", "Records (CB10)"):
         assert heading in text, heading
     assert "30 September" in text
+
+
+# --- Scope 3 screening matrix ----------------------------------------------------
+
+def test_screening_matrix_matches_esgcalc(built) -> None:
+    from esgcalc.scope3 import screen
+    from openpyxl import load_workbook
+
+    ws = load_workbook(built["scope3-screening-matrix"])["Screening"]
+    estimates = {ws[f"A{r}"].value: ws[f"C{r}"].value for r in range(2, 17)}
+    reasons = {ws[f"A{r}"].value: ws[f"G{r}"].value for r in range(2, 17) if ws[f"G{r}"].value}
+    threshold = load_workbook(built["scope3-screening-matrix"])["Settings"]["B1"].value
+    rows = screen(estimates, threshold, reasons)
+    got = recalculate(built["scope3-screening-matrix"])
+    for r, row in zip(range(2, 17), rows):
+        assert got[f"SCREENING!E{r}"] == pytest.approx(row.share), row.category
+        assert got[f"SCREENING!F{r}"] == ("Yes" if row.significant_by_size else "No"), row.category
+        assert got[f"SCREENING!H{r}"] == ("Yes" if row.significant else "No"), row.category
+    assert got["SETTINGS!B2"] == pytest.approx(7489.08)
+    assert got["SETTINGS!B3"] == 7
+    assert got["SETTINGS!B4"] == pytest.approx(7373.08)
+    assert got["SETTINGS!B5"] == pytest.approx(7373.08 / 7489.08)
+
+
+def test_screening_matrix_examples_are_the_gozo_screening() -> None:
+    from openpyxl import load_workbook
+
+    import test_examples_scope3 as ex   # same folder; recomputes the S2 estimates with esgcalc
+
+    ws = load_workbook(bt.OUT / "scope3-screening-matrix.xlsx")["Screening"]
+    for r, row in zip(range(2, 17), ex.screening_rows()):
+        assert ws[f"A{r}"].value == row.category
+        assert ws[f"B{r}"].value == row.name
+        assert ws[f"C{r}"].value == pytest.approx(row.tco2e), row.category

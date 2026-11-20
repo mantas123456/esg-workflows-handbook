@@ -1,0 +1,141 @@
+title: Scope 3 inventory workbook
+type: Workbook
+description: A Scope 3 inventory line by line, with spend-based, average-data and supplier-specific tabs, a data-quality score and a 95% uncertainty on every line, and a summary by category.
+instructions:
+  - "Put each line on the tab for its method: Spend, Average-data or Supplier. One purchase belongs on one line only: when supplier data replaces an estimate, delete the estimate."
+  - "Spend: enter spend in EUR. If the factor is in another currency, enter that currency per EUR. If the factor is priced in an earlier year, enter both price indices to deflate the spend."
+  - "Average-data: the activity and the factor must use the same unit (kg with kg CO2e per kg)."
+  - "Supplier: the supplier's emissions, what you bought and the supplier's total output, in the same unit."
+  - "Score every line 1 (very good) to 5 (very poor) on the five indicators (see S6 in the handbook) and enter its 95% uncertainty as a share (0.2 = +/-20%)."
+  - "Summary and Totals: per category and overall, with the method mix, the emissions-weighted data-quality score and the combined uncertainty, treating lines as independent (see F2)."
+  - Same method as esgcalc.scope3 and esgcalc.quality in the handbook. The example is the fictional Gozo Fresh Foods with made-up factors.
+sheets:
+  - name: Spend
+    rows: 40
+    columns:
+      - {header: "Category (1-15)", width: 9}
+      - {header: Description, width: 32}
+      - {header: Spend (EUR), width: 13, format: "#,##0"}
+      - {header: "Factor currency per EUR (blank = 1)", width: 11}
+      - {header: Price index of the spend year, width: 10}
+      - {header: Price index of the factor year, width: 10}
+      - {header: Factor (kg CO2e per currency unit), width: 11}
+      - {header: tCO2e, width: 11, format: "#,##0.00", formula: '=IF(OR(C{r}="",G{r}=""),"",C{r}*IF(D{r}="",1,D{r})*IF(OR(E{r}="",F{r}=""),1,F{r}/E{r})*G{r}/1000)'}
+      - {header: "Technology (1-5)", width: 9}
+      - {header: "Time (1-5)", width: 8}
+      - {header: "Geography (1-5)", width: 9}
+      - {header: "Completeness (1-5)", width: 10}
+      - {header: "Reliability (1-5)", width: 9}
+      - {header: Data-quality score, width: 9, format: "0.00", formula: '=IF(H{r}="","",AVERAGE(I{r}:M{r}))'}
+      - {header: "+/-95% (share)", width: 9, format: "0.0%"}
+      - {header: U (tCO2e), width: 10, format: "#,##0.00", formula: '=IF(OR(H{r}="",O{r}=""),"",H{r}*O{r})'}
+      - {header: Score x tCO2e (helper), width: 9, format: "#,##0.00", formula: '=IF(H{r}="","",N{r}*H{r})'}
+      - {header: U squared (helper), width: 9, format: "#,##0.00", formula: '=IF(P{r}="","",P{r}^2)'}
+    examples:
+      - [1, "Other ingredient suppliers", 900000, null, 118, 100, 0.9, null, 4, 3, 3, 3, 3, null, 0.5]
+      - [1, "Services (cleaning, IT, maintenance)", 500000, null, 118, 100, 0.15, null, 4, 3, 3, 3, 3, null, 0.5]
+      - [2, "Machinery and equipment bought in 2026", 400000, null, 118, 100, 0.4, null, 4, 2, 3, 3, 3, null, 0.5]
+      - [6, "Flights and hotels", 40000, null, null, null, 0.25, null, 4, 2, 3, 3, 3, null, 0.5]
+  - name: Average-data
+    rows: 40
+    columns:
+      - {header: "Category (1-15)", width: 9}
+      - {header: Description, width: 32}
+      - {header: Activity, width: 12, format: "#,##0.##"}
+      - {header: Unit, width: 10}
+      - {header: Factor (kg CO2e per unit), width: 10}
+      - {header: tCO2e, width: 11, format: "#,##0.00", formula: '=IF(OR(C{r}="",E{r}=""),"",C{r}*E{r}/1000)'}
+      - {header: "Technology (1-5)", width: 9}
+      - {header: "Time (1-5)", width: 8}
+      - {header: "Geography (1-5)", width: 9}
+      - {header: "Completeness (1-5)", width: 10}
+      - {header: "Reliability (1-5)", width: 9}
+      - {header: Data-quality score, width: 9, format: "0.00", formula: '=IF(F{r}="","",AVERAGE(G{r}:K{r}))'}
+      - {header: "Activity +/-95% (share)", width: 9, format: "0.0%"}
+      - {header: "Factor +/-95% (share)", width: 9, format: "0.0%"}
+      - {header: "Line +/-95% (share)", width: 9, format: "0.0%", formula: '=IF(F{r}="","",SQRT(M{r}^2+N{r}^2))'}
+      - {header: U (tCO2e), width: 10, format: "#,##0.00", formula: '=IF(F{r}="","",F{r}*O{r})'}
+      - {header: Score x tCO2e (helper), width: 9, format: "#,##0.00", formula: '=IF(F{r}="","",L{r}*F{r})'}
+      - {header: U squared (helper), width: 9, format: "#,##0.00", formula: '=IF(P{r}="","",P{r}^2)'}
+    examples:
+      - [1, "Cardboard packaging", 400000, "kg", 0.8, null, 2, 1, 3, 2, 2, null, 0.05, 0.2]
+      - [1, "Plastic film packaging", 150000, "kg", 2.5, null, 2, 1, 3, 2, 2, null, 0.05, 0.2]
+      - [1, "Glass jars", 200000, "kg", 0.9, null, 2, 1, 3, 2, 2, null, 0.05, 0.2]
+      - [3, "Upstream emissions of purchased electricity", 3000, "MWh", 40, null, 2, 1, 3, 2, 2, null, 0.02, 0.2]
+      - [3, "Upstream emissions of fuels burned", 2000, "MWh", 30, null, 2, 1, 3, 2, 2, null, 0.02, 0.2]
+      - [4, "Road freight from haulier records", 850000, "tonne.km", 0.1, null, 2, 1, 3, 2, 2, null, 0.1, 0.2]
+      - [7, "Commuting by car (staff survey)", 600000, "km", 0.17, null, 2, 1, 2, 3, 3, null, 0.2, 0.15]
+      - [7, "Commuting by bus (staff survey)", 150000, "passenger.km", 0.1, null, 2, 1, 2, 3, 3, null, 0.2, 0.15]
+      - [9, "Chilled storage at the supermarket (its figures)", 2800000, "kg", 0.03, null, 3, 2, 2, 3, 3, null, 0.1, 0.4]
+      - [9, "Supermarket transport to its stores (its figures)", 300000, "tonne.km", 0.1, null, 2, 2, 2, 3, 3, null, 0.1, 0.2]
+      - [12, "Cardboard at end of life", 400000, "kg", 0.02, null, 3, 1, 3, 2, 2, null, 0.05, 0.4]
+      - [12, "Plastic film at end of life", 150000, "kg", 0.05, null, 3, 1, 3, 2, 2, null, 0.05, 0.4]
+      - [12, "Glass at end of life", 200000, "kg", 0.01, null, 3, 1, 3, 2, 2, null, 0.05, 0.4]
+      - [12, "Food wasted by consumers", 150000, "kg", 0.5, null, 3, 2, 3, 3, 4, null, 0.3, 0.4]
+      - [5, "Food waste to anaerobic digestion", 600000, "kg", 0.01, null, 3, 2, 3, 3, 3, null, 0.5, 0]
+      - [5, "General waste to landfill", 50000, "kg", 0.5, null, 3, 2, 3, 3, 3, null, 0.5, 0]
+  - name: Supplier
+    rows: 40
+    columns:
+      - {header: "Category (1-15)", width: 9}
+      - {header: Description, width: 32}
+      - {header: "Supplier's emissions (tCO2e)", width: 12, format: "#,##0.00"}
+      - {header: What you bought, width: 11, format: "#,##0.##"}
+      - {header: "Supplier's total output (same unit)", width: 12, format: "#,##0.##"}
+      - {header: tCO2e, width: 11, format: "#,##0.00", formula: '=IF(OR(C{r}="",D{r}="",E{r}=""),"",C{r}*D{r}/E{r})'}
+      - {header: "Technology (1-5)", width: 9}
+      - {header: "Time (1-5)", width: 8}
+      - {header: "Geography (1-5)", width: 9}
+      - {header: "Completeness (1-5)", width: 10}
+      - {header: "Reliability (1-5)", width: 9}
+      - {header: Data-quality score, width: 9, format: "0.00", formula: '=IF(F{r}="","",AVERAGE(G{r}:K{r}))'}
+      - {header: "+/-95% (share)", width: 9, format: "0.0%"}
+      - {header: U (tCO2e), width: 10, format: "#,##0.00", formula: '=IF(OR(F{r}="",M{r}=""),"",F{r}*M{r})'}
+      - {header: Score x tCO2e (helper), width: 9, format: "#,##0.00", formula: '=IF(F{r}="","",L{r}*F{r})'}
+      - {header: U squared (helper), width: 9, format: "#,##0.00", formula: '=IF(N{r}="","",N{r}^2)'}
+    examples:
+      - [1, "Maltese Farmers Cooperative", 12000, 3000, 40000, null, 1, 1, 1, 2, 1, null, 0.1]
+      - [1, "Sicilian Tomato Co", 30000, 2400, 60000, null, 1, 1, 1, 2, 2, null, 0.1]
+      - [1, "Gozo Greens Ltd", 2500, 1600, 8000, null, 1, 1, 1, 3, 3, null, 0.15]
+      - [1, "Island Dairy Ltd", 9000, 700, 15000, null, 2, 1, 1, 2, 3, null, 0.15]
+      - [1, "Mediterranean Oils", 20000, 250, 25000, null, 2, 2, 2, 3, 3, null, 0.2]
+      - [4, "Chilled storage at Island Cold Store (30% of its capacity)", 300, 30, 100, null, 1, 1, 1, 2, 3, null, 0.15]
+      - [15, "25% equity in Island Cold Store (Scope 1 and 2: 300 t)", 300, 25, 100, null, 2, 1, 1, 2, 3, null, 0.15]
+  - name: Summary
+    rows: 15
+    columns:
+      - {header: "#", width: 5}
+      - {header: Category, width: 34}
+      - {header: Supplier-specific (tCO2e), width: 12, format: "#,##0.00", formula: '=SUMIF(Supplier!$A$2:$A$41,A{r},Supplier!$F$2:$F$41)'}
+      - {header: Average-data (tCO2e), width: 12, format: "#,##0.00", formula: '=SUMIF(''Average-data''!$A$2:$A$41,A{r},''Average-data''!$F$2:$F$41)'}
+      - {header: Spend-based (tCO2e), width: 12, format: "#,##0.00", formula: '=SUMIF(Spend!$A$2:$A$41,A{r},Spend!$H$2:$H$41)'}
+      - {header: Total (tCO2e), width: 12, format: "#,##0.00", formula: '=C{r}+D{r}+E{r}'}
+      - {header: Data-quality score, width: 10, format: "0.00", formula: '=IF(F{r}=0,"",(SUMIF(Supplier!$A$2:$A$41,A{r},Supplier!$O$2:$O$41)+SUMIF(''Average-data''!$A$2:$A$41,A{r},''Average-data''!$Q$2:$Q$41)+SUMIF(Spend!$A$2:$A$41,A{r},Spend!$Q$2:$Q$41))/F{r})'}
+      - {header: U (tCO2e), width: 10, format: "#,##0.00", formula: '=SQRT(SUMIF(Supplier!$A$2:$A$41,A{r},Supplier!$P$2:$P$41)+SUMIF(''Average-data''!$A$2:$A$41,A{r},''Average-data''!$R$2:$R$41)+SUMIF(Spend!$A$2:$A$41,A{r},Spend!$R$2:$R$41))'}
+      - {header: "+/-95%", width: 9, format: "0.0%", formula: '=IF(F{r}=0,"",H{r}/F{r})'}
+    examples:
+      - [1, "Purchased goods and services"]
+      - [2, "Capital goods"]
+      - [3, "Fuel- and energy-related activities"]
+      - [4, "Upstream transportation and distribution"]
+      - [5, "Waste generated in operations"]
+      - [6, "Business travel"]
+      - [7, "Employee commuting"]
+      - [8, "Upstream leased assets"]
+      - [9, "Downstream transportation and distribution"]
+      - [10, "Processing of sold products"]
+      - [11, "Use of sold products"]
+      - [12, "End-of-life treatment of sold products"]
+      - [13, "Downstream leased assets"]
+      - [14, "Franchises"]
+      - [15, "Investments"]
+  - name: Totals
+    kind: summary
+    rows:
+      - {label: Total Scope 3 (tCO2e), bold: true, format: "#,##0.00", formula: '=SUM(Summary!F2:F16)'}
+      - {label: Supplier-specific share, format: "0.00%", formula: '=IF(B1=0,"",SUM(Summary!C2:C16)/B1)'}
+      - {label: Average-data share, format: "0.00%", formula: '=IF(B1=0,"",SUM(Summary!D2:D16)/B1)'}
+      - {label: Spend-based share, format: "0.00%", formula: '=IF(B1=0,"",SUM(Summary!E2:E16)/B1)'}
+      - {label: Data-quality score (weighted by emissions), format: "0.00", formula: '=IF(B1=0,"",(SUM(Supplier!O2:O41)+SUM(''Average-data''!Q2:Q41)+SUM(Spend!Q2:Q41))/B1)'}
+      - {label: "U (tCO2e), categories treated as independent", format: "#,##0.00", formula: '=SQRT(SUMSQ(Summary!H2:H16))'}
+      - {label: "+/-95%", format: "0.0%", formula: '=IF(B1=0,"",B6/B1)'}

@@ -5,11 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "esgcalc"
 version = "0.2.0.dev0"
-description = "Calculations behind the ESG Workflows Handbook (CBAM first). No network calls."
+description = "Calculations behind the ESG Workflows Handbook: CBAM, Scope 3, data quality and uncertainty. No network calls."
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
-dependencies = ["PyYAML>=6.0"]
+dependencies = ["PyYAML>=6.0", "numpy>=1.26"]
 
 [tool.setuptools]
 packages = ["esgcalc"]

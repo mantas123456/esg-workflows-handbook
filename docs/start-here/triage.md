@@ -169,8 +169,8 @@ See [F1 Evidence locker and audit trail](../foundations/evidence-locker.md).
 ## Templates and tools
 
 - [T2 Regulation timeline](timeline.md) for the dates behind each branch.
-- A CBAM threshold checker is planned for version 0.2 with
-  [CB1](../cbam/cb1-scope-check.md).
+- The [CBAM calculator](../tools/cbam-calculator.md) runs the 50-tonne
+  test in your browser, as in [CB1](../cbam/cb1-scope-check.md).
 
 ## Reuse in other reports
 
