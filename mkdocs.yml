@@ -138,5 +138,6 @@ nav:
       - "C9 Digital tagging and publication": csrd/c9-tagging.md
   - Reference:
       - Glossary: glossary.md
+      - Changelog: changelog.md
       - About: about.md
 # --- end generated nav ---

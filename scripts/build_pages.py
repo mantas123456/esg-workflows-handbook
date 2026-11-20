@@ -76,7 +76,8 @@ def main() -> None:
             nav.append(f"      - \"{step['id']} {step['title']}\": {rel}")
             map_rows.append(f"| {step['id']} | {track['title']} | [{step['title']}]({rel}) "
                             f"| {step['release']} | {step['status']} |")
-    nav += ["  - Reference:", "      - Glossary: glossary.md", "      - About: about.md"]
+    nav += ["  - Reference:", "      - Glossary: glossary.md", "      - Changelog: changelog.md",
+            "      - About: about.md"]
     (DOCS / "workflow-map.md").write_text("\n".join(map_rows) + "\n", encoding="utf-8")
 
     cfg = ROOT / "mkdocs.yml"
