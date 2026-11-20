@@ -66,10 +66,13 @@ your customer or bank asks for the data.
 | 1 Jan 2026 | Definitive period starts. Each calendar year is one reporting period | EU importers of CBAM goods and their customs representatives | [DG TAXUD](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en) |
 | From 1 Jan 2026 | Threshold: importers with **50 tonnes net mass or less per year** (all CN codes added together) are exempt. The exemption does not cover hydrogen or electricity | All importers of CBAM goods | [Regulation (EU) 2025/2083](https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng) |
 | 2026 (each quarter) | Certificate price for 2026 imports is the quarterly average of EU ETS auction prices | Authorised CBAM declarants | [DG TAXUD](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en) |
+| 16 Nov 2026 | Commission adopts Implementing Regulation (EU) 2026/2498: rules for deducting a carbon price paid abroad | Authorised CBAM declarants and their suppliers | [DG TAXUD](https://taxation-customs.ec.europa.eu/news/cbam-commission-adopts-rules-recognition-carbon-prices-paid-non-eu-countries-2026-11-16_en) |
 | 1 Jan 2027 | Certificate price becomes a weekly average of EU ETS auction prices | Authorised CBAM declarants | [DG TAXUD](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en) |
 | 1 Feb 2027 | Sales of CBAM certificates start | Authorised CBAM declarants | [DG TAXUD](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en) |
 | End of each quarter, from 2027 | Hold certificates for at least 50% of the embedded emissions in goods imported since the start of the year (Article 22(2) of Regulation (EU) 2023/956, as amended) | Authorised CBAM declarants | [Regulation (EU) 2025/2083](https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng) |
 | 30 Sep 2027 | First annual CBAM declaration for 2026 imports, and surrender of certificates | Authorised CBAM declarants | [DG TAXUD](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en) |
+| By Dec 2027 | Default values and mark-ups revised at the latest | Importers using default values | [Implementing Regulation (EU) 2025/2621](https://eur-lex.europa.eu/eli/reg_impl/2025/2621/oj/eng) |
+| From 2028 | Evidence of carbon price paid must be certified by a person with a specific accreditation from an EU national accreditation body | Authorised CBAM declarants claiming a deduction | [DG TAXUD](https://taxation-customs.ec.europa.eu/news/cbam-commission-adopts-rules-recognition-carbon-prices-paid-non-eu-countries-2026-11-16_en) |
 
 ### Scope 3
 

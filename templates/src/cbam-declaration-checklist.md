@@ -18,6 +18,7 @@ description: Step-by-step checks before submitting the annual CBAM declaration a
 |---|---|---|
 | ☐ | Import list for the year is complete and matches the customs declarations | |
 | ☐ | Every CN code checked against Annex I to the CBAM Regulation | |
+| ☐ | Goods originating in Annex III countries and territories (Iceland, Liechtenstein, Norway, Switzerland and five territories) left out | |
 | ☐ | Total quantity per type of goods calculated | |
 | ☐ | Hydrogen and electricity listed separately (no threshold applies) | |
 

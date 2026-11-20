@@ -11,6 +11,14 @@ last_checked: 2026-11-20
     whether CBAM applies to you. Check your own codes and totals, and ask
     your customs broker or competent authority if you are not sure.
 
+!!! note "What the CBAM track does not cover yet"
+    Imports of electricity (beyond the threshold rule), customs special
+    procedures such as inward processing, the repurchase and cancellation
+    of unused certificates, and the exact formulas for the free allocation
+    adjustment and for converting a carbon price paid abroad into fewer
+    certificates. Check these with your customs broker and the official
+    texts. They are planned for later releases.
+
 ## In one sentence
 
 Find out whether your imports are CBAM goods, add up their net mass for
@@ -58,6 +66,11 @@ cement, electricity, fertilisers, iron and steel, aluminium and hydrogen.
 
 If a code is not in Annex I, that line is not a CBAM good. Leave it out
 of the total.
+
+**Check the origin too.** CBAM does not apply to goods **originating**
+in Iceland, Liechtenstein, Norway or Switzerland, or in the territories
+of Büsingen, Heligoland, Livigno, Ceuta and Melilla (Annex III). Leave
+those lines out as well. The Commission can change this list.
 
 ### 3. Add up the net mass
 
@@ -149,6 +162,9 @@ print(result.total_mass_t, result.above_threshold)   # 435.0 True
   exemption, you declare it in each customs declaration.
 - **Assuming hydrogen or electricity fall under the threshold.** They do
   not. Any quantity needs authorisation.
+- **Counting goods from Norway, Switzerland, Iceland or Liechtenstein.**
+  Goods originating there are outside CBAM. Check the origin on the
+  customs declaration, not the supplier's address.
 - **Using a 4- or 6-digit code from an invoice.** Use the 8-digit CN code
   from the customs declaration, and check it against Annex I.
 
@@ -183,11 +199,12 @@ estimates) and category 4 (transport). See
 
 ## Sources
 
-Facts come from `data/regulations.yml` (ids `cbam-goods`,
+Facts come from `data/regulations.yml` (ids `cbam-goods`, `cbam-exempt-origins`,
 `cbam-threshold`, `cbam-authorisation`, `cbam-penalties`), last checked
 20 November 2026.
 
 - Regulation (EU) 2023/956, Article 2(1) and Annex I (CBAM goods), Article
+  2(4) and Annex III (exempt origins), Article
   2a and Annex VII (threshold), Article 26(2a) (penalty), consolidated text:
   [EUR-Lex](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020)
 - Regulation (EU) 2025/2083, which inserted the threshold:

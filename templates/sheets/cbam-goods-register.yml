@@ -4,6 +4,7 @@ description: One row per import line of CBAM goods, with a running total of net 
 instructions:
   - Enter one row per customs declaration line, in date order. The running total and the threshold test calculate themselves.
   - Use the 8-digit CN code from the customs declaration and check it against Annex I to the CBAM Regulation (see CB1 in the handbook).
+  - Leave out goods originating in Iceland, Liechtenstein, Norway, Switzerland, Büsingen, Heligoland, Livigno, Ceuta or Melilla (Annex III): CBAM does not apply to them.
   - Net mass in tonnes, as on the customs declaration. Only CBAM goods belong here.
   - Hydrogen (2804 10 00) and electricity (2716 00 00) are marked automatically and do not count towards the threshold; any quantity of them needs an authorised CBAM declarant.
   - Rows turn red once the year's total is above 50 tonnes. From then on, CBAM covers all goods imported that year, including earlier rows.

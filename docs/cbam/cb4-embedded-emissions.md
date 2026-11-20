@@ -43,7 +43,7 @@ Whoever prepares the CBAM declaration, with the data collected in
 |---|---|
 | Iron and steel, aluminium, hydrogen | Direct emissions only |
 | Cement, fertilisers | Direct **and** indirect emissions |
-| Electricity | Not covered on this page; the default values here cannot be used for it |
+| Electricity | Separate method, not covered on this page. Its default values are based on the grid emission factor of the country of origin, without the mark-up below |
 
 Direct emissions come from the production process itself. Indirect
 emissions come from the electricity the process used.
@@ -69,7 +69,8 @@ the precursor part in detail.
 1. Look up the default value for the CN code and country of origin in
    Annex I of Implementing Regulation (EU) 2025/2621. For iron and steel,
    aluminium and hydrogen, use the **direct** emissions value.
-2. Add the **mark-up** for the year of import:
+2. Add the **mark-up** for the year of import (goods other than
+   electricity):
 
 | Year of import | Mark-up | Fertilisers |
 |---|---|---|

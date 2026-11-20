@@ -50,6 +50,11 @@
   article: Regulation (EU) 2023/956, Article 2(1) and Annex I
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
   last_checked: 2026-11-20
+- id: cbam-exempt-origins
+  fact: CBAM does not apply to goods originating in the countries and territories in Annex III point 1 - Iceland, Liechtenstein, Norway and Switzerland, and Buesingen, Heligoland, Livigno, Ceuta and Melilla; precursors originating there count as zero; the Commission can amend the list
+  article: Regulation (EU) 2023/956, Article 2(4) and Annex III, point 1
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02023R0956-20251020
+  last_checked: 2026-11-20
 - id: cbam-direct-only
   fact: For iron and steel, aluminium and hydrogen (Annex II) only direct emissions count in embedded emissions; for cement and fertilisers, direct and indirect emissions count
   article: Regulation (EU) 2023/956, Article 7 and Annex II
@@ -95,7 +100,7 @@
   values: {tco2e_per_certificate: 1}
   last_checked: 2026-11-20
 - id: cbam-default-values
-  fact: Legally binding default values for the definitive period are in Implementing Regulation (EU) 2025/2621, corrected by Implementing Regulation (EU) 2026/1740; default values are increased by a mark-up of 10% in 2026, 20% in 2027 and 30% from 2028, except fertilisers, which have 1% from 2026; 2026/1740 deleted the tables' marked-up columns to avoid rounding inconsistencies, so the mark-up is applied to the base value; default values can be used for all CBAM goods except electricity
+  fact: Legally binding default values for the definitive period are in Implementing Regulation (EU) 2025/2621, corrected by Implementing Regulation (EU) 2026/1740; default values are increased by a mark-up of 10% in 2026, 20% in 2027 and 30% from 2028, except fertilisers, which have 1% from 2026; 2026/1740 deleted the tables' marked-up columns to avoid rounding inconsistencies, so the mark-up is applied to the base value; the mark-up applies to goods other than electricity; electricity default values are set separately, based on the emission factor of the electricity grid of the country of origin; the default values and mark-ups must be revised by December 2027 at the latest
   article: Implementing Regulation (EU) 2025/2621, Annexes I and IV, as corrected by Implementing Regulation (EU) 2026/1740; Regulation (EU) 2023/956, Article 7 and Annex IV
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601740
   values: {markup_by_year: {2026: 0.10, 2027: 0.20, 2028: 0.30}, fertilisers_markup: 0.01}

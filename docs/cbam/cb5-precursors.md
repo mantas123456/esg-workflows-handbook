@@ -77,8 +77,9 @@ SEE of goods = (direct + indirect if they count
 
 ### 5. EU precursors count as zero
 
-A precursor that comes from the EU (or an exempted country) counts with
-**zero** embedded emissions. It must still be listed and its quantity
+A precursor that comes from the EU, or from a country or territory in
+Annex III (Iceland, Liechtenstein, Norway, Switzerland and five small
+territories), counts with **zero** embedded emissions. It must still be listed and its quantity
 reported.
 
 ### 6. Check the evidence for each precursor
