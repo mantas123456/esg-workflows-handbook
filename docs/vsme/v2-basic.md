@@ -168,6 +168,15 @@ because the boundary is the same.
 B4 is not reported: Gozo has no legal or management-system duty to report
 pollutants.
 
+Two judgement calls Gozo states in its report:
+
+- **B7:** the 600 t of food waste sent to anaerobic digestion is **not**
+  counted as recycled; only the 80 t of cardboard and plastic is. Whether
+  anaerobic digestion counts as recycling depends on the standard's
+  definitions: check them, and say which way you counted.
+- **B10:** with 140 employees Gozo **may** leave the pay gap out (the
+  threshold is 150), but reports it because its bank asked.
+
 A few checks on the arithmetic:
 
 - **B3 intensity:** 1,800 tCO2e / EUR 14,000,000 × 1,000,000 = 128.57

@@ -44,8 +44,10 @@ employees or fewer (see V5 in the handbook).
 
 > Thank you for your questionnaire. We report under the voluntary
 > sustainability reporting standard for smaller companies (Delegated
-> Regulation (EU) 2026/1560). Our report for [year] is attached; it answers
-> questions [numbers]. We are happy to explain any figure.
+> Regulation (EU) 2026/1560; for years before 2027, the VSME standard of
+> Commission Recommendation (EU) 2025/1710 that it builds on). Our report
+> for [year] is attached; it answers questions [numbers]. We are happy to
+> explain any figure.
 
 **Asking which questions go beyond the cap**
 

@@ -276,7 +276,7 @@ questionnaire:
   requester: "Supermarket (reports under the CSRD)"
   questions:
     - {question: "How much energy did you use in 2026?", datapoint: B3-energy, decision: answer}
-    - {question: "What were your Scope 1 and Scope 2 emissions?", datapoint: B3-scope2-location, decision: answer}
+    - {question: "What were your Scope 1 and Scope 2 emissions?", datapoint: "B3-scope1, B3-scope2-location", decision: answer}
     - {question: "What were your Scope 3 emissions, by category?", datapoint: null, decision: share}
     - {question: "Do you have a target to reduce emissions?", datapoint: C3-targets, decision: answer}
     - {question: "How much waste did you produce, and how much was recycled?", datapoint: B7-waste, decision: answer}

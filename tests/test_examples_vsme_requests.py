@@ -14,7 +14,7 @@ def test_v5_questionnaire_table() -> None:
     text = page("v5-requests.md")
     ids = {p["id"] for p in POINTS}
     for i, q in enumerate(Q["questions"], start=1):
-        assert q["datapoint"] is None or q["datapoint"] in ids, q["question"]
+        assert q["datapoint"] is None or set(q["datapoint"].split(", ")) <= ids, q["question"]
         # a question answered from the report needs a datapoint; one beyond the standard has none
         assert (q["datapoint"] is not None) == (q["decision"] == "answer"), q["question"]
         shown = q["datapoint"] or "Beyond the standard"

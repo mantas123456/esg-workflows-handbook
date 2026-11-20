@@ -100,8 +100,10 @@ much the same.
 
 > Thank you for your questionnaire. We report under the voluntary
 > sustainability reporting standard for smaller companies (Delegated
-> Regulation (EU) 2026/1560). Our report for [year] is attached; it answers
-> questions [numbers]. We are happy to explain any figure.
+> Regulation (EU) 2026/1560; for years before 2027, the VSME standard of
+> Commission Recommendation (EU) 2025/1710 that it builds on). Our report
+> for [year] is attached; it answers questions [numbers]. We are happy to
+> explain any figure.
 
 **Stating your size**
 
@@ -136,13 +138,16 @@ protects it. All questions are made up.
 | # | Question | VSME datapoint | Gozo's decision |
 |---|---|---|---|
 | 1 | How much energy did you use in 2026? | B3-energy | Answer from the VSME report |
-| 2 | What were your Scope 1 and Scope 2 emissions? | B3-scope2-location | Answer from the VSME report |
+| 2 | What were your Scope 1 and Scope 2 emissions? | B3-scope1, B3-scope2-location | Answer from the VSME report |
 | 3 | What were your Scope 3 emissions, by category? | Beyond the standard | Share voluntarily |
 | 4 | Do you have a target to reduce emissions? | C3-targets | Answer from the VSME report |
 | 5 | How much waste did you produce, and how much was recycled? | B7-waste | Answer from the VSME report |
 | 6 | How many people work for you? | B8-employees | Answer from the VSME report |
 | 7 | How many work accidents did you have? | B9-accidents | Answer from the VSME report |
 | 8 | What is the carbon footprint per kg of each product you sell us? | Beyond the standard | Decline for now |
+
+Gozo's report for 2026 follows the 2025 Recommendation, as the delegated act
+applies from 2027, and its reply says so.
 
 **6 of 8** questions are answered straight from the VSME report
 ([V2](v2-basic.md), [V4](v4-comprehensive.md)). **2** go beyond the
