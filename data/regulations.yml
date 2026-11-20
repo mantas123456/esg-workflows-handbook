@@ -185,6 +185,11 @@
   article: GHG Protocol Corporate Value Chain (Scope 3) Standard (cited, not copied)
   source: https://ghgprotocol.org/corporate-value-chain-scope-3-standard
   last_checked: 2026-11-20
+- id: ghgp-base-year
+  fact: "A company chooses a base year and a base-year recalculation policy; under the Scope 3 Standard it establishes and discloses the significance threshold that triggers a recalculation (the threshold may be quantitative or qualitative; guidance gives 2% as an example); recalculation is triggered by significant structural changes, changes in calculation methodology or data sources, and the discovery of significant errors, including several errors that are significant together; after a significant method change the base year is recalculated with the new method; a structural change during the year is applied to the base year for the whole year; the Corporate Standard's base-year rules are under revision"
+  article: GHG Protocol Corporate Standard, chapter 5, and Scope 3 Standard (cited, not copied); Corporate Standard working group materials 2025
+  source: https://ghgprotocol.org/sites/default/files/standards/Corporate-Value-Chain-Accounting-Reporing-Standard_041613_2.pdf
+  last_checked: 2026-11-20
 - id: jcgm-gum
   fact: "The Guide to the expression of uncertainty in measurement (GUM), JCGM 100:2008, sets general rules for evaluating and expressing measurement uncertainty; its Supplement 1, JCGM 101:2008, propagates probability distributions through a measurement model by a Monte Carlo method and is being revised as JCGM GUM-7; both are free to download from the BIPM, but copyright stays with the JCGM member organisations, so they are cited, not copied"
   article: JCGM 100:2008; JCGM 101:2008

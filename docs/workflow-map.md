@@ -25,10 +25,10 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | S3 | Scope 3 | [Data collection plan](scope3/s3-data-plan.md) | 0.3 | draft |
 | S4 | Scope 3 | [Calculation methods](scope3/s4-methods.md) | 0.3 | draft |
 | S5 | Scope 3 | [Choosing emission factors](scope3/s5-emission-factors.md) | 0.3 | draft |
-| S6 | Scope 3 | [Data quality scoring](scope3/s6-data-quality.md) | 0.3 | planned |
-| S7 | Scope 3 | [Supplier engagement](scope3/s7-suppliers.md) | 0.3 | planned |
-| S8 | Scope 3 | [Base year and recalculation](scope3/s8-base-year.md) | 0.3 | planned |
-| S9 | Scope 3 | [Reporting the inventory](scope3/s9-reporting.md) | 0.3 | planned |
+| S6 | Scope 3 | [Data quality scoring](scope3/s6-data-quality.md) | 0.3 | draft |
+| S7 | Scope 3 | [Supplier engagement](scope3/s7-suppliers.md) | 0.3 | draft |
+| S8 | Scope 3 | [Base year and recalculation](scope3/s8-base-year.md) | 0.3 | draft |
+| S9 | Scope 3 | [Reporting the inventory](scope3/s9-reporting.md) | 0.3 | draft |
 | V1 | VSME | [Choosing the modules](vsme/v1-modules.md) | 0.4 | planned |
 | V2 | VSME | [Basic module data collection](vsme/v2-basic.md) | 0.4 | planned |
 | V3 | VSME | [GHG emissions for VSME](vsme/v3-ghg.md) | 0.4 | planned |

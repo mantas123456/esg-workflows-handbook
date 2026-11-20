@@ -160,3 +160,43 @@ uncertainty_category_1:
     - {description: Cardboard packaging, quality: [2, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.20, basis: "Weighed tonnes, DESNZ factor"}
     - {description: Plastic film packaging, quality: [2, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.20, basis: "Weighed tonnes, DESNZ factor"}
     - {description: Glass jars, quality: [2, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.20, basis: "Weighed tonnes, DESNZ factor"}
+
+# S6, S9: data quality and stated 95% uncertainty for every other inventory line (made up).
+# Category 1 lines are in uncertainty_category_1 above. Same keys.
+line_quality:
+  - {description: Machinery and equipment bought in 2026, quality: [4, 2, 3, 3, 3], u95: 0.50, basis: Spend-based sector factor}
+  - {description: Upstream emissions of purchased electricity, quality: [2, 1, 3, 2, 2], activity_u95: 0.02, factor_u95: 0.20, basis: "Metered MWh, DESNZ factor"}
+  - {description: Upstream emissions of fuels burned, quality: [2, 1, 3, 2, 2], activity_u95: 0.02, factor_u95: 0.20, basis: "Invoiced fuel, DESNZ factor"}
+  - {description: Road freight from haulier records, quality: [2, 1, 3, 2, 2], activity_u95: 0.10, factor_u95: 0.20, basis: "Haulier records, DESNZ factor"}
+  - {description: Chilled storage at Island Cold Store (30% of its capacity), quality: [1, 1, 1, 2, 3], u95: 0.15, basis: "Supplier figure, not verified"}
+  - {description: Food waste to anaerobic digestion, quality: [3, 2, 3, 3, 3], u95: 0.50, basis: Screening estimate}
+  - {description: General waste to landfill, quality: [3, 2, 3, 3, 3], u95: 0.50, basis: Screening estimate}
+  - {description: Flights and hotels, quality: [4, 2, 3, 3, 3], u95: 0.50, basis: Screening estimate}
+  - {description: "Commuting by car (staff survey)", quality: [2, 1, 2, 3, 3], activity_u95: 0.20, factor_u95: 0.15, basis: "Staff survey, DESNZ factor"}
+  - {description: "Commuting by bus (staff survey)", quality: [2, 1, 2, 3, 3], activity_u95: 0.20, factor_u95: 0.15, basis: "Staff survey, DESNZ factor"}
+  - {description: Chilled storage at the supermarket (its figures), quality: [3, 2, 2, 3, 3], activity_u95: 0.10, factor_u95: 0.40, basis: "Customer figures, factor to choose"}
+  - {description: Supermarket transport to its stores (its figures), quality: [2, 2, 2, 3, 3], activity_u95: 0.10, factor_u95: 0.20, basis: "Customer figures, DESNZ factor"}
+  - {description: Cardboard at end of life, quality: [3, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.40, basis: "Weighed tonnes, DESNZ factor"}
+  - {description: Plastic film at end of life, quality: [3, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.40, basis: "Weighed tonnes, DESNZ factor"}
+  - {description: Glass at end of life, quality: [3, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.40, basis: "Weighed tonnes, DESNZ factor"}
+  - {description: Food wasted by consumers, quality: [3, 2, 3, 3, 4], activity_u95: 0.30, factor_u95: 0.40, basis: "Published food-waste rate, DESNZ factor"}
+  - {description: "25% equity in Island Cold Store (Scope 1 and 2: 300 t)", quality: [2, 1, 1, 2, 3], u95: 0.15, basis: "Associate's own figure"}
+quality_target: 2.5        # S6: Gozo's target score for each significant category
+
+# S7: supplier answers for 2026 (the top 5 from S3).
+supplier_answers:
+  - {supplier: Maltese Farmers Cooperative, answered: true, verified: true}
+  - {supplier: Sicilian Tomato Co, answered: true, verified: true}
+  - {supplier: Gozo Greens Ltd, answered: true, verified: false}
+  - {supplier: Island Dairy Ltd, answered: true, verified: false}
+  - {supplier: Mediterranean Oils, answered: true, verified: false}
+next_year_target_share: 0.90
+next_supplier_estimate: {supplier: Spice Traders Ltd, tco2e: 150, u95: 0.15}   # made up, for the what-if
+
+# S8: base year 2026 and changes found in 2027 (made up).
+base_year: 2026
+recalculation_threshold_share: 0.05
+changes_2027:
+  - {name: "Acquisition of 100% of Island Cold Store (1 July 2027)", kind: Structural, effect: "Its emissions move into Scope 1 and 2: remove category 4 storage (90 t) and category 15 equity (75 t) from the base year", tco2e: -165}
+  - {name: New spend factor for other ingredient suppliers, kind: Methodology, effect: "Factor source chosen (S5): 1.1 instead of 0.9 kg/EUR, same deflation", new_factor: 1.1}
+  - {name: Commuting survey counted part-time staff as full-time, kind: Error, effect: "Car km corrected from 600,000 to 560,000", corrected_activity: 560000}

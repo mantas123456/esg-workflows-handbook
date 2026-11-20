@@ -257,3 +257,37 @@ def suppliers_to_cover(spend_by_supplier: dict[str, float], target_share: float)
         chosen.append(name)
         covered += s
     return Coverage(suppliers=chosen, share=covered / total)
+
+
+# --- base year recalculation -------------------------------------------------------
+
+@dataclass(frozen=True)
+class RecalculationCheck:
+    base_tco2e: float
+    changes_tco2e: dict[str, float]
+    cumulative_abs_tco2e: float
+    share: float
+    """Cumulative absolute change as a share of the base year total."""
+    threshold_share: float
+
+    @property
+    def recalculate(self) -> bool:
+        return self.share >= self.threshold_share
+
+
+def check_recalculation(base_tco2e: float, changes_tco2e: dict[str, float], threshold_share: float) -> RecalculationCheck:
+    """Compare changes to the base year against a significance threshold.
+
+    Each change is the effect on the base year total, in tCO2e, of applying
+    it to the base year (an acquisition adds, a divestment removes, a new
+    factor raises or lowers). Their absolute values are added, so changes in
+    opposite directions do not cancel out: a cautious policy choice. The
+    threshold is the company's own and must be disclosed.
+    """
+    _positive("base_tco2e", base_tco2e)
+    if not 0 < threshold_share < 1:
+        raise ValueError("threshold_share must be between 0 and 1")
+    cumulative = math.fsum(abs(v) for v in changes_tco2e.values())
+    return RecalculationCheck(base_tco2e=base_tco2e, changes_tco2e=dict(changes_tco2e),
+                              cumulative_abs_tco2e=cumulative, share=cumulative / base_tco2e,
+                              threshold_share=threshold_share)

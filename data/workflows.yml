@@ -43,10 +43,10 @@ tracks:
       - {id: S3, title: "Data collection plan", file: s3-data-plan.md, release: "0.3", status: draft}
       - {id: S4, title: "Calculation methods", file: s4-methods.md, release: "0.3", status: draft}  # template scope3-inventory added back in 3.4
       - {id: S5, title: "Choosing emission factors", file: s5-emission-factors.md, release: "0.3", status: draft}
-      - {id: S6, title: "Data quality scoring", file: s6-data-quality.md, release: "0.3", status: planned}
-      - {id: S7, title: "Supplier engagement", file: s7-suppliers.md, release: "0.3", status: planned, templates: [supplier-letter]}
-      - {id: S8, title: "Base year and recalculation", file: s8-base-year.md, release: "0.3", status: planned}
-      - {id: S9, title: "Reporting the inventory", file: s9-reporting.md, release: "0.3", status: planned}
+      - {id: S6, title: "Data quality scoring", file: s6-data-quality.md, release: "0.3", status: draft}
+      - {id: S7, title: "Supplier engagement", file: s7-suppliers.md, release: "0.3", status: draft}  # template supplier-letter added back in 3.4
+      - {id: S8, title: "Base year and recalculation", file: s8-base-year.md, release: "0.3", status: draft}
+      - {id: S9, title: "Reporting the inventory", file: s9-reporting.md, release: "0.3", status: draft}
 
   - id: vsme
     title: VSME
