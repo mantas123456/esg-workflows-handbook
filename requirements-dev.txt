@@ -1,2 +1,5 @@
 -r requirements-docs.txt
 pytest>=8
+formulas>=1.2      # recalculates the Excel formulas in tests
+-e .
+pytest-playwright>=0.5  # browser tests for the tools (then: python -m playwright install chromium)

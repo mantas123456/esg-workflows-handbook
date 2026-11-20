@@ -1,0 +1,107 @@
+# Fictional worked example used through the CBAM track (CB1-CB10).
+# Melita Metals Ltd, Malta. All companies, installations and numbers are made up.
+# Every number shown on a page is recomputed from this file by
+# tests/test_examples_cbam.py using esgcalc.
+
+company:
+  name: Melita Metals Ltd
+  country: Malta
+  activity: Imports steel reinforcing bars and aluminium bars for construction
+
+installations:
+  A:
+    name: Installation A (steel mill)
+    location: outside the EU
+    sector: iron_steel
+  B:
+    name: Installation B (aluminium smelter and rolling mill)
+    location: outside the EU
+    sector: aluminium
+
+# Imports released for free circulation in 2026, net mass in tonnes, by quarter.
+imports_2026:
+  - {quarter: Q1, cn_code: "7214 20 00", description: "Steel bars with ribs (rebar)", installation: A, mass_t: 60}
+  - {quarter: Q1, cn_code: "7604 29 10", description: "Aluminium alloy bars and rods", installation: B, mass_t: 8}
+  - {quarter: Q2, cn_code: "7214 20 00", description: "Steel bars with ribs (rebar)", installation: A, mass_t: 70}
+  - {quarter: Q2, cn_code: "7214 99 10", description: "Other steel bars for concrete reinforcement", installation: A, mass_t: 40}
+  - {quarter: Q2, cn_code: "7604 29 10", description: "Aluminium alloy bars and rods", installation: B, mass_t: 9}
+  - {quarter: Q3, cn_code: "7214 20 00", description: "Steel bars with ribs (rebar)", installation: A, mass_t: 65}
+  - {quarter: Q3, cn_code: "7214 99 10", description: "Other steel bars for concrete reinforcement", installation: A, mass_t: 45}
+  - {quarter: Q3, cn_code: "7604 29 10", description: "Aluminium alloy bars and rods", installation: B, mass_t: 10}
+  - {quarter: Q4, cn_code: "7214 20 00", description: "Steel bars with ribs (rebar)", installation: A, mass_t: 55}
+  - {quarter: Q4, cn_code: "7214 99 10", description: "Other steel bars for concrete reinforcement", installation: A, mass_t: 65}
+  - {quarter: Q4, cn_code: "7604 29 10", description: "Aluminium alloy bars and rods", installation: B, mass_t: 8}
+
+# CB2: authorisation timeline (made-up dates).
+authorisation:
+  applicant: Melita Metals Ltd (applies itself, no customs representative)
+  received: 2026-01-12          # application received by the competent authority
+  info_requested: 2026-03-03    # authority asks for more information
+  extension_days: 30
+  decision_effective: 2026-05-28  # status registered in the CBAM registry
+  late_applicant_applied: 2026-04-15  # comparison: a company that applies after 31 March 2026
+
+# CB3: data requests to the two installations (made-up).
+supplier_requests:
+  - installation: A
+    sent: 2026-02-02
+    answer: "Will provide 2026 data, verified by an accredited verifier, using the Commission template"
+    outcome: actual          # CB4 uses actual values
+  - installation: B
+    sent: 2026-02-02
+    answer: "Cannot arrange verification for 2026"
+    outcome: default         # CB4 uses default values
+
+# CB4: data received from Installation A for 2026 production (made-up, verified).
+installation_A_2026:
+  product: Steel bars (CN 7214 20 00 and 7214 99 10), same process
+  production_mass_t: 100000
+  direct_tco2e: 8000          # rolling mill
+  indirect_tco2e: 12000       # electricity; does not count for iron and steel
+  precursors:
+    - {name: crude steel, mass_t: 104000, see_tco2e_per_t: 0.55}
+  verified: true
+
+# CB4: base default values without mark-up (MADE UP for illustration; the real
+# values are in Implementing Regulation (EU) 2025/2621 by country of origin).
+default_values_base:
+  aluminium_bars_B: {cn_code: "7604 29 10", sector: aluminium, base_direct_see_tco2e_per_t: 2.10}
+  steel_bars_A: {cn_code: "7214 20 00", sector: iron_steel, base_direct_see_tco2e_per_t: 1.60}
+
+# CB5: how Installation A's crude steel figure (0.55 tCO2e/t) is built (made-up, verified).
+installation_A_crude_steel_2026:
+  process: Electric arc furnace at Installation A
+  production_mass_t: 104000      # all used to make the 100,000 t of bars
+  direct_tco2e: 30600
+  precursors:
+    - {name: pig iron, from: "Installation C, outside the EU (verified data)", mass_t: 14000, see_tco2e_per_t: 1.90}
+
+# CB6: verification of Installation A's 2026 data (made-up).
+verification_A:
+  verifier: Verifier V (fictional), accredited for CBAM by an EU national accreditation body
+  report_issued: 2027-03-15
+  accreditation_valid_until: 2029-06-30
+  covers: Installation A, steel bars CN 7214 20 00 and 7214 99 10, production year 2026
+
+# CB7: carbon price paid. Installation A's country has a carbon price; the operator
+# sends certified evidence. The conversion rules (IR 2026/2498) are not modelled,
+# so the main example claims no reduction; the what-if uses a made-up figure.
+carbon_price_paid:
+  claimed_certificates: 0
+  what_if_reduction_certificates: 5
+
+# CB8: free allocation adjustment per tonne (MADE UP; the real figures come from
+# the CBAM benchmarks in IR 2025/2620 and fall each year with the CBAM factor).
+free_allocation_adjustment_tco2e_per_t:
+  2026: {A: 0.585, B: 1.95}
+  2027: {A: 0.57, B: 1.90}
+certificate_price_assumed_eur_per_tco2e: 80.00   # MADE UP; see DG TAXUD for real prices
+
+# CB8: quarterly holding in 2027. Melita Metals imports the same quantities per
+# quarter in 2027 as in 2026; YTD emissions use default values without mark-up
+# (default_values_base above).
+imports_2027_same_as_2026: true
+
+# CB9: declaration.
+declaration_2026:
+  submitted: 2027-09-10

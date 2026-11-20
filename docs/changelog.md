@@ -4,6 +4,55 @@ What changed in the handbook, newest first. Regulatory updates are listed
 here too, with the date the facts were re-checked. See the
 [roadmap](roadmap.md) for what comes next.
 
+## 0.2 CBAM track (20 November 2026)
+
+The full CBAM track, from the scope check to records, with one fictional
+importer (Melita Metals Ltd, Malta) followed through every step. All
+pages are drafts, not yet reviewed by a practitioner.
+
+**New pages (draft)**
+
+- [CB1 Scope check](cbam/cb1-scope-check.md),
+  [CB2 Authorisation](cbam/cb2-authorisation.md),
+  [CB3 Supplier data](cbam/cb3-supplier-data.md),
+  [CB4 Embedded emissions](cbam/cb4-embedded-emissions.md),
+  [CB5 Precursors](cbam/cb5-precursors.md),
+  [CB6 Verification](cbam/cb6-verification.md),
+  [CB7 Carbon price paid](cbam/cb7-carbon-price-paid.md),
+  [CB8 Certificates](cbam/cb8-certificates.md),
+  [CB9 Declaration](cbam/cb9-declaration.md),
+  [CB10 Records](cbam/cb10-records.md).
+
+**New tools and templates**
+
+- [CBAM calculator](tools/cbam-calculator.md): threshold, embedded
+  emissions, certificates, cost and quarterly holding, in your browser.
+- Downloads: CBAM goods register and embedded emissions workbook (Excel),
+  supplier data request letter and declaration checklist (Word).
+- `esgcalc`: the Python package behind every number. Worked examples,
+  workbook formulas and the browser tool are all checked against it on
+  every build.
+
+**Regulatory facts (re-checked 20 November 2026)**
+
+- Added CBAM facts with article references: Annex I goods, exempt origins
+  (Annex III), direct-only sectors (Annex II), authorisation and its
+  deadlines, the 2026 transitional rule, actual vs default values,
+  verification, complex goods and precursors, carbon price paid
+  (including Implementing Regulation (EU) 2026/2498 of 16 November 2026),
+  the free allocation adjustment and CBAM factor, declaration content,
+  penalties and record keeping.
+- Corrected: default values. Implementing Regulation (EU) 2026/1740
+  removed the pre-calculated marked-up columns, so the mark-up is applied
+  to the base value; fertilisers have a 1% mark-up; electricity default
+  values are set separately and carry no mark-up.
+- Corrected: the threshold exempts imports that **do not exceed** 50
+  tonnes, so exactly 50 tonnes is exempt.
+
+**Known gaps** (see the note on CB1): electricity imports, customs
+special procedures, repurchase of certificates, and the exact formulas for
+the free allocation adjustment and the carbon-price-paid conversion.
+
 ## 0.1 Skeleton (20 November 2026)
 
 First public release. All four tracks have a placeholder page for every

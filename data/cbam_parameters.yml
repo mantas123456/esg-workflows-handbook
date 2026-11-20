@@ -1,0 +1,67 @@
+# CBAM parameters used by esgcalc/cbam.py. Every value names its source and
+# the matching fact id in data/regulations.yml. Change values here, never in code.
+# Last checked: 2026-11-20.
+
+threshold:
+  max_exempt_mass_t: 50          # exempt when total net mass does not exceed this
+  excluded_cn_codes:             # no threshold: authorisation needed for any quantity
+    "27160000": electricity
+    "28041000": hydrogen
+  fact: cbam-threshold
+  article: Regulation (EU) 2023/956, Article 2a and Annex VII
+  source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
+
+sectors:
+  # direct_only: true -> indirect emissions are not counted (Annex II)
+  cement: {direct_only: false}
+  fertilisers: {direct_only: false}
+  iron_steel: {direct_only: true}
+  aluminium: {direct_only: true}
+  hydrogen: {direct_only: true}
+  electricity: {separate_method: true}   # embedded emissions of electricity use a separate method
+  fact: cbam-direct-only
+  article: Regulation (EU) 2023/956, Article 7 and Annexes II and IV
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
+
+authorisation:
+  decision_days: 120             # calendar days from receipt of the application
+  max_extension_days: 30         # per request for more information
+  max_total_days: 180            # never longer than this from receipt
+  transitional_apply_by: 2026-03-31
+  fact: cbam-authorisation-procedure
+  article: Implementing Regulation (EU) 2025/486, Article 4; Regulation (EU) 2023/956, Article 17(7a)
+  source: https://eur-lex.europa.eu/eli/reg_impl/2025/486/oj/eng
+
+records:
+  retention_years_after_declaration_year: 4   # keep until 31 Dec of that year
+  fact: cbam-records
+  article: Regulation (EU) 2023/956, Article 7(6)
+  source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20
+
+certificate:
+  tco2e_per_certificate: 1
+  fact: cbam-certificate-unit
+  article: Regulation (EU) 2023/956, Article 3
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
+
+quarterly_holding:
+  min_share: 0.5
+  from_year: 2027
+  fact: cbam-quarterly-holding
+  article: Regulation (EU) 2023/956, Article 22(2), as amended by Regulation (EU) 2025/2083
+  source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
+
+# Reference values, not used in a calculation yet (free allocation adjustment
+# needs the CBAM benchmarks from Implementing Regulation (EU) 2025/2620).
+cbam_factor_by_year:
+  values: {2026: 0.975, 2027: 0.95, 2028: 0.90, 2029: 0.775, 2030: 0.515, 2031: 0.39, 2032: 0.265, 2033: 0.14, 2034: 0.0}
+  fact: cbam-free-allocation-adjustment
+  article: Directive 2003/87/EC, Article 10a(1a), as amended by Directive (EU) 2023/959
+  source: https://eur-lex.europa.eu/eli/reg_impl/2025/2620/oj/eng
+
+default_value_markup_by_year:
+  values: {2026: 0.10, 2027: 0.20, 2028: 0.30}   # 0.30 applies from 2028 onwards
+  sector_markup: {fertilisers: 0.01}            # from 2026 onwards
+  fact: cbam-default-values
+  article: Implementing Regulation (EU) 2025/2621, as corrected by Implementing Regulation (EU) 2026/1740
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601740

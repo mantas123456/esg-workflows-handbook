@@ -18,9 +18,10 @@ One page per step: what it is, inputs, steps, a worked example with made-up
 numbers, common mistakes, templates, tools and sources. Emissions numbers
 are treated as measurements, with traceable inputs and stated uncertainty.
 
-**Status:** version 0.1 (skeleton) released 20 November 2026: triage,
-regulation timeline, evidence locker and data reuse map are drafted; every
-other step has a placeholder. Next: 0.2 CBAM track. See the
+**Status:** version 0.2 released 20 November 2026: the full CBAM track
+(CB1-CB10, drafts) with a browser calculator, Excel and Word templates and
+the `esgcalc` package, on top of 0.1 (triage, timeline, evidence locker,
+data reuse map). Next: 0.3 Scope 3. See the
 [changelog](docs/changelog.md), the [roadmap](docs/roadmap.md),
 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) and the
 [staged build prompts](prompts/STAGED_PROMPTS.md).
@@ -35,7 +36,8 @@ other step has a placeholder. Next: 0.2 CBAM track. See the
 python -m venv .venv
 # Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
 pip install -r requirements-dev.txt
-python scripts/build_pages.py     # placeholder pages, workflow map, nav
+python scripts/build_templates.py # Word and Excel templates into docs/downloads
+python scripts/build_pages.py     # placeholder pages, workflow map, nav, download links
 python scripts/check_workflows.py
 mkdocs serve                      # http://127.0.0.1:8000
 ```
@@ -51,6 +53,12 @@ mkdocs serve                      # http://127.0.0.1:8000
   writes the workflow map, the navigation and the F3 reuse-map table.
 - `scripts/hash_evidence.py` builds and verifies a SHA-256 evidence
   register for a folder (see F1).
+- `esgcalc/` is the Python package behind every calculation (CBAM first),
+  with CBAM parameters in `data/cbam_parameters.yml`.
+- `templates/src/*.md` (Word, via Pandoc) and `templates/sheets/*.yml`
+  (Excel, via openpyxl) are built by `scripts/build_templates.py` into
+  `docs/downloads/`. Sheet formulas take regulatory numbers from
+  `data/cbam_parameters.yml`, and tests recalculate them against `esgcalc`.
 - `scripts/check_workflows.py` (run in CI) fails if a step has no page or a
   written page lacks a standard heading, and warns when a regulation fact
   has not been re-checked for 90 days.

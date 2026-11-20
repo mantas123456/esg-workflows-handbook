@@ -36,34 +36,135 @@
   source: https://finance.ec.europa.eu/news/commission-adopts-revised-sustainability-reporting-standards-2026-07-03_en
   last_checked: 2026-11-20
 
+
 # --- CBAM ---
+# Regulation (EU) 2023/956 as amended by Regulation (EU) 2025/2083. Article
+# numbers refer to the consolidated text of 20 Oct 2025 unless stated.
 - id: cbam-definitive
   fact: CBAM definitive period started 1 Jan 2026 under Regulation (EU) 2023/956 as amended by Regulation (EU) 2025/2083; the reporting period is the calendar year of import
+  article: Regulation (EU) 2023/956, Articles 6 and 36, as amended
   source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en
+  last_checked: 2026-11-20
+- id: cbam-goods
+  fact: CBAM goods are the CN codes in Annex I in six sectors (cement, electricity, fertilisers, iron and steel, aluminium, hydrogen); where Annex I gives a code shorter than 8 digits, every CN code starting with it is covered; iron and steel include chapter 72 as a whole, with listed exceptions (such as some ferro-alloys), and some chapter 73 goods; aluminium includes headings 7601 to 7616 as listed; electricity is CN 2716 00 00 and hydrogen CN 2804 10 00
+  article: Regulation (EU) 2023/956, Article 2(1) and Annex I
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
+  last_checked: 2026-11-20
+- id: cbam-exempt-origins
+  fact: CBAM does not apply to goods originating in the countries and territories in Annex III point 1 - Iceland, Liechtenstein, Norway and Switzerland, and Buesingen, Heligoland, Livigno, Ceuta and Melilla; precursors originating there count as zero; the Commission can amend the list
+  article: Regulation (EU) 2023/956, Article 2(4) and Annex III, point 1
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02023R0956-20251020
+  last_checked: 2026-11-20
+- id: cbam-direct-only
+  fact: For iron and steel, aluminium and hydrogen (Annex II) only direct emissions count in embedded emissions; for cement and fertilisers, direct and indirect emissions count
+  article: Regulation (EU) 2023/956, Article 7 and Annex II
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
   last_checked: 2026-11-20
 - id: cbam-threshold
   fact: An importer is exempt when the net mass of its CBAM goods does not exceed 50 tonnes in a calendar year, all CN codes added together; the exemption does not cover hydrogen or electricity; an exempt importer declares the exemption in its customs declaration; once the threshold is exceeded, obligations cover all goods imported that year, including those imported before
+  article: Regulation (EU) 2023/956, Article 2a and Annex VII, as inserted by Regulation (EU) 2025/2083
   source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
   values: {max_exempt_mass_t: 50}
   last_checked: 2026-11-20
+- id: cbam-complex-goods
+  fact: Simple goods are made only from inputs and fuels with zero embedded emissions; complex goods are all other goods; a relevant precursor is a good with non-zero embedded emissions inside the system boundaries of a complex good; the embedded emissions of a complex good add those of the relevant precursors, using the mass of precursor consumed (not the mass contained in the product), repeated for precursors that are themselves complex goods; a precursor from the EU (or an exempted country) counts with zero embedded emissions but must still be identified and its quantity reported
+  article: Regulation (EU) 2023/956, Annex IV, point 1; Commission Guidance No. 3
+  source: https://taxation-customs.ec.europa.eu/document/download/29b9eec7-1a4b-4eb6-ab85-96a0c9e35fd0_en?filename=Guidance+No.+3+-+CBAM+methods+for+the+calculation+of+emissions+embedded+in+goods.pdf
+  last_checked: 2026-11-20
+- id: cbam-precursor-examples
+  fact: Examples of precursors (not the legal list) - for iron and steel products, crude steel, pig iron, direct reduced iron and ferro-alloys appear as precursors in the transitional-period rules (Implementing Regulation (EU) 2023/1773); Commission guidance lists unwrought aluminium and other aluminium products as typical precursors for aluminium products; the binding list for the definitive period is in the current implementing rules and was not re-checked here
+  article: Implementing Regulation (EU) 2023/1773, Annex II (transitional period); Commission Guidance No. 3
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A32023R1773
+  last_checked: 2026-11-20
+- id: cbam-authorisation
+  fact: Only an authorised CBAM declarant may import CBAM goods above the threshold (and any hydrogen or electricity); the importer, or an indirect customs representative, applies through the CBAM registry to the competent authority of its Member State; criteria include no serious or repeated infringements, financial and operational capacity, and an EORI number
+  article: Regulation (EU) 2023/956, Articles 5, 17 and 25, as amended
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
+  last_checked: 2026-11-20
+- id: cbam-authorisation-procedure
+  fact: The competent authority assesses an application within 120 calendar days of receipt; when it asks for more information it may extend this by up to 30 calendar days and must say why, up to 180 days in total; before refusing, it tells the applicant and gives up to 30 calendar days to comment; a decision takes effect when it is registered in the CBAM registry and the applicant is notified there
+  article: Implementing Regulation (EU) 2025/486, Articles 4, 5 and 7, as amended by Implementing Regulation (EU) 2025/2549
+  source: https://eur-lex.europa.eu/eli/reg_impl/2025/486/oj/eng
+  values: {decision_days: 120, max_extension_days: 30, max_total_days: 180, refusal_comment_days: 30}
+  last_checked: 2026-11-20
+- id: cbam-authorisation-transitional-2026
+  fact: An importer or indirect customs representative that applied for authorisation by 31 March 2026 may keep importing CBAM goods in 2026, also above the threshold, until the decision on its application takes effect (the recital says "submitted", the implementing act says "registered in the CBAM registry" by that date)
+  article: Regulation (EU) 2023/956, Article 17(7a), as inserted by Regulation (EU) 2025/2083; Implementing Regulation (EU) 2025/2549
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32025R2549
+  values: {apply_by: 2026-03-31}
+  last_checked: 2026-11-20
+- id: cbam-certificate-unit
+  fact: One CBAM certificate corresponds to one tonne of CO2e of embedded emissions
+  article: Regulation (EU) 2023/956, Article 3
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
+  values: {tco2e_per_certificate: 1}
+  last_checked: 2026-11-20
+- id: cbam-default-values
+  fact: Legally binding default values for the definitive period are in Implementing Regulation (EU) 2025/2621, corrected by Implementing Regulation (EU) 2026/1740; default values are increased by a mark-up of 10% in 2026, 20% in 2027 and 30% from 2028, except fertilisers, which have 1% from 2026; 2026/1740 deleted the tables' marked-up columns to avoid rounding inconsistencies, so the mark-up is applied to the base value; the mark-up applies to goods other than electricity; electricity default values are set separately, based on the emission factor of the electricity grid of the country of origin; the default values and mark-ups must be revised by December 2027 at the latest
+  article: Implementing Regulation (EU) 2025/2621, Annexes I and IV, as corrected by Implementing Regulation (EU) 2026/1740; Regulation (EU) 2023/956, Article 7 and Annex IV
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601740
+  values: {markup_by_year: {2026: 0.10, 2027: 0.20, 2028: 0.30}, fertilisers_markup: 0.01}
+  last_checked: 2026-11-20
+- id: cbam-verification
+  fact: Actual embedded emissions declared must be verified by a verifier accredited for CBAM by a national accreditation body in the EU, and the accreditation must be valid when the verifier issues the final verification report; verification rules are in Implementing Regulation (EU) 2025/2546
+  article: Regulation (EU) 2023/956, Articles 8 and 18; Implementing Regulation (EU) 2025/2546
+  source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-verification_en
+  last_checked: 2026-11-20
+- id: cbam-actual-or-default
+  fact: The declarant may use actual embedded emissions only when the installation operator provides data verified by an accredited verifier; without verified actual data it uses the Commission's default values; actual data for a precursor may be used only from a verification report that covers the period the precursor was produced; for operators the reporting period is the calendar year in which the goods were produced
+  article: Regulation (EU) 2023/956, Articles 7 and 8 and Annex IV
+  source: https://taxation-customs.ec.europa.eu/system/files/2026-08/Guidance%20No.%201%20-%20Introduction%20to%20CBAM%20concepts.pdf
+  last_checked: 2026-11-20
+- id: cbam-operator-template-and-portal
+  fact: The Commission publishes an operator emissions report template to help installation operators pass embedded emissions data to authorised CBAM declarants; operators of non-EU installations can register in the Operators Portal of the CBAM Registry, which opened in December 2024
+  article: Regulation (EU) 2023/956, Article 10; Commission Guidance No. 2 for non-EU operators
+  source: https://taxation-customs.ec.europa.eu/system/files/2026-08/Guidance%20No.%202%20-%20Quick%20guide%20for%20non-EU%20operators%20on%20CBAM%20implementation.pdf
+  last_checked: 2026-11-20
+- id: cbam-carbon-price-paid
+  fact: The declarant may reduce the certificates to surrender by the carbon price effectively paid in the country of origin, net of any rebate or compensation (including free allowances); the documentation must be certified by a person independent of the declarant and of the third country's authorities; where the price effectively paid cannot be determined, yearly default carbon prices may be used, which the Commission may set from 2027; Implementing Regulation (EU) 2026/2498, adopted 16 Nov 2026, sets the evidence, certification, attribution to embedded emissions and conversion into fewer certificates; international carbon credits count only if authorised and issued under Article 6 of the Paris Agreement; for 2026 and 2027 accredited CBAM verifiers may certify the evidence, and from 2028 the certifier needs a specific accreditation from an EU national accreditation body
+  article: Regulation (EU) 2023/956, Article 9, as amended by Regulation (EU) 2025/2083; Implementing Regulation (EU) 2026/2498
+  source: https://taxation-customs.ec.europa.eu/news/cbam-commission-adopts-rules-recognition-carbon-prices-paid-non-eu-countries-2026-11-16_en
+  last_checked: 2026-11-20
+- id: cbam-free-allocation-adjustment
+  fact: Certificates to surrender are adjusted for EU ETS free allocation to EU producers of the same goods; the adjustment uses a CBAM benchmark per CN code, the cross-sectoral correction factor and the CBAM factor, is set by Implementing Regulation (EU) 2025/2620, and is zero for electricity; the CBAM factor is 97.5% (2026), 95% (2027), 90% (2028), 77.5% (2029), 51.5% (2030), 39% (2031), 26.5% (2032), 14% (2033) and none from 2034
+  article: Regulation (EU) 2023/956, Article 31; Directive 2003/87/EC, Article 10a(1a), as amended by Directive (EU) 2023/959; Implementing Regulation (EU) 2025/2620
+  source: https://eur-lex.europa.eu/eli/reg_impl/2025/2620/oj/eng
+  values: {cbam_factor_by_year: {2026: 0.975, 2027: 0.95, 2028: 0.90, 2029: 0.775, 2030: 0.515, 2031: 0.39, 2032: 0.265, 2033: 0.14, 2034: 0.0}}
+  last_checked: 2026-11-20
 - id: cbam-certificates
-  fact: Certificate sales from 1 Feb 2027; price from EU ETS auctions, quarterly average for 2026 imports, weekly average from 1 Jan 2027
+  fact: Certificate sales from 1 Feb 2027 on the common central platform; price from EU ETS auctions weighted by auction volume; for 2026 imports, the quarterly average for the quarter in which the goods were imported; weekly average from 1 Jan 2027
+  article: Regulation (EU) 2023/956, Articles 20 and 21, as amended
   source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en
+  last_checked: 2026-11-20
+- id: cbam-quarterly-holding
+  fact: From 2027, at the end of each quarter the declarant must hold certificates for at least 50% of embedded emissions in goods imported since the start of the year, measured with default values without mark-up or with the previous year's surrendered certificates, taking into account the free allocation adjustment
+  article: Regulation (EU) 2023/956, Article 22(2), as amended by Regulation (EU) 2025/2083
+  source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
+  values: {min_share: 0.5, from_year: 2027}
   last_checked: 2026-11-20
 - id: cbam-declaration
   fact: First annual declaration and surrender due 30 Sep 2027 for 2026 imports
+  article: Regulation (EU) 2023/956, Articles 6(1) and 22(1), as amended
   source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en
   last_checked: 2026-11-20
+- id: cbam-declaration-content
+  fact: The annual declaration states the total quantity of each type of goods imported in the previous year, their total embedded emissions, the number of certificates to surrender (after the carbon-price-paid reduction and the free allocation adjustment), and copies of verification reports where actual values are used
+  article: Regulation (EU) 2023/956, Article 6(2), as amended by Regulation (EU) 2025/2083
+  source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
+  last_checked: 2026-11-20
+- id: cbam-penalties
+  fact: A declarant that does not surrender enough certificates by 30 Sep pays, per missing certificate, the EU ETS excess emissions penalty (Directive 2003/87/EC, Article 16(3) and (4)) of the import year, and must still surrender them; an importer without authorisation that exceeds the threshold faces a penalty on all embedded emissions of that year, at least the same per tonne, which may be reduced where the threshold was exceeded by no more than 10%
+  article: Regulation (EU) 2023/956, Article 26(1), (1a), (2a) and (3), as amended by Regulation (EU) 2025/2083
+  source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
+  last_checked: 2026-11-20
 - id: cbam-records
-  fact: The authorised CBAM declarant keeps records of the information used to calculate embedded emissions, including the verifier's report, until the end of the fourth year after the year the CBAM declaration was or should have been submitted (Article 7(6), Regulation (EU) 2023/956)
+  fact: The authorised CBAM declarant keeps records of the information used to calculate embedded emissions, including the verifier's report, until the end of the fourth year after the year the CBAM declaration was or should have been submitted
+  article: Regulation (EU) 2023/956, Article 7(6)
   source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20
   values: {retention_years_after_declaration_year: 4}
   last_checked: 2026-11-20
 - id: cbam-carbon-price-records
-  fact: Documents supporting a reduction for carbon price paid abroad are kept until the end of the fourth year after the year in which the independent person certified them (Article 9(3), Regulation (EU) 2023/956 as amended by Regulation (EU) 2025/2083)
+  fact: Documents supporting a reduction for carbon price paid abroad are kept until the end of the fourth year after the year in which the independent person certified them
+  article: Regulation (EU) 2023/956, Article 9(3), as amended by Regulation (EU) 2025/2083
   source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20
-  last_checked: 2026-11-20
-- id: cbam-quarterly-holding
-  fact: From 2027, at the end of each quarter the declarant must hold certificates for at least 50% of embedded emissions in goods imported since the start of the year (Article 22(2), Regulation (EU) 2023/956 as amended)
-  source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
   last_checked: 2026-11-20

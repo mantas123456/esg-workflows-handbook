@@ -115,3 +115,37 @@
 .md-typeset__table {
   max-width: 100%;
 }
+
+/* Browser tools (docs/tools/) */
+.md-typeset .tool-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  align-items: flex-end;
+  margin: 0.6rem 0;
+}
+.md-typeset .tool-field {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  gap: 0.2rem;
+}
+.md-typeset .tool-app input,
+.md-typeset .tool-app select {
+  font: inherit;
+  padding: 0.2rem 0.3rem;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.2rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  max-width: 100%;
+}
+.md-typeset .tool-table input { width: 6.5rem; }
+.md-typeset .tool-table input[name="cn_code"] { width: 7.5rem; }
+.md-typeset .tool-scroll { overflow-x: auto; }
+.md-typeset .tool-table { font-size: 0.65rem; }
+.md-typeset .tool-table td, .md-typeset .tool-table th { padding: 0.3rem 0.4rem; vertical-align: middle; }
+.md-typeset .tool-remove { padding: 0.2rem 0.5rem; font-size: 0.6rem; }
+.md-typeset .tool-errors { color: var(--md-accent-fg-color); font-weight: 600; min-height: 1em; }
+.md-typeset .tool-notes { font-size: 0.68rem; color: var(--md-default-fg-color--light); }
+.md-typeset .tool-results th { text-align: left; font-weight: 600; }

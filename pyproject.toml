@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "esgcalc"
+version = "0.2.0.dev0"
+description = "Calculations behind the ESG Workflows Handbook (CBAM first). No network calls."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+dependencies = ["PyYAML>=6.0"]
+
+[tool.setuptools]
+packages = ["esgcalc"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

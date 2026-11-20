@@ -8,6 +8,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 STATUSES = {"planned", "draft", "examples-checked", "reviewed"}
 DRAFT_HEADINGS = ["## In one sentence", "## Steps", "## Worked example", "## Sources"]
+TEMPLATES_MARKER = "<!-- generated from data/workflows.yml templates: do not edit by hand -->"
 
 
 def main() -> int:
@@ -31,6 +32,12 @@ def main() -> int:
                 errors.append(f"{sid}: front matter does not name this step")
             if step["status"] != "planned":
                 errors += [f"{sid}: missing heading '{h}'" for h in DRAFT_HEADINGS if h not in text]
+                for tid in step.get("templates", []):
+                    if not any((ROOT / "templates" / d / f"{tid}.{ext}").exists()
+                               for d, ext in (("src", "md"), ("sheets", "yml"))):
+                        errors.append(f"{sid}: template {tid} has no source in templates/")
+                if step.get("templates") and TEMPLATES_MARKER not in text:
+                    errors.append(f"{sid}: lists templates but the page has no generated download block")
 
     regs = yaml.safe_load((ROOT / "data/regulations.yml").read_text(encoding="utf-8"))
     for r in regs:
