@@ -32,6 +32,12 @@ authorisation:
   article: Implementing Regulation (EU) 2025/486, Article 4; Regulation (EU) 2023/956, Article 17(7a)
   source: https://eur-lex.europa.eu/eli/reg_impl/2025/486/oj/eng
 
+records:
+  retention_years_after_declaration_year: 4   # keep until 31 Dec of that year
+  fact: cbam-records
+  article: Regulation (EU) 2023/956, Article 7(6)
+  source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20
+
 certificate:
   tco2e_per_certificate: 1
   fact: cbam-certificate-unit

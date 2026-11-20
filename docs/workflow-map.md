@@ -15,11 +15,11 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | CB3 | CBAM | [Requesting data from installation operators](cbam/cb3-supplier-data.md) | 0.2 | draft |
 | CB4 | CBAM | [Embedded emissions - actual vs default values](cbam/cb4-embedded-emissions.md) | 0.2 | draft |
 | CB5 | CBAM | [Precursors and complex goods](cbam/cb5-precursors.md) | 0.2 | draft |
-| CB6 | CBAM | [Verification of emissions data](cbam/cb6-verification.md) | 0.2 | planned |
-| CB7 | CBAM | [Carbon price paid abroad](cbam/cb7-carbon-price-paid.md) | 0.2 | planned |
-| CB8 | CBAM | [Certificates - buying, holding, surrendering](cbam/cb8-certificates.md) | 0.2 | planned |
-| CB9 | CBAM | [The annual CBAM declaration](cbam/cb9-declaration.md) | 0.2 | planned |
-| CB10 | CBAM | [Records and evidence for CBAM](cbam/cb10-records.md) | 0.2 | planned |
+| CB6 | CBAM | [Verification of emissions data](cbam/cb6-verification.md) | 0.2 | draft |
+| CB7 | CBAM | [Carbon price paid abroad](cbam/cb7-carbon-price-paid.md) | 0.2 | draft |
+| CB8 | CBAM | [Certificates - buying, holding, surrendering](cbam/cb8-certificates.md) | 0.2 | draft |
+| CB9 | CBAM | [The annual CBAM declaration](cbam/cb9-declaration.md) | 0.2 | draft |
+| CB10 | CBAM | [Records and evidence for CBAM](cbam/cb10-records.md) | 0.2 | draft |
 | S1 | Scope 3 | [Boundary and organisational approach](scope3/s1-boundary.md) | 0.3 | planned |
 | S2 | Scope 3 | [Screening the 15 categories](scope3/s2-screening.md) | 0.3 | planned |
 | S3 | Scope 3 | [Data collection plan](scope3/s3-data-plan.md) | 0.3 | planned |

@@ -266,3 +266,124 @@ def test_cb5_eu_pig_iron_counts_as_zero() -> None:
     assert "| SEE of crude steel | 0.55 tCO2e/t | 30,600 / 104,000 = 0.294 tCO2e/t |" in text
     assert "| SEE of steel bars | 0.652 tCO2e/t | 0.386 tCO2e/t |" in text
     assert "| Melita Metals' 400 t | 260.8 tCO2e | 154.4 tCO2e |" in text
+
+
+# --- CB6-CB10: verification, carbon price, certificates, declaration, records
+
+def _emissions_2026() -> tuple[float, float]:
+    """Embedded emissions (tCO2e) for Installation A (actual) and B (default + 2026 mark-up)."""
+    from esgcalc.cbam import default_value_with_markup
+    base_b = EXAMPLE["default_values_base"]["aluminium_bars_B"]["base_direct_see_tco2e_per_t"]
+    return _installation_a().total_tco2e, default_value_with_markup(base_b, 2026, "aluminium") * _mass("B")
+
+
+def _fa_2026() -> tuple[float, float]:
+    fa = EXAMPLE["free_allocation_adjustment_tco2e_per_t"][2026]
+    return fa["A"] * _mass("A"), fa["B"] * _mass("B")
+
+
+def _certs_2026(reduction: float = 0.0) -> float:
+    from esgcalc.cbam import certificates_needed
+    return certificates_needed(sum(_emissions_2026()), sum(_fa_2026()), reduction)
+
+
+def test_cb6_verification_checks_and_share() -> None:
+    text = page("cb6-verification.md")
+    v = EXAMPLE["verification_A"]
+    assert v["report_issued"] <= v["accreditation_valid_until"]      # valid on the report date
+    assert f"Report issued {_d(v['report_issued'])}; accreditation valid until {_d(v['accreditation_valid_until'])}" in text
+    a, b = _emissions_2026()
+    share = round(100 * a / (a + b), 1)
+    # 260.8 / 341.65 = 76.3%
+    assert share == 76.3
+    assert f"**{fmt(a)} of its {fmt(a + b)} tCO2e**, or **{share}%**" in text
+    assert f"The other {fmt(b)} tCO2e" in text
+    assert f"{_installation_a().see_tco2e_per_t:.3f} tCO2e/t, as used in CB4" in text
+
+
+def test_cb7_what_if_reduction() -> None:
+    from esgcalc.cbam import certificate_cost
+    text = page("cb7-carbon-price-paid.md")
+    cp = EXAMPLE["carbon_price_paid"]
+    price = EXAMPLE["certificate_price_assumed_eur_per_tco2e"]
+    base, what_if = _certs_2026(cp["claimed_certificates"]), _certs_2026(cp["what_if_reduction_certificates"])
+    assert (round(base, 6), round(what_if, 6)) == (39.4, 34.4)
+    cost_base, cost_if = certificate_cost(round(base, 6), price), certificate_cost(round(what_if, 6), price)
+    assert (str(cost_base), str(cost_if)) == ("3152.00", "2752.00")
+    assert f"| Certificates to surrender | {fmt(round(base, 6))} | {fmt(round(what_if, 6))} |" in text
+    assert "| EUR 3,152.00 | EUR 2,752.00 |" in text
+    assert f"reduction of **{cp['what_if_reduction_certificates']} certificates**" in text
+    assert "# 34.4 2752.00" in text
+
+
+def test_cb8_certificates_and_cost() -> None:
+    from esgcalc.cbam import certificate_cost
+    text = page("cb8-certificates.md")
+    a, b = _emissions_2026()
+    fa_a, fa_b = _fa_2026()
+    # 0.585 x 400 = 234.0; 1.95 x 35 = 68.25; total 302.25
+    assert (fa_a, fa_b) == (pytest.approx(234.0), pytest.approx(68.25))
+    certs = round(_certs_2026(), 6)
+    assert certs == 39.4                                    # 341.65 - 302.25 - 0
+    assert str(certificate_cost(certs, EXAMPLE["certificate_price_assumed_eur_per_tco2e"])) == "3152.00"
+    assert f"| Embedded emissions (tCO2e), from CB4 | {fmt(a)} | {fmt(b)} | {fmt(a + b)} |" in text
+    assert "| Free allocation adjustment (tCO2e) | 234.0 | 68.25 | 302.25 |" in text
+    assert "341.65 − 302.25 − 0 = **39.4 certificates**" in text
+    assert "39.4 × 80.00 = **EUR 3,152.00**" in text
+    assert "# 39.4 3152.00" in text
+
+
+def test_cb8_cbam_factor_table_matches_parameters() -> None:
+    from esgcalc.cbam import load_parameters
+    text = page("cb8-certificates.md")
+    factors = load_parameters()["cbam_factor_by_year"]["values"]
+    cells = " | ".join("none" if f == 0 else f"{f * 100:g}%" for _, f in sorted(factors.items()))
+    assert f"| CBAM factor | {cells} |" in text
+
+
+def test_cb8_quarterly_holding_2027() -> None:
+    from esgcalc.cbam import quarterly_holding
+    text = page("cb8-certificates.md")
+    assert EXAMPLE["imports_2027_same_as_2026"] is True
+    base = EXAMPLE["default_values_base"]
+    see_a, see_b = base["steel_bars_A"]["base_direct_see_tco2e_per_t"], base["aluminium_bars_B"]["base_direct_see_tco2e_per_t"]
+    fa = EXAMPLE["free_allocation_adjustment_tco2e_per_t"][2027]
+    expected = {"Q1": 31.7, "Q2": 89.25, "Q3": 146.9, "Q4": 209.5}
+    quarters: list[str] = []
+    for q in ("Q1", "Q2", "Q3", "Q4"):
+        quarters.append(q)
+        ma = sum(l["mass_t"] for l in IMPORTS if l["installation"] == "A" and l["quarter"] in quarters)
+        mb = sum(l["mass_t"] for l in IMPORTS if l["installation"] == "B" and l["quarter"] in quarters)
+        emissions, adjustment = ma * see_a + mb * see_b, ma * fa["A"] + mb * fa["B"]
+        hold = quarterly_holding(emissions, 2027, adjustment)
+        assert hold == pytest.approx(expected[q])
+        assert f"| {q} 2027 | {fmt(ma)} | {fmt(mb)} | {fmt(emissions)} | {fmt(adjustment)} | {fmt(hold)} |" in text, q
+    assert "50% × (112.8 − 49.4) = **31.7 certificates**" in text
+    assert "# 31.7" in text
+
+
+def test_cb9_declaration_summary() -> None:
+    text = page("cb9-declaration.md")
+    a, b = _emissions_2026()
+    fa_a, fa_b = _fa_2026()
+    submitted = EXAMPLE["declaration_2026"]["submitted"]
+    assert submitted <= date(2027, 9, 30)
+    assert f"**{submitted.day} {submitted:%B %Y}**" in text
+    assert f"| Quantity imported (t) | {fmt(_mass('A'))} | {fmt(_mass('B'))} | {fmt(_mass('A') + _mass('B'))} |" in text
+    assert f"| Embedded emissions (tCO2e) | {fmt(a)} | {fmt(b)} | {fmt(a + b)} |" in text
+    assert f"| Free allocation adjustment (tCO2e) | 234.0 | {fmt(fa_b)} | {fmt(fa_a + fa_b)} |" in text
+    assert f"| **Certificates to surrender** | | | **{fmt(round(_certs_2026(), 6))}** |" in text
+    assert f"issued {_d(EXAMPLE['verification_A']['report_issued'])}" in text
+
+
+def test_cb10_retention_and_folder() -> None:
+    from esgcalc.cbam import records_retention_end
+    text = page("cb10-records.md")
+    end = records_retention_end(2027)
+    assert end == date(2031, 12, 31)
+    assert f"**{end.day} {end:%B %Y}**" in text and f"Keep until {_d(end)}" in text
+    assert "# 2031-12-31" in text
+    assert f"# {len(IMPORTS)} import lines, {fmt(_mass('A') + _mass('B'))} t" in text
+    assert f"| Certificates to surrender | {fmt(round(_certs_2026(), 6))} | certificates |" in text
+    for link in ("../foundations/evidence-locker.md", "scripts/hash_evidence.py"):
+        assert link in text

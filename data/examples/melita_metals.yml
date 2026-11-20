@@ -75,3 +75,33 @@ installation_A_crude_steel_2026:
   direct_tco2e: 30600
   precursors:
     - {name: pig iron, from: "Installation C, outside the EU (verified data)", mass_t: 14000, see_tco2e_per_t: 1.90}
+
+# CB6: verification of Installation A's 2026 data (made-up).
+verification_A:
+  verifier: Verifier V (fictional), accredited for CBAM by an EU national accreditation body
+  report_issued: 2027-03-15
+  accreditation_valid_until: 2029-06-30
+  covers: Installation A, steel bars CN 7214 20 00 and 7214 99 10, production year 2026
+
+# CB7: carbon price paid. Installation A's country has a carbon price; the operator
+# sends certified evidence. The conversion rules (IR 2026/2498) are not modelled,
+# so the main example claims no reduction; the what-if uses a made-up figure.
+carbon_price_paid:
+  claimed_certificates: 0
+  what_if_reduction_certificates: 5
+
+# CB8: free allocation adjustment per tonne (MADE UP; the real figures come from
+# the CBAM benchmarks in IR 2025/2620 and fall each year with the CBAM factor).
+free_allocation_adjustment_tco2e_per_t:
+  2026: {A: 0.585, B: 1.95}
+  2027: {A: 0.57, B: 1.90}
+certificate_price_assumed_eur_per_tco2e: 80.00   # MADE UP; see DG TAXUD for real prices
+
+# CB8: quarterly holding in 2027. Melita Metals imports the same quantities per
+# quarter in 2027 as in 2026; YTD emissions use default values without mark-up
+# (default_values_base above).
+imports_2027_same_as_2026: true
+
+# CB9: declaration.
+declaration_2026:
+  submitted: 2027-09-10

@@ -266,3 +266,12 @@ def test_precursor_rejects_negative_values() -> None:
     with pytest.raises(ValueError):
         cbam.embedded_emissions(sector="iron_steel", production_mass_t=1000, direct_tco2e=500,
                                 precursors=[Precursor(-1, 2.0)], imported_mass_t=10)
+
+
+# --- records ----------------------------------------------------------------
+
+def test_records_retention_end() -> None:
+    from datetime import date
+    # declaration in 2027 -> end of the fourth year after: 31 Dec 2031
+    assert cbam.records_retention_end(2027) == date(2031, 12, 31)
+    assert cbam.records_retention_end(2030) == date(2034, 12, 31)

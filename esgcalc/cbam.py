@@ -307,6 +307,21 @@ def certificate_cost(certificates: float | Decimal, price_eur_per_tco2e: float |
     return (certs * price).quantize(CENT, rounding=ROUND_HALF_UP)
 
 
+def records_retention_end(declaration_year: int, params: dict[str, Any] | None = None) -> date:
+    """Last day to keep the records behind a CBAM declaration.
+
+    Regulation (EU) 2023/956, Article 7(6): records of the information used to
+    calculate embedded emissions, including the verifier's report, are kept
+    until the end of the fourth year after the year in which the declaration
+    was or should have been submitted.
+
+    Args:
+        declaration_year: the year the declaration is due (2027 for 2026 imports).
+    """
+    years = int((params or load_parameters())["records"]["retention_years_after_declaration_year"])
+    return date(declaration_year + years, 12, 31)
+
+
 def quarterly_holding(
     embedded_tco2e_ytd: float,
     year: int,

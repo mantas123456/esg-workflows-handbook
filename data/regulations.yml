@@ -101,7 +101,7 @@
   values: {markup_by_year: {2026: 0.10, 2027: 0.20, 2028: 0.30}, fertilisers_markup: 0.01}
   last_checked: 2026-11-20
 - id: cbam-verification
-  fact: Actual embedded emissions declared must be verified by a verifier accredited for CBAM by a national accreditation body in the EU; verification rules are in Implementing Regulation (EU) 2025/2546
+  fact: Actual embedded emissions declared must be verified by a verifier accredited for CBAM by a national accreditation body in the EU, and the accreditation must be valid when the verifier issues the final verification report; verification rules are in Implementing Regulation (EU) 2025/2546
   article: Regulation (EU) 2023/956, Articles 8 and 18; Implementing Regulation (EU) 2025/2546
   source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-verification_en
   last_checked: 2026-11-20
@@ -116,9 +116,9 @@
   source: https://taxation-customs.ec.europa.eu/system/files/2026-08/Guidance%20No.%202%20-%20Quick%20guide%20for%20non-EU%20operators%20on%20CBAM%20implementation.pdf
   last_checked: 2026-11-20
 - id: cbam-carbon-price-paid
-  fact: The declarant may reduce the certificates to surrender by the carbon price effectively paid in the country of origin, net of any rebate or compensation (including free allowances); the documentation must be certified by an independent person; where the price effectively paid cannot be determined, yearly default carbon prices may be used; conversion into a number of certificates is set by implementing act
-  article: Regulation (EU) 2023/956, Article 9, as amended by Regulation (EU) 2025/2083
-  source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
+  fact: The declarant may reduce the certificates to surrender by the carbon price effectively paid in the country of origin, net of any rebate or compensation (including free allowances); the documentation must be certified by a person independent of the declarant and of the third country's authorities; where the price effectively paid cannot be determined, yearly default carbon prices may be used, which the Commission may set from 2027; Implementing Regulation (EU) 2026/2498, adopted 16 Nov 2026, sets the evidence, certification, attribution to embedded emissions and conversion into fewer certificates; international carbon credits count only if authorised and issued under Article 6 of the Paris Agreement; for 2026 and 2027 accredited CBAM verifiers may certify the evidence, and from 2028 the certifier needs a specific accreditation from an EU national accreditation body
+  article: Regulation (EU) 2023/956, Article 9, as amended by Regulation (EU) 2025/2083; Implementing Regulation (EU) 2026/2498
+  source: https://taxation-customs.ec.europa.eu/news/cbam-commission-adopts-rules-recognition-carbon-prices-paid-non-eu-countries-2026-11-16_en
   last_checked: 2026-11-20
 - id: cbam-free-allocation-adjustment
   fact: Certificates to surrender are adjusted for EU ETS free allocation to EU producers of the same goods; the adjustment uses a CBAM benchmark per CN code, the cross-sectoral correction factor and the CBAM factor, is set by Implementing Regulation (EU) 2025/2620, and is zero for electricity; the CBAM factor is 97.5% (2026), 95% (2027), 90% (2028), 77.5% (2029), 51.5% (2030), 39% (2031), 26.5% (2032), 14% (2033) and none from 2034
@@ -127,7 +127,7 @@
   values: {cbam_factor_by_year: {2026: 0.975, 2027: 0.95, 2028: 0.90, 2029: 0.775, 2030: 0.515, 2031: 0.39, 2032: 0.265, 2033: 0.14, 2034: 0.0}}
   last_checked: 2026-11-20
 - id: cbam-certificates
-  fact: Certificate sales from 1 Feb 2027 on the common central platform; price from EU ETS auctions, quarterly average for 2026 imports, weekly average from 1 Jan 2027
+  fact: Certificate sales from 1 Feb 2027 on the common central platform; price from EU ETS auctions weighted by auction volume; for 2026 imports, the quarterly average for the quarter in which the goods were imported; weekly average from 1 Jan 2027
   article: Regulation (EU) 2023/956, Articles 20 and 21, as amended
   source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en
   last_checked: 2026-11-20
