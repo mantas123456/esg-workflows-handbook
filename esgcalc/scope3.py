@@ -15,6 +15,24 @@ from typing import Iterable, Literal
 
 from esgcalc.quality import DataQuality
 
+CATEGORY_NAMES: dict[int, str] = {
+    1: "Purchased goods and services",
+    2: "Capital goods",
+    3: "Fuel- and energy-related activities",
+    4: "Upstream transportation and distribution",
+    5: "Waste generated in operations",
+    6: "Business travel",
+    7: "Employee commuting",
+    8: "Upstream leased assets",
+    9: "Downstream transportation and distribution",
+    10: "Processing of sold products",
+    11: "Use of sold products",
+    12: "End-of-life treatment of sold products",
+    13: "Downstream leased assets",
+    14: "Franchises",
+    15: "Investments",
+}
+
 Method = Literal["supplier_specific", "average_data", "spend_based"]
 METHODS: tuple[Method, ...] = ("supplier_specific", "average_data", "spend_based")
 KG_PER_T = 1000.0
@@ -156,3 +174,53 @@ def combine(lines: Iterable[Line]) -> dict[int, CategoryTotal]:
         )
         for cat, values in sorted(totals.items())
     }
+
+
+# --- screening ---------------------------------------------------------------
+
+@dataclass(frozen=True)
+class ScreeningRow:
+    category: int
+    name: str
+    tco2e: float
+    share: float
+    """Share of the total screened Scope 3 (0 to 1)."""
+    significant_by_size: bool
+    other_reason: str
+    """A reason other than size (spend, influence, risk, stakeholder views), or ''."""
+
+    @property
+    def significant(self) -> bool:
+        return self.significant_by_size or bool(self.other_reason)
+
+
+def screen(
+    estimates_tco2e: dict[int, float],
+    size_threshold_share: float,
+    other_reasons: dict[int, str] | None = None,
+) -> list[ScreeningRow]:
+    """Screen all 15 categories: share of the total, size test and other reasons.
+
+    Every category 1-15 must have an estimate (0 where it does not apply), so
+    none is skipped silently. A category is significant by size when its share
+    of the total is at least ``size_threshold_share`` (a threshold the company
+    chooses and states). It is significant overall if it passes the size test
+    or has another reason, such as spend, influence, transition risk or a
+    stakeholder's request (the criteria ESRS E1 names).
+    """
+    if set(estimates_tco2e) != set(CATEGORY_NAMES):
+        missing = sorted(set(CATEGORY_NAMES) - set(estimates_tco2e))
+        raise ValueError(f"give an estimate for all 15 categories (0 if none); missing: {missing}")
+    if not 0 < size_threshold_share < 1:
+        raise ValueError("size_threshold_share must be between 0 and 1")
+    for cat, t in estimates_tco2e.items():
+        _non_negative(f"category {cat}", t)
+    reasons = other_reasons or {}
+    total = math.fsum(estimates_tco2e.values())
+    if total == 0:
+        raise ValueError("no emissions to screen")
+    return [ScreeningRow(category=c, name=CATEGORY_NAMES[c], tco2e=estimates_tco2e[c],
+                         share=estimates_tco2e[c] / total,
+                         significant_by_size=estimates_tco2e[c] / total >= size_threshold_share,
+                         other_reason=reasons.get(c, ""))
+            for c in sorted(CATEGORY_NAMES)]

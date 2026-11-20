@@ -181,7 +181,7 @@
   source: https://ghgprotocol.org/sites/default/files/2025-12/CS-Phase1-ProgressUpdate.pdf
   last_checked: 2026-11-20
 - id: ghgp-scope3-categories
-  fact: The Scope 3 Standard groups value-chain emissions into 15 categories, 8 upstream (1-8) and 7 downstream (9-15); a company screens all 15 and explains any exclusion
+  fact: "The Scope 3 Standard groups value-chain emissions into 15 categories, 8 upstream (1-8) and 7 downstream (9-15); a company screens all 15 and explains any exclusion. Categories: 1 purchased goods and services, 2 capital goods, 3 fuel- and energy-related activities, 4 upstream transportation and distribution (transport and storage services bought from third parties), 5 waste generated in operations, 6 business travel, 7 employee commuting, 8 upstream leased assets, 9 downstream transportation and distribution (including retail storage), 10 processing of sold products, 11 use of sold products, 12 end-of-life treatment of sold products, 13 downstream leased assets, 14 franchises, 15 investments"
   article: GHG Protocol Corporate Value Chain (Scope 3) Standard (cited, not copied)
   source: https://ghgprotocol.org/corporate-value-chain-scope-3-standard
   last_checked: 2026-11-20

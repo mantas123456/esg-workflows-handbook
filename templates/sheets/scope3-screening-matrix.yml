@@ -1,0 +1,49 @@
+title: Scope 3 screening matrix
+type: Workbook
+description: Screen all 15 Scope 3 categories with a rough estimate each, test them against a size threshold you choose and other criteria, and record the reason for every decision.
+instructions:
+  - Enter a rough estimate (tCO2e) for every one of the 15 categories. Enter 0 where a category does not apply, and write why.
+  - "Settings: enter your size threshold as a share of the total (for example 2%). State it in your report and keep it the same next year."
+  - The share and the size test calculate themselves. A category is significant if it passes the size test or has another reason.
+  - "Other reasons (ESRS E1): spend, influence (can you reduce it?), transition risks and opportunities, stakeholder views such as a customer request."
+  - Screening numbers are rough. Collect better data for the significant categories (see S3 and S4 in the handbook).
+  - Same method as esgcalc.scope3.screen in the handbook.
+sheets:
+  - name: Screening
+    rows: 15
+    columns:
+      - {header: "#", width: 5}
+      - {header: Category, width: 34}
+      - {header: Screening estimate (tCO2e), width: 13, format: "#,##0.00"}
+      - {header: How it was estimated, width: 34}
+      - {header: Share of total, width: 10, format: "0.00%", formula: '=IF(C{r}="","",C{r}/SUM($C$2:$C$16))'}
+      - {header: "Significant by size?", width: 11, formula: '=IF(C{r}="","",IF(E{r}>=Settings!$B$1,"Yes","No"))'}
+      - {header: "Other reason (spend, influence, risk, stakeholder)", width: 32}
+      - {header: "Significant?", width: 11, formula: '=IF(C{r}="","",IF(OR(F{r}="Yes",G{r}<>""),"Yes","No"))'}
+      - {header: Reason if not significant or zero, width: 40}
+    highlights:
+      - {formula: '$H2="Yes"', color: E8F5E9}
+    examples:
+      - [1, Purchased goods and services, 6375, Spend-based, null, null, null, null, ""]
+      - [2, Capital goods, 160, Spend-based, null, null, null, null, ""]
+      - [3, Fuel- and energy-related activities, 180, Average-data (MWh), null, null, null, null, ""]
+      - [4, Upstream transportation and distribution, 180, Average-data and supplier-specific, null, null, null, null, ""]
+      - [5, Waste generated in operations, 31, Average-data (kg), null, null, null, null, "Below 2%, no other reason"]
+      - [6, Business travel, 10, Spend-based, null, null, null, null, "Below 2%, no other reason"]
+      - [7, Employee commuting, 157.08, Average-data (km), null, null, null, null, ""]
+      - [8, Upstream leased assets, 0, "", null, null, null, null, "No leased assets outside the boundary"]
+      - [9, Downstream transportation and distribution, 126, Average-data, null, null, "The supermarket asked for it, and Gozo can reduce it through packaging and shelf life.", null, ""]
+      - [10, Processing of sold products, 0, "", null, null, null, null, "Products are sold ready to heat or eat"]
+      - [11, Use of sold products, 0, "", null, null, null, null, "Food products use no energy in use"]
+      - [12, End-of-life treatment of sold products, 195, Average-data (kg), null, null, null, null, ""]
+      - [13, Downstream leased assets, 0, "", null, null, null, null, "No assets leased out"]
+      - [14, Franchises, 0, "", null, null, null, null, "No franchises"]
+      - [15, Investments, 75, Equity share of an associate's emissions, null, null, null, null, "Below 2%, no other reason"]
+  - name: Settings
+    kind: summary
+    rows:
+      - {label: "Size threshold (share of the screened total)", example: 0.02, format: "0.00%", note: "Your choice. State it and keep it the same next year."}
+      - {label: Total screened (tCO2e), formula: '=SUM(Screening!C2:C16)', format: "#,##0.00"}
+      - {label: Significant categories, formula: '=COUNTIF(Screening!H2:H16,"Yes")'}
+      - {label: Emissions in significant categories (tCO2e), formula: '=SUMIF(Screening!H2:H16,"Yes",Screening!C2:C16)', format: "#,##0.00"}
+      - {label: Share covered by significant categories, formula: '=IF(B2=0,"",B4/B2)', format: "0.00%"}

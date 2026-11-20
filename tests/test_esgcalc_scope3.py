@@ -229,3 +229,33 @@ def test_boundary_rejects_bad_input() -> None:
         consolidate([Entity("A", 1, 1, True, True), Entity("A", 2, 1, True, True)], "equity_share")
     with pytest.raises(ValueError):
         consolidate([Entity("A", 1, 1, True, True)], "headcount")      # type: ignore[arg-type]
+
+
+# --- screening -------------------------------------------------------------------
+
+def test_screen_size_and_other_reasons() -> None:
+    est = {c: 0.0 for c in range(1, 16)}
+    est.update({1: 90.0, 2: 6.0, 4: 4.0})            # total 100
+    rows = scope3.screen(est, 0.05, {4: "customer asked"})
+    by = {r.category: r for r in rows}
+    assert len(rows) == 15 and by[1].name == "Purchased goods and services"
+    assert (by[1].share, by[2].share, by[4].share) == (0.9, 0.06, 0.04)
+    assert by[2].significant_by_size and not by[4].significant_by_size     # 6% >= 5%, 4% < 5%
+    assert by[4].significant and not by[3].significant
+
+
+def test_screen_exactly_at_threshold_counts() -> None:
+    est = {c: 0.0 for c in range(1, 16)}
+    est.update({1: 98.0, 2: 2.0})                     # 2.0 / 100 = exactly 2%
+    assert scope3.screen(est, 0.02)[1].significant_by_size
+
+
+def test_screen_rejects_missing_categories_and_bad_threshold() -> None:
+    with pytest.raises(ValueError, match="missing"):
+        scope3.screen({1: 10.0}, 0.02)
+    est = {c: 1.0 for c in range(1, 16)}
+    for bad in (0, 1, -0.1):
+        with pytest.raises(ValueError):
+            scope3.screen(est, bad)
+    with pytest.raises(ValueError):
+        scope3.screen({c: 0.0 for c in range(1, 16)}, 0.02)

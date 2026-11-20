@@ -18,3 +18,37 @@ entities:
   - {name: Harbour Packing Ltd (joint venture run by Gozo Fresh Foods), scope12_tco2e: 200, equity_share: 0.50, financial_control: false, operational_control: true}
   - {name: Island Cold Store Ltd (associate), scope12_tco2e: 300, equity_share: 0.25, financial_control: false, operational_control: false}
 chosen_approach: operational_control
+
+# S2: screening estimates for 2026. Rough data and MADE-UP factors for
+# illustration (S5 shows where to find real ones). Units:
+#   spend_based: spend_eur x factor (kg CO2e per EUR)
+#   average_data: activity x factor (kg CO2e per unit of activity)
+#   supplier_specific: supplier_total_tco2e x purchased / total
+screening:
+  size_threshold_share: 0.02          # Gozo Fresh Foods' own choice: 2% of the screened total
+  lines:
+    - {category: 1, description: "Ingredients", method: spend_based, spend_eur: 6000000, factor: 0.9}
+    - {category: 1, description: "Packaging", method: spend_based, spend_eur: 1500000, factor: 0.6}
+    - {category: 1, description: "Services (cleaning, IT, maintenance)", method: spend_based, spend_eur: 500000, factor: 0.15}
+    - {category: 2, description: "Machinery and equipment bought in 2026", method: spend_based, spend_eur: 400000, factor: 0.4}
+    - {category: 3, description: "Upstream emissions of purchased electricity (3,000 MWh)", method: average_data, activity: 3000, unit: MWh, factor: 40}
+    - {category: 3, description: "Upstream emissions of fuels burned (2,000 MWh)", method: average_data, activity: 2000, unit: MWh, factor: 30}
+    - {category: 4, description: "Inbound road freight by hauliers", method: average_data, activity: 900000, unit: tonne.km, factor: 0.10}
+    - {category: 4, description: "Chilled storage at Island Cold Store (30% of its capacity)", method: supplier_specific, supplier_total_tco2e: 300, purchased: 30, total: 100}
+    - {category: 5, description: "Food waste to anaerobic digestion", method: average_data, activity: 600000, unit: kg, factor: 0.01}
+    - {category: 5, description: "General waste to landfill", method: average_data, activity: 50000, unit: kg, factor: 0.5}
+    - {category: 6, description: "Flights and hotels", method: spend_based, spend_eur: 40000, factor: 0.25}
+    - {category: 7, description: "Commuting by car: 140 staff x 220 days x 30 km", method: average_data, activity: 924000, unit: km, factor: 0.17}
+    - {category: 9, description: "Chilled storage of Gozo products at the supermarket", method: average_data, activity: 3000000, unit: kg, factor: 0.03}
+    - {category: 9, description: "Supermarket transport to its stores", method: average_data, activity: 360000, unit: tonne.km, factor: 0.10}
+    - {category: 12, description: "Packaging thrown away by consumers", method: average_data, activity: 300000, unit: kg, factor: 0.4}
+    - {category: 12, description: "Food wasted by consumers", method: average_data, activity: 150000, unit: kg, factor: 0.5}
+    - {category: 15, description: "25% equity in Island Cold Store (Scope 1 and 2: 300 t)", method: supplier_specific, supplier_total_tco2e: 300, purchased: 25, total: 100}
+  not_applicable:
+    8: No leased assets outside the boundary. The warehouse Gozo leases is operated by Gozo, so it is in Scope 1 and 2.
+    10: Products are sold ready to heat or eat. Nobody processes them further.
+    11: Food products use no energy and release no gases in use. Home cooking and refrigeration are not estimated.
+    13: Gozo leases out no assets.
+    14: Gozo has no franchises.
+  other_reasons:
+    9: The supermarket asked for it, and Gozo can reduce it through packaging and shelf life.
