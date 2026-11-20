@@ -183,8 +183,9 @@ File them in the evidence locker (see
 <!-- end generated templates -->
 
 - [`esgcalc.scope3.screen`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/scope3.py):
-  the screening above. A browser screening tool is planned for this
-  release.
+  the screening above.
+- [Scope 3 screening tool](../tools/scope3-screening.md): the same
+  screening in your browser, with the Gozo Fresh Foods example.
 
 ## Reuse in other reports
 

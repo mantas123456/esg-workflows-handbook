@@ -161,7 +161,9 @@ supplier data for the next largest of those suppliers
 ([S3](../scope3/s3-data-plan.md)) would shrink the category's uncertainty
 more than anything else Gozo Fresh Foods could do.
 
-A browser Monte Carlo demo is planned for this release.
+Try it yourself in the [uncertainty demo](../tools/uncertainty-demo.md): it
+loads these ten lines, runs the simulation in your browser and draws the
+histogram.
 
 In Python, with
 [`esgcalc`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/quality.py):
@@ -206,6 +208,8 @@ File them in the evidence locker (see [F1](evidence-locker.md)).
   `DataQuality`, `category_score`, `sum_uncertainty`, `product_uncertainty`,
   `variance_shares`, `round_result`, `gsd_from_u95` and the seeded
   `monte_carlo_sum`.
+- [Uncertainty demo](../tools/uncertainty-demo.md): the sum rule and a
+  Monte Carlo simulation with a histogram, in your browser.
 
 ## Reuse in other reports
 

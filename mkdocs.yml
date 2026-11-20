@@ -138,6 +138,8 @@ nav:
       - "C9 Digital tagging and publication": csrd/c9-tagging.md
   - Tools:
       - "CBAM calculator": tools/cbam-calculator.md
+      - "Scope 3 screening": tools/scope3-screening.md
+      - "Uncertainty demo": tools/uncertainty-demo.md
   - Reference:
       - Glossary: glossary.md
       - Changelog: changelog.md

@@ -191,8 +191,7 @@ calculation files, and a dated record of each `verify` run.
 
 - [`scripts/hash_evidence.py`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/scripts/hash_evidence.py):
   builds and verifies `evidence_register.csv`. Works offline.
-- An evidence register workbook is planned with the CBAM templates in
-  version 0.2.
+- An evidence register workbook is planned for a later release.
 
 ## Reuse in other reports
 

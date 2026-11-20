@@ -155,8 +155,8 @@ File them in the evidence locker (see
 
 - [`esgcalc.scope3.suppliers_to_cover`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/scope3.py):
   the supplier selection above.
-- An inventory workbook with spend, average-data and supplier-specific
-  tabs is planned for this release.
+- The [Scope 3 inventory workbook](../downloads/scope3-inventory.xlsx) has spend, average-data and
+  supplier-specific tabs for the data this plan collects.
 
 ## Reuse in other reports
 

@@ -149,3 +149,9 @@
 .md-typeset .tool-errors { color: var(--md-accent-fg-color); font-weight: 600; min-height: 1em; }
 .md-typeset .tool-notes { font-size: 0.68rem; color: var(--md-default-fg-color--light); }
 .md-typeset .tool-results th { text-align: left; font-weight: 600; }
+
+.md-typeset .tool-table tr.tool-significant td { background: var(--md-accent-fg-color--transparent); }
+.md-typeset .tool-histogram { width: 100%; max-width: 40rem; height: auto; margin: 0.8rem 0; }
+.md-typeset .tool-histogram .bar-in { fill: var(--md-primary-fg-color); }
+.md-typeset .tool-histogram .bar-out { fill: var(--md-default-fg-color--lighter); }
+.md-typeset .tool-histogram .axis { font-size: 11px; fill: var(--md-default-fg-color--light); }

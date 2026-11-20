@@ -22,7 +22,7 @@ spec.loader.exec_module(bt)
 EXAMPLE = yaml.safe_load((ROOT / "data/examples/melita_metals.yml").read_text(encoding="utf-8"))
 WORKFLOWS = yaml.safe_load((ROOT / "data/workflows.yml").read_text(encoding="utf-8"))
 EXPECTED_IDS = {"cbam-goods-register", "cbam-emissions-workbook", "cbam-supplier-request", "cbam-declaration-checklist",
-                "scope3-screening-matrix"}
+                "scope3-screening-matrix", "scope3-inventory", "supplier-letter", "recalculation-policy"}
 
 
 @pytest.fixture(scope="session")

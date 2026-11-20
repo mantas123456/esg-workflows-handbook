@@ -138,12 +138,12 @@ File them in the evidence locker (see
 ## Templates and tools
 
 <!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[Supplier emissions data request](../downloads/supplier-letter.docx)** (Word): Short letter asking a supplier for its emissions, total output and boundary for one year, so you can allocate your share for Scope 3.
 <!-- end generated templates -->
 
 - [`esgcalc.scope3.suppliers_to_cover`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/scope3.py)
   and [`esgcalc.quality.sum_uncertainty`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/quality.py):
   the selection and the what-if above.
-- A supplier letter template is planned for this release.
 
 ## Reuse in other reports
 

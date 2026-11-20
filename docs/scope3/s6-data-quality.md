@@ -130,9 +130,11 @@ File them in the evidence locker (see
 
 ## Templates and tools
 
+<!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[Scope 3 inventory workbook](../downloads/scope3-inventory.xlsx)** (Excel): A Scope 3 inventory line by line, with spend-based, average-data and supplier-specific tabs, a data-quality score and a 95% uncertainty on every line, and a summary by category.
+<!-- end generated templates -->
+
 - [`esgcalc.quality.DataQuality` and `category_score`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/quality.py).
-- The inventory workbook planned for this release will have a score column
-  on every line.
 
 ## Reuse in other reports
 

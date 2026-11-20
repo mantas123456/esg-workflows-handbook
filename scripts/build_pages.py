@@ -150,6 +150,70 @@ def write_cbam_tool_data() -> None:
         CBAM_TOOL_PAGE.write_text(new, encoding="utf-8")
 
 
+def write_json_block(page: Path, element_id: str, payload: dict) -> None:
+    """Embed ``payload`` as a JSON script in a tool page, between its generated-data markers."""
+    import json
+
+    start = f"<!-- generated tool data: {element_id}: do not edit by hand -->"
+    end = f"<!-- end generated tool data: {element_id} -->"
+    if not page.exists():
+        return
+    text = page.read_text(encoding="utf-8")
+    if start not in text:
+        return
+    head, _, rest = text.partition(start)
+    _, _, tail = rest.partition(end)
+    body = json.dumps(payload, indent=1, sort_keys=True, ensure_ascii=False)
+    new = f'{head}{start}\n<script type="application/json" id="{element_id}">\n{body}\n</script>\n{end}{tail}'
+    if new != text:
+        page.write_text(new, encoding="utf-8")
+
+
+def _gozo() -> dict:
+    return yaml.safe_load((ROOT / "data" / "examples" / "gozo_fresh_foods.yml").read_text(encoding="utf-8"))
+
+
+def _gozo_line_tco2e(line: dict, deflate: dict | None = None) -> float:
+    from esgcalc import scope3
+
+    if line["method"] == "spend_based":
+        kw = ({"price_index_spend_year": deflate["price_index_spend_year"],
+               "price_index_factor_year": deflate["price_index_factor_year"]} if deflate else {})
+        return scope3.spend_based(line["spend_eur"], line["factor"], **kw)
+    if line["method"] == "average_data":
+        return scope3.average_data(line["activity"], line["factor"])
+    return scope3.supplier_specific(line["supplier_total_tco2e"], line["purchased"], line["total"])
+
+
+def screening_tool_data() -> dict:
+    """Category names and the Gozo Fresh Foods screening (S2) for the screening tool."""
+    from esgcalc.scope3 import CATEGORY_NAMES
+
+    s = _gozo()["screening"]
+    estimates = {c: 0.0 for c in CATEGORY_NAMES}
+    for line in s["lines"]:
+        estimates[line["category"]] += _gozo_line_tco2e(line)
+    return {"categories": {str(c): n for c, n in CATEGORY_NAMES.items()},
+            "example": {"threshold_share": s["size_threshold_share"],
+                        "estimates": {str(c): round(v, 6) for c, v in estimates.items()},
+                        "reasons": {str(c): r for c, r in s["other_reasons"].items()}}}
+
+
+def uncertainty_tool_data() -> dict:
+    """Gozo Fresh Foods' category 1 lines with their stated uncertainty (F2) for the demo."""
+    from esgcalc import quality
+
+    g = _gozo()
+    inv = g["inventory"]
+    values = {l["description"]: _gozo_line_tco2e(l, inv) for l in inv["lines"] if l["category"] == 1}
+    lines = []
+    for l in g["uncertainty_category_1"]["lines"]:
+        u = l["u95"] if "u95" in l else quality.product_uncertainty([l["activity_u95"], l["factor_u95"]])
+        lines.append({"name": l["description"], "value": round(values[l["description"]], 6), "u95": round(u, 6)})
+    mc = g["uncertainty_category_1"]["monte_carlo"]
+    return {"example": {"lines": lines, "draws": 100000, "seed": mc["seed"]}}
+
+
 FACTORS_PAGE = DOCS / "scope3" / "s5-emission-factors.md"
 FACTORS_START = "<!-- generated from data/factor_sources.yml: do not edit by hand -->"
 FACTORS_END = "<!-- end generated factor sources -->"
@@ -233,6 +297,8 @@ def main() -> None:
     write_templates_sections()
     write_cbam_tool_data()
     write_factor_sources_section()
+    write_json_block(DOCS / "tools" / "scope3-screening.md", "scope3-screening-data", screening_tool_data())
+    write_json_block(DOCS / "tools" / "uncertainty-demo.md", "uncertainty-demo-data", uncertainty_tool_data())
 
 
 if __name__ == "__main__":

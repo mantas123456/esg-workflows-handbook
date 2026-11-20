@@ -129,9 +129,12 @@ File them in the evidence locker (see
 
 ## Templates and tools
 
+<!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[Base-year recalculation policy](../downloads/recalculation-policy.docx)** (Word): One-page policy stating the base year, which changes trigger a recalculation, the significance threshold you disclose, and how changes are added up.
+<!-- end generated templates -->
+
 - [`esgcalc.scope3.check_recalculation`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/scope3.py):
   the test above.
-- A recalculation policy template is planned for this release.
 
 ## Reuse in other reports
 
