@@ -116,7 +116,7 @@ standards). Give each one a status and see how ready you are. See
   },
   {
    "dataset": "electricity_use",
-   "description": "Gross Scope 2 GHG emissions",
+   "description": "Gross Scope 2 GHG emissions, location-based and market-based",
    "id": "E1-scope2",
    "standard": "E1"
   },

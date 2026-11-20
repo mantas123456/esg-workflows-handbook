@@ -225,6 +225,28 @@ def test_c5_scope1_and_2() -> None:
     assert f"| from service records | {fmt(s1[1])} |" in text
     assert f"| **Scope 1** | | | **{fmt(sum(s1))}** |" in text
     assert f"| Grid electricity (location-based) | 40,000 MWh | 400 kg/MWh | **{fmt(s2)}** |" in text
+    from esgcalc.scope3 import average_data
+    m = C["scope2_market"]
+    s2m = average_data(m["activity_mwh"], m["factor_kg_per_mwh"])
+    assert s2m == pytest.approx(18_000)
+    assert (f"| Grid electricity (market-based: residual mix, no green contracts) | 40,000 MWh | "
+            f"450 kg/MWh | **{fmt(s2m)}** |") in text
+    assert f"| {fmt(s2)} tCO2e location-based; {fmt(s2m)} tCO2e market-based |" in text
+
+
+def test_c5_uncertainty_of_the_spend_line() -> None:
+    from test_examples_scope3 import fmt
+    text = page("c5-climate.md")
+    s1, s2, _, other, rows = _climate()
+    u95 = C["spend_based_u95"]
+    gozo_spend_u95 = {l["description"]: l.get("u95") for l in GOZO["uncertainty_category_1"]["lines"]}
+    assert gozo_spend_u95["Other ingredient suppliers"] == u95             # "as Gozo's spend-based lines do in F2"
+    food = other[0]
+    rest = sum(s1) + s2 + sum(r.tco2e for r in rows) - food
+    assert food * u95 > rest                                              # "more than all the other lines together"
+    assert f"{fmt(food)} ± {fmt(food * u95)} tCO2e" in text
+    assert f"({fmt(round(rest, 1))} tCO2e)" in text
+    assert f"±{u95:.0%} at 95%" in text
 
 
 def test_c5_gozo_allocation() -> None:

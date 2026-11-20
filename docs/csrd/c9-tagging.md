@@ -41,8 +41,7 @@ management report). It is not a separate report.
 ### 2. Prepare the report in the electronic format
 
 The management report is prepared in the **European single electronic
-format** (Delegated Regulation (EU) 2019/815, "ESEF"), the format listed
-companies already use for their financial statements.
+format** (Delegated Regulation (EU) 2019/815, "ESEF").
 
 ### 3. Get ready to tag
 

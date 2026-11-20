@@ -33,7 +33,10 @@ year before your first reporting year, so gaps show up in time.
 ### 1. Calculate gross Scope 1 and Scope 2
 
 As in [V2](../vsme/v2-basic.md): activity x emission factor, for each fuel,
-refrigerant and electricity supply.
+refrigerant and electricity supply. Revised E1 asks for Scope 2 both
+**location-based** (the grid average) and **market-based** (your contracts,
+or the residual mix if you have none). This handbook read that in summaries
+of the standard; check it in the Official Journal text.
 
 ### 2. Screen all 15 Scope 3 categories
 
@@ -78,6 +81,7 @@ a year before its first report. All numbers and factors are made up.
 | Refrigerant leaks from cold stores and trucks (service records) | – | from service records | 1,500 |
 | **Scope 1** | | | **24,900** |
 | Grid electricity (location-based) | 40,000 MWh | 400 kg/MWh | **16,000** |
+| Grid electricity (market-based: residual mix, no green contracts) | 40,000 MWh | 450 kg/MWh | **18,000** |
 
 **Category 1: Gozo Fresh Foods' share**
 
@@ -134,13 +138,21 @@ building work (EUR 2,000,000 x 0.3 kg/EUR = 600) to Melita's 98.2.
 | E1 datapoint | Dataset | 2026 dry run |
 |---|---|---|
 | E1-scope1: Gross Scope 1 GHG emissions | fuel_use | 24,900 tCO2e |
-| E1-scope2: Gross Scope 2 GHG emissions | electricity_use | 16,000 tCO2e |
+| E1-scope2: Gross Scope 2 GHG emissions, location-based and market-based | electricity_use | 16,000 tCO2e location-based; 18,000 tCO2e market-based |
 | E1-scope3: Gross Scope 3 GHG emissions, in total and for each significant category | purchased_goods_spend | 398,721.7 tCO2e; significant: 1, 2, 4 |
 | E1-scope3-suppliers: Supplier-specific data used for significant Scope 3 categories | supplier_emissions | Gozo Fresh Foods 1,823.5 tCO2e; Melita Metals 98.2 tCO2e |
 
-Scope 3 is **90.7%** of the group's total of 439,621.7 tCO2e, and almost all
-of it is food bought for resale on a spend basis. The next step is supplier
-data from the largest food suppliers ([S7](../scope3/s7-suppliers.md)).
+Scope 3 is **90.7%** of the group's total of 439,621.7 tCO2e (with
+location-based Scope 2), and almost all of it is food bought for resale on a
+spend basis.
+
+**How sure is that number?** Treat it as a measurement
+([F2](../foundations/data-quality.md)). If the spend-based food line carries
+±50% at 95%, as Gozo's spend-based lines do in F2, that one line alone is
+376,500 ± 188,250 tCO2e: more than all the other lines together
+(63,121.7 tCO2e). Better data for that line is worth more than anything
+else. The next step is supplier data from the largest food suppliers
+([S7](../scope3/s7-suppliers.md)).
 
 ## Common mistakes
 
@@ -181,7 +193,7 @@ A supplier's CBAM data serves its own CBAM declaration
 ## Sources
 
 Facts come from `data/regulations.yml` (ids `esrs-e1-scope3`,
-`esrs-phase-in`, `cbam-direct-only`, `cbam-default-values`,
+`esrs-e1-scope2`, `esrs-phase-in`, `cbam-direct-only`, `cbam-default-values`,
 `ghgp-scope3-categories`), last checked 20 November 2026. GHG Protocol and
 ESRS text are cited, not copied.
 

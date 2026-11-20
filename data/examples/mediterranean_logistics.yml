@@ -61,6 +61,8 @@ climate_2026:
     - {description: Diesel for the truck fleet, activity: 9000000, unit: litre, factor: 2.6}
     - {description: Refrigerant leaks from cold stores and trucks (service records), activity: 1500, unit: tCO2e, factor: 1000}
   scope2_location: {activity_mwh: 40000, factor_kg_per_mwh: 400}
+  scope2_market: {activity_mwh: 40000, factor_kg_per_mwh: 450}   # residual mix (made up): no green electricity contracts
+  spend_based_u95: 0.50           # as for Gozo's spend-based lines in F2 (made up)
   gozo:                            # category 1: Gozo's figure, allocated by spend
     group_purchases_eur: 3500000
   melita:                          # category 2: from Melita Metals' 2026 CBAM data

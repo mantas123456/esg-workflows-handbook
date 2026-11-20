@@ -38,7 +38,7 @@ datapoints:
   - {id: E1-targets, standard: E1, dr: null, description: "GHG reduction targets", unit: tCO2e and %, dataset: null, basis: title}
   - {id: E1-energy, standard: E1, dr: null, description: "Energy consumption and mix", unit: MWh, dataset: electricity_use, basis: title}
   - {id: E1-scope1, standard: E1, dr: null, description: "Gross Scope 1 GHG emissions", unit: tCO2e, dataset: fuel_use, basis: title}
-  - {id: E1-scope2, standard: E1, dr: null, description: "Gross Scope 2 GHG emissions", unit: tCO2e, dataset: electricity_use, basis: title}
+  - {id: E1-scope2, standard: E1, dr: null, description: "Gross Scope 2 GHG emissions, location-based and market-based", unit: tCO2e, dataset: electricity_use, basis: title}
   - {id: E1-scope3, standard: E1, dr: E1-8, description: "Gross Scope 3 GHG emissions, in total and for each significant category", unit: tCO2e, dataset: purchased_goods_spend, basis: efrag-kh}
   - {id: E1-scope3-suppliers, standard: E1, dr: E1-8, description: "Supplier-specific data used for significant Scope 3 categories", unit: tCO2e, dataset: supplier_emissions, basis: title}
   - {id: E1-financial-effects, standard: E1, dr: E1-11, description: "Anticipated financial effects of climate risks and opportunities (phase-in applies)", unit: EUR and text, dataset: null, basis: efrag-kh}
