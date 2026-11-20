@@ -104,7 +104,55 @@ def product_uncertainty(u95_rel: Sequence[float]) -> float:
     return math.sqrt(math.fsum(u * u for u in u95_rel))
 
 
+def round_result(value: float, u95_abs: float, digits: int = 2) -> tuple[float, float]:
+    """Round an uncertainty to ``digits`` significant figures, and the value to match.
+
+    Common practice in measurement reports: 405.228 -> 410, so 4,845.0 -> 4,850.
+    The uncertainty is rounded half up at its last kept digit (to the nearest
+    value, not always upwards); some labs always round it up instead.
+    """
+    from decimal import ROUND_HALF_UP, Decimal
+
+    if u95_abs <= 0:
+        raise ValueError("u95_abs must be more than zero")
+    u = Decimal(repr(u95_abs))
+    exponent = u.adjusted() - (digits - 1)          # position of the last kept digit
+    quantum = Decimal(1).scaleb(exponent)
+    u_r = u.quantize(quantum, rounding=ROUND_HALF_UP) if exponent < 0 else \
+        (u / quantum).quantize(Decimal(1), rounding=ROUND_HALF_UP) * quantum
+    v = Decimal(repr(value))
+    v_r = v.quantize(quantum, rounding=ROUND_HALF_UP) if exponent < 0 else \
+        (v / quantum).quantize(Decimal(1), rounding=ROUND_HALF_UP) * quantum
+    return float(v_r), float(u_r)
+
+
+def variance_shares(values: Sequence[float], u95_rel: Sequence[float]) -> list[float]:
+    """Each input's share of the combined variance (an uncertainty budget). Shares add to 1."""
+    if len(values) != len(u95_rel):
+        raise ValueError("values and u95_rel must have the same length")
+    parts = [(v * u) ** 2 for v, u in zip(values, u95_rel)]
+    total = math.fsum(parts)
+    if total == 0:
+        raise ValueError("no uncertainty to share")
+    return [p / total for p in parts]
+
+
 # --- Monte Carlo -----------------------------------------------------------
+
+Z95 = 1.959964  # standard normal quantile for a 95% two-sided interval
+
+
+def gsd_from_u95(u95_rel: float) -> float:
+    """Geometric standard deviation of a lognormal whose 95% range reaches +u95_rel.
+
+    A stated "+/-20%" becomes a lognormal with median 1 whose 97.5th percentile
+    is 1.20: ``GSD = (1 + u)^(1 / 1.96)``. The lower end is then 1 / 1.20 = 0.833,
+    not 0.80: the lognormal is skewed, as emission factors often are. A
+    convention, not a rule; state it when you use it.
+    """
+    if u95_rel < 0:
+        raise ValueError("u95_rel must be zero or more")
+    return (1.0 + u95_rel) ** (1.0 / Z95)
 
 @dataclass(frozen=True)
 class MonteCarloResult:

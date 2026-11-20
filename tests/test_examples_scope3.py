@@ -335,3 +335,86 @@ def test_s5_generated_source_table_matches_factor_sources() -> None:
     raw = (ROOT / "docs/scope3/s5-emission-factors.md").read_text(encoding="utf-8")
     table = bp.render_factor_sources({"sources": FACTOR_SOURCES})
     assert f"{bp.FACTORS_START}\n{table}\n{bp.FACTORS_END}" in raw
+
+
+# --- F2 Data quality and uncertainty -------------------------------------------
+
+def _f2_budget():
+    """Category 1 lines with value, stated u95, data-quality score, from the data and S4's inventory."""
+    from esgcalc import quality
+    from esgcalc.quality import DataQuality
+
+    inventory = {l["description"]: _inventory_tco2e(l) for l in EXAMPLE["inventory"]["lines"] if l["category"] == 1}
+    rows = []
+    for l in EXAMPLE["uncertainty_category_1"]["lines"]:
+        u = l["u95"] if "u95" in l else quality.product_uncertainty([l["activity_u95"], l["factor_u95"]])
+        rows.append({"line": l, "value": inventory[l["description"]], "u95": u, "quality": DataQuality(*l["quality"])})
+    return rows
+
+
+def test_f2_budget_rows() -> None:
+    from esgcalc import quality
+
+    text = page("data-quality.md", "foundations")
+    rows = _f2_budget()
+    # every category 1 line of S4 has exactly one budget row
+    assert sorted(r["line"]["description"] for r in rows) == sorted(
+        l["description"] for l in EXAMPLE["inventory"]["lines"] if l["category"] == 1)
+    shares = quality.variance_shares([r["value"] for r in rows], [r["u95"] for r in rows])
+    for r, share in zip(rows, shares):
+        expected = (f"| {r['line']['description']} | {r['value']:,.2f} | {r['line']['basis']} | "
+                    f"{r['quality'].score():.1f} | {r['u95']:.1%} | {r['value'] * r['u95']:,.2f} | {share:.1%} |")
+        assert expected in text, expected
+    assert max(shares) == shares[5] and f"{shares[5]:.1%}" == "71.7%"
+    assert f"contributes **{shares[5]:.1%}** of the variance" in text
+
+
+def test_f2_combined_and_reported_result() -> None:
+    from esgcalc import quality
+
+    text = page("data-quality.md", "foundations")
+    rows = _f2_budget()
+    total = quality.sum_uncertainty([r["value"] for r in rows], [r["u95"] for r in rows])
+    score = quality.category_score([(r["value"], r["quality"]) for r in rows])
+    # sqrt(90^2 + 120^2 + 75^2 + 63^2 + 40^2 + 343.22^2 + 31.78^2 + 65.97^2 + 77.31^2 + 37.11^2) = 405.23
+    assert total.value == pytest.approx(4845.0) and total.u95_abs == pytest.approx(405.228, abs=1e-3)
+    assert (f"| **Category 1** | **{total.value:,.2f}** | | **{score:.2f}** | **{total.u95_rel:.1%}** | "
+            f"**{total.u95_abs:,.2f}** | **100%** |") in text
+    assert f"weighted by emissions, is **{score:.2f}**" in text
+    assert (f"{total.value:,.2f} ± {total.u95_abs:,.2f} tCO2e, an interval of "
+            f"{total.value - total.u95_abs:,.2f} to {total.value + total.u95_abs:,.2f} tCO2e") in text
+    v, u = quality.round_result(total.value, total.u95_abs)
+    assert (v, u) == (4850.0, 410.0)
+    assert f"**{v:,.0f} ± {u:,.0f} tCO2e (95%)**" in text
+    assert f"√(0.05² + 0.20²) = {quality.product_uncertainty([0.05, 0.20]):.1%}" in text
+
+
+def test_f2_monte_carlo_table() -> None:
+    from esgcalc import quality
+
+    text = page("data-quality.md", "foundations")
+    rows = _f2_budget()
+    mc_set = EXAMPLE["uncertainty_category_1"]["monte_carlo"]
+    values = [r["value"] for r in rows]
+    mc = quality.monte_carlo_sum(values, [1.0] * len(values), [quality.gsd_from_u95(r["u95"]) for r in rows],
+                                 n=mc_set["n"], seed=mc_set["seed"])
+    total = quality.sum_uncertainty(values, [r["u95"] for r in rows])
+    assert f"{mc_set['n']:,} draws, seed {mc_set['seed']}" in text
+    assert f"| Central value | {total.value:,.1f} | {mc.median:,.1f} (median) |" in text
+    assert (f"| 95% interval | {total.value - total.u95_abs:,.1f} to {total.value + total.u95_abs:,.1f} | "
+            f"{mc.low:,.1f} to {mc.high:,.1f} |") in text
+    # the asymmetry the page describes: the lower end moves up, the upper end stays close
+    assert mc.low > total.value - total.u95_abs
+    assert mc.high == pytest.approx(total.value + total.u95_abs, rel=0.005)
+
+
+def test_f2_python_snippet_output() -> None:
+    from esgcalc import quality
+
+    text = page("data-quality.md", "foundations")
+    values = [900, 1200, 500, 420, 200, 686.44, 63.56, 320, 375, 180]
+    u95 = [0.10, 0.10, 0.15, 0.15, 0.20, 0.50, 0.50, 0.2062, 0.2062, 0.2062]
+    total = quality.sum_uncertainty(values, u95)
+    assert quality.round_result(total.value, total.u95_abs) == (4850.0, 410.0)
+    assert round(quality.variance_shares(values, u95)[5], 3) == 0.717
+    assert "# (4850.0, 410.0)" in text and "# 0.717" in text

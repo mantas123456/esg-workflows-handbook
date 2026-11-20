@@ -7,7 +7,7 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | T1 | Start here | [Which regime applies to me?](start-here/triage.md) | 0.1 | draft |
 | T2 | Start here | [Regulation timeline](start-here/timeline.md) | 0.1 | draft |
 | F1 | Foundations | [Evidence locker and audit trail](foundations/evidence-locker.md) | 0.1 | draft |
-| F2 | Foundations | [Data quality and uncertainty](foundations/data-quality.md) | 0.3 | planned |
+| F2 | Foundations | [Data quality and uncertainty](foundations/data-quality.md) | 0.3 | draft |
 | F3 | Foundations | [One dataset, many reports](foundations/one-dataset-many-reports.md) | 0.1 | draft |
 | F4 | Foundations | [Keeping up with changes](foundations/keeping-up.md) | 0.6 | planned |
 | CB1 | CBAM | [Scope check - CN codes and the 50 t threshold](cbam/cb1-scope-check.md) | 0.2 | draft |

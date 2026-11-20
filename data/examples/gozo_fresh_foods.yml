@@ -142,3 +142,21 @@ factor_register:
   Plastic film at end of life: desnz-2026
   Glass at end of life: desnz-2026
   Food wasted by consumers: desnz-2026
+
+# F2: data quality and stated 95% uncertainties for the category 1 lines of S4 (made up).
+# quality: technology, time, geography, completeness, reliability (1 = very good, 5 = very poor)
+# u95: relative half-width of the 95% interval of the line; for average-data lines it is
+#      combined from the activity and the factor (product rule).
+uncertainty_category_1:
+  monte_carlo: {n: 200000, seed: 20260101}
+  lines:
+    - {description: Maltese Farmers Cooperative, quality: [1, 1, 1, 2, 1], u95: 0.10, basis: "Supplier figure, verified"}
+    - {description: Sicilian Tomato Co, quality: [1, 1, 1, 2, 2], u95: 0.10, basis: "Supplier figure, verified"}
+    - {description: Gozo Greens Ltd, quality: [1, 1, 1, 3, 3], u95: 0.15, basis: "Supplier figure, not verified"}
+    - {description: Island Dairy Ltd, quality: [2, 1, 1, 2, 3], u95: 0.15, basis: "Supplier figure, not verified"}
+    - {description: Mediterranean Oils, quality: [2, 2, 2, 3, 3], u95: 0.20, basis: "Supplier figure, partial year"}
+    - {description: Other ingredient suppliers, quality: [4, 3, 3, 3, 3], u95: 0.50, basis: Spend-based sector factor}
+    - {description: "Services (cleaning, IT, maintenance)", quality: [4, 3, 3, 3, 3], u95: 0.50, basis: Spend-based sector factor}
+    - {description: Cardboard packaging, quality: [2, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.20, basis: "Weighed tonnes, DESNZ factor"}
+    - {description: Plastic film packaging, quality: [2, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.20, basis: "Weighed tonnes, DESNZ factor"}
+    - {description: Glass jars, quality: [2, 1, 3, 2, 2], activity_u95: 0.05, factor_u95: 0.20, basis: "Weighed tonnes, DESNZ factor"}

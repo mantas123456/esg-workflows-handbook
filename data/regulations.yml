@@ -185,6 +185,11 @@
   article: GHG Protocol Corporate Value Chain (Scope 3) Standard (cited, not copied)
   source: https://ghgprotocol.org/corporate-value-chain-scope-3-standard
   last_checked: 2026-11-20
+- id: jcgm-gum
+  fact: "The Guide to the expression of uncertainty in measurement (GUM), JCGM 100:2008, sets general rules for evaluating and expressing measurement uncertainty; its Supplement 1, JCGM 101:2008, propagates probability distributions through a measurement model by a Monte Carlo method and is being revised as JCGM GUM-7; both are free to download from the BIPM, but copyright stays with the JCGM member organisations, so they are cited, not copied"
+  article: JCGM 100:2008; JCGM 101:2008
+  source: https://www.bipm.org/en/doi/10.59161/jcgm100-2008e
+  last_checked: 2026-11-20
 - id: esrs-e1-scope3
   fact: Revised ESRS E1 requires gross Scope 3 GHG emissions as a total and for each significant Scope 3 category; significant categories are identified by the magnitude of their estimated emissions and other criteria such as spend, influence, transition risks and opportunities, or stakeholder views; screening uses the 15 GHG Protocol categories (ISO 14064-1 is an alternative); the significant categories are updated each year and the full inventory at least every three years or after a significant event; the GHG Protocol's Scope 3 calculation provisions can be considered; applies to financial years from 1 January 2027
   article: Delegated Regulation (EU) 2026/1563, Annex (ESRS E1 Scope 3 disclosure, AR 24 and AR 46)

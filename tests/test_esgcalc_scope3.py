@@ -294,3 +294,36 @@ def test_choose_factor_skips_unusable_and_breaks_ties_by_year() -> None:
         choose_factor([best_but_locked])
     with pytest.raises(ValueError):
         FactorOption("D", "x", "1", 2026, "", DataQuality(1, 1, 1, 1, 1), True)
+
+
+# --- reporting helpers -------------------------------------------------------------
+
+def test_gsd_from_u95() -> None:
+    # +/-20%: GSD = 1.2^(1/1.959964) = 1.09749; the 97.5th percentile of the lognormal is then 1.20
+    g = quality.gsd_from_u95(0.20)
+    assert g == pytest.approx(1.097_487, rel=1e-5)
+    assert g ** 1.959964 == pytest.approx(1.20)
+    assert quality.gsd_from_u95(0.0) == 1.0
+    with pytest.raises(ValueError):
+        quality.gsd_from_u95(-0.1)
+
+
+@pytest.mark.parametrize("value, u, expected", [
+    (4845.0, 405.228, (4850.0, 410.0)),      # U to 2 significant figures: 410; value to the tens
+    (123.456, 0.0347, (123.456, 0.035)),     # U = 0.035; value to 3 decimals
+    (4845.0, 1234.5, (4800.0, 1200.0)),
+    (2.5, 0.125, (2.50, 0.13)),              # half up at the last kept digit
+])
+def test_round_result(value: float, u: float, expected: tuple[float, float]) -> None:
+    assert quality.round_result(value, u) == pytest.approx(expected)
+
+
+def test_variance_shares() -> None:
+    # U = 10 and 40 -> variances 100 and 1,600 -> shares 100/1,700 and 1,600/1,700
+    shares = quality.variance_shares([100, 200], [0.10, 0.20])
+    assert shares == pytest.approx([100 / 1700, 1600 / 1700])
+    assert sum(shares) == pytest.approx(1.0)
+    with pytest.raises(ValueError):
+        quality.variance_shares([1], [0])
+    with pytest.raises(ValueError):
+        quality.round_result(1, 0)
