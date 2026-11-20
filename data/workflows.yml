@@ -7,16 +7,16 @@ tracks:
     title: Start here
     folder: start-here
     steps:
-      - {id: T1, title: "Which regime applies to me?", file: triage.md, release: "0.1", status: planned}
-      - {id: T2, title: "Regulation timeline", file: timeline.md, release: "0.1", status: planned}
+      - {id: T1, title: "Which regime applies to me?", file: triage.md, release: "0.1", status: draft}
+      - {id: T2, title: "Regulation timeline", file: timeline.md, release: "0.1", status: draft}
 
   - id: foundations
     title: Foundations
     folder: foundations
     steps:
-      - {id: F1, title: "Evidence locker and audit trail", file: evidence-locker.md, release: "0.1", status: planned}
+      - {id: F1, title: "Evidence locker and audit trail", file: evidence-locker.md, release: "0.1", status: draft}
       - {id: F2, title: "Data quality and uncertainty", file: data-quality.md, release: "0.3", status: planned}
-      - {id: F3, title: "One dataset, many reports", file: one-dataset-many-reports.md, release: "0.1", status: planned}
+      - {id: F3, title: "One dataset, many reports", file: one-dataset-many-reports.md, release: "0.1", status: draft}
       - {id: F4, title: "Keeping up with changes", file: keeping-up.md, release: "0.6", status: planned}
 
   - id: cbam
