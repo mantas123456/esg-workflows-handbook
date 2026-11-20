@@ -1,0 +1,34 @@
+# Parameters for esgcalc.dma (double materiality assessment).
+# Each setting says whether it follows the ESRS (fact esrs-dma-method in
+# data/regulations.yml) or is this handbook's own choice, which a company may change.
+# Last checked: 2026-11-20.
+
+scale:                      # every input is scored on this whole-number scale
+  min: 1
+  max: 5
+  labels: {1: very low, 2: low, 3: medium, 4: high, 5: very high}
+  basis: handbook choice (the ESRS set no scale)
+
+severity_aggregation: max   # max | mean
+# "max" follows the ESRS statement that any one of scale, scope and irremediable
+# character can make a negative impact severe. "mean" is a common alternative.
+severity_aggregation_basis: ESRS (any one characteristic can make an impact severe); max is the handbook's reading
+
+likelihood_combination: product
+# Potential impacts and financial effects: score = value x likelihood / scale max,
+# so a certain event (likelihood 5) keeps its full value. Handbook choice.
+
+human_rights:
+  severity_precedence_from: 4
+  # For potential negative human rights impacts, severity takes precedence over
+  # likelihood (ESRS). Handbook implementation: if severity is at least this value,
+  # the score is the severity itself, whatever the likelihood.
+  basis: ESRS (severity takes precedence); the cut-off value is a handbook choice
+
+thresholds:
+  impact: 3.0               # an impact is material if its score is at least this
+  financial: 3.0            # a risk or opportunity is material if its score is at least this
+  basis: handbook choice (the ESRS leave thresholds to the undertaking)
+
+fact: esrs-dma-method
+source: https://knowledgehub.efrag.org/eng/interactive/simplified-esrs/esrs-1/2026-09-21-official-journal

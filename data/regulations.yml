@@ -35,6 +35,11 @@
   article: Delegated Regulation (EU) 2026/1563, Annex I, ESRS 1 chapter 10 and ESRS 2 BP-2
   source: https://knowledgehub.efrag.org/eng/interactive/simplified-esrs/esrs-1/delegated-act
   last_checked: 2026-11-20
+- id: esrs-dma-method
+  fact: "Impact materiality: the severity of an impact is assessed on its scale, scope and irremediable character, and any one of the three can make a negative impact severe; actual negative impacts are assessed on severity, potential negative impacts on severity and likelihood, and for potential human rights impacts severity takes precedence over likelihood; actual positive impacts on scale and scope, potential positive impacts on scale, scope and likelihood; prevention and mitigation count only if already implemented and reasonably assumed to be effective. Financial materiality: a topic is material if it triggers, or could reasonably be expected to trigger, material financial effects over the short, medium or long term; material risks and opportunities can arise from material impacts. The undertaking decides materiality with qualitative considerations and quantitative thresholds it sets; the ESRS give no numeric thresholds"
+  article: Delegated Regulation (EU) 2026/1563, Annex I, ESRS 1 chapter 3 (impact and financial materiality)
+  source: https://knowledgehub.efrag.org/eng/interactive/simplified-esrs/esrs-1/2026-09-21-official-journal
+  last_checked: 2026-11-20
 - id: csrd-assurance
   fact: "After Omnibus I, sustainability statements need limited assurance only: the planned move to reasonable assurance was removed; the Commission's deadline to adopt limited assurance standards is 1 July 2027 (moved from 1 October 2026); the Commission opened a consultation on draft limited assurance standards on 12 November 2026"
   article: Directive 2006/43/EC and Directive 2013/34/EU as amended by Directive (EU) 2026/470
