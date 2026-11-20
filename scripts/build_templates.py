@@ -203,7 +203,8 @@ def _about_sheet(wb, spec: dict) -> None:
     ws.column_dimensions["A"].width = 100
     rows = [(spec["title"], st["title_font"]), (spec["description"], None), ("", None), ("How to use", st["bold"])]
     rows += [(f"• {line}", None) for line in spec.get("instructions", [])]
-    rows += [("• Rows in grey italics are a made-up example (Melita Metals Ltd). Replace or delete them.", None),
+    company = spec.get("example_company", "Melita Metals Ltd")
+    rows += [(f"• Rows in grey italics are a made-up example ({company}). Replace or delete them.", None),
              ("• Green cells calculate themselves. Do not type over them.", None),
              ("", None), (FOOTER, Font(size=8, color="808080")),
              (f"Source and guidance: {SITE}", Font(size=8, color="808080"))]
@@ -241,7 +242,9 @@ def _prefill(sheet: dict) -> None:
     if unknown:
         raise ValueError(f"{sheet['name']}: examples for unknown ids {sorted(unknown)}")
     sheet["fixed"] = fixed
-    sheet["examples"] = [examples.get(row[0]) for row in fixed]
+    # an example may be a single value (one input column) or a list (several)
+    sheet["examples"] = [v if v is None or isinstance(v, list) else [v]
+                         for v in (examples.get(row[0]) for row in fixed)]
     sheet["rows"] = len(fixed)
 
 

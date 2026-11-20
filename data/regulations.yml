@@ -45,6 +45,16 @@
   article: Directive 2006/43/EC and Directive 2013/34/EU as amended by Directive (EU) 2026/470
   source: https://finance.ec.europa.eu/news/commission-seeks-feedback-limited-assurance-standards-sustainability-reporting-2026-11-12_en
   last_checked: 2026-11-20
+- id: csrd-assurance-scope
+  fact: "The statutory auditor (or audit firm) gives a limited assurance opinion on the sustainability reporting, covering its compliance with the ESRS, the process the undertaking carried out to identify the reported information (the materiality assessment), compliance with the marking-up requirement of Article 29d, and the EU Taxonomy disclosures under Article 8 of Regulation (EU) 2020/852; Member States may also allow a different auditor, or an independent assurance services provider accredited under Regulation (EC) No 765/2008, to give the opinion; until the Commission adopts assurance standards, national standards may apply. Read in summaries and the consolidated texts' references; the Article 34 wording was not read directly"
+  article: Directive 2013/34/EU, Article 34, as amended by Directive (EU) 2022/2464 and Directive (EU) 2026/470; Directive 2006/43/EC, Article 26a
+  source: https://eur-lex.europa.eu/eli/dir/2022/2464/2026-03-18/eng
+  last_checked: 2026-11-20
+- id: csrd-management-report
+  fact: "Sustainability reporting goes in a dedicated, clearly identifiable section of the management report (or the consolidated management report of a parent); the management report is prepared in the European single electronic format (Delegated Regulation (EU) 2019/815), and the sustainability reporting, including the EU Taxonomy disclosures under Article 8 of Regulation (EU) 2020/852, is to be marked up with a digital taxonomy, which is not yet adopted (see esrs-digital-tagging). Read in the consolidated CSRD and in summaries; the Article 29d wording was not read directly"
+  article: Directive 2013/34/EU, Articles 19a, 29a and 29d, as amended by Directive (EU) 2022/2464 and Directive (EU) 2026/470
+  source: https://eur-lex.europa.eu/eli/dir/2022/2464/2026-03-18/eng
+  last_checked: 2026-11-20
 - id: esrs-digital-tagging
   fact: "Digital (XBRL) tagging of ESRS sustainability statements is not yet mandatory and is not expected for financial year 2026: EFRAG published a draft XBRL taxonomy for the revised ESRS, with consultation until 11 November 2026, and plans to hand the final taxonomy to ESMA and the Commission by the end of 2026; ESMA then drafts tagging rules (RTS) and the Commission adopts them by amending the ESEF Regulation (Delegated Regulation (EU) 2019/815)"
   article: Delegated Regulation (EU) 2019/815 (ESEF), to be amended
@@ -54,6 +64,11 @@
   fact: "Malta transposed the original CSRD through the Corporate Sustainability Reporting Regulations, 2026 (Legal Notice 39 of 2026, Government Gazette 13 February 2026, made under the Companies Act, Cap. 386), and Act I of 2026 amending laws on corporate sustainability reporting (in force 20 March 2026); the commencement of Legal Notice 39 was not confirmed; no Maltese law transposing Omnibus I (Directive (EU) 2026/470) was found; the transposition deadline is 19 March 2027"
   article: Legal Notice 39 of 2026; Act I of 2026; Directive (EU) 2026/470 (transposition deadline)
   source: https://legislation.mt/eli/ln/2026/39/eng
+  last_checked: 2026-11-20
+- id: csrd-stop-the-clock
+  fact: "The 'stop-the-clock' Directive (EU) 2025/794 (adopted 14 April 2025, published 16 April 2025, to be transposed by 31 December 2025) postponed by two years the CSRD start for large companies that had not yet started reporting (the second and third waves) and for listed SMEs; those companies are not subject to the reporting requirements for financial years 2025 or 2026, so a large company still in scope after Omnibus I that never reported starts with financial year 2027"
+  article: Directive (EU) 2025/794
+  source: https://eur-lex.europa.eu/eli/dir/2025/794/oj/eng
   last_checked: 2026-11-20
 - id: csrd-value-chain-cap
   fact: "Companies reporting under the CSRD may not require value-chain companies with on average 1,000 employees or fewer (previous financial year, headcount only) to give more information than the voluntary standard covers (the datapoints in Annex II of Delegated Regulation (EU) 2026/1560); a reporting company that asks for more must say which information goes beyond the cap and tell the value-chain company that it has a right to refuse it; it may rely on the value-chain company's self-declaration of size unless it knows or should know it is manifestly wrong; the cap creates no duty to report, does not stop voluntary sharing of information commonly shared in a sector, and does not override existing contractual or legal duties; it applies to value-chain reporting from financial year 2027"

@@ -1,0 +1,54 @@
+title: ESRS datapoint gap list
+type: Workbook
+description: The handbook's key ESRS datapoints, generated from its datapoint list, with whether each is in scope for you, its status (Ready, Partial, Gap or Phase-in), an owner and a date, and a summary.
+example_company: Mediterranean Logistics Group
+instructions:
+  - "The datapoint rows come from the handbook's key datapoints of the revised ESRS (Delegated Regulation (EU) 2026/1563), in its own words. EFRAG publishes the full datapoint list: use it for your real gap analysis."
+  - "Material topics: answer Yes for each topical standard your double materiality assessment found material. ESRS 2 is always in scope."
+  - "Gap list: for each datapoint in scope, choose a status, and give an owner and a date for every Partial and Gap."
+  - "Status: Ready (data, method and owner in place), Partial (some data or estimates), Gap (nothing yet), Phase-in (you use a phase-in and say so)."
+  - "Summary counts the datapoints in scope by status. Same method as esgcalc.csrd.gap_summary in the handbook (see C7)."
+sheets:
+  - name: Gap list
+    prefill:
+      file: data/esrs_datapoints.yml
+      key: datapoints
+      fields: [id, standard, dr, description, unit, dataset]
+      examples: {file: data/examples/mediterranean_logistics.yml, key: gap_status}
+    columns:
+      - {header: Datapoint, width: 22}
+      - {header: Standard, width: 9}
+      - {header: Disclosure requirement (where confirmed), width: 11}
+      - {header: What it covers (handbook's own words), width: 42}
+      - {header: Unit, width: 12}
+      - {header: Dataset in the handbook, width: 18}
+      - {header: Status, width: 11, choices: [Ready, Partial, Gap, Phase-in]}
+      - {header: Owner, width: 16}
+      - {header: Ready by, width: 11, format: date}
+      - {header: Note, width: 30}
+      - {header: "In scope?", width: 9, formula: '=IF(A{r}="","",IF(OR(B{r}="ESRS 2",SUMIF(''Material topics''!$A$2:$A$11,B{r},''Material topics''!$D$2:$D$11)>0),"Yes","No"))'}
+    highlights:
+      - {formula: 'AND($K2="Yes",$G2="")', color: FFF9C4}
+      - {formula: '$K2="No"', color: EEEEEE}
+  - name: Material topics
+    prefill:
+      file: data/esrs_datapoints.yml
+      key: standards
+      where: {kind: topical}
+      fields: [standard, topic]
+    examples_by_id: {E1: ['Yes'], E2: ['No'], E3: ['No'], E4: ['No'], E5: ['Yes'], S1: ['Yes'], S2: ['No'], S3: ['No'], S4: ['No'], G1: ['No']}
+    columns:
+      - {header: Standard, width: 9}
+      - {header: Topic, width: 34}
+      - {header: "Material? (from your assessment)", width: 14, choices: ["Yes", "No"]}
+      - {header: "Material (1/0)", width: 8, formula: '=IF(C{r}="Yes",1,0)'}
+  - name: Summary
+    kind: summary
+    rows:
+      - {label: Datapoints in scope, formula: '=COUNTIF(''Gap list''!K2:K200,"Yes")'}
+      - {label: Ready, formula: '=COUNTIFS(''Gap list''!K2:K200,"Yes",''Gap list''!G2:G200,"Ready")'}
+      - {label: Partial, formula: '=COUNTIFS(''Gap list''!K2:K200,"Yes",''Gap list''!G2:G200,"Partial")'}
+      - {label: Gap, formula: '=COUNTIFS(''Gap list''!K2:K200,"Yes",''Gap list''!G2:G200,"Gap")'}
+      - {label: Phase-in, formula: '=COUNTIFS(''Gap list''!K2:K200,"Yes",''Gap list''!G2:G200,"Phase-in")'}
+      - {label: In scope but no status yet, formula: '=B1-SUM(B2:B5)'}
+      - {label: Ready share, bold: true, formula: '=IF(B1=0,"",B2/B1)', format: "0.0%"}

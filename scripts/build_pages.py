@@ -274,6 +274,51 @@ def vsme_readiness_tool_data() -> dict:
     }
 
 
+def _mlg() -> dict:
+    return yaml.safe_load((ROOT / "data" / "examples" / "mediterranean_logistics.yml").read_text(encoding="utf-8"))
+
+
+def _esrs() -> dict:
+    return yaml.safe_load((ROOT / "data" / "esrs_datapoints.yml").read_text(encoding="utf-8"))
+
+
+IRO_KEYS = ("id", "topic", "description", "kind", "actual", "human_rights", "scale", "scope",
+            "irremediability", "likelihood", "magnitude")
+
+
+def _mlg_iros() -> list[dict]:
+    """Mediterranean Logistics Group's items in esgcalc.dma.IRO form (all impacts negative)."""
+    return [{**{k: i.get(k) for k in IRO_KEYS}, "negative": True,
+             "actual": bool(i.get("actual", False)), "human_rights": bool(i.get("human_rights", False))}
+            for i in _mlg()["dma"]["iros"]]
+
+
+def dma_scoring_tool_data() -> dict:
+    """DMA parameters, the topical standards and the Mediterranean Logistics Group example."""
+    p = yaml.safe_load((ROOT / "data" / "dma_parameters.yml").read_text(encoding="utf-8"))
+    return {
+        "params": {"scale": {"min": p["scale"]["min"], "max": p["scale"]["max"]},
+                   "severity_aggregation": p["severity_aggregation"],
+                   "human_rights": {"severity_precedence_from": p["human_rights"]["severity_precedence_from"]},
+                   "thresholds": {"impact": p["thresholds"]["impact"], "financial": p["thresholds"]["financial"]}},
+        "standards": [s for s in _esrs()["standards"] if s["kind"] == "topical"],
+        "example": _mlg_iros(),
+    }
+
+
+def esrs_gap_tool_data() -> dict:
+    """ESRS key datapoints, the standards, and the group's material topics and statuses."""
+    from esgcalc.dma import IRO, assess_all, topics
+
+    d = _esrs()
+    material = [t.topic for t in topics(assess_all(IRO(**i) for i in _mlg_iros())) if t.material]
+    return {
+        "datapoints": [{k: x[k] for k in ("id", "standard", "description", "dataset")} for x in d["datapoints"]],
+        "standards": d["standards"],
+        "example": {"material": material, "status": _mlg()["gap_status"]},
+    }
+
+
 FACTORS_PAGE = DOCS / "scope3" / "s5-emission-factors.md"
 FACTORS_START = "<!-- generated from data/factor_sources.yml: do not edit by hand -->"
 FACTORS_END = "<!-- end generated factor sources -->"
@@ -361,6 +406,8 @@ def main() -> None:
     write_json_block(DOCS / "tools" / "scope3-screening.md", "scope3-screening-data", screening_tool_data())
     write_json_block(DOCS / "tools" / "uncertainty-demo.md", "uncertainty-demo-data", uncertainty_tool_data())
     write_json_block(DOCS / "tools" / "vsme-readiness.md", "vsme-readiness-data", vsme_readiness_tool_data())
+    write_json_block(DOCS / "tools" / "dma-scoring.md", "dma-scoring-data", dma_scoring_tool_data())
+    write_json_block(DOCS / "tools" / "esrs-gap.md", "esrs-gap-data", esrs_gap_tool_data())
 
 
 if __name__ == "__main__":

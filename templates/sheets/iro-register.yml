@@ -1,0 +1,38 @@
+title: IRO register
+type: Workbook
+description: A register of impacts, risks and opportunities (IROs) with where they arise in the value chain, the time horizon, the materiality result, the owner, the actions and the ESRS datapoints they feed.
+example_company: Mediterranean Logistics Group
+instructions:
+  - "One row per impact, risk or opportunity, with the same ID as in the double materiality assessment workbook."
+  - "Where: own operations, upstream or downstream value chain. Time horizon: short, medium or long term."
+  - "Copy the score and the result from the double materiality assessment workbook, and update both when you review it each year."
+  - "For material items, name an owner, the policies and actions in place, and the ESRS datapoints the item feeds (see data/esrs_datapoints.yml in the handbook)."
+  - "Keep the reason for every result. An assurance provider will ask for it (see C8)."
+sheets:
+  - name: Register
+    rows: 100
+    columns:
+      - {header: ID, width: 9}
+      - {header: Standard, width: 9, choices: [E1, E2, E3, E4, E5, S1, S2, S3, S4, G1]}
+      - {header: Description, width: 38}
+      - {header: Type, width: 12, choices: [Impact, Risk, Opportunity]}
+      - {header: Where, width: 14, choices: [Own operations, Upstream, Downstream]}
+      - {header: Time horizon, width: 10, choices: [Short, Medium, Long]}
+      - {header: Score, width: 7, format: "0.0"}
+      - {header: "Material?", width: 9, choices: ["Yes", "No"]}
+      - {header: Reason for the result, width: 36}
+      - {header: Owner, width: 16}
+      - {header: Policies and actions in place, width: 36}
+      - {header: ESRS datapoints, width: 26}
+    highlights:
+      - {formula: '$H2="Yes"', color: E8F5E9}
+    examples:
+      - [S1-I1, S1, Serious road and warehouse accidents involving drivers and staff, Impact, Own operations, Short, 5.0, 'Yes', "A fatal accident cannot be put right; human rights impact, so severity takes precedence", Operations director, "Driver training, warehouse safety rules, accident reporting", S1-health-safety]
+      - [E1-I1, E1, GHG emissions from the diesel truck fleet and the cold stores, Impact, Own operations, Long, 4.0, 'Yes', "Actual impact; 24,900 tCO2e Scope 1 in the 2026 dry run", Fleet manager, "Route planning; refrigerant leak checks", "E1-scope1, E1-scope2, E1-transition-plan, E1-targets"]
+      - [E1-R1, E1, Rising fuel and carbon costs for the diesel fleet, Risk, Own operations, Medium, 3.2, 'Yes', "Diesel is the largest operating cost after wages", Finance director, Fuel hedging, E1-financial-effects]
+      - [E5-I1, E5, Food wasted when the cold chain fails, Impact, Own operations, Short, 3.0, 'Yes', "Actual impact at every cold store", Warehouse manager, "Backup power; temperature alarms", E5-resources-waste]
+      - [E2-I1, E2, Air pollution from trucks in towns, Impact, Own operations, Medium, 2.4, 'No', "Newer trucks; below the threshold", null, null, null]
+      - [S1-R1, S1, Shortage of truck drivers, Risk, Own operations, Medium, 2.4, 'No', "Below the threshold; reviewed next year", null, null, null]
+      - [E1-O1, E1, Supermarkets choosing low-carbon logistics, Opportunity, Downstream, Medium, 1.8, 'No', "Few customers ask yet", null, null, null]
+      - [S2-I1, S2, Poor working conditions on farms that supply food suppliers, Impact, Upstream, Medium, 1.2, 'No', "Suppliers are mostly in the EU; likelihood low", null, null, null]
+      - [G1-R1, G1, Bribery at ports and customs, Risk, Own operations, Short, 0.8, 'No', "Anti-bribery policy; no incidents", null, null, null]
