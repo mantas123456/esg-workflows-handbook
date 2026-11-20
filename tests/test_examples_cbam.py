@@ -106,3 +106,30 @@ def test_cb2_deadlines_and_transitional_rule() -> None:
     assert q1_t == 68 and f"**{q1_t} tonnes**" in text
     for shown in ("# 2026-05-12", "# 2026-06-11", "# True", "# False"):
         assert shown in text
+
+
+# --- CB3 Supplier data -----------------------------------------------------
+
+def test_cb3_tonnes_by_installation_and_outcomes() -> None:
+    text = page("cb3-supplier-data.md")
+    by_inst: dict[str, float] = defaultdict(float)
+    for line in IMPORTS:
+        by_inst[line["installation"]] += line["mass_t"]
+    total = threshold_check([(l["cn_code"], l["mass_t"]) for l in IMPORTS]).total_mass_t
+    assert dict(by_inst) == {"A": 400, "B": 35} and total == 435
+
+    shares = {k: round(100 * v / total) for k, v in by_inst.items()}
+    assert shares == {"A": 92, "B": 8}          # 400/435 = 91.95%, 35/435 = 8.05%
+    assert sum(shares.values()) == 100
+    assert f"| {fmt(by_inst['A'])} | {shares['A']}% |" in text
+    assert f"| {fmt(by_inst['B'])} | {shares['B']}% |" in text
+    assert f"| **{fmt(total)}** | **100%** |" in text
+
+    outcome = {r["installation"]: r for r in EXAMPLE["supplier_requests"]}
+    label = {"actual": "Actual values", "default": "Default values"}
+    for inst, r in outcome.items():
+        assert f"| {inst} | {r['answer']} | {label[r['outcome']]} |" in text
+        assert f"On {r['sent'].day} {r['sent']:%B %Y}" in text
+    actual_share = sum(shares[i] for i, r in outcome.items() if r["outcome"] == "actual")
+    assert f"**{actual_share}%** of Melita Metals' tonnes will have actual" in text
+    assert f"other **{100 - actual_share}%**" in text

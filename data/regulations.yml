@@ -95,6 +95,16 @@
   article: Regulation (EU) 2023/956, Articles 8 and 18; Implementing Regulation (EU) 2025/2546
   source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-verification_en
   last_checked: 2026-11-20
+- id: cbam-actual-or-default
+  fact: The declarant may use actual embedded emissions only when the installation operator provides data verified by an accredited verifier; without verified actual data it uses the Commission's default values; actual data for a precursor may be used only from a verification report that covers the period the precursor was produced; for operators the reporting period is the calendar year in which the goods were produced
+  article: Regulation (EU) 2023/956, Articles 7 and 8 and Annex IV
+  source: https://taxation-customs.ec.europa.eu/system/files/2026-08/Guidance%20No.%201%20-%20Introduction%20to%20CBAM%20concepts.pdf
+  last_checked: 2026-11-20
+- id: cbam-operator-template-and-portal
+  fact: The Commission publishes an operator emissions report template to help installation operators pass embedded emissions data to authorised CBAM declarants; operators of non-EU installations can register in the Operators Portal of the CBAM Registry, which opened in December 2024
+  article: Regulation (EU) 2023/956, Article 10; Commission Guidance No. 2 for non-EU operators
+  source: https://taxation-customs.ec.europa.eu/system/files/2026-08/Guidance%20No.%202%20-%20Quick%20guide%20for%20non-EU%20operators%20on%20CBAM%20implementation.pdf
+  last_checked: 2026-11-20
 - id: cbam-carbon-price-paid
   fact: The declarant may reduce the certificates to surrender by the carbon price effectively paid in the country of origin, net of any rebate or compensation (including free allowances); the documentation must be certified by an independent person; where the price effectively paid cannot be determined, yearly default carbon prices may be used; conversion into a number of certificates is set by implementing act
   article: Regulation (EU) 2023/956, Article 9, as amended by Regulation (EU) 2025/2083
