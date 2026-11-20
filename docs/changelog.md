@@ -4,6 +4,65 @@ What changed in the handbook, newest first. Regulatory updates are listed
 here too, with the date the facts were re-checked. See the
 [roadmap](roadmap.md) for what comes next.
 
+## 0.5 CSRD / ESRS track (20 November 2026)
+
+The CSRD and revised ESRS after Omnibus I, with Mediterranean Logistics
+Group (fictional, Malta, 1,300 employees, EUR 520 m turnover) and its
+suppliers Gozo Fresh Foods and Melita Metals from the other tracks, so the
+value chain links all four tracks. All pages are drafts, reviewed once in this
+release as a limited-assurance provider would, not yet by a practitioner.
+
+**New pages (draft)**
+
+- [C1 Am I in scope after Omnibus I?](csrd/c1-scope.md),
+  [C2 Double materiality assessment](csrd/c2-dma.md),
+  [C3 Value chain and data requests](csrd/c3-value-chain.md),
+  [C4 General disclosures](csrd/c4-general.md),
+  [C5 Climate (E1)](csrd/c5-climate.md),
+  [C6 Other topical standards](csrd/c6-topical.md),
+  [C7 Datapoint gap analysis](csrd/c7-gap-analysis.md),
+  [C8 Assurance readiness](csrd/c8-assurance.md),
+  [C9 Digital tagging and publication](csrd/c9-tagging.md).
+- C3 keeps every request to smaller suppliers within the value-chain cap;
+  C5 brings Gozo's Scope 3 and Melita's CBAM data into E1.
+
+**New tools and templates**
+
+- [DMA scoring](tools/dma-scoring.md) and [ESRS gap check](tools/esrs-gap.md),
+  in your browser.
+- Downloads: double materiality assessment workbook, IRO register and ESRS
+  datapoint gap list (Excel, generated from the handbook's datapoint list).
+- `esgcalc.dma` (impact and financial materiality, topic roll-up) and
+  `esgcalc.csrd` (scope test, value-chain cap, gap summary).
+- `data/esrs_datapoints.yml`: the standards and the key datapoints, linked
+  to the handbook's datasets.
+
+**Fixes**
+
+- The About sheet of the Scope 3 and VSME workbooks now names their
+  example company (Gozo Fresh Foods), not Melita Metals.
+
+**Facts and sources (checked 20 November 2026)**
+
+- Scope after Omnibus I (Directive (EU) 2026/470): more than 1,000
+  employees and more than EUR 450 m net turnover; transposition by
+  19 March 2027.
+- Stop-the-clock (Directive (EU) 2025/794): companies that never reported
+  start with financial year 2027.
+- Revised ESRS (Delegated Regulation (EU) 2026/1563): mandatory from
+  financial year 2027; materiality method, structure, phase-ins, E1 Scope 3.
+- Limited assurance only; what the opinion covers; the sustainability
+  statement in the management report; tagging not yet mandatory.
+- Malta: Legal Notice 39 of 2026 and Act I of 2026 (original CSRD).
+
+**Known gaps:** EUR-Lex did not load, so Articles 19a, 29a, 29d and 34 of
+Directive 2013/34/EU and the scope article were read through the
+consolidated CSRD and summaries; the phase-in years, Scope 2 on both bases
+and the disclosure requirement numbers are to check against the Official
+Journal; Malta's Legal Notice 39 start date and its Omnibus I transposition
+are not confirmed; limited assurance standards and tagging rules are not
+adopted yet.
+
 ## 0.4 VSME track (20 November 2026)
 
 The voluntary standard for smaller companies, with Gozo Fresh Foods Ltd
