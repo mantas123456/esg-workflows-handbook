@@ -189,7 +189,8 @@ print(round(b_see, 2), round(b_see * 35, 2))                     # 2.31 80.85
 
 - [`esgcalc.cbam.embedded_emissions`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/cbam.py)
   and `default_value_with_markup`: the calculations above. Run offline.
-- A browser calculator is planned for this release.
+- [CBAM calculator](../tools/cbam-calculator.md): actual or default values per CN code, with the
+  mark-up, in your browser.
 
 ## Reuse in other reports
 

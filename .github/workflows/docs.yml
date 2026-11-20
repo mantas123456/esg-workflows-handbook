@@ -26,11 +26,13 @@ jobs:
             requirements-docs.txt
             requirements-dev.txt
       - run: pip install -r requirements-dev.txt
+      - name: Install Chromium for the browser tests
+        run: python -m playwright install --with-deps chromium
       - name: Build the templates
         run: python scripts/build_templates.py --force
       - name: Generate pages and check every step
         run: python scripts/build_pages.py && python scripts/check_workflows.py
-      - name: Test calculations, worked examples and templates
+      - name: Test calculations, worked examples, templates and the browser tool
         run: pytest -q
       - run: mkdocs build --strict
       - if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

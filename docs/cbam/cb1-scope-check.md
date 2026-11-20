@@ -172,7 +172,8 @@ File them in the evidence locker and hash them (see
 - [`esgcalc.cbam.threshold_check`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/cbam.py):
   adds up the net mass, leaves out hydrogen and electricity, and compares
   the total with the threshold. Runs offline.
-- A browser threshold checker is planned for this release.
+- [CBAM calculator](../tools/cbam-calculator.md): the same threshold test in your browser, with embedded
+  emissions and certificates. Nothing leaves your browser.
 
 ## Reuse in other reports
 

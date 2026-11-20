@@ -177,7 +177,8 @@ certificates is not covered here.
 - [`esgcalc.cbam`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/cbam.py):
   `certificates_needed`, `certificate_cost` (to the cent) and
   `quarterly_holding`.
-- A browser cost calculator is planned for this release.
+- [CBAM calculator](../tools/cbam-calculator.md): certificates, cost and the quarterly holding in your
+  browser.
 
 ## Reuse in other reports
 
