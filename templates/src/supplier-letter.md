@@ -25,7 +25,7 @@ For the calendar year **[year]**:
 
 | # | Information | Notes |
 |---|---|---|
-| 1 | Your greenhouse gas emissions (tonnes CO2e): Scope 1, Scope 2 and, if you have it, the upstream part | For the sites that make the products we buy |
+| 1 | Your greenhouse gas emissions (tonnes CO2e) for the products we buy, cradle to gate: Scope 1, Scope 2 and the upstream part (what you buy) | If you only have Scope 1 and Scope 2, send those and tell us |
 | 2 | Your total output in **[tonnes / units / EUR revenue]** | The same unit as our purchases, so we can work out our share |
 | 3 | What the figure covers: sites, gases, cradle to gate or not | One or two sentences is enough |
 | 4 | Has the figure been verified? By whom? | Unverified figures are welcome too |

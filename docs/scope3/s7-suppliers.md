@@ -36,8 +36,10 @@ review so it becomes routine.
 One short letter per supplier: what you need, for which year, in which
 unit, by when, and why. Ask for:
 
-- the supplier's emissions for the year, Scope 1, 2 and, if they have it,
-  the upstream part, for the products you buy;
+- the supplier's emissions for the year for the products you buy, **cradle
+  to gate**: their Scope 1 and 2 **and** the upstream part (what they buy).
+  If they only have Scope 1 and 2, take it, but record that the upstream
+  part is missing;
 - their total output in the same unit you buy in, so you can work out
   your share ([S4](s4-methods.md));
 - what the figure covers (sites, gases, cradle to gate or not) and whether
@@ -58,7 +60,7 @@ average.
 | Check | Question |
 |---|---|
 | Period | Is it the year you asked for? |
-| Boundary | Does it cover the sites that make your products? |
+| Boundary | Does it cover the sites that make your products? Is it cradle to gate, or only the supplier's Scope 1 and 2? |
 | Allocation | Is the total output in the same unit as your purchases? |
 | Plausibility | Is the emissions per tonne in a believable range? |
 | Verification | Was it verified? If not, score reliability lower ([S6](s6-data-quality.md)). |
@@ -119,6 +121,8 @@ fifth, because it replaces part of the line that dominates the budget.
 - **A long questionnaire.** Ask for the few numbers you will use.
 - **Asking for "your carbon footprint".** Ask for emissions, total output
   and boundary for a given year, so you can allocate.
+- **Treating a supplier's Scope 1 and 2 as its product's footprint.** It
+  leaves out everything the supplier buys. Ask for cradle to gate.
 - **Accepting any number.** Check the period, boundary, unit and
   plausibility.
 - **Not saying why.** Suppliers answer when they understand the request and

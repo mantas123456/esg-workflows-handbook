@@ -41,7 +41,10 @@ tCO2e = supplier's emissions x what you bought / supplier's total output
 
 Use the same unit for "what you bought" and "total output" (tonnes, units
 or revenue). The supplier's figure should cover the goods you bought, from
-cradle to their gate.
+cradle to their gate. **A supplier's Scope 1 and 2 alone are not cradle to
+gate**: they leave out what the supplier buys (fertiliser, feed, packaging).
+If that is all you get, add an estimate for the missing upstream part, or
+score completeness lower and say so ([S6](s6-data-quality.md)).
 
 ### 2. Average-data: quantity x average factor
 

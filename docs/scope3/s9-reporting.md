@@ -121,6 +121,14 @@ of sold products, 11 use of sold products, 13 downstream leased assets and
    tCO2e), from the same 300 tCO2e ([S4](s4-methods.md)).
 9. **Base year:** 2026. Recalculation policy: 5% of the base-year total,
    changes added up in absolute terms ([S8](s8-base-year.md)).
+10. **Gases:** all greenhouse gases as CO2e, with the global warming
+    potentials used by the factor sources. All sources should use the same
+    IPCC assessment report values; this is checked as factors are chosen
+    ([S5](s5-emission-factors.md)).
+11. **Land:** emissions from land use and land-use change on the farms
+    behind the ingredients are not separated. The GHG Protocol Land Sector
+    and Removals Standard takes effect on 1 January 2027, so the 2027
+    inventory will need to follow it.
 
 In Python, with
 [`esgcalc`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/quality.py):
@@ -142,6 +150,9 @@ print(round_result(total.value, total.u95_abs))   # (5780.0, 420.0)
 - **No uncertainty.** A number without it suggests more precision than
   there is.
 - **Hiding overlaps and placeholders.** Disclose them; they will be found.
+- **Ignoring land.** For food, drink and other farm-based goods, land use
+  and land-use change can be a large part of category 1. Check the Land
+  Sector and Removals Standard.
 - **Different numbers for different readers.** Send everyone the same
   inventory.
 
@@ -171,7 +182,7 @@ ESRS E1 (for the significant categories). See
 ## Sources
 
 Facts come from `data/regulations.yml` (ids `esrs-e1-scope3`,
-`ghgp-scope3-categories`, `ghgp-base-year`, `jcgm-gum`) and
+`ghgp-scope3-categories`, `ghgp-base-year`, `ghgp-land-sector`, `jcgm-gum`) and
 `data/factor_sources.yml`, last checked 20 November 2026.
 
 - Delegated Regulation (EU) 2026/1563, ESRS E1 and ESRS 1:
@@ -179,5 +190,7 @@ Facts come from `data/regulations.yml` (ids `esrs-e1-scope3`,
 - GHG Protocol Corporate Value Chain (Scope 3) Standard (cited, not
   copied):
   [ghgprotocol.org](https://ghgprotocol.org/corporate-value-chain-scope-3-standard)
+- GHG Protocol Land Sector and Removals Standard v1.1 (cited, not copied):
+  [ghgprotocol.org](https://ghgprotocol.org/land-sector-and-removals-standard)
 - DESNZ conversion factors 2026, Open Government Licence v3.0:
   [GOV.UK](https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2026)

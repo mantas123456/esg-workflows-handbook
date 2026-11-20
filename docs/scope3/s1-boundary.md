@@ -10,6 +10,13 @@ last_checked: 2026-11-20
     This page explains the GHG Protocol's boundary choices in plain words.
     If you report under the CSRD, check the boundary rules of ESRS E1 too.
 
+!!! note "What the Scope 3 track does not cover yet"
+    Land use, land-use change and removals in the value chain (the GHG
+    Protocol Land Sector and Removals Standard, in effect from 1 January
+    2027), sector guidance for financial institutions (category 15),
+    and the optional indirect use-phase emissions of sold products. They
+    are planned for later releases.
+
 ## In one sentence
 
 Decide which companies and sites are "yours" (inside the boundary,

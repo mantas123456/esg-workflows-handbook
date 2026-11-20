@@ -190,6 +190,11 @@
   article: GHG Protocol Corporate Standard, chapter 5, and Scope 3 Standard (cited, not copied); Corporate Standard working group materials 2025
   source: https://ghgprotocol.org/sites/default/files/standards/Corporate-Value-Chain-Accounting-Reporing-Standard_041613_2.pdf
   last_checked: 2026-11-20
+- id: ghgp-land-sector
+  fact: "The GHG Protocol Land Sector and Removals (LSR) Standard was published on 30 January 2026 (current version v1.1, June 2026, with companion guidance on agriculture and CO2 removal) and takes effect on 1 January 2027; it is used together with the Corporate and Scope 3 Standards and covers land emissions, land-use change emissions and removals, including in the value chain; the GHG Protocol says reports made in 2028 on 2027 data need to comply with it"
+  article: GHG Protocol Land Sector and Removals Standard v1.1 and FAQ (cited, not copied)
+  source: https://ghgprotocol.org/land-sector-and-removals-standard
+  last_checked: 2026-11-20
 - id: jcgm-gum
   fact: "The Guide to the expression of uncertainty in measurement (GUM), JCGM 100:2008, sets general rules for evaluating and expressing measurement uncertainty; its Supplement 1, JCGM 101:2008, propagates probability distributions through a measurement model by a Monte Carlo method and is being revised as JCGM GUM-7; both are free to download from the BIPM, but copyright stays with the JCGM member organisations, so they are cited, not copied"
   article: JCGM 100:2008; JCGM 101:2008
