@@ -21,8 +21,34 @@
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ%3AL_202600470
   last_checked: 2026-11-20
 - id: esrs-simplified
-  fact: Revised ESRS adopted 3 Jul 2026 as Delegated Regulation (EU) 2026/1563, published in the OJ 21 Sep 2026, in force 10 Nov 2026; mandatory for financial years starting on or after 1 Jan 2027, optional for financial years starting in 2026
+  fact: Revised ESRS adopted 3 Jul 2026 as Delegated Regulation (EU) 2026/1563, amending Delegated Regulation (EU) 2023/2772, published in the OJ 21 Sep 2026, in force 10 Nov 2026; mandatory for financial years starting on or after 1 Jan 2027, optional for financial years starting in 2026 (the undertaking says which version it used)
+  article: Delegated Regulation (EU) 2026/1563, Articles 1 and 2
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601563
+  last_checked: 2026-11-20
+- id: esrs-structure
+  fact: "The revised ESRS are 12 standards: two cross-cutting standards, ESRS 1 (general requirements) and ESRS 2 (general disclosures: governance, strategy including financial effects, management of impacts, risks and opportunities, metrics and targets), and ten topical standards, E1 to E5, S1 to S4 and G1; reporting follows the double materiality principle, covering material impacts on people and the environment and material sustainability-related risks and opportunities; ESRS 2 asks for a concise description of the materiality assessment process, including how it covers own operations and the value chain"
+  article: Delegated Regulation (EU) 2026/1563, Annex I (ESRS 1, ESRS 2)
+  source: https://knowledgehub.efrag.org/interactive/simplified-esrs/esrs-1
+  last_checked: 2026-11-20
+- id: esrs-phase-in
+  fact: "ESRS 1 chapter 10 (section 10.3) lists phased-in disclosure requirements, by type of undertaking. In the text read (EFRAG Knowledge Hub), undertakings first reporting for financial years from 2027 may omit, in their first years: E4, S2, S3 and S4 disclosures (first two years); anticipated financial effects (first two years, except some E1 paragraphs); quantitative anticipated financial effects (first four years); substances-of-concern data (first three years); and comparative information (first year). Undertakings using a phase-in say so (BP-2) and, for some, whether the topic was assessed as material. Earlier voluntary use does not start the phase-in clock. No phase-in specific to Scope 3 was found. The years have not been checked against the Official Journal text"
+  article: Delegated Regulation (EU) 2026/1563, Annex I, ESRS 1 chapter 10 and ESRS 2 BP-2
+  source: https://knowledgehub.efrag.org/eng/interactive/simplified-esrs/esrs-1/delegated-act
+  last_checked: 2026-11-20
+- id: csrd-assurance
+  fact: "After Omnibus I, sustainability statements need limited assurance only: the planned move to reasonable assurance was removed; the Commission's deadline to adopt limited assurance standards is 1 July 2027 (moved from 1 October 2026); the Commission opened a consultation on draft limited assurance standards on 12 November 2026"
+  article: Directive 2006/43/EC and Directive 2013/34/EU as amended by Directive (EU) 2026/470
+  source: https://finance.ec.europa.eu/news/commission-seeks-feedback-limited-assurance-standards-sustainability-reporting-2026-11-12_en
+  last_checked: 2026-11-20
+- id: esrs-digital-tagging
+  fact: "Digital (XBRL) tagging of ESRS sustainability statements is not yet mandatory and is not expected for financial year 2026: EFRAG published a draft XBRL taxonomy for the revised ESRS, with consultation until 11 November 2026, and plans to hand the final taxonomy to ESMA and the Commission by the end of 2026; ESMA then drafts tagging rules (RTS) and the Commission adopts them by amending the ESEF Regulation (Delegated Regulation (EU) 2019/815)"
+  article: Delegated Regulation (EU) 2019/815 (ESEF), to be amended
+  source: https://www.efrag.org/en/news-and-calendar/news/efrag-releases-draft-esrs-xbrl-taxonomy-for-the-revised-esrs-and-launches-public-consultation
+  last_checked: 2026-11-20
+- id: malta-csrd
+  fact: "Malta transposed the original CSRD through the Corporate Sustainability Reporting Regulations, 2026 (Legal Notice 39 of 2026, Government Gazette 13 February 2026, made under the Companies Act, Cap. 386), and Act I of 2026 amending laws on corporate sustainability reporting (in force 20 March 2026); the commencement of Legal Notice 39 was not confirmed; no Maltese law transposing Omnibus I (Directive (EU) 2026/470) was found; the transposition deadline is 19 March 2027"
+  article: Legal Notice 39 of 2026; Act I of 2026; Directive (EU) 2026/470 (transposition deadline)
+  source: https://legislation.mt/eli/ln/2026/39/eng
   last_checked: 2026-11-20
 - id: csrd-value-chain-cap
   fact: "Companies reporting under the CSRD may not require value-chain companies with on average 1,000 employees or fewer (previous financial year, headcount only) to give more information than the voluntary standard covers (the datapoints in Annex II of Delegated Regulation (EU) 2026/1560); a reporting company that asks for more must say which information goes beyond the cap and tell the value-chain company that it has a right to refuse it; it may rely on the value-chain company's self-declaration of size unless it knows or should know it is manifestly wrong; the cap creates no duty to report, does not stop voluntary sharing of information commonly shared in a sector, and does not override existing contractual or legal duties; it applies to value-chain reporting from financial year 2027"
