@@ -202,3 +202,30 @@ def test_monte_carlo_sum_is_narrower_than_its_parts() -> None:
 def test_monte_carlo_rejects_bad_input(args: tuple) -> None:
     with pytest.raises(ValueError):
         quality.monte_carlo_sum(*args, n=1_000)
+
+
+# --- organisational boundary ----------------------------------------------------
+
+def test_boundary_three_approaches() -> None:
+    from esgcalc.boundary import Entity, consolidate
+
+    group = [Entity("A", 1000, 1.0, True, True), Entity("B", 500, 0.4, False, True), Entity("C", 200, 0.3, False, False)]
+    # equity: 1000 + 0.4 x 500 + 0.3 x 200 = 1000 + 200 + 60 = 1260
+    assert consolidate(group, "equity_share").tco2e == pytest.approx(1260)
+    # financial control: only A = 1000; operational control: A + B = 1500
+    fc, oc = consolidate(group, "financial_control"), consolidate(group, "operational_control")
+    assert (fc.tco2e, fc.outside) == (1000, ["B", "C"])
+    assert (oc.tco2e, oc.outside) == (1500, ["C"])
+
+
+def test_boundary_rejects_bad_input() -> None:
+    from esgcalc.boundary import Entity, consolidate
+
+    with pytest.raises(ValueError):
+        Entity("A", 100, 1.2, True, True)
+    with pytest.raises(ValueError):
+        Entity("A", -1, 1.0, True, True)
+    with pytest.raises(ValueError):
+        consolidate([Entity("A", 1, 1, True, True), Entity("A", 2, 1, True, True)], "equity_share")
+    with pytest.raises(ValueError):
+        consolidate([Entity("A", 1, 1, True, True)], "headcount")      # type: ignore[arg-type]

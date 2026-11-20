@@ -1,0 +1,20 @@
+# Fictional worked example used through the Scope 3 track (S1-S9, F2).
+# Gozo Fresh Foods Ltd, Malta. All companies and numbers are made up.
+# Every number shown on a page is recomputed from this file by
+# tests/test_examples_scope3.py using esgcalc.
+
+company:
+  name: Gozo Fresh Foods Ltd
+  country: Malta
+  activity: Food processing (prepared vegetables, sauces and ready meals)
+  employees: 140
+  reporting_year: 2026
+  request: A large supermarket chain that reports under the CSRD asks for the company's Scope 3 emissions.
+
+# S1: the group and its links. Scope 1 and 2 at 100% of each entity, tCO2e, 2026.
+entities:
+  - {name: Gozo Fresh Foods Ltd (processing plant), scope12_tco2e: 1200, equity_share: 1.00, financial_control: true, operational_control: true}
+  - {name: Gozo Fresh Logistics Ltd, scope12_tco2e: 400, equity_share: 0.60, financial_control: true, operational_control: true}
+  - {name: Harbour Packing Ltd (joint venture run by Gozo Fresh Foods), scope12_tco2e: 200, equity_share: 0.50, financial_control: false, operational_control: true}
+  - {name: Island Cold Store Ltd (associate), scope12_tco2e: 300, equity_share: 0.25, financial_control: false, operational_control: false}
+chosen_approach: operational_control

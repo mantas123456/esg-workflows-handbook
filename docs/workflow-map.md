@@ -20,7 +20,7 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | CB8 | CBAM | [Certificates - buying, holding, surrendering](cbam/cb8-certificates.md) | 0.2 | draft |
 | CB9 | CBAM | [The annual CBAM declaration](cbam/cb9-declaration.md) | 0.2 | draft |
 | CB10 | CBAM | [Records and evidence for CBAM](cbam/cb10-records.md) | 0.2 | draft |
-| S1 | Scope 3 | [Boundary and organisational approach](scope3/s1-boundary.md) | 0.3 | planned |
+| S1 | Scope 3 | [Boundary and organisational approach](scope3/s1-boundary.md) | 0.3 | draft |
 | S2 | Scope 3 | [Screening the 15 categories](scope3/s2-screening.md) | 0.3 | planned |
 | S3 | Scope 3 | [Data collection plan](scope3/s3-data-plan.md) | 0.3 | planned |
 | S4 | Scope 3 | [Calculation methods](scope3/s4-methods.md) | 0.3 | planned |

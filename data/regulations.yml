@@ -175,6 +175,11 @@
   article: GHG Protocol Standard Development Plan v2.0; Scope 3 Phase 1 Progress Update, March 2026
   source: https://ghgprotocol.org/sites/default/files/2026-07/Consolidated-StandardDevelopmentPlan(SDP)-2026.07.29.pdf
   last_checked: 2026-11-20
+- id: ghgp-organisational-boundary
+  fact: Under the GHG Protocol Corporate Standard a company sets its organisational boundary with one consolidation approach, applied consistently - equity share (emissions in proportion to its equity share, whether or not it controls the operation), financial control (100% of operations it financially controls, none where it lacks financial control) or operational control (100% of operations where it has full authority to introduce and implement operating policies); Scope 3 then covers value-chain emissions outside that boundary; a revision proposal (December 2025, not final) would require control-based reporting, recommend financial control and drop equity share
+  article: GHG Protocol Corporate Accounting and Reporting Standard, organisational boundaries (cited, not copied); Corporate Standard Phase 1 Progress Update, December 2025
+  source: https://ghgprotocol.org/sites/default/files/2025-12/CS-Phase1-ProgressUpdate.pdf
+  last_checked: 2026-11-20
 - id: ghgp-scope3-categories
   fact: The Scope 3 Standard groups value-chain emissions into 15 categories, 8 upstream (1-8) and 7 downstream (9-15); a company screens all 15 and explains any exclusion
   article: GHG Protocol Corporate Value Chain (Scope 3) Standard (cited, not copied)
