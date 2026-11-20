@@ -138,14 +138,16 @@ File them under `cbam/suppliers/` in the evidence locker (see
 
 ## Templates and tools
 
+<!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[CBAM supplier data request](../downloads/cbam-supplier-request.docx)** (Word): Cover letter asking an installation operator outside the EU for verified embedded emissions data, pointing to the Commission's official operator template.
+<!-- end generated templates -->
+
 - **Commission operator template and guidance:** on the DG TAXUD
   [CBAM legislation and guidance](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-legislation-and-guidance_en)
   page, and
   [Guidance No. 2 for non-EU operators](https://taxation-customs.ec.europa.eu/system/files/2026-08/Guidance%20No.%202%20-%20Quick%20guide%20for%20non-EU%20operators%20on%20CBAM%20implementation.pdf).
   Use the official template; this handbook links to it and does not copy
   it.
-- A supplier request cover letter (`cbam-supplier-request.docx`) is
-  planned for this release.
 
 ## Reuse in other reports
 

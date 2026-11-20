@@ -106,8 +106,12 @@ File them under `cbam/suppliers/` in the evidence locker (see
 
 ## Templates and tools
 
-- The table in the worked example works as a checklist. A declaration
-  checklist covering verification is planned for this release.
+<!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[CBAM declaration preparation checklist](../downloads/cbam-declaration-checklist.docx)** (Word): Step-by-step checks before submitting the annual CBAM declaration and surrendering certificates by 30 September.
+<!-- end generated templates -->
+
+- The table in the worked example works as a quick checklist for one
+  report.
 
 ## Reuse in other reports
 

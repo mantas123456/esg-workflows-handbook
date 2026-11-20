@@ -35,7 +35,8 @@ other step has a placeholder. Next: 0.2 CBAM track. See the
 python -m venv .venv
 # Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
 pip install -r requirements-dev.txt
-python scripts/build_pages.py     # placeholder pages, workflow map, nav
+python scripts/build_templates.py # Word and Excel templates into docs/downloads
+python scripts/build_pages.py     # placeholder pages, workflow map, nav, download links
 python scripts/check_workflows.py
 mkdocs serve                      # http://127.0.0.1:8000
 ```
@@ -51,6 +52,12 @@ mkdocs serve                      # http://127.0.0.1:8000
   writes the workflow map, the navigation and the F3 reuse-map table.
 - `scripts/hash_evidence.py` builds and verifies a SHA-256 evidence
   register for a folder (see F1).
+- `esgcalc/` is the Python package behind every calculation (CBAM first),
+  with CBAM parameters in `data/cbam_parameters.yml`.
+- `templates/src/*.md` (Word, via Pandoc) and `templates/sheets/*.yml`
+  (Excel, via openpyxl) are built by `scripts/build_templates.py` into
+  `docs/downloads/`. Sheet formulas take regulatory numbers from
+  `data/cbam_parameters.yml`, and tests recalculate them against `esgcalc`.
 - `scripts/check_workflows.py` (run in CI) fails if a step has no page or a
   written page lacks a standard heading, and warns when a regulation fact
   has not been re-checked for 90 days.

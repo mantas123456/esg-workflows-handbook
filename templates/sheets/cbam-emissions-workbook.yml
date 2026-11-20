@@ -1,0 +1,67 @@
+title: CBAM embedded emissions workbook
+type: Workbook
+description: Embedded emissions per CN code from actual installation data (direct, indirect, precursors) or default values with the yearly mark-up, and the certificates and cost that follow.
+instructions:
+  - "Installations: one row per production process with verified actual data. The specific embedded emissions (SEE) calculate themselves. Indirect emissions count only for cement and fertilisers."
+  - "Precursors: up to three per process, on the same row. Use the mass consumed, not the mass in the product. Mark EU-origin precursors 'Yes': they count as zero but stay listed."
+  - "A precursor made in another process on this sheet takes its SEE from that row: put that row's SEE cell in the precursor's SEE column (see the steel bars example, which uses =T2). Put the precursor's own row above."
+  - "Goods: one row per CN code and installation you imported from. Basis 'Actual' takes the SEE from the Installations sheet (the process name must match); 'Default' uses the base default value plus the mark-up for the year of import."
+  - "Default values: take the base value from Implementing Regulation (EU) 2025/2621 for your CN code and country of origin. For iron and steel, aluminium and hydrogen use the direct-emissions value."
+  - "The free allocation adjustment per tonne comes from the CBAM benchmarks (Implementing Regulation (EU) 2025/2620). The example figures are made up."
+  - "Summary: enter any reduction for carbon price paid (already converted into certificates) and the certificate price. Certificates and cost calculate themselves. The example price is made up."
+  - Same method as the esgcalc Python package used in the handbook (esgcalc.cbam).
+sheets:
+  - name: Installations
+    rows: 30
+    columns:
+      - {header: Process (installation and product), width: 22}
+      - {header: Sector, width: 11, choices: [cement, fertilisers, iron_steel, aluminium, hydrogen]}
+      - {header: Production in the period (t), width: 12, format: "#,##0.000"}
+      - {header: Direct emissions (tCO2e), width: 12, format: "#,##0.000"}
+      - {header: Indirect emissions (tCO2e), width: 12, format: "#,##0.000"}
+      - {header: "Indirect emissions count?", width: 10, formula: '=IF(B{r}="","",IF({direct_only_test},"No","Yes"))'}
+      - {header: Precursor 1, width: 18}
+      - {header: Precursor 1 mass consumed (t), width: 12, format: "#,##0.000"}
+      - {header: Precursor 1 SEE (tCO2e per t), width: 11, format: "0.000000"}
+      - {header: "Precursor 1 from the EU or an exempted country?", width: 11, choices: ['Yes', 'No']}
+      - {header: Precursor 2, width: 18}
+      - {header: Precursor 2 mass consumed (t), width: 12, format: "#,##0.000"}
+      - {header: Precursor 2 SEE (tCO2e per t), width: 11, format: "0.000000"}
+      - {header: "Precursor 2 from the EU or an exempted country?", width: 11, choices: ['Yes', 'No']}
+      - {header: Precursor 3, width: 18}
+      - {header: Precursor 3 mass consumed (t), width: 12, format: "#,##0.000"}
+      - {header: Precursor 3 SEE (tCO2e per t), width: 11, format: "0.000000"}
+      - {header: "Precursor 3 from the EU or an exempted country?", width: 11, choices: ['Yes', 'No']}
+      - {header: Precursor emissions counted (tCO2e), width: 13, format: "#,##0.000", formula: '=IF(A{r}="","",IF(OR(H{r}="",J{r}="Yes"),0,H{r}*I{r})+IF(OR(L{r}="",N{r}="Yes"),0,L{r}*M{r})+IF(OR(P{r}="",R{r}="Yes"),0,P{r}*Q{r}))'}
+      - {header: SEE (tCO2e per t), width: 11, format: "0.000000", formula: '=IF(OR(A{r}="",C{r}=""),"",(D{r}+IF(F{r}="Yes",E{r},0)+S{r})/C{r})'}
+    examples:
+      - [A - crude steel, iron_steel, 104000, 30600, 0, null, Pig iron from Installation C (verified), 14000, 1.90, 'No']
+      - [A - steel bars, iron_steel, 100000, 8000, 12000, null, Crude steel (row above), 104000, '=T2', 'No']
+  - name: Goods
+    rows: 40
+    columns:
+      - {header: "Process or installation (for Actual, as on Installations)", width: 24}
+      - {header: CN code, width: 12}
+      - {header: Sector, width: 12, choices: [cement, fertilisers, iron_steel, aluminium, hydrogen]}
+      - {header: Net mass imported (t), width: 12, format: "#,##0.000"}
+      - {header: Basis, width: 10, choices: [Actual, Default]}
+      - {header: Base default value (tCO2e per t), width: 13, format: "0.000000"}
+      - {header: Year of import, width: 9}
+      - {header: Mark-up, width: 9, format: percent, formula: '=IF(E{r}<>"Default","",{markup_expr})'}
+      - {header: SEE used (tCO2e per t), width: 12, format: "0.000000", formula: '=IF(D{r}="","",IF(E{r}="Actual",INDEX(Installations!$T$2:$T$31,MATCH(A{r},Installations!$A$2:$A$31,0)),F{r}*(1+H{r})))'}
+      - {header: Embedded emissions (tCO2e), width: 13, format: "#,##0.000", formula: '=IF(D{r}="","",D{r}*I{r})'}
+      - {header: Free allocation adjustment per t (tCO2e), width: 13, format: "0.000000"}
+      - {header: Free allocation adjustment (tCO2e), width: 13, format: "#,##0.000", formula: '=IF(OR(D{r}="",K{r}=""),"",D{r}*K{r})'}
+    examples:
+      - [A - steel bars, "7214 20 00", iron_steel, 250, Actual, null, 2026, null, null, null, 0.585]
+      - [A - steel bars, "7214 99 10", iron_steel, 150, Actual, null, 2026, null, null, null, 0.585]
+      - [B - aluminium bars, "7604 29 10", aluminium, 35, Default, 2.10, 2026, null, null, null, 1.95]
+  - name: Summary
+    kind: summary
+    rows:
+      - {label: Total embedded emissions (tCO2e), formula: '=SUM(Goods!J2:J41)', format: "#,##0.000"}
+      - {label: Free allocation adjustment (tCO2e), formula: '=SUM(Goods!L2:L41)', format: "#,##0.000"}
+      - {label: Reduction for carbon price paid (certificates), example: 0, note: "Already converted into certificates under Implementing Regulation (EU) 2026/2498."}
+      - {label: Certificates to surrender, bold: true, formula: '=MAX(0,B1-B2-B3)/{tco2e_per_certificate}', format: "#,##0.000", note: "Never below zero. The registry's rounding is not modelled."}
+      - {label: Certificate price (EUR per certificate), example: 80, format: "#,##0.00", note: "Made-up example. Use the published price for the period."}
+      - {label: Cost (EUR), bold: true, formula: '=ROUND(B4*B5,2)', format: "#,##0.00"}

@@ -170,6 +170,10 @@ certificates is not covered here.
 
 ## Templates and tools
 
+<!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[CBAM embedded emissions workbook](../downloads/cbam-emissions-workbook.xlsx)** (Excel): Embedded emissions per CN code from actual installation data (direct, indirect, precursors) or default values with the yearly mark-up, and the certificates and cost that follow.
+<!-- end generated templates -->
+
 - [`esgcalc.cbam`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/cbam.py):
   `certificates_needed`, `certificate_cost` (to the cent) and
   `quarterly_holding`.

@@ -23,14 +23,14 @@ tracks:
     title: CBAM
     folder: cbam
     steps:
-      - {id: CB1, title: "Scope check - CN codes and the 50 t threshold", file: cb1-scope-check.md, release: "0.2", status: draft, tools: [cbam-threshold]}
+      - {id: CB1, title: "Scope check - CN codes and the 50 t threshold", file: cb1-scope-check.md, release: "0.2", status: draft, tools: [cbam-threshold], templates: [cbam-goods-register]}
       - {id: CB2, title: "Authorised CBAM declarant status", file: cb2-authorisation.md, release: "0.2", status: draft}
       - {id: CB3, title: "Requesting data from installation operators", file: cb3-supplier-data.md, release: "0.2", status: draft, templates: [cbam-supplier-request]}
       - {id: CB4, title: "Embedded emissions - actual vs default values", file: cb4-embedded-emissions.md, release: "0.2", status: draft, tools: [cbam-calculator], templates: [cbam-emissions-workbook]}
-      - {id: CB5, title: "Precursors and complex goods", file: cb5-precursors.md, release: "0.2", status: draft}
-      - {id: CB6, title: "Verification of emissions data", file: cb6-verification.md, release: "0.2", status: draft}
+      - {id: CB5, title: "Precursors and complex goods", file: cb5-precursors.md, release: "0.2", status: draft, templates: [cbam-emissions-workbook]}
+      - {id: CB6, title: "Verification of emissions data", file: cb6-verification.md, release: "0.2", status: draft, templates: [cbam-declaration-checklist]}
       - {id: CB7, title: "Carbon price paid abroad", file: cb7-carbon-price-paid.md, release: "0.2", status: draft}
-      - {id: CB8, title: "Certificates - buying, holding, surrendering", file: cb8-certificates.md, release: "0.2", status: draft, tools: [cbam-cost]}
+      - {id: CB8, title: "Certificates - buying, holding, surrendering", file: cb8-certificates.md, release: "0.2", status: draft, tools: [cbam-cost], templates: [cbam-emissions-workbook]}
       - {id: CB9, title: "The annual CBAM declaration", file: cb9-declaration.md, release: "0.2", status: draft, templates: [cbam-declaration-checklist]}
       - {id: CB10, title: "Records and evidence for CBAM", file: cb10-records.md, release: "0.2", status: draft}
 

@@ -177,11 +177,13 @@ File them under `cbam/suppliers/` in the evidence locker (see
 
 ## Templates and tools
 
+<!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[CBAM embedded emissions workbook](../downloads/cbam-emissions-workbook.xlsx)** (Excel): Embedded emissions per CN code from actual installation data (direct, indirect, precursors) or default values with the yearly mark-up, and the certificates and cost that follow.
+<!-- end generated templates -->
+
 - [`esgcalc.cbam.embedded_emissions`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/cbam.py)
   with `Precursor(mass_t, see_tco2e_per_t, zero_rated=False)`: one call
   per level, as in the example.
-- The embedded-emissions workbook planned for this release will have a
-  precursor sheet.
 
 ## Reuse in other reports
 

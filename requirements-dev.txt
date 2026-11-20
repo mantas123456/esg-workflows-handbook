@@ -1,3 +1,4 @@
 -r requirements-docs.txt
 pytest>=8
+formulas>=1.2      # recalculates the Excel formulas in tests
 -e .

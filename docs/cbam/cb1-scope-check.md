@@ -165,6 +165,10 @@ File them in the evidence locker and hash them (see
 
 ## Templates and tools
 
+<!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[CBAM goods register](../downloads/cbam-goods-register.xlsx)** (Excel): One row per import line of CBAM goods, with a running total of net mass against the 50-tonne threshold that calculates itself.
+<!-- end generated templates -->
+
 - [`esgcalc.cbam.threshold_check`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/cbam.py):
   adds up the net mass, leaves out hydrogen and electricity, and compares
   the total with the threshold. Runs offline.

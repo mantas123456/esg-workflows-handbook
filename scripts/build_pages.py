@@ -1,9 +1,13 @@
 """Generate Planned pages, the workflow map and the mkdocs nav from data/workflows.yml,
-and the reuse-map table in F3 from data/datasets.yml.
+the reuse-map table in F3 from data/datasets.yml, and the template download
+links in each page whose step lists ``templates``.
 
-Existing pages are never overwritten. Run before `mkdocs build`.
+Existing pages are never overwritten; only the marked generated blocks are
+refreshed. Run before `mkdocs build`.
 """
+import sys
 from pathlib import Path
+
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,6 +46,46 @@ def render_datasets(datasets: dict) -> str:
         rows.append(f"| **{d['title']}** (`{d['name']}`) | {d['unit']} | {d['owner_role']} "
                     f"| {d['frequency']} | {marks} | {d['note']} |")
     return "\n".join(rows)
+
+
+TEMPLATES_START = "<!-- generated from data/workflows.yml templates: do not edit by hand -->"
+TEMPLATES_END = "<!-- end generated templates -->"
+FORMAT_NAMES = {"docx": "Word", "xlsx": "Excel"}
+
+
+def render_templates(template_ids: list[str], catalog: dict[str, dict], depth: int) -> str:
+    """Download links for a page ``depth`` folders below docs/."""
+    prefix = "../" * depth + "downloads/"
+    lines = []
+    for tid in template_ids:
+        if tid not in catalog:
+            raise ValueError(f"template {tid!r} is listed in data/workflows.yml but has no source in templates/")
+        t = catalog[tid]
+        lines.append(f"- **[{t['title']}]({prefix}{tid}.{t['format']})** "
+                     f"({FORMAT_NAMES[t['format']]}): {t['description']}")
+    return "\n".join(lines)
+
+
+def write_templates_sections() -> None:
+    """Fill the generated download block in every page whose step lists templates."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import build_templates
+
+    catalog = {t["id"]: t for t in build_templates.catalog()}
+    for track in DATA["tracks"]:
+        for step in track["steps"]:
+            page = DOCS / track["folder"] / step["file"]
+            if not step.get("templates") or not page.exists():
+                continue
+            text = page.read_text(encoding="utf-8")
+            if TEMPLATES_START not in text:
+                continue
+            head, _, rest = text.partition(TEMPLATES_START)
+            _, _, tail = rest.partition(TEMPLATES_END)
+            body = render_templates(step["templates"], catalog, depth=len(Path(track["folder"]).parts))
+            new = f"{head}{TEMPLATES_START}\n{body}\n{TEMPLATES_END}{tail}"
+            if new != text:
+                page.write_text(new, encoding="utf-8")
 
 
 def write_datasets_section() -> None:
@@ -86,6 +130,7 @@ def main() -> None:
     _, _, tail = rest.partition(NAV_END)
     cfg.write_text(f"{head}{NAV_START}\n" + "\n".join(nav) + f"\n{NAV_END}{tail}", encoding="utf-8")
     write_datasets_section()
+    write_templates_sections()
 
 
 if __name__ == "__main__":

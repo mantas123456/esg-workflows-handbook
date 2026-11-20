@@ -21,7 +21,8 @@ Sister project with the same conventions: `mantas123456/lab-accreditation-handbo
 
 ```powershell
 .venv\Scripts\activate
-python scripts/build_pages.py      # placeholders, workflow map, nav
+python scripts/build_templates.py  # Word/Excel templates into docs/downloads (mkdocs needs them)
+python scripts/build_pages.py      # placeholders, workflow map, nav, download links
 python scripts/check_workflows.py  # must print 0 errors
 pytest -q                          # must pass
 mkdocs build --strict              # must pass

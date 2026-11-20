@@ -183,10 +183,13 @@ print(round(b_see, 2), round(b_see * 35, 2))                     # 2.31 80.85
 
 ## Templates and tools
 
+<!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[CBAM embedded emissions workbook](../downloads/cbam-emissions-workbook.xlsx)** (Excel): Embedded emissions per CN code from actual installation data (direct, indirect, precursors) or default values with the yearly mark-up, and the certificates and cost that follow.
+<!-- end generated templates -->
+
 - [`esgcalc.cbam.embedded_emissions`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/cbam.py)
   and `default_value_with_markup`: the calculations above. Run offline.
-- An embedded-emissions workbook (`cbam-emissions-workbook.xlsx`) and a
-  browser calculator are planned for this release.
+- A browser calculator is planned for this release.
 
 ## Reuse in other reports
 

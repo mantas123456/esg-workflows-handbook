@@ -1,0 +1,39 @@
+title: CBAM goods register
+type: Register
+description: One row per import line of CBAM goods, with a running total of net mass against the 50-tonne threshold that calculates itself.
+instructions:
+  - Enter one row per customs declaration line, in date order. The running total and the threshold test calculate themselves.
+  - Use the 8-digit CN code from the customs declaration and check it against Annex I to the CBAM Regulation (see CB1 in the handbook).
+  - Net mass in tonnes, as on the customs declaration. Only CBAM goods belong here.
+  - Hydrogen (2804 10 00) and electricity (2716 00 00) are marked automatically and do not count towards the threshold; any quantity of them needs an authorised CBAM declarant.
+  - Rows turn red once the year's total is above 50 tonnes. From then on, CBAM covers all goods imported that year, including earlier rows.
+  - Start a new copy of the register each calendar year.
+sheets:
+  - name: Register
+    rows: 200
+    columns:
+      - {header: Quarter or date, width: 12}
+      - {header: Customs declaration reference, width: 16}
+      - {header: CN code (8 digits), width: 13}
+      - {header: Description of goods, width: 30}
+      - {header: Country of origin, width: 14}
+      - {header: Installation, width: 14}
+      - {header: Net mass (t), width: 11, format: "0.000"}
+      - {header: "Hydrogen or electricity?", width: 12, formula: '=IF(C{r}="","",IF({excluded_test},"Yes","No"))'}
+      - {header: Counts towards threshold (t), width: 13, format: "0.000", formula: '=IF(OR(C{r}="",H{r}="Yes"),0,G{r})'}
+      - {header: Running total (t), width: 12, format: "0.000", formula: '=IF(C{r}="","",SUM(I$2:I{r}))'}
+      - {header: Threshold test, width: 16, formula: '=IF(C{r}="","",IF(J{r}>{threshold_t},"Above {threshold_t} t","Within {threshold_t} t"))'}
+    highlights:
+      - {formula: 'LEFT($K2,5)="Above"', color: FFCDD2}
+    examples:
+      - [2026 Q1, MT-26-0001, "7214 20 00", Steel bars with ribs (rebar), Outside EU, A, 60]
+      - [2026 Q1, MT-26-0002, "7604 29 10", Aluminium alloy bars and rods, Outside EU, B, 8]
+      - [2026 Q2, MT-26-0003, "7214 20 00", Steel bars with ribs (rebar), Outside EU, A, 70]
+      - [2026 Q2, MT-26-0004, "7214 99 10", Other steel bars for concrete reinforcement, Outside EU, A, 40]
+      - [2026 Q2, MT-26-0005, "7604 29 10", Aluminium alloy bars and rods, Outside EU, B, 9]
+      - [2026 Q3, MT-26-0006, "7214 20 00", Steel bars with ribs (rebar), Outside EU, A, 65]
+      - [2026 Q3, MT-26-0007, "7214 99 10", Other steel bars for concrete reinforcement, Outside EU, A, 45]
+      - [2026 Q3, MT-26-0008, "7604 29 10", Aluminium alloy bars and rods, Outside EU, B, 10]
+      - [2026 Q4, MT-26-0009, "7214 20 00", Steel bars with ribs (rebar), Outside EU, A, 55]
+      - [2026 Q4, MT-26-0010, "7214 99 10", Other steel bars for concrete reinforcement, Outside EU, A, 65]
+      - [2026 Q4, MT-26-0011, "7604 29 10", Aluminium alloy bars and rods, Outside EU, B, 8]

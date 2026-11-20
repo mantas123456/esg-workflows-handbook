@@ -93,8 +93,10 @@ are made up.
 
 ## Templates and tools
 
-- A declaration preparation checklist (`cbam-declaration-checklist`) is
-  planned for this release.
+<!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[CBAM declaration preparation checklist](../downloads/cbam-declaration-checklist.docx)** (Word): Step-by-step checks before submitting the annual CBAM declaration and surrendering certificates by 30 September.
+<!-- end generated templates -->
+
 - The table above can be produced with
   [`esgcalc.cbam`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/cbam.py).
 
