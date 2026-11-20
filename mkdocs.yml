@@ -140,6 +140,7 @@ nav:
       - "CBAM calculator": tools/cbam-calculator.md
       - "Scope 3 screening": tools/scope3-screening.md
       - "Uncertainty demo": tools/uncertainty-demo.md
+      - "VSME readiness": tools/vsme-readiness.md
   - Reference:
       - Glossary: glossary.md
       - Changelog: changelog.md

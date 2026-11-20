@@ -29,12 +29,12 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | S7 | Scope 3 | [Supplier engagement](scope3/s7-suppliers.md) | 0.3 | draft |
 | S8 | Scope 3 | [Base year and recalculation](scope3/s8-base-year.md) | 0.3 | draft |
 | S9 | Scope 3 | [Reporting the inventory](scope3/s9-reporting.md) | 0.3 | draft |
-| V1 | VSME | [Choosing the modules](vsme/v1-modules.md) | 0.4 | planned |
-| V2 | VSME | [Basic module data collection](vsme/v2-basic.md) | 0.4 | planned |
-| V3 | VSME | [GHG emissions for VSME](vsme/v3-ghg.md) | 0.4 | planned |
-| V4 | VSME | [Comprehensive module](vsme/v4-comprehensive.md) | 0.4 | planned |
-| V5 | VSME | [Answering customer and bank requests](vsme/v5-requests.md) | 0.4 | planned |
-| V6 | VSME | [Publishing and updating](vsme/v6-publishing.md) | 0.4 | planned |
+| V1 | VSME | [Choosing the modules](vsme/v1-modules.md) | 0.4 | draft |
+| V2 | VSME | [Basic module data collection](vsme/v2-basic.md) | 0.4 | draft |
+| V3 | VSME | [GHG emissions for VSME](vsme/v3-ghg.md) | 0.4 | draft |
+| V4 | VSME | [Comprehensive module](vsme/v4-comprehensive.md) | 0.4 | draft |
+| V5 | VSME | [Answering customer and bank requests](vsme/v5-requests.md) | 0.4 | draft |
+| V6 | VSME | [Publishing and updating](vsme/v6-publishing.md) | 0.4 | draft |
 | C1 | CSRD / ESRS | [Am I in scope after Omnibus I?](csrd/c1-scope.md) | 0.5 | planned |
 | C2 | CSRD / ESRS | [Double materiality assessment](csrd/c2-dma.md) | 0.5 | planned |
 | C3 | CSRD / ESRS | [Value chain and data requests](csrd/c3-value-chain.md) | 0.5 | planned |

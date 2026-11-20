@@ -25,15 +25,32 @@
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601563
   last_checked: 2026-11-20
 - id: csrd-value-chain-cap
-  fact: Companies reporting under the CSRD may not require value-chain companies with on average 1,000 employees or fewer (previous financial year, headcount only) to give more information than the voluntary standard covers; those companies may refuse requests beyond it, and the cap creates no duty to report
+  fact: "Companies reporting under the CSRD may not require value-chain companies with on average 1,000 employees or fewer (previous financial year, headcount only) to give more information than the voluntary standard covers (the datapoints in Annex II of Delegated Regulation (EU) 2026/1560); a reporting company that asks for more must say which information goes beyond the cap and tell the value-chain company that it has a right to refuse it; it may rely on the value-chain company's self-declaration of size unless it knows or should know it is manifestly wrong; the cap creates no duty to report, does not stop voluntary sharing of information commonly shared in a sector, and does not override existing contractual or legal duties; it applies to value-chain reporting from financial year 2027"
+  article: Directive 2013/34/EU, Article 29b(4), as amended by Directive (EU) 2026/470; Delegated Regulation (EU) 2026/1560, Annex II
   source: https://finance.ec.europa.eu/news/feedback-sustainability-reporting-standards-additional-explanatory-information-regarding-value-chain-2026-05-06_en
   values: {max_employees: 1000}
   last_checked: 2026-11-20
 
 # --- VSME / voluntary standard ---
 - id: vsme
-  fact: Voluntary sustainability reporting standard for smaller companies adopted by the Commission as a delegated act on 3 Jul 2026, together with the revised ESRS
-  source: https://finance.ec.europa.eu/news/commission-adopts-revised-sustainability-reporting-standards-2026-07-03_en
+  fact: "The voluntary sustainability reporting standard is Commission Delegated Regulation (EU) 2026/1560, adopted on 3 July 2026 together with the revised ESRS and published in the Official Journal on 21 September 2026; it enters into force on the third day after publication and applies to financial years beginning on or after 1 January 2027; it is for undertakings with on average 1,000 employees or fewer, is not a legal reporting obligation, requires no assurance, and builds on the VSME standard of Commission Recommendation (EU) 2025/1710"
+  article: Delegated Regulation (EU) 2026/1560, Articles 1 and 4 and Annex I
+  source: https://eur-lex.europa.eu/eli/reg_del/2026/1560/oj/eng
+  last_checked: 2026-11-20
+- id: vsme-modules
+  fact: "The standard has a Basic Module (disclosures B1 to B11) and a Comprehensive Module (C1 to C9), the latter for information that banks, investors and corporate clients typically ask for; the Basic Module must be applied before the Comprehensive Module; in B1 the undertaking states Option A (Basic Module only) or Option B (Basic and Comprehensive) and makes an explicit statement of compliance; some disclosures are voluntary for undertakings with 10 employees or fewer; compared with the 2025 Recommendation, C7 is now titled 'Human rights incidents' and C8 'Revenues from certain activities'"
+  article: Delegated Regulation (EU) 2026/1560, Annex I; Commission explanatory memorandum C(2026) 5011
+  source: https://knowledgehub.efrag.org/eng/interactive/voluntary-standard
+  last_checked: 2026-11-20
+- id: vs-digital-template
+  fact: "EFRAG publishes a digital template (Excel) and an XBRL taxonomy for digital reporting under the voluntary standard; per EFRAG's VS page, version 2.0.0 of both was released on 4 November 2026 for the standard published in the Official Journal on 21 September 2026; the earlier VSME template (version 1.3.0, June 2026) reflected the 2025 Recommendation"
+  article: EFRAG, VS Digital Template and XBRL Taxonomy
+  source: https://www.efrag.org/en/vs-digital-template-and-xbrl-taxonomy
+  last_checked: 2026-11-20
+- id: vsme-basic-metrics
+  fact: "Basic Module metrics include: B3 total energy consumption in MWh, split into renewable and non-renewable where the undertaking can obtain the data, Scope 1 and location-based Scope 2 GHG emissions in tCO2e following the GHG Protocol Corporate Standard, and GHG intensity per unit of turnover (Scope 3 is not required in the Basic Module); B5 number and area of sites in or near biodiversity-sensitive areas (land-use metrics optional); B6 water consumption (withdrawal minus discharge) for undertakings with production processes that use water significantly (a total-withdrawal metric for all undertakings was not confirmed here); B7 waste generated, hazardous and non-hazardous, and waste diverted to recycling or reuse; B8 employees by contract type, gender and country, and turnover rate from 50 employees; B9 number and rate of recordable work-related accidents (per 100 full-time workers, based on 2,000 hours a year) and fatalities; B10 gender pay gap (may be omitted below 150 employees, below 100 from 7 June 2031), share of employees covered by collective bargaining, average training hours by gender; B11 convictions and fines for corruption and bribery. Wording checked in the 2025 Recommendation; the 2026 act keeps the structure, but its detailed wording was not re-read here"
+  article: Commission Recommendation (EU) 2025/1710, Annex I (Basic Module); Delegated Regulation (EU) 2026/1560, Annex I
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A32025H1710
   last_checked: 2026-11-20
 
 

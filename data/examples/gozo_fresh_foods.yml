@@ -200,3 +200,124 @@ changes_2027:
   - {name: "Acquisition of 100% of Island Cold Store (1 July 2027)", kind: Structural, effect: "Its emissions move into Scope 1 and 2: remove category 4 storage (90 t) and category 15 equity (75 t) from the base year", tco2e: -165}
   - {name: New spend factor for other ingredient suppliers, kind: Methodology, effect: "Factor source chosen (S5): 1.1 instead of 0.9 kg/EUR, same deflation", new_factor: 1.1}
   - {name: Commuting survey counted part-time staff as full-time, kind: Error, effect: "Car km corrected from 600,000 to 560,000", corrected_activity: 560000}
+
+# V1-V6: VSME. Gozo Fresh Foods reports with the voluntary standard (made up).
+vsme:
+  reporting_year: 2026
+  requests:
+    - {from: "Supermarket (reports under the CSRD)", asks: "Energy use, Scope 1 and 2 emissions, and Scope 3", disclosures: [B3]}
+    - {from: "Bank (loan renewal)", asks: "Workforce size and work accidents", disclosures: [B8, B9]}
+    - {from: "Bank (loan renewal)", asks: "Climate targets and how climate change could affect the business", disclosures: [C3, C4]}
+    - {from: "Supermarket (reports under the CSRD)", asks: "Waste and packaging", disclosures: [B7]}
+  option: B
+
+# V2: Basic Module data for 2026 (MADE UP). Boundary: operational control (S1).
+vsme_basic:
+  turnover_eur: 14000000
+  energy:                          # B3, MWh; the same MWh as S2 category 3
+    electricity_grid_mwh: 3000
+    fuels_mwh: 2000                # LPG 1,000 MWh and diesel 1,000 MWh
+    renewable_split_available: false
+  scope1_lines:                    # B3, tCO2e = activity x factor (kg) / 1000
+    - {description: LPG for ovens and boilers, activity: 1000, unit: MWh, factor: 230}
+    - {description: Diesel for the delivery fleet, activity: 100000, unit: litre, factor: 2.6}
+    - {description: Refrigerant leaks from the cold rooms (service records), activity: 110, unit: tCO2e, factor: 1000}
+  scope2_location:                 # B3: grid electricity x grid factor
+    activity_mwh: 3000
+    factor_kg_per_mwh: 400         # made up: replace with the EEA figure for Malta
+  sensitive_sites: 0               # B5
+  water:                           # B6: food processing uses water significantly
+    withdrawal_m3: 40000
+    discharge_m3: 32000
+  waste_t:                         # B7
+    non_hazardous: 730             # food waste 600 (anaerobic digestion), general 50 (landfill), cardboard and plastic 80 (recycled)
+    hazardous: 2
+    recycled_or_reused: 80
+  workforce:                       # B8
+    employees: 140
+    permanent: 120
+    temporary: 20
+    women: 70
+    men: 70
+    leavers: 21
+  safety:                          # B9
+    recordable_accidents: 3
+    hours_worked: 250000
+    fatalities: 0
+  pay:                             # B10
+    average_hourly_pay_men_eur: 15.00
+    average_hourly_pay_women_eur: 13.80
+    collective_bargaining_share: 0.60
+    training_hours_men: 12
+    training_hours_women: 10
+  corruption:                      # B11
+    convictions: 0
+    fines_eur: 0
+
+# V4: Comprehensive Module plan (MADE UP).
+vsme_comprehensive:
+  target: {scope: Scope 1 and 2, base_year: 2026, target_year: 2030, reduction_share: 0.30}
+  board: {members: 5, women: 2, men: 3}
+  plan:
+    - {disclosure: C1, what: "Products (prepared vegetables, sauces, ready meals), main customers (supermarkets in Malta), one site in Gozo", source: Management, ready_by: 31 Jan 2027}
+    - {disclosure: C2, what: "More detail on the energy, waste and workforce practices listed in B2", source: Site manager and HR, ready_by: 31 Jan 2027}
+    - {disclosure: C3, what: "Target: Scope 1 and 2 down 30% by 2030 from 2026; actions: heat pumps instead of LPG, refrigerant replacement, electric vans", source: Management, ready_by: 28 Feb 2027}
+    - {disclosure: C4, what: "Heatwaves straining the cold chain; water scarcity in Malta; higher energy prices; customers asking for lower-carbon products", source: Management with the site manager, ready_by: 28 Feb 2027}
+    - {disclosure: C5, what: "More workforce detail, from payroll", source: HR, ready_by: 31 Jan 2027}
+    - {disclosure: C6, what: "Human rights policy and how workers can raise concerns", source: HR, ready_by: 28 Feb 2027}
+    - {disclosure: C7, what: "Incidents in 2026: none recorded", source: HR and legal records, ready_by: 31 Jan 2027}
+    - {disclosure: C8, what: "Check whether any revenue comes from the activities the standard lists; Gozo expects none", source: Finance, ready_by: 31 Jan 2027}
+    - {disclosure: C9, what: "Board of 5: 2 women, 3 men", source: Company secretary, ready_by: 31 Jan 2027}
+
+# V5: the supermarket's supplier questionnaire for 2026 (MADE UP).
+# datapoint: the VSME datapoint that answers it, or null if the standard has none.
+# decision: answer (from the VSME report) | share (beyond the standard, shared voluntarily) | decline (for now)
+questionnaire:
+  requester: "Supermarket (reports under the CSRD)"
+  questions:
+    - {question: "How much energy did you use in 2026?", datapoint: B3-energy, decision: answer}
+    - {question: "What were your Scope 1 and Scope 2 emissions?", datapoint: "B3-scope1, B3-scope2-location", decision: answer}
+    - {question: "What were your Scope 3 emissions, by category?", datapoint: null, decision: share}
+    - {question: "Do you have a target to reduce emissions?", datapoint: C3-targets, decision: answer}
+    - {question: "How much waste did you produce, and how much was recycled?", datapoint: B7-waste, decision: answer}
+    - {question: "How many people work for you?", datapoint: B8-employees, decision: answer}
+    - {question: "How many work accidents did you have?", datapoint: B9-accidents, decision: answer}
+    - {question: "What is the carbon footprint per kg of each product you sell us?", datapoint: null, decision: decline}
+
+# V6: publishing the 2026 VSME report and restating it in 2027 (MADE UP).
+publication:
+  calendar:
+    - {date: 2027-03-31, step: "All data in; Scope 3 inventory finished (S3, S9)"}
+    - {date: 2027-04-09, step: "Second person reviews the report against the evidence locker"}
+    - {date: 2027-04-15, step: "Board approves the report"}
+    - {date: 2027-04-20, step: "Published on the website as PDF, with the EFRAG digital template; sent to the supermarket and the bank"}
+  deadline: 2027-04-30
+  restatement_2027:
+    acquired_entity: Island Cold Store Ltd (associate)
+
+# 4.2: where Gozo Fresh Foods stands on 20 Nov 2026 (MADE UP). Status per datapoint
+# for the Basic workbook and the readiness tool: Collected | Not applicable | In progress | Not started.
+vsme_status:
+  B1-option: [Option B with statement of compliance, Board, Management, Collected]
+  B1-basis: ["Individual company, one site, operational control", Accounts, Finance, Collected]
+  B2-practices: ["Energy, waste and workforce practices", Site manager, Management, Collected]
+  B3-energy: [5000 MWh, Energy bills, Site manager, Collected]
+  B3-energy-fuels: [2000 MWh, Fuel invoices, Site manager, Collected]
+  B3-scope1: [600 tCO2e, Fuel invoices and refrigerant records, Finance, Collected]
+  B3-scope2-location: [1200 tCO2e, Electricity bills and grid factor, Finance, Collected]
+  B3-intensity: [128.57 tCO2e per EUR million, Accounts, Finance, Collected]
+  B4-pollution: [No duty to report pollutants, Permits, Site manager, Not applicable]
+  B5-sensitive-sites: [0 sites, Protected-area map, Site manager, Collected]
+  B5-land-use: ["", "", Site manager, Not started]
+  B6-water-consumption: [8000 m3, Water bills, Site manager, Collected]
+  B7-waste: [732 t, Waste transfer notes, Site manager, Collected]
+  B7-waste-recycled: [80 t, Waste transfer notes, Site manager, Collected]
+  B8-employees: [140, Payroll, HR, Collected]
+  B8-turnover-rate: [15.0%, Payroll, HR, Collected]
+  B9-accidents: [3 (rate 2.4), Accident book, HR, Collected]
+  B9-fatalities: [0, Accident book, HR, Collected]
+  B10-pay-gap: [8.0%, Payroll, HR, Collected]
+  B10-collective-bargaining: [60%, HR records, HR, Collected]
+  B10-training: [12 h men / 10 h women, Training records, HR, Collected]
+  B11-corruption: [0 convictions, Legal records, Management, Collected]
+vsme_comprehensive_done: [C1-business-model, C5-workforce, C7-human-rights-incidents, C9-board-gender]
