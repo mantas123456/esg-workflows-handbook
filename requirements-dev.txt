@@ -1,2 +1,3 @@
 -r requirements-docs.txt
 pytest>=8
+-e .
