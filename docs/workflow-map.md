@@ -5,7 +5,7 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | Step | Track | Page | Release | Status |
 |---|---|---|---|---|
 | T1 | Start here | [Which regime applies to me?](start-here/triage.md) | 0.1 | planned |
-| T2 | Start here | [Regulation timeline](start-here/timeline.md) | 0.1 | planned |
+| T2 | Start here | [Regulation timeline](start-here/timeline.md) | 0.1 | draft |
 | F1 | Foundations | [Evidence locker and audit trail](foundations/evidence-locker.md) | 0.1 | planned |
 | F2 | Foundations | [Data quality and uncertainty](foundations/data-quality.md) | 0.3 | planned |
 | F3 | Foundations | [One dataset, many reports](foundations/one-dataset-many-reports.md) | 0.1 | planned |

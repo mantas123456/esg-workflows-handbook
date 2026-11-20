@@ -8,7 +8,7 @@ tracks:
     folder: start-here
     steps:
       - {id: T1, title: "Which regime applies to me?", file: triage.md, release: "0.1", status: planned}
-      - {id: T2, title: "Regulation timeline", file: timeline.md, release: "0.1", status: planned}
+      - {id: T2, title: "Regulation timeline", file: timeline.md, release: "0.1", status: draft}
 
   - id: foundations
     title: Foundations

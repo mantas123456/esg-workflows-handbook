@@ -1,32 +1,53 @@
-# Regulatory facts the handbook relies on. check_regulations.py warns when
+# Regulatory facts the handbook relies on. check_workflows.py warns when
 # last_checked is older than 90 days. Update the date only after re-reading
 # the source.
 
+# --- CSRD / ESRS (Omnibus I) ---
 - id: omnibus-i
   fact: Omnibus I Directive (EU) 2026/470 published in the OJ on 26 Feb 2026, in force 18 Mar 2026
-  source: https://cms.law/en/lux/legal-updates/final-adoption-of-omnibus-i-directive-simplifying-csrd-and-csddd
+  source: https://eur-lex.europa.eu/eli/dir/2026/470/oj/eng
+  last_checked: 2026-11-20
+- id: omnibus-i-transposition
+  fact: Member States must transpose the CSRD changes (Articles 1-3 of Directive (EU) 2026/470) by 19 Mar 2027, and the CSDDD changes (Article 4) by 26 Jul 2028
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ%3AL_202600470
   last_checked: 2026-11-20
 - id: csrd-scope
   fact: CSRD applies to EU companies with over 1,000 employees and over EUR 450 m net turnover
-  source: https://www.cliffordchance.com/insights/resources/blogs/business-and-human-rights-insights/2026/02/omnibus-i-the-european-union-concludes-csddd-and-csrd-reforms.html
+  source: https://eur-lex.europa.eu/eli/dir/2026/470/oj/eng
+  last_checked: 2026-11-20
+- id: csrd-wave1-exemption
+  fact: Companies reporting from FY2024 (wave 1) that fall below the new thresholds leave CSRD scope from FY2027; Member States may exempt them for financial years starting 1 Jan 2025 to 31 Dec 2026 (an option, not automatic)
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ%3AL_202600470
   last_checked: 2026-11-20
 - id: esrs-simplified
-  fact: Simplified ESRS adopted as a delegated act on 3 Jul 2026; apply from FY2027, early use for FY2026 permitted once in force
-  source: https://www.efrag.org/en/news-and-calendar/news/european-commission-publishes-delegated-act-on-revised-esrs-and-voluntary-sustainability-reporting
+  fact: Revised ESRS adopted 3 Jul 2026 as Delegated Regulation (EU) 2026/1563, published in the OJ 21 Sep 2026, in force 10 Nov 2026; mandatory for financial years starting on or after 1 Jan 2027, optional for financial years starting in 2026
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601563
   last_checked: 2026-11-20
+
+# --- VSME / voluntary standard ---
 - id: vsme
-  fact: Voluntary sustainability reporting standard adopted as a delegated act on 3 Jul 2026
-  source: https://www.efrag.org/en/news-and-calendar/news/european-commission-publishes-delegated-act-on-revised-esrs-and-voluntary-sustainability-reporting
+  fact: Voluntary sustainability reporting standard for smaller companies adopted by the Commission as a delegated act on 3 Jul 2026, together with the revised ESRS
+  source: https://finance.ec.europa.eu/news/commission-adopts-revised-sustainability-reporting-standards-2026-07-03_en
+  last_checked: 2026-11-20
+
+# --- CBAM ---
+- id: cbam-definitive
+  fact: CBAM definitive period started 1 Jan 2026 under Regulation (EU) 2023/956 as amended by Regulation (EU) 2025/2083; the reporting period is the calendar year of import
+  source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en
   last_checked: 2026-11-20
 - id: cbam-threshold
-  fact: Single mass-based threshold of 50 tonnes per year; does not apply to hydrogen or electricity
-  source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en
+  fact: Single mass-based threshold of 50 tonnes net mass per importer per calendar year, all CN codes added together; does not apply to hydrogen or electricity
+  source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
   last_checked: 2026-11-20
 - id: cbam-certificates
-  fact: Certificate sales from 1 Feb 2027; price from EU ETS auctions, quarterly average in 2026, weekly from 2027
-  source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en
+  fact: Certificate sales from 1 Feb 2027; price from EU ETS auctions, quarterly average for 2026 imports, weekly average from 1 Jan 2027
+  source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en
   last_checked: 2026-11-20
 - id: cbam-declaration
-  fact: First annual declaration and surrender due 30 Sep 2027 for 2026 imports; 50% quarterly holding thereafter
-  source: https://www.jonesday.com/en/insights/2026/03/the-cbam-definitive-phase-between-regulatory-ambition-and-political-hesitation
+  fact: First annual declaration and surrender due 30 Sep 2027 for 2026 imports
+  source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en
+  last_checked: 2026-11-20
+- id: cbam-quarterly-holding
+  fact: From 2027, at the end of each quarter the declarant must hold certificates for at least 50% of embedded emissions in goods imported since the start of the year (Article 22(2), Regulation (EU) 2023/956 as amended)
+  source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
   last_checked: 2026-11-20
