@@ -14,7 +14,7 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | CB2 | CBAM | [Authorised CBAM declarant status](cbam/cb2-authorisation.md) | 0.2 | draft |
 | CB3 | CBAM | [Requesting data from installation operators](cbam/cb3-supplier-data.md) | 0.2 | draft |
 | CB4 | CBAM | [Embedded emissions - actual vs default values](cbam/cb4-embedded-emissions.md) | 0.2 | draft |
-| CB5 | CBAM | [Precursors and complex goods](cbam/cb5-precursors.md) | 0.2 | planned |
+| CB5 | CBAM | [Precursors and complex goods](cbam/cb5-precursors.md) | 0.2 | draft |
 | CB6 | CBAM | [Verification of emissions data](cbam/cb6-verification.md) | 0.2 | planned |
 | CB7 | CBAM | [Carbon price paid abroad](cbam/cb7-carbon-price-paid.md) | 0.2 | planned |
 | CB8 | CBAM | [Certificates - buying, holding, surrendering](cbam/cb8-certificates.md) | 0.2 | planned |

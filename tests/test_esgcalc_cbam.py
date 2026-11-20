@@ -249,3 +249,20 @@ def test_markup_rejects_bad_input() -> None:
         cbam.default_value_with_markup(2.0, 2025, "aluminium")
     with pytest.raises(ValueError):
         cbam.default_value_with_markup(-1.0, 2026, "aluminium")
+
+
+# --- precursors -------------------------------------------------------------
+
+def test_zero_rated_precursor_counts_as_zero() -> None:
+    # 1,000 t x 2.0 would add 2,000 tCO2e; zero-rated adds nothing: (500 + 0) / 1,000 = 0.5
+    e = cbam.embedded_emissions(sector="iron_steel", production_mass_t=1000, direct_tco2e=500,
+                                precursors=[Precursor(1000, 2.0, zero_rated=True)], imported_mass_t=10)
+    assert e.see_tco2e_per_t == pytest.approx(0.5)
+    assert Precursor(1000, 2.0).embedded_tco2e == 2000.0
+    assert Precursor(1000, 2.0, zero_rated=True).embedded_tco2e == 0.0
+
+
+def test_precursor_rejects_negative_values() -> None:
+    with pytest.raises(ValueError):
+        cbam.embedded_emissions(sector="iron_steel", production_mass_t=1000, direct_tco2e=500,
+                                precursors=[Precursor(-1, 2.0)], imported_mass_t=10)

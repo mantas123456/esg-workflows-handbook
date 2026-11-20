@@ -61,6 +61,16 @@
   source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
   values: {max_exempt_mass_t: 50}
   last_checked: 2026-11-20
+- id: cbam-complex-goods
+  fact: Simple goods are made only from inputs and fuels with zero embedded emissions; complex goods are all other goods; a relevant precursor is a good with non-zero embedded emissions inside the system boundaries of a complex good; the embedded emissions of a complex good add those of the relevant precursors, using the mass of precursor consumed (not the mass contained in the product), repeated for precursors that are themselves complex goods; a precursor from the EU (or an exempted country) counts with zero embedded emissions but must still be identified and its quantity reported
+  article: Regulation (EU) 2023/956, Annex IV, point 1; Commission Guidance No. 3
+  source: https://taxation-customs.ec.europa.eu/document/download/29b9eec7-1a4b-4eb6-ab85-96a0c9e35fd0_en?filename=Guidance+No.+3+-+CBAM+methods+for+the+calculation+of+emissions+embedded+in+goods.pdf
+  last_checked: 2026-11-20
+- id: cbam-precursor-examples
+  fact: Examples of precursors (not the legal list) - for iron and steel products, crude steel, pig iron, direct reduced iron and ferro-alloys appear as precursors in the transitional-period rules (Implementing Regulation (EU) 2023/1773); Commission guidance lists unwrought aluminium and other aluminium products as typical precursors for aluminium products; the binding list for the definitive period is in the current implementing rules and was not re-checked here
+  article: Implementing Regulation (EU) 2023/1773, Annex II (transitional period); Commission Guidance No. 3
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A32023R1773
+  last_checked: 2026-11-20
 - id: cbam-authorisation
   fact: Only an authorised CBAM declarant may import CBAM goods above the threshold (and any hydrogen or electricity); the importer, or an indirect customs representative, applies through the CBAM registry to the competent authority of its Member State; criteria include no serious or repeated infringements, financial and operational capacity, and an EORI number
   article: Regulation (EU) 2023/956, Articles 5, 17 and 25, as amended

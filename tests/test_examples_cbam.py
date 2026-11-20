@@ -206,3 +206,63 @@ def test_cb4_what_actual_data_was_worth() -> None:
     assert _mass("A") * see > _installation_a().total_tco2e
     assert "1.60 x 1.10 = 1.76 tCO2e/t" in text
     assert "1.76 x 400 t = **704 tCO2e**, instead of 260.8 tCO2e" in text
+
+
+# --- CB5 Precursors --------------------------------------------------------
+
+def _crude_steel(zero_rated: bool = False):
+    from esgcalc.cbam import Precursor, embedded_emissions
+    c = EXAMPLE["installation_A_crude_steel_2026"]
+    return embedded_emissions(
+        sector="iron_steel", production_mass_t=c["production_mass_t"], direct_tco2e=c["direct_tco2e"],
+        precursors=[Precursor(p["mass_t"], p["see_tco2e_per_t"], zero_rated=zero_rated) for p in c["precursors"]],
+        imported_mass_t=0)
+
+
+def _bars_from(crude_see: float):
+    from esgcalc.cbam import Precursor, embedded_emissions
+    a = EXAMPLE["installation_A_2026"]
+    return embedded_emissions(
+        sector="iron_steel", production_mass_t=a["production_mass_t"], direct_tco2e=a["direct_tco2e"],
+        precursors=[Precursor(a["precursors"][0]["mass_t"], crude_see)], imported_mass_t=_mass("A"))
+
+
+def test_cb5_levels_rebuild_cb4_figure() -> None:
+    text = page("cb5-precursors.md")
+    c = EXAMPLE["installation_A_crude_steel_2026"]
+    pig = c["precursors"][0]
+    crude = _crude_steel()
+    # (30,600 + 14,000 x 1.90) / 104,000 = 57,200 / 104,000 = 0.55
+    assert pig["mass_t"] * pig["see_tco2e_per_t"] == pytest.approx(26_600)
+    assert crude.see_tco2e_per_t == pytest.approx(0.55)
+    # CB5's crude steel figure is the one CB4 used, and the bars match CB4
+    assert crude.see_tco2e_per_t == pytest.approx(EXAMPLE["installation_A_2026"]["precursors"][0]["see_tco2e_per_t"])
+    bars = _bars_from(crude.see_tco2e_per_t)
+    assert (bars.see_tco2e_per_t, bars.total_tco2e) == (pytest.approx(0.652), pytest.approx(260.8))
+
+    a = EXAMPLE["installation_A_2026"]
+    assert c["production_mass_t"] == a["precursors"][0]["mass_t"]       # all crude steel used for the bars
+    loss_t = c["production_mass_t"] - a["production_mass_t"]
+    assert loss_t == 4_000 and f"The {fmt(loss_t)} t difference" in text
+
+    for shown in ("**1.90 tCO2e/t**", "| 104,000 t |", "| 30,600 tCO2e |",
+                  "14,000 t x 1.90 tCO2e/t = 26,600 tCO2e",
+                  "(30,600 + 26,600) / 104,000 = **0.55 tCO2e/t**",
+                  "(8,000 + 104,000 x 0.55) / 100,000 = **0.652 tCO2e/t**",
+                  "0.652 x 400 t = **260.8 tCO2e**",
+                  "# 0.55 0.652 260.8"):
+        assert shown in text, shown
+
+
+def test_cb5_eu_pig_iron_counts_as_zero() -> None:
+    text = page("cb5-precursors.md")
+    crude_eu = _crude_steel(zero_rated=True)
+    bars_eu = _bars_from(crude_eu.see_tco2e_per_t)
+    # 30,600 / 104,000 = 0.2942...; (8,000 + 30,600) / 100,000 = 0.386; x 400 = 154.4
+    assert crude_eu.see_tco2e_per_t == pytest.approx(30_600 / 104_000)
+    assert round(crude_eu.see_tco2e_per_t, 3) == 0.294
+    assert bars_eu.see_tco2e_per_t == pytest.approx(0.386)
+    assert bars_eu.total_tco2e == pytest.approx(154.4)
+    assert "| SEE of crude steel | 0.55 tCO2e/t | 30,600 / 104,000 = 0.294 tCO2e/t |" in text
+    assert "| SEE of steel bars | 0.652 tCO2e/t | 0.386 tCO2e/t |" in text
+    assert "| Melita Metals' 400 t | 260.8 tCO2e | 154.4 tCO2e |" in text

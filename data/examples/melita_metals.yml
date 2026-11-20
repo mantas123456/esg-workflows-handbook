@@ -67,3 +67,11 @@ installation_A_2026:
 default_values_base:
   aluminium_bars_B: {cn_code: "7604 29 10", sector: aluminium, base_direct_see_tco2e_per_t: 2.10}
   steel_bars_A: {cn_code: "7214 20 00", sector: iron_steel, base_direct_see_tco2e_per_t: 1.60}
+
+# CB5: how Installation A's crude steel figure (0.55 tCO2e/t) is built (made-up, verified).
+installation_A_crude_steel_2026:
+  process: Electric arc furnace at Installation A
+  production_mass_t: 104000      # all used to make the 100,000 t of bars
+  direct_tco2e: 30600
+  precursors:
+    - {name: pig iron, from: "Installation C, outside the EU (verified data)", mass_t: 14000, see_tco2e_per_t: 1.90}

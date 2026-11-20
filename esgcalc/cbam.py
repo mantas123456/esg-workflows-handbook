@@ -147,10 +147,24 @@ def may_import_pending_decision(applied: date, year: int, params: dict[str, Any]
 
 @dataclass(frozen=True)
 class Precursor:
-    """A relevant precursor consumed to make the goods."""
+    """A relevant precursor consumed to make the goods (Annex IV, point 1).
+
+    ``mass_t`` is the mass **consumed** in the production process, not the
+    mass contained in the finished goods. If the precursor is itself a complex
+    good, compute its ``see_tco2e_per_t`` first with :func:`embedded_emissions`
+    (the calculation is repeated for each level of precursors).
+    """
     mass_t: float
     see_tco2e_per_t: float
     """Specific embedded emissions of the precursor (tCO2e per tonne)."""
+    zero_rated: bool = False
+    """True if the precursor comes from the EU (or an exempted country): it is
+    still listed and its mass reported, but its embedded emissions count as zero."""
+
+    @property
+    def embedded_tco2e(self) -> float:
+        """Emissions this precursor adds: mass consumed x SEE, or 0 if zero-rated."""
+        return 0.0 if self.zero_rated else self.mass_t * self.see_tco2e_per_t
 
 
 @dataclass(frozen=True)
@@ -205,7 +219,10 @@ def embedded_emissions(
         raise ValueError("production_mass_t must be more than zero")
 
     include_indirect = not sectors[sector]["direct_only"]
-    precursor_tco2e = math.fsum(pr.mass_t * pr.see_tco2e_per_t for pr in precursors)
+    for pr in precursors:
+        _non_negative("precursor mass_t", pr.mass_t)
+        _non_negative("precursor see_tco2e_per_t", pr.see_tco2e_per_t)
+    precursor_tco2e = math.fsum(pr.embedded_tco2e for pr in precursors)
     attributed_tco2e = math.fsum([direct_tco2e, indirect_tco2e if include_indirect else 0.0, precursor_tco2e])
     see = attributed_tco2e / production_mass_t
     return EmbeddedEmissions(see_tco2e_per_t=see, total_tco2e=see * imported_mass_t,
