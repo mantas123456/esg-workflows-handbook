@@ -294,3 +294,30 @@ publication:
   deadline: 2027-04-30
   restatement_2027:
     acquired_entity: Island Cold Store Ltd (associate)
+
+# 4.2: where Gozo Fresh Foods stands on 20 Nov 2026 (MADE UP). Status per datapoint
+# for the Basic workbook and the readiness tool: Collected | Not applicable | In progress | Not started.
+vsme_status:
+  B1-option: [Option B with statement of compliance, Board, Management, Collected]
+  B1-basis: ["Individual company, one site, operational control", Accounts, Finance, Collected]
+  B2-practices: ["Energy, waste and workforce practices", Site manager, Management, Collected]
+  B3-energy: [5000 MWh, Energy bills, Site manager, Collected]
+  B3-energy-fuels: [2000 MWh, Fuel invoices, Site manager, Collected]
+  B3-scope1: [600 tCO2e, Fuel invoices and refrigerant records, Finance, Collected]
+  B3-scope2-location: [1200 tCO2e, Electricity bills and grid factor, Finance, Collected]
+  B3-intensity: [128.57 tCO2e per EUR million, Accounts, Finance, Collected]
+  B4-pollution: [No duty to report pollutants, Permits, Site manager, Not applicable]
+  B5-sensitive-sites: [0 sites, Protected-area map, Site manager, Collected]
+  B5-land-use: ["", "", Site manager, Not started]
+  B6-water-consumption: [8000 m3, Water bills, Site manager, Collected]
+  B7-waste: [732 t, Waste transfer notes, Site manager, Collected]
+  B7-waste-recycled: [80 t, Waste transfer notes, Site manager, Collected]
+  B8-employees: [140, Payroll, HR, Collected]
+  B8-turnover-rate: [15.0%, Payroll, HR, Collected]
+  B9-accidents: [3 (rate 2.4), Accident book, HR, Collected]
+  B9-fatalities: [0, Accident book, HR, Collected]
+  B10-pay-gap: [8.0%, Payroll, HR, Collected]
+  B10-collective-bargaining: [60%, HR records, HR, Collected]
+  B10-training: [12 h men / 10 h women, Training records, HR, Collected]
+  B11-corruption: [0 convictions, Legal records, Management, Collected]
+vsme_comprehensive_done: [C1-business-model, C5-workforce, C7-human-rights-incidents, C9-board-gender]

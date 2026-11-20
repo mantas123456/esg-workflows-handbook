@@ -261,6 +261,19 @@ def write_vsme_tables() -> None:
                 page.write_text(new, encoding="utf-8")
 
 
+def vsme_readiness_tool_data() -> dict:
+    """VSME datapoints, disclosure topics and Gozo Fresh Foods' status for the readiness tool."""
+    d = yaml.safe_load((ROOT / "data" / "vsme_datapoints.yml").read_text(encoding="utf-8"))
+    g = _gozo()
+    done = [k for k, v in g["vsme_status"].items() if v[3] in ("Collected", "Not applicable")]
+    done += g["vsme_comprehensive_done"]
+    return {
+        "datapoints": [{k: p[k] for k in ("id", "module", "disclosure", "description")} for p in d["datapoints"]],
+        "topics": {x["disclosure"]: x["topic"] for x in d["disclosures"]},
+        "example": {"option": g["vsme"]["option"], "done": done},
+    }
+
+
 FACTORS_PAGE = DOCS / "scope3" / "s5-emission-factors.md"
 FACTORS_START = "<!-- generated from data/factor_sources.yml: do not edit by hand -->"
 FACTORS_END = "<!-- end generated factor sources -->"
@@ -347,6 +360,7 @@ def main() -> None:
     write_vsme_tables()
     write_json_block(DOCS / "tools" / "scope3-screening.md", "scope3-screening-data", screening_tool_data())
     write_json_block(DOCS / "tools" / "uncertainty-demo.md", "uncertainty-demo-data", uncertainty_tool_data())
+    write_json_block(DOCS / "tools" / "vsme-readiness.md", "vsme-readiness-data", vsme_readiness_tool_data())
 
 
 if __name__ == "__main__":

@@ -170,6 +170,8 @@ File them in the evidence locker (see
 
 ## Templates and tools
 
+- [VSME readiness](../tools/vsme-readiness.md): tick the datapoints you
+  have, for Option A or B, and get completeness and a to-do list.
 - [`data/vsme_datapoints.yml`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/data/vsme_datapoints.yml):
   the datapoint list behind the tables above.
 

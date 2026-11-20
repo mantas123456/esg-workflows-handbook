@@ -48,3 +48,26 @@ datapoints:
   - {id: C7-human-rights-incidents, module: comprehensive, disclosure: C7, description: "Human rights incidents involving the workforce or the value chain", unit: text and count, dataset: null, basis: act}
   - {id: C8-revenues, module: comprehensive, disclosure: C8, description: "Revenues from certain activities", unit: EUR, dataset: null, basis: act}
   - {id: C9-board-gender, module: comprehensive, disclosure: C9, description: "Gender diversity ratio in the governance body", unit: ratio, dataset: null, basis: act}
+
+# Disclosures and their topics, in the handbook's own short words.
+disclosures:
+  - {disclosure: B1, module: basic, topic: Basis for preparation}
+  - {disclosure: B2, module: basic, topic: Sustainability practices and plans}
+  - {disclosure: B3, module: basic, topic: Energy and greenhouse gases}
+  - {disclosure: B4, module: basic, topic: "Pollution of air, water and soil"}
+  - {disclosure: B5, module: basic, topic: Biodiversity}
+  - {disclosure: B6, module: basic, topic: Water}
+  - {disclosure: B7, module: basic, topic: Waste and resource use}
+  - {disclosure: B8, module: basic, topic: "Workforce: general characteristics"}
+  - {disclosure: B9, module: basic, topic: "Workforce: health and safety"}
+  - {disclosure: B10, module: basic, topic: "Workforce: pay, collective bargaining and training"}
+  - {disclosure: B11, module: basic, topic: Corruption and bribery}
+  - {disclosure: C1, module: comprehensive, topic: Business model and sustainability initiatives}
+  - {disclosure: C2, module: comprehensive, topic: Practices and plans in more detail}
+  - {disclosure: C3, module: comprehensive, topic: GHG reduction targets and climate transition}
+  - {disclosure: C4, module: comprehensive, topic: Climate risks}
+  - {disclosure: C5, module: comprehensive, topic: "Workforce: more characteristics"}
+  - {disclosure: C6, module: comprehensive, topic: Human rights policies and processes}
+  - {disclosure: C7, module: comprehensive, topic: Human rights incidents}
+  - {disclosure: C8, module: comprehensive, topic: Revenues from certain activities}
+  - {disclosure: C9, module: comprehensive, topic: Gender diversity in the governance body}

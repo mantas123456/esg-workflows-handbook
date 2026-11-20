@@ -215,12 +215,14 @@ File them in the evidence locker (see
 ## Templates and tools
 
 <!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[VSME Basic Module workbook](../downloads/vsme-basic-workbook.xlsx)** (Excel): One row per Basic Module datapoint of the voluntary standard, with the value, its source, an owner and a status, and completeness tracked overall and by disclosure.
 <!-- end generated templates -->
 
 - [`esgcalc.vsme`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/vsme.py):
   energy total, GHG intensity, accident rate, water consumption, pay gap
   and turnover rate.
-- A Basic Module workbook is planned for this release.
+- [VSME readiness](../tools/vsme-readiness.md): tick what you have and see
+  what is still to do, in your browser.
 
 ## Reuse in other reports
 

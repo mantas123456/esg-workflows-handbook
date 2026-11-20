@@ -72,6 +72,35 @@ def pay_gap(average_pay_men: float, average_pay_women: float) -> float:
     return (average_pay_men - average_pay_women) / average_pay_men
 
 
+def readiness(points: Iterable[dict], done_ids: Iterable[str], option: str = "B") -> dict:
+    """How ready a VSME report is: completeness by module and the datapoints still to do.
+
+    ``points`` are the entries of data/vsme_datapoints.yml; ``done_ids`` the ids
+    already collected (or marked not applicable). Option ``A`` counts the Basic
+    Module only; option ``B`` counts both modules.
+
+    Returns ``{"modules": {module: {"done", "total", "share"}}, "overall": share,
+    "todo": [ids in order]}``.
+    """
+    if option not in ("A", "B"):
+        raise ValueError("option must be 'A' or 'B'")
+    modules = ("basic",) if option == "A" else ("basic", "comprehensive")
+    pts = [p for p in points if p["module"] in modules]
+    done = set(done_ids)
+    unknown = done - {p["id"] for p in points}
+    if unknown:
+        raise ValueError(f"unknown datapoint ids: {sorted(unknown)}")
+    out = {}
+    for m in modules:
+        in_m = [p for p in pts if p["module"] == m]
+        d = sum(p["id"] in done for p in in_m)
+        out[m] = {"done": d, "total": len(in_m), "share": d / len(in_m) if in_m else 0.0}
+    total = len(pts)
+    return {"modules": out,
+            "overall": sum(p["id"] in done for p in pts) / total if total else 0.0,
+            "todo": [p["id"] for p in pts if p["id"] not in done]}
+
+
 def linear_target_path(base_value: float, base_year: int, target_year: int,
                        reduction_share: float) -> dict[int, float]:
     """A straight-line path from a base-year value to a reduction target.

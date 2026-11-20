@@ -214,6 +214,37 @@ def _about_sheet(wb, spec: dict) -> None:
             cell.font = font
 
 
+def _prefill(sheet: dict) -> None:
+    """Fill a sheet's first columns from a data file, so the template stays in step with it.
+
+    ``prefill: {file, key, where, fields}`` takes the list ``key`` from the YAML
+    ``file``, keeps the items matching every ``where`` pair, and writes ``fields``
+    into the first columns, one row per item. ``examples_by_id`` (optional) maps
+    the first field's value to example values for the remaining input columns.
+    The result becomes the sheet's ``fixed`` rows (and ``examples`` for the rest).
+    """
+    spec = sheet.pop("prefill", None)
+    if not spec:
+        return
+    data = yaml.safe_load((ROOT / spec["file"]).read_text(encoding="utf-8"))
+    items = data[spec["key"]] if spec.get("key") else data
+    where = spec.get("where", {})
+    items = [i for i in items if all(i.get(k) == v for k, v in where.items())]
+    if not items:
+        raise ValueError(f"{sheet['name']}: prefill matched nothing in {spec['file']}")
+    fixed = [[i[f] for f in spec["fields"]] for i in items]
+    examples = sheet.pop("examples_by_id", {}) or {}
+    if spec.get("examples"):           # {file, key}: example values kept with the worked example
+        src = yaml.safe_load((ROOT / spec["examples"]["file"]).read_text(encoding="utf-8"))
+        examples = {**src[spec["examples"]["key"]], **examples}
+    unknown = set(examples) - {row[0] for row in fixed}
+    if unknown:
+        raise ValueError(f"{sheet['name']}: examples for unknown ids {sorted(unknown)}")
+    sheet["fixed"] = fixed
+    sheet["examples"] = [examples.get(row[0]) for row in fixed]
+    sheet["rows"] = len(fixed)
+
+
 def _table_sheet(wb, sheet: dict) -> None:
     from openpyxl.formatting.rule import FormulaRule
     from openpyxl.styles import PatternFill
@@ -233,18 +264,27 @@ def _table_sheet(wb, sheet: dict) -> None:
     ws.row_dimensions[1].height = 45
     ws.freeze_panes = "A2"
 
+    fixed = sheet.get("fixed", [])
+    n_fixed = len(fixed[0]) if fixed else 0
     for i in range(2, last + 1):
         example = examples[i - 2] if i - 2 < len(examples) else None
+        fixed_row = fixed[i - 2] if i - 2 < len(fixed) else None
         for j, col in enumerate(cols, start=1):
             cell = ws.cell(row=i, column=j)
             cell.border, cell.alignment = st["border"], st["wrap"]
+            k = j - 1 - n_fixed                       # index into the example, after the fixed columns
             if "formula" in col:
                 cell.value = fill(col["formula"], i)
                 cell.fill = st["calc_fill"]
-            elif example is not None and j - 1 < len(example) and example[j - 1] is not None:
-                value = example[j - 1]
+                if example is not None and not fixed:
+                    cell.font = st["example_font"]
+            elif fixed_row is not None and j <= n_fixed:
+                cell.value = fixed_row[j - 1]         # template content from a data file: normal font
+            elif example is not None and 0 <= k < len(example) and example[k] is not None:
+                value = example[k]
                 cell.value = fill(value) if isinstance(value, str) and value.startswith("=") else value
-            if example is not None:
+                cell.font = st["example_font"]
+            elif example is not None and not fixed:
                 cell.font = st["example_font"]
             if col.get("format"):
                 cell.number_format = {"percent": "0%", "date": "yyyy-mm-dd"}.get(col["format"], col["format"])
@@ -298,7 +338,9 @@ def build_xlsx(template: dict, out: Path) -> None:
     wb.remove(wb.active)
     _about_sheet(wb, spec)
     for sheet in spec.get("sheets", []):
-        (_summary_sheet if sheet.get("kind") == "summary" else _table_sheet)(wb, copy.deepcopy(sheet))
+        sheet = copy.deepcopy(sheet)
+        _prefill(sheet)
+        (_summary_sheet if sheet.get("kind") == "summary" else _table_sheet)(wb, sheet)
     wb.active = 1 if len(wb.sheetnames) > 1 else 0
     wb.properties.title = template["title"]
     wb.properties.creator = "ESG Workflows Handbook"
@@ -335,7 +377,9 @@ def build(force: bool = False, quiet: bool = False) -> list[Path]:
     """Build every template whose output is missing or older than its source, the
     parameters or this script, and remove outputs with no source."""
     OUT.mkdir(parents=True, exist_ok=True)
-    newest_dependency = max(Path(__file__).stat().st_mtime, PARAMETERS.stat().st_mtime)
+    # Sheets read data/ files (parameters, prefilled rows, example values): any change rebuilds.
+    data_files = [p.stat().st_mtime for p in (ROOT / "data").rglob("*.yml")]
+    newest_dependency = max([Path(__file__).stat().st_mtime, PARAMETERS.stat().st_mtime, *data_files])
     built = []
     templates = catalog()
     for t in templates:

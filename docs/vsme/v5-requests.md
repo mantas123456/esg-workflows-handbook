@@ -180,8 +180,11 @@ File them in the evidence locker (see
 
 ## Templates and tools
 
+<!-- generated from data/workflows.yml templates: do not edit by hand -->
+- **[Questionnaire response bank](../downloads/questionnaire-response-bank.docx)** (Word): Your standard answers to the ESG questions customers and banks ask most, each linked to a VSME datapoint and a source, with reply wording to adapt.
+<!-- end generated templates -->
+
 - The reply wording above.
-- A questionnaire response bank is planned for this release.
 
 ## Reuse in other reports
 

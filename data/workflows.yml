@@ -53,10 +53,10 @@ tracks:
     folder: vsme
     steps:
       - {id: V1, title: "Choosing the modules", file: v1-modules.md, release: "0.4", status: draft}
-      - {id: V2, title: "Basic module data collection", file: v2-basic.md, release: "0.4", status: draft}  # template vsme-basic-workbook added back in 4.2
+      - {id: V2, title: "Basic module data collection", file: v2-basic.md, release: "0.4", status: draft, templates: [vsme-basic-workbook], tools: [vsme-readiness]}
       - {id: V3, title: "GHG emissions for VSME", file: v3-ghg.md, release: "0.4", status: draft}
       - {id: V4, title: "Comprehensive module", file: v4-comprehensive.md, release: "0.4", status: draft}
-      - {id: V5, title: "Answering customer and bank requests", file: v5-requests.md, release: "0.4", status: draft}
+      - {id: V5, title: "Answering customer and bank requests", file: v5-requests.md, release: "0.4", status: draft, templates: [questionnaire-response-bank]}
       - {id: V6, title: "Publishing and updating", file: v6-publishing.md, release: "0.4", status: draft}
 
   - id: csrd
