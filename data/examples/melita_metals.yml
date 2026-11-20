@@ -7,6 +7,8 @@ company:
   name: Melita Metals Ltd
   country: Malta
   activity: Imports steel reinforcing bars and aluminium bars for construction
+  employees: 60                # added in 0.5 (C1, C3): for the CSRD value-chain cap
+  net_turnover_eur: 9000000
 
 installations:
   A:

@@ -21,8 +21,54 @@
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ%3AL_202600470
   last_checked: 2026-11-20
 - id: esrs-simplified
-  fact: Revised ESRS adopted 3 Jul 2026 as Delegated Regulation (EU) 2026/1563, published in the OJ 21 Sep 2026, in force 10 Nov 2026; mandatory for financial years starting on or after 1 Jan 2027, optional for financial years starting in 2026
+  fact: Revised ESRS adopted 3 Jul 2026 as Delegated Regulation (EU) 2026/1563, amending Delegated Regulation (EU) 2023/2772, published in the OJ 21 Sep 2026, in force 10 Nov 2026; mandatory for financial years starting on or after 1 Jan 2027, optional for financial years starting in 2026 (the undertaking says which version it used)
+  article: Delegated Regulation (EU) 2026/1563, Articles 1 and 2
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601563
+  last_checked: 2026-11-20
+- id: esrs-structure
+  fact: "The revised ESRS are 12 standards: two cross-cutting standards, ESRS 1 (general requirements) and ESRS 2 (general disclosures: governance, strategy including financial effects, management of impacts, risks and opportunities, metrics and targets), and ten topical standards, E1 to E5, S1 to S4 and G1; reporting follows the double materiality principle, covering material impacts on people and the environment and material sustainability-related risks and opportunities; ESRS 2 asks for a concise description of the materiality assessment process, including how it covers own operations and the value chain"
+  article: Delegated Regulation (EU) 2026/1563, Annex I (ESRS 1, ESRS 2)
+  source: https://knowledgehub.efrag.org/interactive/simplified-esrs/esrs-1
+  last_checked: 2026-11-20
+- id: esrs-phase-in
+  fact: "ESRS 1 chapter 10 (section 10.3) lists phased-in disclosure requirements, by type of undertaking. In the text read (EFRAG Knowledge Hub), undertakings first reporting for financial years from 2027 may omit, in their first years: E4, S2, S3 and S4 disclosures (first two years); anticipated financial effects (first two years, except some E1 paragraphs); quantitative anticipated financial effects (first four years); substances-of-concern data (first three years); and comparative information (first year). Undertakings using a phase-in say so (BP-2) and, for some, whether the topic was assessed as material. Earlier voluntary use does not start the phase-in clock. No phase-in specific to Scope 3 was found. The years have not been checked against the Official Journal text"
+  article: Delegated Regulation (EU) 2026/1563, Annex I, ESRS 1 chapter 10 and ESRS 2 BP-2
+  source: https://knowledgehub.efrag.org/eng/interactive/simplified-esrs/esrs-1/delegated-act
+  last_checked: 2026-11-20
+- id: esrs-dma-method
+  fact: "Impact materiality: the severity of an impact is assessed on its scale, scope and irremediable character, and any one of the three can make a negative impact severe; actual negative impacts are assessed on severity, potential negative impacts on severity and likelihood, and for potential human rights impacts severity takes precedence over likelihood; actual positive impacts on scale and scope, potential positive impacts on scale, scope and likelihood; prevention and mitigation count only if already implemented and reasonably assumed to be effective. Financial materiality: a topic is material if it triggers, or could reasonably be expected to trigger, material financial effects over the short, medium or long term; material risks and opportunities can arise from material impacts. The undertaking decides materiality with qualitative considerations and quantitative thresholds it sets; the ESRS give no numeric thresholds"
+  article: Delegated Regulation (EU) 2026/1563, Annex I, ESRS 1 chapter 3 (impact and financial materiality)
+  source: https://knowledgehub.efrag.org/eng/interactive/simplified-esrs/esrs-1/2026-09-21-official-journal
+  last_checked: 2026-11-20
+- id: csrd-assurance
+  fact: "After Omnibus I, sustainability statements need limited assurance only: the planned move to reasonable assurance was removed; the Commission's deadline to adopt limited assurance standards is 1 July 2027 (moved from 1 October 2026); the Commission opened a consultation on draft limited assurance standards on 12 November 2026"
+  article: Directive 2006/43/EC and Directive 2013/34/EU as amended by Directive (EU) 2026/470
+  source: https://finance.ec.europa.eu/news/commission-seeks-feedback-limited-assurance-standards-sustainability-reporting-2026-11-12_en
+  last_checked: 2026-11-20
+- id: csrd-assurance-scope
+  fact: "The statutory auditor (or audit firm) gives a limited assurance opinion on the sustainability reporting, covering its compliance with the ESRS, the process the undertaking carried out to identify the reported information (the materiality assessment), compliance with the marking-up requirement of Article 29d, and the EU Taxonomy disclosures under Article 8 of Regulation (EU) 2020/852; Member States may also allow a different auditor, or an independent assurance services provider accredited under Regulation (EC) No 765/2008, to give the opinion; until the Commission adopts assurance standards, national standards may apply. Read in summaries and the consolidated texts' references; the Article 34 wording was not read directly"
+  article: Directive 2013/34/EU, Article 34, as amended by Directive (EU) 2022/2464 and Directive (EU) 2026/470; Directive 2006/43/EC, Article 26a
+  source: https://eur-lex.europa.eu/eli/dir/2022/2464/2026-03-18/eng
+  last_checked: 2026-11-20
+- id: csrd-management-report
+  fact: "Sustainability reporting goes in a dedicated, clearly identifiable section of the management report (or the consolidated management report of a parent); the management report is prepared in the European single electronic format (Delegated Regulation (EU) 2019/815), and the sustainability reporting, including the EU Taxonomy disclosures under Article 8 of Regulation (EU) 2020/852, is to be marked up with a digital taxonomy, which is not yet adopted (see esrs-digital-tagging). Read in the consolidated CSRD and in summaries; the Article 29d wording was not read directly"
+  article: Directive 2013/34/EU, Articles 19a, 29a and 29d, as amended by Directive (EU) 2022/2464 and Directive (EU) 2026/470
+  source: https://eur-lex.europa.eu/eli/dir/2022/2464/2026-03-18/eng
+  last_checked: 2026-11-20
+- id: esrs-digital-tagging
+  fact: "Digital (XBRL) tagging of ESRS sustainability statements is not yet mandatory and is not expected for financial year 2026: EFRAG published a draft XBRL taxonomy for the revised ESRS, with consultation until 11 November 2026, and plans to hand the final taxonomy to ESMA and the Commission by the end of 2026; ESMA then drafts tagging rules (RTS) and the Commission adopts them by amending the ESEF Regulation (Delegated Regulation (EU) 2019/815)"
+  article: Delegated Regulation (EU) 2019/815 (ESEF), to be amended
+  source: https://www.efrag.org/en/news-and-calendar/news/efrag-releases-draft-esrs-xbrl-taxonomy-for-the-revised-esrs-and-launches-public-consultation
+  last_checked: 2026-11-20
+- id: malta-csrd
+  fact: "Malta transposed the original CSRD through the Corporate Sustainability Reporting Regulations, 2026 (Legal Notice 39 of 2026, Government Gazette 13 February 2026, made under the Companies Act, Cap. 386), and Act I of 2026 amending laws on corporate sustainability reporting (in force 20 March 2026); the commencement of Legal Notice 39 was not confirmed; no Maltese law transposing Omnibus I (Directive (EU) 2026/470) was found; the transposition deadline is 19 March 2027"
+  article: Legal Notice 39 of 2026; Act I of 2026; Directive (EU) 2026/470 (transposition deadline)
+  source: https://legislation.mt/eli/ln/2026/39/eng
+  last_checked: 2026-11-20
+- id: csrd-stop-the-clock
+  fact: "The 'stop-the-clock' Directive (EU) 2025/794 (adopted 14 April 2025, published 16 April 2025, to be transposed by 31 December 2025) postponed by two years the CSRD start for large companies that had not yet started reporting (the second and third waves) and for listed SMEs; those companies are not subject to the reporting requirements for financial years 2025 or 2026, so a large company still in scope after Omnibus I that never reported starts with financial year 2027"
+  article: Directive (EU) 2025/794
+  source: https://eur-lex.europa.eu/eli/dir/2025/794/oj/eng
   last_checked: 2026-11-20
 - id: csrd-value-chain-cap
   fact: "Companies reporting under the CSRD may not require value-chain companies with on average 1,000 employees or fewer (previous financial year, headcount only) to give more information than the voluntary standard covers (the datapoints in Annex II of Delegated Regulation (EU) 2026/1560); a reporting company that asks for more must say which information goes beyond the cap and tell the value-chain company that it has a right to refuse it; it may rely on the value-chain company's self-declaration of size unless it knows or should know it is manifestly wrong; the cap creates no duty to report, does not stop voluntary sharing of information commonly shared in a sector, and does not override existing contractual or legal duties; it applies to value-chain reporting from financial year 2027"
@@ -216,6 +262,11 @@
   fact: "The Guide to the expression of uncertainty in measurement (GUM), JCGM 100:2008, sets general rules for evaluating and expressing measurement uncertainty; its Supplement 1, JCGM 101:2008, propagates probability distributions through a measurement model by a Monte Carlo method and is being revised as JCGM GUM-7; both are free to download from the BIPM, but copyright stays with the JCGM member organisations, so they are cited, not copied"
   article: JCGM 100:2008; JCGM 101:2008
   source: https://www.bipm.org/en/doi/10.59161/jcgm100-2008e
+  last_checked: 2026-11-20
+- id: esrs-e1-scope2
+  fact: "Revised ESRS E1 asks for gross Scope 2 GHG emissions on both a location-based and a market-based basis; read in two summaries of the revised standard, not yet checked against the Official Journal text"
+  article: Delegated Regulation (EU) 2026/1563, Annex (ESRS E1, gross Scope 1, 2 and 3 GHG emissions)
+  source: https://foretica.org/wp-content/uploads/2026/09/ANEXOS-Estandares-Tematicos-ESRS.pdf
   last_checked: 2026-11-20
 - id: esrs-e1-scope3
   fact: Revised ESRS E1 requires gross Scope 3 GHG emissions as a total and for each significant Scope 3 category; significant categories are identified by the magnitude of their estimated emissions and other criteria such as spend, influence, transition risks and opportunities, or stakeholder views; screening uses the 15 GHG Protocol categories (ISO 14064-1 is an alternative); the significant categories are updated each year and the full inventory at least every three years or after a significant event; the GHG Protocol's Scope 3 calculation provisions can be considered; applies to financial years from 1 January 2027

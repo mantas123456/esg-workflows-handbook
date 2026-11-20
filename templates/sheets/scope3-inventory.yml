@@ -1,6 +1,7 @@
 title: Scope 3 inventory workbook
 type: Workbook
 description: A Scope 3 inventory line by line, with spend-based, average-data and supplier-specific tabs, a data-quality score and a 95% uncertainty on every line, and a summary by category.
+example_company: Gozo Fresh Foods Ltd
 instructions:
   - "Put each line on the tab for its method: Spend, Average-data or Supplier. One purchase belongs on one line only: when supplier data replaces an estimate, delete the estimate."
   - "Spend: enter spend in EUR. If the factor is in another currency, enter that currency per EUR. If the factor is priced in an earlier year, enter both price indices to deflate the spend."

@@ -1,0 +1,127 @@
+# Fictional worked example used through the CSRD / ESRS track (C1-C9).
+# Mediterranean Logistics Group, Malta. All companies and numbers are made up.
+# Its suppliers are the fictional companies of the other tracks:
+#   Gozo Fresh Foods Ltd (data/examples/gozo_fresh_foods.yml) and
+#   Melita Metals Ltd (data/examples/melita_metals.yml).
+# Every number shown on a page is recomputed by tests/test_examples_csrd.py.
+
+company:
+  name: Mediterranean Logistics Group
+  country: Malta
+  activity: Chilled and frozen food distribution and storage, with its own warehouses and truck fleet
+  employees: 1300
+  net_turnover_eur: 520000000
+  listed: false
+  reported_from_fy2024: false
+
+suppliers:
+  - {name: Gozo Fresh Foods Ltd, example: gozo_fresh_foods.yml, supplies: Prepared foods it distributes for supermarkets}
+  - {name: Melita Metals Ltd, example: melita_metals.yml, supplies: Steel reinforcing bars and aluminium bars for its new cold store}
+
+# C2: double materiality assessment (MADE UP), scored with esgcalc.dma and
+# data/dma_parameters.yml (scale 1-5; thresholds 3.0 are the handbook's choice).
+dma:
+  iros:
+    - {id: E1-I1, topic: E1, kind: impact, actual: true, scale: 4, scope: 3, irremediability: 4, description: "GHG emissions from the diesel truck fleet and the cold stores"}
+    - {id: E1-R1, topic: E1, kind: risk, magnitude: 4, likelihood: 4, description: "Rising fuel and carbon costs for the diesel fleet"}
+    - {id: E1-O1, topic: E1, kind: opportunity, magnitude: 3, likelihood: 3, description: "Supermarkets choosing low-carbon logistics"}
+    - {id: E2-I1, topic: E2, kind: impact, actual: false, scale: 2, scope: 3, irremediability: 2, likelihood: 4, description: "Air pollution from trucks in towns"}
+    - {id: E5-I1, topic: E5, kind: impact, actual: true, scale: 3, scope: 2, irremediability: 2, description: "Food wasted when the cold chain fails"}
+    - {id: S1-I1, topic: S1, kind: impact, actual: false, human_rights: true, scale: 4, scope: 3, irremediability: 5, likelihood: 3, description: "Serious road and warehouse accidents involving drivers and staff"}
+    - {id: S1-R1, topic: S1, kind: risk, magnitude: 3, likelihood: 4, description: "Shortage of truck drivers"}
+    - {id: S2-I1, topic: S2, kind: impact, actual: false, human_rights: true, scale: 3, scope: 3, irremediability: 3, likelihood: 2, description: "Poor working conditions on farms that supply food suppliers"}
+    - {id: G1-R1, topic: G1, kind: risk, magnitude: 2, likelihood: 2, description: "Bribery at ports and customs"}
+
+# C3: data requests to suppliers protected by the value-chain cap (MADE UP).
+# vsme: the voluntary-standard datapoints that cover the question (data/vsme_datapoints.yml), or null if none.
+# outcome: answered | shared voluntarily | declined
+data_requests:
+  - supplier: Gozo Fresh Foods Ltd
+    questions:
+      - {ask: "Energy use and Scope 1 and 2 emissions for 2026", vsme: [B3-energy, B3-scope1, B3-scope2-location], outcome: answered}
+      - {ask: "Number of employees and work accidents", vsme: [B8-employees, B9-accidents], outcome: answered}
+      - {ask: "Cradle-to-gate emissions of all products sold in 2026", vsme: null, outcome: shared voluntarily}
+      - {ask: "Carbon footprint per kg of each product", vsme: null, outcome: declined}
+  - supplier: Melita Metals Ltd
+    questions:
+      - {ask: "Scope 1 and 2 emissions for 2026", vsme: [B3-scope1, B3-scope2-location], outcome: answered}
+      - {ask: "Embedded emissions per tonne of the steel and aluminium bars sold to the group", vsme: null, outcome: shared voluntarily}
+      - {ask: "Indirect emissions per tonne at the steel mill", vsme: null, outcome: shared voluntarily}
+
+# C4: ESRS 2 general disclosures plan for the first report, financial year 2027 (MADE UP).
+esrs2_plan:
+  - {datapoint: ESRS2-basis, what: "Group statement for 2027; phase-ins used: anticipated financial effects (first two years)", owner: Finance, ready_by: 2028-01-31}
+  - {datapoint: ESRS2-governance, what: "Board audit committee oversees sustainability; operations director runs the programme", owner: Company secretary, ready_by: 2027-06-30}
+  - {datapoint: ESRS2-strategy, what: "Cold-chain distribution in Malta; suppliers include food producers and building-material importers; customers are supermarkets", owner: Strategy, ready_by: 2027-06-30}
+  - {datapoint: ESRS2-materiality-process, what: "The C2 assessment: who took part, the scales and thresholds, own operations and value chain", owner: Sustainability lead, ready_by: 2027-03-31}
+
+# C5: dry run of the E1 GHG figures on 2026 data (MADE UP numbers and factors).
+climate_2026:
+  scope1_lines:                    # tCO2e = activity x factor (kg) / 1000
+    - {description: Diesel for the truck fleet, activity: 9000000, unit: litre, factor: 2.6}
+    - {description: Refrigerant leaks from cold stores and trucks (service records), activity: 1500, unit: tCO2e, factor: 1000}
+  scope2_location: {activity_mwh: 40000, factor_kg_per_mwh: 400}
+  scope2_market: {activity_mwh: 40000, factor_kg_per_mwh: 450}   # residual mix (made up): no green electricity contracts
+  spend_based_u95: 0.50           # as for Gozo's spend-based lines in F2 (made up)
+  gozo:                            # category 1: Gozo's figure, allocated by spend
+    group_purchases_eur: 3500000
+  melita:                          # category 2: from Melita Metals' 2026 CBAM data
+    steel_bars_t: 100              # from Installation A (actual values, CB4)
+    aluminium_bars_t: 10           # from Installation B (default value without mark-up, CB4)
+  other_lines:
+    - {category: 1, description: Food bought for resale from other suppliers, method: spend_based, spend_eur: 376500000, factor: 1.0}
+    - {category: 1, description: "Packaging and services", method: spend_based, spend_eur: 10000000, factor: 0.3}
+    - {category: 2, description: Other building work on the new cold store, method: spend_based, spend_eur: 2000000, factor: 0.3}
+  screening_other_categories:      # rough estimates, tCO2e (0 = does not apply)
+    3: 7000
+    4: 3000
+    5: 500
+    6: 200
+    7: 2000
+    8: 0
+    9: 0
+    10: 0
+    11: 0
+    12: 4000
+    13: 0
+    14: 0
+    15: 0
+  size_threshold_share: 0.05
+  other_reasons:
+    2: "Transition risk: Melita Metals passes on CBAM costs for steel and aluminium"
+    4: "Influence: the group chooses and briefs its subcontracted hauliers"
+
+# C7: datapoint status on 20 Nov 2026, after the 2026 dry run (MADE UP).
+# Datapoints in scope: ESRS 2 plus the material standards from C2 (E1, E5, S1).
+# Status: Ready | Partial | Gap | Phase-in
+gap_status:
+  ESRS2-basis: Gap
+  ESRS2-governance: Partial
+  ESRS2-strategy: Partial
+  ESRS2-materiality-process: Ready
+  E1-transition-plan: Gap
+  E1-targets: Gap
+  E1-energy: Ready
+  E1-scope1: Ready
+  E1-scope2: Ready
+  E1-scope3: Partial
+  E1-scope3-suppliers: Partial
+  E1-financial-effects: Phase-in
+  E5-resources-waste: Partial
+  S1-headcount: Ready
+  S1-health-safety: Ready
+
+# C8: the evidence trail for the C5 figures an assurance provider is likely to sample (MADE UP).
+assurance_trail:
+  - {figure: Scope 1, files: "Fuel card statements; refrigerant service records", owner: Fleet manager}
+  - {figure: Scope 2, files: "Electricity invoices for 40,000 MWh; grid factor source", owner: Facilities}
+  - {figure: "Category 1: Gozo Fresh Foods", files: "Gozo's emailed figure and basis; purchase ledger for Gozo", owner: Purchasing}
+  - {figure: "Category 2: Melita Metals", files: "Melita's CBAM data and Installation A verification report; delivery notes for 100 t and 10 t", owner: Projects}
+
+# C9: publication timeline for the first report, financial year 2027 (MADE UP).
+publication:
+  - {date: 2028-01-31, step: "Sustainability statement drafted, all ESRS 2 and topical disclosures in"}
+  - {date: 2028-02-28, step: "Assurance provider's fieldwork finished"}
+  - {date: 2028-03-20, step: "Board approves the annual report, with the sustainability statement in its own section of the management report"}
+  - {date: 2028-03-25, step: "Limited assurance opinion signed"}
+  - {date: 2028-04-15, step: "Annual report published and filed under national law"}

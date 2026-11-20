@@ -138,6 +138,8 @@ nav:
       - "C9 Digital tagging and publication": csrd/c9-tagging.md
   - Tools:
       - "CBAM calculator": tools/cbam-calculator.md
+      - "DMA scoring": tools/dma-scoring.md
+      - "ESRS gap check": tools/esrs-gap.md
       - "Scope 3 screening": tools/scope3-screening.md
       - "Uncertainty demo": tools/uncertainty-demo.md
       - "VSME readiness": tools/vsme-readiness.md

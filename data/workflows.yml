@@ -63,12 +63,12 @@ tracks:
     title: CSRD / ESRS
     folder: csrd
     steps:
-      - {id: C1, title: "Am I in scope after Omnibus I?", file: c1-scope.md, release: "0.5", status: planned}
-      - {id: C2, title: "Double materiality assessment", file: c2-dma.md, release: "0.5", status: planned, templates: [dma-workbook], tools: [dma-scoring]}
-      - {id: C3, title: "Value chain and data requests", file: c3-value-chain.md, release: "0.5", status: planned}
-      - {id: C4, title: "General disclosures", file: c4-general.md, release: "0.5", status: planned}
-      - {id: C5, title: "Climate (E1)", file: c5-climate.md, release: "0.5", status: planned}
-      - {id: C6, title: "Other topical standards", file: c6-topical.md, release: "0.5", status: planned}
-      - {id: C7, title: "Datapoint gap analysis", file: c7-gap-analysis.md, release: "0.5", status: planned, tools: [esrs-gap]}
-      - {id: C8, title: "Assurance readiness", file: c8-assurance.md, release: "0.5", status: planned}
-      - {id: C9, title: "Digital tagging and publication", file: c9-tagging.md, release: "0.5", status: planned}
+      - {id: C1, title: "Am I in scope after Omnibus I?", file: c1-scope.md, release: "0.5", status: draft}
+      - {id: C2, title: "Double materiality assessment", file: c2-dma.md, release: "0.5", status: draft, templates: [dma-workbook, iro-register], tools: [dma-scoring]}
+      - {id: C3, title: "Value chain and data requests", file: c3-value-chain.md, release: "0.5", status: draft}
+      - {id: C4, title: "General disclosures", file: c4-general.md, release: "0.5", status: draft}
+      - {id: C5, title: "Climate (E1)", file: c5-climate.md, release: "0.5", status: draft}
+      - {id: C6, title: "Other topical standards", file: c6-topical.md, release: "0.5", status: draft}
+      - {id: C7, title: "Datapoint gap analysis", file: c7-gap-analysis.md, release: "0.5", status: draft, templates: [esrs-gap-list], tools: [esrs-gap]}
+      - {id: C8, title: "Assurance readiness", file: c8-assurance.md, release: "0.5", status: draft}
+      - {id: C9, title: "Digital tagging and publication", file: c9-tagging.md, release: "0.5", status: draft}

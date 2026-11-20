@@ -1,0 +1,61 @@
+# Key datapoints of the revised ESRS (Delegated Regulation (EU) 2026/1563), at the
+# level this handbook uses. Short descriptions are the handbook's own words, not the
+# standard's text. Not a complete list: EFRAG publishes the full datapoint list.
+#
+# id:       standard plus a short key
+# standard: ESRS 2, E1-E5, S1-S4, G1
+# dr:       disclosure requirement code where this handbook confirmed it, else null
+# unit:     unit, or "text"
+# dataset:  matching dataset in data/datasets.yml, or null
+# basis:    efrag-kh - read in EFRAG's Knowledge Hub text of the revised ESRS
+#           title    - only the topic was checked
+# Last checked: 2026-11-20. See data/regulations.yml (esrs-structure, esrs-e1-scope3, esrs-phase-in).
+
+# ESRS 2 and the ten topical standards (fact esrs-structure; ESRS 1 sets general requirements
+# and has no datapoints here). Topic names are the standards' titles.
+standards:
+  - {standard: ESRS 2, kind: cross-cutting, topic: General disclosures}
+  - {standard: E1, kind: topical, topic: Climate change}
+  - {standard: E2, kind: topical, topic: Pollution}
+  - {standard: E3, kind: topical, topic: Water and marine resources}
+  - {standard: E4, kind: topical, topic: Biodiversity and ecosystems}
+  - {standard: E5, kind: topical, topic: Resource use and circular economy}
+  - {standard: S1, kind: topical, topic: Own workforce}
+  - {standard: S2, kind: topical, topic: Workers in the value chain}
+  - {standard: S3, kind: topical, topic: Affected communities}
+  - {standard: S4, kind: topical, topic: Consumers and end-users}
+  - {standard: G1, kind: topical, topic: Business conduct}
+
+datapoints:
+  # ---------------- ESRS 2 general disclosures ----------------
+  - {id: ESRS2-basis, standard: ESRS 2, dr: null, description: "Basis for preparation, including any phase-in used", unit: text, dataset: null, basis: efrag-kh}
+  - {id: ESRS2-governance, standard: ESRS 2, dr: null, description: "Who oversees sustainability matters, and how", unit: text, dataset: null, basis: efrag-kh}
+  - {id: ESRS2-strategy, standard: ESRS 2, dr: null, description: "Strategy, business model and value chain, including financial effects", unit: text, dataset: null, basis: efrag-kh}
+  - {id: ESRS2-materiality-process, standard: ESRS 2, dr: null, description: "How the double materiality assessment was done, covering own operations and the value chain", unit: text, dataset: null, basis: efrag-kh}
+
+  # ---------------- E1 Climate change ----------------
+  - {id: E1-transition-plan, standard: E1, dr: null, description: "Transition plan for climate change mitigation", unit: text, dataset: null, basis: title}
+  - {id: E1-targets, standard: E1, dr: null, description: "GHG reduction targets", unit: tCO2e and %, dataset: null, basis: title}
+  - {id: E1-energy, standard: E1, dr: null, description: "Energy consumption and mix", unit: MWh, dataset: electricity_use, basis: title}
+  - {id: E1-scope1, standard: E1, dr: null, description: "Gross Scope 1 GHG emissions", unit: tCO2e, dataset: fuel_use, basis: title}
+  - {id: E1-scope2, standard: E1, dr: null, description: "Gross Scope 2 GHG emissions, location-based and market-based", unit: tCO2e, dataset: electricity_use, basis: title}
+  - {id: E1-scope3, standard: E1, dr: E1-8, description: "Gross Scope 3 GHG emissions, in total and for each significant category", unit: tCO2e, dataset: purchased_goods_spend, basis: efrag-kh}
+  - {id: E1-scope3-suppliers, standard: E1, dr: E1-8, description: "Supplier-specific data used for significant Scope 3 categories", unit: tCO2e, dataset: supplier_emissions, basis: title}
+  - {id: E1-financial-effects, standard: E1, dr: E1-11, description: "Anticipated financial effects of climate risks and opportunities (phase-in applies)", unit: EUR and text, dataset: null, basis: efrag-kh}
+
+  # ---------------- E2 to E5 ----------------
+  - {id: E2-pollution, standard: E2, dr: null, description: "Pollution of air, water and soil", unit: kg, dataset: null, basis: title}
+  - {id: E2-substances-of-concern, standard: E2, dr: E2-5, description: "Substances of concern (phase-in applies)", unit: t, dataset: null, basis: efrag-kh}
+  - {id: E3-water, standard: E3, dr: null, description: "Water and marine resources", unit: m3, dataset: null, basis: title}
+  - {id: E4-biodiversity, standard: E4, dr: null, description: "Biodiversity and ecosystems (phase-in applies)", unit: text and ha, dataset: null, basis: efrag-kh}
+  - {id: E5-resources-waste, standard: E5, dr: null, description: "Resource use, circular economy and waste", unit: t, dataset: imports_by_cn_code, basis: title}
+
+  # ---------------- S1 to S4 ----------------
+  - {id: S1-headcount, standard: S1, dr: null, description: "Employees by contract type, gender and country", unit: headcount, dataset: headcount, basis: title}
+  - {id: S1-health-safety, standard: S1, dr: S1-14, description: "Health and safety of the own workforce (phase-in applies to some datapoints)", unit: count and rate, dataset: headcount, basis: efrag-kh}
+  - {id: S2-value-chain-workers, standard: S2, dr: null, description: "Workers in the value chain (phase-in applies)", unit: text, dataset: null, basis: efrag-kh}
+  - {id: S3-communities, standard: S3, dr: null, description: "Affected communities (phase-in applies)", unit: text, dataset: null, basis: efrag-kh}
+  - {id: S4-consumers, standard: S4, dr: null, description: "Consumers and end-users (phase-in applies)", unit: text, dataset: null, basis: efrag-kh}
+
+  # ---------------- G1 ----------------
+  - {id: G1-business-conduct, standard: G1, dr: null, description: "Business conduct, including corruption and bribery", unit: text and count, dataset: null, basis: title}

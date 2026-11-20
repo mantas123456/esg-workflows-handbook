@@ -35,12 +35,12 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | V4 | VSME | [Comprehensive module](vsme/v4-comprehensive.md) | 0.4 | draft |
 | V5 | VSME | [Answering customer and bank requests](vsme/v5-requests.md) | 0.4 | draft |
 | V6 | VSME | [Publishing and updating](vsme/v6-publishing.md) | 0.4 | draft |
-| C1 | CSRD / ESRS | [Am I in scope after Omnibus I?](csrd/c1-scope.md) | 0.5 | planned |
-| C2 | CSRD / ESRS | [Double materiality assessment](csrd/c2-dma.md) | 0.5 | planned |
-| C3 | CSRD / ESRS | [Value chain and data requests](csrd/c3-value-chain.md) | 0.5 | planned |
-| C4 | CSRD / ESRS | [General disclosures](csrd/c4-general.md) | 0.5 | planned |
-| C5 | CSRD / ESRS | [Climate (E1)](csrd/c5-climate.md) | 0.5 | planned |
-| C6 | CSRD / ESRS | [Other topical standards](csrd/c6-topical.md) | 0.5 | planned |
-| C7 | CSRD / ESRS | [Datapoint gap analysis](csrd/c7-gap-analysis.md) | 0.5 | planned |
-| C8 | CSRD / ESRS | [Assurance readiness](csrd/c8-assurance.md) | 0.5 | planned |
-| C9 | CSRD / ESRS | [Digital tagging and publication](csrd/c9-tagging.md) | 0.5 | planned |
+| C1 | CSRD / ESRS | [Am I in scope after Omnibus I?](csrd/c1-scope.md) | 0.5 | draft |
+| C2 | CSRD / ESRS | [Double materiality assessment](csrd/c2-dma.md) | 0.5 | draft |
+| C3 | CSRD / ESRS | [Value chain and data requests](csrd/c3-value-chain.md) | 0.5 | draft |
+| C4 | CSRD / ESRS | [General disclosures](csrd/c4-general.md) | 0.5 | draft |
+| C5 | CSRD / ESRS | [Climate (E1)](csrd/c5-climate.md) | 0.5 | draft |
+| C6 | CSRD / ESRS | [Other topical standards](csrd/c6-topical.md) | 0.5 | draft |
+| C7 | CSRD / ESRS | [Datapoint gap analysis](csrd/c7-gap-analysis.md) | 0.5 | draft |
+| C8 | CSRD / ESRS | [Assurance readiness](csrd/c8-assurance.md) | 0.5 | draft |
+| C9 | CSRD / ESRS | [Digital tagging and publication](csrd/c9-tagging.md) | 0.5 | draft |

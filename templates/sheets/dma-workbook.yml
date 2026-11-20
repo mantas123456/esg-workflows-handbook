@@ -1,0 +1,73 @@
+title: Double materiality assessment workbook
+type: Workbook
+description: Score impacts, risks and opportunities on a 1 to 5 scale, from the impact side and the financial side, and roll them up to the ten topical standards.
+example_company: Mediterranean Logistics Group
+instructions:
+  - "One row per impact, risk or opportunity. Type: Impact, Risk or Opportunity."
+  - "Impacts: say whether the impact is negative, actual and about human rights, and score scale, scope and (negative only) irremediability from 1 (very low) to 5 (very high). Potential impacts also need a likelihood."
+  - "Risks and opportunities: score magnitude and likelihood from 1 to 5."
+  - "Severity of a negative impact is the highest of scale, scope and irremediability, because any one can make an impact severe (ESRS 1 chapter 3). Positive impacts use the average of scale and scope."
+  - "Potential impacts and financial effects: score x likelihood / 5. For potential negative human rights impacts with severity at or above the cut-off, severity takes precedence over likelihood."
+  - "Settings: the scale, the thresholds and the human rights cut-off are this handbook's choices, not the ESRS's. Change them, and explain your choice in your report."
+  - "Count prevention and mitigation only if already in place and working."
+  - "Topics rolls up the items: a topic is material if any item is material, from either side."
+  - "Same method as esgcalc.dma and data/dma_parameters.yml in the handbook (see C2)."
+sheets:
+  - name: Items
+    rows: 100
+    columns:
+      - {header: ID, width: 9}
+      - {header: Standard, width: 9, choices: [E1, E2, E3, E4, E5, S1, S2, S3, S4, G1]}
+      - {header: Description, width: 40}
+      - {header: Type, width: 12, choices: [Impact, Risk, Opportunity]}
+      - {header: "Negative? (impacts)", width: 10, choices: ["Yes", "No"]}
+      - {header: "Actual? (impacts)", width: 9, choices: ["Yes", "No"]}
+      - {header: "Human rights? (impacts)", width: 10, choices: ["Yes", "No"]}
+      - {header: "Scale (1-5)", width: 7}
+      - {header: "Scope (1-5)", width: 7}
+      - {header: "Irremediability (1-5, negative)", width: 11}
+      - {header: "Likelihood (1-5, potential)", width: 10}
+      - {header: "Magnitude (1-5, risks and opportunities)", width: 12}
+      - {header: "Severity (negative) or scale-scope base (positive)", width: 13, format: "0.0", formula: '=IF(D{r}="Impact",IF(E{r}="Yes",MAX(H{r},I{r},J{r}),(H{r}+I{r})/2),"")'}
+      - {header: Score, width: 8, format: "0.0", formula: '=IF(A{r}="","",IF(D{r}="Impact",IF(F{r}="Yes",M{r},IF(AND(E{r}="Yes",G{r}="Yes",M{r}>=Settings!$B$4),M{r},M{r}*K{r}/Settings!$B$1)),L{r}*K{r}/Settings!$B$1))'}
+      - {header: "Material?", width: 9, formula: '=IF(N{r}="","",IF(N{r}>=IF(D{r}="Impact",Settings!$B$2,Settings!$B$3),"Yes","No"))'}
+      - {header: "Impact material (1/0)", width: 8, formula: '=IF(AND(D{r}="Impact",O{r}="Yes"),1,0)'}
+      - {header: "Financial material (1/0)", width: 8, formula: '=IF(AND(D{r}<>"Impact",O{r}="Yes"),1,0)'}
+    highlights:
+      - {formula: '$O2="Yes"', color: E8F5E9}
+    examples:
+      - [E1-I1, E1, GHG emissions from the diesel truck fleet and the cold stores, Impact, 'Yes', 'Yes', 'No', 4, 3, 4, null, null]
+      - [E1-R1, E1, Rising fuel and carbon costs for the diesel fleet, Risk, null, null, null, null, null, null, 4, 4]
+      - [E1-O1, E1, Supermarkets choosing low-carbon logistics, Opportunity, null, null, null, null, null, null, 3, 3]
+      - [E2-I1, E2, Air pollution from trucks in towns, Impact, 'Yes', 'No', 'No', 2, 3, 2, 4, null]
+      - [E5-I1, E5, Food wasted when the cold chain fails, Impact, 'Yes', 'Yes', 'No', 3, 2, 2, null, null]
+      - [S1-I1, S1, Serious road and warehouse accidents involving drivers and staff, Impact, 'Yes', 'No', 'Yes', 4, 3, 5, 3, null]
+      - [S1-R1, S1, Shortage of truck drivers, Risk, null, null, null, null, null, null, 4, 3]
+      - [S2-I1, S2, Poor working conditions on farms that supply food suppliers, Impact, 'Yes', 'No', 'Yes', 3, 3, 3, 2, null]
+      - [G1-R1, G1, Bribery at ports and customs, Risk, null, null, null, null, null, null, 2, 2]
+  - name: Topics
+    prefill:
+      file: data/esrs_datapoints.yml
+      key: standards
+      where: {kind: topical}
+      fields: [standard, topic]
+    columns:
+      - {header: Standard, width: 9}
+      - {header: Topic, width: 34}
+      - {header: Items, width: 8, formula: '=COUNTIF(Items!$B$2:$B$101,A{r})'}
+      - {header: "Impact material?", width: 10, formula: '=IF(SUMIF(Items!$B$2:$B$101,A{r},Items!$P$2:$P$101)>0,"Yes","No")'}
+      - {header: "Financial material?", width: 10, formula: '=IF(SUMIF(Items!$B$2:$B$101,A{r},Items!$Q$2:$Q$101)>0,"Yes","No")'}
+      - {header: "Material?", width: 10, formula: '=IF(OR(D{r}="Yes",E{r}="Yes"),"Yes","No")'}
+      - {header: "Reason if no items or not material", width: 44}
+    highlights:
+      - {formula: '$F2="Yes"', color: E8F5E9}
+  - name: Settings
+    kind: summary
+    rows:
+      - {label: Top of the scale (scores run from 1 to this), example: 5, note: "Handbook choice: the ESRS set no scale."}
+      - {label: Impact threshold (material if the score is at least this), example: 3.0, note: "Handbook choice: the ESRS leave thresholds to you."}
+      - {label: Financial threshold (material if the score is at least this), example: 3.0, note: "Handbook choice."}
+      - {label: Human rights cut-off (severity at or above this takes precedence over likelihood), example: 4, note: "ESRS: severity takes precedence; the cut-off is a handbook choice."}
+      - {label: Items scored, formula: '=COUNTA(Items!A2:A101)'}
+      - {label: Items material, formula: '=COUNTIF(Items!O2:O101,"Yes")'}
+      - {label: Topics material, bold: true, formula: '=COUNTIF(Topics!F2:F11,"Yes")'}

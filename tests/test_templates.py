@@ -23,7 +23,8 @@ EXAMPLE = yaml.safe_load((ROOT / "data/examples/melita_metals.yml").read_text(en
 WORKFLOWS = yaml.safe_load((ROOT / "data/workflows.yml").read_text(encoding="utf-8"))
 EXPECTED_IDS = {"cbam-goods-register", "cbam-emissions-workbook", "cbam-supplier-request", "cbam-declaration-checklist",
                 "scope3-screening-matrix", "scope3-inventory", "supplier-letter", "recalculation-policy",
-                "vsme-basic-workbook", "questionnaire-response-bank"}
+                "vsme-basic-workbook", "questionnaire-response-bank",
+                "dma-workbook", "iro-register", "esrs-gap-list"}
 
 
 @pytest.fixture(scope="session")
@@ -302,3 +303,19 @@ def test_screening_matrix_examples_are_the_gozo_screening() -> None:
         assert ws[f"A{r}"].value == row.category
         assert ws[f"B{r}"].value == row.name
         assert ws[f"C{r}"].value == pytest.approx(row.tco2e), row.category
+
+
+def test_about_sheet_names_the_example_company(built) -> None:
+    """Each workbook says whose made-up example it shows, and that company appears in its instructions or rows."""
+    from openpyxl import load_workbook
+
+    for path in sorted((ROOT / "templates" / "sheets").glob("*.yml")):
+        spec = yaml.safe_load(path.read_text(encoding="utf-8"))
+        company = spec.get("example_company", "Melita Metals Ltd")
+        about = [c.value for c in load_workbook(built[path.stem])["About"]["A"] if c.value]
+        assert any(f"made-up example ({company})" in v for v in about), path.stem
+        short = company.split()[0]                                     # Gozo, Melita, Mediterranean
+        others = {"Gozo", "Melita", "Mediterranean"} - {short}
+        text = path.read_text(encoding="utf-8")
+        assert short in text or "Gozo" not in text and "Mediterranean" not in text, path.stem
+        assert not any(f"fictional {o}" in text for o in others), path.stem
