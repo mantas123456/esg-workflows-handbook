@@ -1,0 +1,60 @@
+# Data dictionary: the core datasets a company collects once and reuses.
+# Rendered into docs/foundations/one-dataset-many-reports.md by scripts/build_pages.py.
+# used_by: any of cbam, scope3, vsme, esrs-e1 (keys of `reports` below).
+# This is a planning map, not a list of legal datapoints. Each track page
+# gives the exact requirement and its source.
+
+reports:
+  cbam: CBAM
+  scope3: Scope 3
+  vsme: VSME
+  esrs-e1: ESRS E1
+
+datasets:
+  - name: electricity_use
+    title: Electricity use
+    unit: MWh
+    owner_role: Facilities or finance
+    frequency: Monthly (invoices or meter readings)
+    used_by: [scope3, vsme, esrs-e1]
+    note: Your own Scope 2 emissions. Scope 3 uses it for the upstream part of energy (category 3). Not used for CBAM, which needs the producer's data, not the importer's.
+
+  - name: fuel_use
+    title: Fuel use
+    unit: litres or m³, by fuel type
+    owner_role: Facilities or fleet manager
+    frequency: Monthly
+    used_by: [scope3, vsme, esrs-e1]
+    note: Your own Scope 1 emissions. Scope 3 uses it for the upstream part of fuels (category 3).
+
+  - name: purchased_goods_spend
+    title: Purchased goods and services spend
+    unit: EUR, by spend category
+    owner_role: Procurement or finance
+    frequency: Annual (from monthly ledger extracts)
+    used_by: [scope3, esrs-e1]
+    note: Spend-based method for Scope 3 category 1. ESRS E1 includes significant Scope 3 categories.
+
+  - name: supplier_emissions
+    title: Supplier emissions data
+    unit: tCO2e per tonne of product, or tCO2e per year
+    owner_role: Procurement with the sustainability lead
+    frequency: Annual, per supplier
+    used_by: [cbam, scope3, esrs-e1]
+    note: For CBAM, embedded emissions from the installation operator. For Scope 3, supplier-specific data that replaces spend-based estimates.
+
+  - name: imports_by_cn_code
+    title: Imports by CN code
+    unit: tonnes net mass, by CN code and country of origin
+    owner_role: Customs broker or logistics
+    frequency: Per shipment, totalled per year
+    used_by: [cbam, scope3]
+    note: CBAM 50-tonne test and declaration. Scope 3 uses the mass for average-data estimates (category 1) and transport (category 4).
+
+  - name: headcount
+    title: Headcount
+    unit: average number of employees, previous financial year
+    owner_role: HR
+    frequency: Annual (from monthly payroll)
+    used_by: [scope3, vsme]
+    note: Scope 3 employee commuting (category 7). VSME general information. Also the CSRD 1,000-employee tests in T1.
