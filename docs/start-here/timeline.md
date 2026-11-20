@@ -64,7 +64,7 @@ your customer or bank asks for the data.
 | Date | What happens | Who it affects | Source |
 |---|---|---|---|
 | 1 Jan 2026 | Definitive period starts. Each calendar year is one reporting period | EU importers of CBAM goods and their customs representatives | [DG TAXUD](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en) |
-| From 1 Jan 2026 | Threshold: importers below **50 tonnes net mass per year** (all CN codes added together) are exempt. The threshold does not apply to hydrogen or electricity | All importers of CBAM goods | [Regulation (EU) 2025/2083](https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng) |
+| From 1 Jan 2026 | Threshold: importers with **50 tonnes net mass or less per year** (all CN codes added together) are exempt. The exemption does not cover hydrogen or electricity | All importers of CBAM goods | [Regulation (EU) 2025/2083](https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng) |
 | 2026 (each quarter) | Certificate price for 2026 imports is the quarterly average of EU ETS auction prices | Authorised CBAM declarants | [DG TAXUD](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en) |
 | 1 Jan 2027 | Certificate price becomes a weekly average of EU ETS auction prices | Authorised CBAM declarants | [DG TAXUD](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en) |
 | 1 Feb 2027 | Sales of CBAM certificates start | Authorised CBAM declarants | [DG TAXUD](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en) |
