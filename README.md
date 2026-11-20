@@ -18,7 +18,7 @@ One page per step: what it is, inputs, steps, a worked example with made-up
 numbers, common mistakes, templates, tools and sources. Emissions numbers
 are treated as measurements, with traceable inputs and stated uncertainty.
 
-**Status:** version 0.1 in progress. See [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md)
+**Status:** version 0.1 in progress. See [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md), the [staged build prompts](prompts/STAGED_PROMPTS.md)
 and the [roadmap](docs/roadmap.md).
 
 > Not legal advice. The handbook explains the rules in its own words and
