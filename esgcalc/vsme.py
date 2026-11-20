@@ -72,6 +72,25 @@ def pay_gap(average_pay_men: float, average_pay_women: float) -> float:
     return (average_pay_men - average_pay_women) / average_pay_men
 
 
+def linear_target_path(base_value: float, base_year: int, target_year: int,
+                       reduction_share: float) -> dict[int, float]:
+    """A straight-line path from a base-year value to a reduction target.
+
+    For example 1,800 tCO2e in 2026 and -30% by 2030 gives 1,260 tCO2e in 2030,
+    falling by the same amount (135 tCO2e) each year. A planning aid for a
+    target the company sets itself; it says nothing about whether the target
+    is enough.
+    """
+    if not base_value > 0:
+        raise ValueError("base_value must be more than zero")
+    if target_year <= base_year:
+        raise ValueError("target_year must be after base_year")
+    if not 0 < reduction_share < 1:
+        raise ValueError("reduction_share must be between 0 and 1")
+    step = base_value * reduction_share / (target_year - base_year)
+    return {year: base_value - step * (year - base_year) for year in range(base_year, target_year + 1)}
+
+
 def turnover_rate(leavers: int, average_employees: float) -> float:
     """Employee turnover rate (B8): leavers / average number of employees.
 

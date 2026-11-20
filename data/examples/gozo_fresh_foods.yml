@@ -253,3 +253,18 @@ vsme_basic:
   corruption:                      # B11
     convictions: 0
     fines_eur: 0
+
+# V4: Comprehensive Module plan (MADE UP).
+vsme_comprehensive:
+  target: {scope: Scope 1 and 2, base_year: 2026, target_year: 2030, reduction_share: 0.30}
+  board: {members: 5, women: 2, men: 3}
+  plan:
+    - {disclosure: C1, what: "Products (prepared vegetables, sauces, ready meals), main customers (supermarkets in Malta), one site in Gozo", source: Management, ready_by: 31 Jan 2027}
+    - {disclosure: C2, what: "More detail on the energy, waste and workforce practices listed in B2", source: Site manager and HR, ready_by: 31 Jan 2027}
+    - {disclosure: C3, what: "Target: Scope 1 and 2 down 30% by 2030 from 2026; actions: heat pumps instead of LPG, refrigerant replacement, electric vans", source: Management, ready_by: 28 Feb 2027}
+    - {disclosure: C4, what: "Heatwaves straining the cold chain; water scarcity in Malta; higher energy prices; customers asking for lower-carbon products", source: Management with the site manager, ready_by: 28 Feb 2027}
+    - {disclosure: C5, what: "More workforce detail, from payroll", source: HR, ready_by: 31 Jan 2027}
+    - {disclosure: C6, what: "Human rights policy and how workers can raise concerns", source: HR, ready_by: 28 Feb 2027}
+    - {disclosure: C7, what: "Incidents in 2026: none recorded", source: HR and legal records, ready_by: 31 Jan 2027}
+    - {disclosure: C8, what: "Check whether any revenue comes from the activities the standard lists; Gozo expects none", source: Finance, ready_by: 31 Jan 2027}
+    - {disclosure: C9, what: "Board of 5: 2 women, 3 men", source: Company secretary, ready_by: 31 Jan 2027}

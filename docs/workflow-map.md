@@ -32,7 +32,7 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | V1 | VSME | [Choosing the modules](vsme/v1-modules.md) | 0.4 | draft |
 | V2 | VSME | [Basic module data collection](vsme/v2-basic.md) | 0.4 | draft |
 | V3 | VSME | [GHG emissions for VSME](vsme/v3-ghg.md) | 0.4 | draft |
-| V4 | VSME | [Comprehensive module](vsme/v4-comprehensive.md) | 0.4 | planned |
+| V4 | VSME | [Comprehensive module](vsme/v4-comprehensive.md) | 0.4 | draft |
 | V5 | VSME | [Answering customer and bank requests](vsme/v5-requests.md) | 0.4 | planned |
 | V6 | VSME | [Publishing and updating](vsme/v6-publishing.md) | 0.4 | planned |
 | C1 | CSRD / ESRS | [Am I in scope after Omnibus I?](csrd/c1-scope.md) | 0.5 | planned |
