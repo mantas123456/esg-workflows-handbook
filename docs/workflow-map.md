@@ -24,7 +24,7 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | S2 | Scope 3 | [Screening the 15 categories](scope3/s2-screening.md) | 0.3 | draft |
 | S3 | Scope 3 | [Data collection plan](scope3/s3-data-plan.md) | 0.3 | draft |
 | S4 | Scope 3 | [Calculation methods](scope3/s4-methods.md) | 0.3 | draft |
-| S5 | Scope 3 | [Choosing emission factors](scope3/s5-emission-factors.md) | 0.3 | planned |
+| S5 | Scope 3 | [Choosing emission factors](scope3/s5-emission-factors.md) | 0.3 | draft |
 | S6 | Scope 3 | [Data quality scoring](scope3/s6-data-quality.md) | 0.3 | planned |
 | S7 | Scope 3 | [Supplier engagement](scope3/s7-suppliers.md) | 0.3 | planned |
 | S8 | Scope 3 | [Base year and recalculation](scope3/s8-base-year.md) | 0.3 | planned |

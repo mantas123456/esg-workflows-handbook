@@ -263,3 +263,75 @@ def test_s4_island_cold_store_overlap() -> None:
     assert totals[4].by_method["supplier_specific"] == pytest.approx(90)
     assert totals[15].tco2e == pytest.approx(75)
     assert "(90 tCO2e, 30% of the cold store's emissions)" in text and "Gozo's 25% stake (75 tCO2e)" in text
+
+
+# --- S5 Choosing emission factors --------------------------------------------
+
+FACTOR_SOURCES = yaml.safe_load((ROOT / "data/factor_sources.yml").read_text(encoding="utf-8"))["sources"]
+
+
+def _options():
+    from esgcalc.factors import FactorOption
+    from esgcalc.quality import DataQuality
+
+    return [FactorOption(o["name"], o["source_id"], o["version"], o["year"], o["unit"],
+                         DataQuality(**o["quality"]), o["licence_allows_use"])
+            for o in EXAMPLE["factor_choice"]["options"]]
+
+
+def test_s5_options_table_and_choice() -> None:
+    from esgcalc.factors import choose_factor
+
+    text = page("s5-emission-factors.md")
+    sources = {s["id"]: s for s in FACTOR_SOURCES}
+    label = {"ecoinvent": "ecoinvent", "desnz-2026": "DESNZ 2026", "exiobase-3": "EXIOBASE 3.11.2"}
+    for raw, o in zip(EXAMPLE["factor_choice"]["options"], _options()):
+        assert o.source_id in sources
+        q = raw["quality"]
+        scores = ", ".join(str(q[k]) for k in ("technology", "time", "geography", "completeness", "reliability"))
+        allowed = ("Yes: " if o.licence_allows_use else "No: ") + raw["why"]
+        row = f"| {o.name} | {label[o.source_id]} | {scores} | {o.quality.score():.1f} | {allowed} |"
+        assert row in text, row
+    chosen = choose_factor(_options())
+    assert chosen.source_id == "desnz-2026"
+    assert f"Gozo chooses the **{chosen.name}**" in text
+    assert "# DESNZ 2026" in text
+
+
+def test_s5_licence_flags_agree_with_factor_sources() -> None:
+    # An option counts as usable only if its source may be used by a company: never for
+    # ecoinvent (no licence held) or EXIOBASE 3.9+ (non-commercial); DESNZ is OGL v3.0.
+    sources = {s["id"]: s for s in FACTOR_SOURCES}
+    for o in _options():
+        if o.licence_allows_use:
+            assert sources[o.source_id]["licence_status"] == "verified"
+            assert sources[o.source_id]["republish"] == "yes"
+    assert "non-commercial" in sources["exiobase-3"]["licence"]
+
+
+def test_s5_factor_register_covers_every_line() -> None:
+    text = page("s5-emission-factors.md")
+    register = EXAMPLE["factor_register"]
+    lines = [l["description"] for l in EXAMPLE["inventory"]["lines"] if l["method"] != "supplier_specific"]
+    assert sorted(register) == sorted(lines)
+    ids = {s["id"] for s in FACTOR_SOURCES} | {"to-choose"}
+    shown = {"desnz-2026": "DESNZ 2026", "to-choose": "To choose"}
+    for line, source in register.items():
+        assert source in ids
+        assert f"| {line} | {shown[source]} |" in text, line
+    done = sum(1 for s in register.values() if s != "to-choose")
+    assert (done, len(register) - done) == (13, 4)
+    assert f"**{done}** of the {len(register)} lines" in text and f"The **{len(register) - done}** spend-" in text
+
+
+def test_s5_generated_source_table_matches_factor_sources() -> None:
+    import importlib.util
+    import sys
+
+    spec = importlib.util.spec_from_file_location("build_pages", ROOT / "scripts/build_pages.py")
+    bp = importlib.util.module_from_spec(spec)
+    sys.modules["build_pages"] = bp
+    spec.loader.exec_module(bp)
+    raw = (ROOT / "docs/scope3/s5-emission-factors.md").read_text(encoding="utf-8")
+    table = bp.render_factor_sources({"sources": FACTOR_SOURCES})
+    assert f"{bp.FACTORS_START}\n{table}\n{bp.FACTORS_END}" in raw

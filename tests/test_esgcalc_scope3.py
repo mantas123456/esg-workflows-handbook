@@ -278,3 +278,19 @@ def test_suppliers_to_cover_rejects_bad_input() -> None:
         scope3.suppliers_to_cover({"A": 0}, 0.8)
     with pytest.raises(ValueError):
         scope3.suppliers_to_cover({"A": -1}, 0.8)
+
+
+# --- factors ----------------------------------------------------------------------
+
+def test_choose_factor_skips_unusable_and_breaks_ties_by_year() -> None:
+    from esgcalc.factors import FactorOption, age_years, choose_factor
+
+    best_but_locked = FactorOption("A", "x", "1", 2025, "kg/kg", DataQuality(1, 1, 1, 1, 1), False)
+    old = FactorOption("B", "y", "1", 2023, "kg/kg", DataQuality(2, 2, 2, 2, 2), True)
+    new = FactorOption("C", "z", "1", 2026, "kg/kg", DataQuality(2, 2, 2, 2, 2), True)
+    assert choose_factor([best_but_locked, old, new]).name == "C"     # same score 2.0, newer wins
+    assert age_years(old, 2026) == 3 and age_years(new, 2026) == 0
+    with pytest.raises(ValueError):
+        choose_factor([best_but_locked])
+    with pytest.raises(ValueError):
+        FactorOption("D", "x", "1", 2026, "", DataQuality(1, 1, 1, 1, 1), True)

@@ -106,3 +106,39 @@ inventory:
     - {category: 12, description: Glass at end of life, method: average_data, activity: 200000, unit: kg, factor: 0.01}
     - {category: 12, description: Food wasted by consumers, method: average_data, activity: 150000, unit: kg, factor: 0.5}
   kept_from_screening: [5, 6, 15]     # not significant: screening estimates carried over
+
+# S5: choosing a factor for plastic film packaging (scores 1 = very good, 5 = very poor).
+factor_choice:
+  line: Plastic film packaging
+  reporting_year: 2026
+  options:
+    - {name: "ecoinvent dataset for plastic film", source_id: ecoinvent, version: not tracked, year: 2024, unit: kg CO2e/kg,
+       quality: {technology: 2, time: 2, geography: 3, completeness: 1, reliability: 2}, licence_allows_use: false,
+       why: "Gozo holds no ecoinvent licence"}
+    - {name: "DESNZ 2026 material-use factor for plastic film", source_id: desnz-2026, version: "2026", year: 2026, unit: kg CO2e/kg,
+       quality: {technology: 2, time: 1, geography: 3, completeness: 2, reliability: 2}, licence_allows_use: true,
+       why: "Open Government Licence v3.0"}
+    - {name: "EXIOBASE multiplier for plastic products (spend-based)", source_id: exiobase-3, version: "3.11.2", year: 2022, unit: kg CO2e/EUR,
+       quality: {technology: 4, time: 3, geography: 2, completeness: 3, reliability: 3}, licence_allows_use: false,
+       why: "v3.9 and later: non-commercial academic use only"}
+
+# S5: factor register for the S4 inventory lines (values are the made-up ones from S4).
+# source_id: an id in data/factor_sources.yml, or "to-choose" where no usable source is settled yet.
+factor_register:
+  Other ingredient suppliers: to-choose
+  "Services (cleaning, IT, maintenance)": to-choose
+  Machinery and equipment bought in 2026: to-choose
+  Cardboard packaging: desnz-2026
+  Plastic film packaging: desnz-2026
+  Glass jars: desnz-2026
+  Upstream emissions of purchased electricity: desnz-2026
+  Upstream emissions of fuels burned: desnz-2026
+  Road freight from haulier records: desnz-2026
+  "Commuting by car (staff survey)": desnz-2026
+  "Commuting by bus (staff survey)": desnz-2026
+  Chilled storage at the supermarket (its figures): to-choose
+  Supermarket transport to its stores (its figures): desnz-2026
+  Cardboard at end of life: desnz-2026
+  Plastic film at end of life: desnz-2026
+  Glass at end of life: desnz-2026
+  Food wasted by consumers: desnz-2026
