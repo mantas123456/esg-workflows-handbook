@@ -54,6 +54,15 @@
   fact: First annual declaration and surrender due 30 Sep 2027 for 2026 imports
   source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en
   last_checked: 2026-11-20
+- id: cbam-records
+  fact: The authorised CBAM declarant keeps records of the information used to calculate embedded emissions, including the verifier's report, until the end of the fourth year after the year the CBAM declaration was or should have been submitted (Article 7(6), Regulation (EU) 2023/956)
+  source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20
+  values: {retention_years_after_declaration_year: 4}
+  last_checked: 2026-11-20
+- id: cbam-carbon-price-records
+  fact: Documents supporting a reduction for carbon price paid abroad are kept until the end of the fourth year after the year in which the independent person certified them (Article 9(3), Regulation (EU) 2023/956 as amended by Regulation (EU) 2025/2083)
+  source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20
+  last_checked: 2026-11-20
 - id: cbam-quarterly-holding
   fact: From 2027, at the end of each quarter the declarant must hold certificates for at least 50% of embedded emissions in goods imported since the start of the year (Article 22(2), Regulation (EU) 2023/956 as amended)
   source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
