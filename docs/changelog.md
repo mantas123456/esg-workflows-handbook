@@ -4,6 +4,52 @@ What changed in the handbook, newest first. Regulatory updates are listed
 here too, with the date the facts were re-checked. See the
 [roadmap](roadmap.md) for what comes next.
 
+## 0.3 Scope 3 track (20 November 2026)
+
+The full Scope 3 track, from boundary to reporting, with one fictional
+company (Gozo Fresh Foods Ltd, Malta) followed through every step, and a
+foundation page on data quality and uncertainty. All pages are drafts, not
+yet reviewed by a practitioner.
+
+**New pages (draft)**
+
+- [S1 Boundary](scope3/s1-boundary.md), [S2 Screening](scope3/s2-screening.md),
+  [S3 Data plan](scope3/s3-data-plan.md), [S4 Methods](scope3/s4-methods.md),
+  [S5 Emission factors](scope3/s5-emission-factors.md),
+  [S6 Data quality scoring](scope3/s6-data-quality.md),
+  [S7 Supplier engagement](scope3/s7-suppliers.md),
+  [S8 Base year](scope3/s8-base-year.md), [S9 Reporting](scope3/s9-reporting.md).
+- [F2 Data quality and uncertainty](foundations/data-quality.md): emissions
+  treated as measurements, with an uncertainty budget and Monte Carlo.
+
+**New tools and templates**
+
+- [Scope 3 screening](tools/scope3-screening.md) and
+  [uncertainty demo](tools/uncertainty-demo.md), in your browser.
+- Downloads: Scope 3 screening matrix and inventory workbook (Excel),
+  supplier letter and base-year recalculation policy (Word).
+- `esgcalc`: Scope 3 methods (spend-based with deflation and currency,
+  average-data, supplier-specific, hybrid), screening, supplier coverage,
+  organisational boundary, factor choice, base-year recalculation, data
+  quality and uncertainty (analytic and seeded Monte Carlo).
+
+**Facts and sources (checked 20 November 2026)**
+
+- Added: the GHG Protocol Scope 3 Standard and its revision timeline
+  (draft for consultation estimated Q2 2027), organisational boundary
+  approaches and the December 2025 revision proposal, the 15 categories,
+  base-year recalculation, the Land Sector and Removals Standard (in effect
+  from 1 January 2027), revised ESRS E1 Scope 3 requirements, and the
+  JCGM GUM documents.
+- New `data/factor_sources.yml`: DESNZ 2026 (Open Government Licence) and
+  EEA (CC BY 4.0) may be quoted; EXIOBASE 3.9+ (non-commercial) and
+  ecoinvent (licensed) are linked only; EPA USEEIO and EU legal texts still
+  to check.
+
+**Known gaps** (see the note on S1): land use and land-use change, the ESRS
+E1 Scope 3 phase-in (not confirmed), and spend-based factor sources for
+companies that cannot use EXIOBASE.
+
 ## 0.2 CBAM track (20 November 2026)
 
 The full CBAM track, from the scope check to records, with one fictional
