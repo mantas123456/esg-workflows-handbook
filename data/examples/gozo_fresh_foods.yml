@@ -283,3 +283,14 @@ questionnaire:
     - {question: "How many people work for you?", datapoint: B8-employees, decision: answer}
     - {question: "How many work accidents did you have?", datapoint: B9-accidents, decision: answer}
     - {question: "What is the carbon footprint per kg of each product you sell us?", datapoint: null, decision: decline}
+
+# V6: publishing the 2026 VSME report and restating it in 2027 (MADE UP).
+publication:
+  calendar:
+    - {date: 2027-03-31, step: "All data in; Scope 3 inventory finished (S3, S9)"}
+    - {date: 2027-04-09, step: "Second person reviews the report against the evidence locker"}
+    - {date: 2027-04-15, step: "Board approves the report"}
+    - {date: 2027-04-20, step: "Published on the website as PDF, with the EFRAG digital template; sent to the supermarket and the bank"}
+  deadline: 2027-04-30
+  restatement_2027:
+    acquired_entity: Island Cold Store Ltd (associate)

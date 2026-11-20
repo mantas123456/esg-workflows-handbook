@@ -57,7 +57,7 @@ tracks:
       - {id: V3, title: "GHG emissions for VSME", file: v3-ghg.md, release: "0.4", status: draft}
       - {id: V4, title: "Comprehensive module", file: v4-comprehensive.md, release: "0.4", status: draft}
       - {id: V5, title: "Answering customer and bank requests", file: v5-requests.md, release: "0.4", status: draft}
-      - {id: V6, title: "Publishing and updating", file: v6-publishing.md, release: "0.4", status: planned}
+      - {id: V6, title: "Publishing and updating", file: v6-publishing.md, release: "0.4", status: draft}
 
   - id: csrd
     title: CSRD / ESRS
