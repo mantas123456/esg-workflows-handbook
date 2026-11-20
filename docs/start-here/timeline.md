@@ -55,6 +55,8 @@ Read it at the start of each year and after every regulatory change. The
 | Date | What happens | Who it affects | Source |
 |---|---|---|---|
 | 3 Jul 2026 | Commission adopts the voluntary sustainability reporting standard for smaller companies as a delegated act, together with the revised ESRS | SMEs outside CSRD scope that get ESG data requests from customers, banks or investors | [European Commission](https://finance.ec.europa.eu/news/commission-adopts-revised-sustainability-reporting-standards-2026-07-03_en) |
+| 21 Sep 2026 | Voluntary standard published in the Official Journal as Delegated Regulation (EU) 2026/1560 | Undertakings with on average 1,000 employees or fewer | [EUR-Lex](https://eur-lex.europa.eu/eli/reg_del/2026/1560/oj/eng) |
+| 1 Jan 2027 | Voluntary standard applies to financial years starting on or after this date. From financial year 2027, companies reporting under the CSRD may not require more than it covers from value-chain companies with 1,000 employees or fewer | Smaller companies and their large customers | [EUR-Lex](https://eur-lex.europa.eu/eli/reg_del/2026/1560/oj/eng) |
 
 VSME is voluntary. There is no filing deadline. Your deadline is the date
 your customer or bank asks for the data.

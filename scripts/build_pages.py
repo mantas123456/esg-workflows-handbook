@@ -5,6 +5,7 @@ links in each page whose step lists ``templates``.
 Existing pages are never overwritten; only the marked generated blocks are
 refreshed. Run before `mkdocs build`.
 """
+import re
 import sys
 from pathlib import Path
 
@@ -214,6 +215,52 @@ def uncertainty_tool_data() -> dict:
     return {"example": {"lines": lines, "draws": 100000, "seed": mc["seed"]}}
 
 
+VSME_START = re.compile(r"<!-- generated from data/vsme_datapoints.yml: (?P<filter>[^>]*?) -->")
+VSME_END = "<!-- end generated vsme datapoints -->"
+BASIS_TEXT = {"act": "2026 act", "rec-2025": "2025 Recommendation", "title": "Topic only"}
+
+
+def render_vsme_datapoints(points: list[dict], filter_text: str) -> str:
+    """A table of VSME datapoints. ``filter_text`` is ``module=basic``, ``module=comprehensive``,
+    ``disclosures=B3,B8`` or ``all``."""
+    key, _, value = filter_text.partition("=")
+    if key == "module":
+        chosen = [p for p in points if p["module"] == value]
+    elif key == "disclosures":
+        wanted = value.split(",")
+        chosen = [p for p in points if p["disclosure"] in wanted]
+    elif key == "all":
+        chosen = list(points)
+    else:
+        raise ValueError(f"unknown VSME table filter {filter_text!r}")
+    if not chosen:
+        raise ValueError(f"VSME table filter {filter_text!r} matches no datapoint")
+    rows = ["| Datapoint | What it covers | Unit | Dataset | Checked against |", "|---|---|---|---|---|"]
+    for p in chosen:
+        dataset = f"`{p['dataset']}`" if p["dataset"] else "–"
+        rows.append(f"| {p['id']} | {p['description']} | {p['unit']} | {dataset} | {BASIS_TEXT[p['basis']]} |")
+    return "\n".join(rows)
+
+
+def write_vsme_tables() -> None:
+    """Fill every generated VSME datapoint table in the VSME pages."""
+    points = yaml.safe_load((ROOT / "data" / "vsme_datapoints.yml").read_text(encoding="utf-8"))["datapoints"]
+    for page in sorted((DOCS / "vsme").glob("*.md")):
+        text = page.read_text(encoding="utf-8")
+        out, pos = [], 0
+        for m in VSME_START.finditer(text):
+            if m.start() < pos:
+                continue
+            end = text.index(VSME_END, m.end())
+            out.append(text[pos:m.end()])
+            out.append("\n" + render_vsme_datapoints(points, m.group("filter").strip()) + "\n")
+            pos = end
+        if out:
+            new = "".join(out) + text[pos:]
+            if new != text:
+                page.write_text(new, encoding="utf-8")
+
+
 FACTORS_PAGE = DOCS / "scope3" / "s5-emission-factors.md"
 FACTORS_START = "<!-- generated from data/factor_sources.yml: do not edit by hand -->"
 FACTORS_END = "<!-- end generated factor sources -->"
@@ -297,6 +344,7 @@ def main() -> None:
     write_templates_sections()
     write_cbam_tool_data()
     write_factor_sources_section()
+    write_vsme_tables()
     write_json_block(DOCS / "tools" / "scope3-screening.md", "scope3-screening-data", screening_tool_data())
     write_json_block(DOCS / "tools" / "uncertainty-demo.md", "uncertainty-demo-data", uncertainty_tool_data())
 

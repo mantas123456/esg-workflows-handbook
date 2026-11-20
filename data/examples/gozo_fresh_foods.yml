@@ -200,3 +200,13 @@ changes_2027:
   - {name: "Acquisition of 100% of Island Cold Store (1 July 2027)", kind: Structural, effect: "Its emissions move into Scope 1 and 2: remove category 4 storage (90 t) and category 15 equity (75 t) from the base year", tco2e: -165}
   - {name: New spend factor for other ingredient suppliers, kind: Methodology, effect: "Factor source chosen (S5): 1.1 instead of 0.9 kg/EUR, same deflation", new_factor: 1.1}
   - {name: Commuting survey counted part-time staff as full-time, kind: Error, effect: "Car km corrected from 600,000 to 560,000", corrected_activity: 560000}
+
+# V1-V6: VSME. Gozo Fresh Foods reports with the voluntary standard (made up).
+vsme:
+  reporting_year: 2026
+  requests:
+    - {from: "Supermarket (reports under the CSRD)", asks: "Energy use, Scope 1 and 2 emissions, and Scope 3", disclosures: [B3]}
+    - {from: "Bank (loan renewal)", asks: "Workforce size and work accidents", disclosures: [B8, B9]}
+    - {from: "Bank (loan renewal)", asks: "Climate targets and how climate change could affect the business", disclosures: [C3, C4]}
+    - {from: "Supermarket (reports under the CSRD)", asks: "Waste and packaging", disclosures: [B7]}
+  option: B
