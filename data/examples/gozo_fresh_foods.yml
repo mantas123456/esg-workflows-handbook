@@ -52,3 +52,26 @@ screening:
     14: Gozo has no franchises.
   other_reasons:
     9: The supermarket asked for it, and Gozo can reduce it through packaging and shelf life.
+
+# S3: data collection plan. Ingredient spend 2026 by supplier, EUR (made up; sums to 6,000,000).
+ingredient_spend_by_supplier:
+  Maltese Farmers Cooperative: 1800000
+  Sicilian Tomato Co: 1200000
+  Gozo Greens Ltd: 900000
+  Island Dairy Ltd: 700000
+  Mediterranean Oils: 500000
+  Spice Traders Ltd: 300000
+  Valletta Grain Mill: 250000
+  Ghajnsielem Egg Farm: 200000
+  Herb Garden Gozo: 100000
+  Other small suppliers: 50000
+supplier_target_share: 0.80
+inventory_deadline: 2027-04-30     # the supermarket wants the 2026 inventory by this date
+data_plan:     # one row per significant category from S2
+  - {category: 1, data: "Spend by supplier; tonnes bought from the top 5 ingredient suppliers; their emissions data; packaging tonnes by material", screening: Spend-based, target: "Supplier-specific for the top 5 ingredient suppliers; average-data for packaging; spend-based for the rest", owner: Purchasing, source: "Purchase ledger, supplier questionnaires (S7), packaging specifications", ready_by: 31 Mar 2027}
+  - {category: 2, data: "Assets bought in 2026, by type and cost", screening: Spend-based, target: Spend-based, owner: Finance, source: Fixed asset register, ready_by: 31 Jan 2027}
+  - {category: 3, data: "MWh of electricity and of each fuel", screening: Average-data, target: "Average-data with sourced factors (S5)", owner: Facilities, source: Energy invoices and meter readings, ready_by: 31 Jan 2027}
+  - {category: 4, data: "Tonne.km per haulier; Island Cold Store's emissions and Gozo's share of its capacity", screening: "Average-data and supplier-specific", target: "Average-data from haulier records; supplier-specific for the cold store", owner: Logistics, source: "Haulier invoices, Island Cold Store's emissions report", ready_by: 28 Feb 2027}
+  - {category: 7, data: "Distance, transport mode and days on site per employee", screening: "Average-data (estimate)", target: Average-data from a staff survey, owner: HR, source: Staff survey, ready_by: 31 Jan 2027}
+  - {category: 9, data: "Storage time and transport distance of Gozo products at the supermarket", screening: "Average-data (estimate)", target: Average-data from the supermarket's figures, owner: Sales, source: The supermarket, ready_by: 28 Feb 2027}
+  - {category: 12, data: "Packaging tonnes by material; share of food wasted by consumers", screening: Average-data, target: Average-data with material-specific factors, owner: Quality and packaging, source: "Packaging specifications, published food-waste studies", ready_by: 31 Jan 2027}

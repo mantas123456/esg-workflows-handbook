@@ -259,3 +259,22 @@ def test_screen_rejects_missing_categories_and_bad_threshold() -> None:
             scope3.screen(est, bad)
     with pytest.raises(ValueError):
         scope3.screen({c: 0.0 for c in range(1, 16)}, 0.02)
+
+
+# --- supplier coverage --------------------------------------------------------------
+
+def test_suppliers_to_cover() -> None:
+    # 50 + 30 = 80 of 100 -> two suppliers reach exactly 80%
+    c = scope3.suppliers_to_cover({"B": 30, "A": 50, "C": 20}, 0.80)
+    assert (c.suppliers, c.share) == (["A", "B"], 0.8)
+    assert scope3.suppliers_to_cover({"A": 50, "B": 30, "C": 20}, 1.0).suppliers == ["A", "B", "C"]
+
+
+def test_suppliers_to_cover_rejects_bad_input() -> None:
+    for bad in (0, 1.1):
+        with pytest.raises(ValueError):
+            scope3.suppliers_to_cover({"A": 1}, bad)
+    with pytest.raises(ValueError):
+        scope3.suppliers_to_cover({"A": 0}, 0.8)
+    with pytest.raises(ValueError):
+        scope3.suppliers_to_cover({"A": -1}, 0.8)

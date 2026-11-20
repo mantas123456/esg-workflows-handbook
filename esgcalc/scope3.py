@@ -224,3 +224,36 @@ def screen(
                          significant_by_size=estimates_tco2e[c] / total >= size_threshold_share,
                          other_reason=reasons.get(c, ""))
             for c in sorted(CATEGORY_NAMES)]
+
+
+# --- data collection planning ----------------------------------------------------
+
+@dataclass(frozen=True)
+class Coverage:
+    suppliers: list[str]
+    """Suppliers to ask first, largest spend first."""
+    share: float
+    """Share of total spend they cover (0 to 1)."""
+
+
+def suppliers_to_cover(spend_by_supplier: dict[str, float], target_share: float) -> Coverage:
+    """The fewest suppliers, largest first, whose spend reaches ``target_share`` of the total.
+
+    A simple way to decide whom to ask for supplier-specific data first: a few
+    large suppliers usually cover most of the spend. Ties keep input order.
+    """
+    if not 0 < target_share <= 1:
+        raise ValueError("target_share must be more than 0 and at most 1")
+    for name, s in spend_by_supplier.items():
+        _non_negative(f"spend of {name}", s)
+    total = math.fsum(spend_by_supplier.values())
+    if total == 0:
+        raise ValueError("no spend to cover")
+    chosen: list[str] = []
+    covered = 0.0
+    for name, s in sorted(spend_by_supplier.items(), key=lambda kv: -kv[1]):
+        if covered / total >= target_share:
+            break
+        chosen.append(name)
+        covered += s
+    return Coverage(suppliers=chosen, share=covered / total)

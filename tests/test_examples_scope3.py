@@ -132,3 +132,45 @@ def test_s2_category_9_is_significant_for_another_reason() -> None:
 def test_s2_every_zero_category_has_a_reason() -> None:
     zero = {r.category for r in screening_rows() if r.tco2e == 0}
     assert zero == set(EXAMPLE["screening"]["not_applicable"]) == {8, 10, 11, 13, 14}
+
+
+# --- S3 Data collection plan -------------------------------------------------
+
+def test_s3_supplier_coverage_table() -> None:
+    from esgcalc.scope3 import suppliers_to_cover
+
+    text = page("s3-data-plan.md")
+    spend = EXAMPLE["ingredient_spend_by_supplier"]
+    total = sum(spend.values())
+    assert total == 6_000_000
+    running = 0.0
+    for name, s in spend.items():
+        running += s
+        assert f"| {name} | {fmt(s)} | {s / total:.2%} | {running / total:.2%} |" in text, name
+    c = suppliers_to_cover(spend, EXAMPLE["supplier_target_share"])
+    # 30 + 20 + 15 + 11.67 = 76.67% < 80%; adding the 5th gives 85%
+    assert len(c.suppliers) == 5 and c.share == pytest.approx(0.85)
+    assert f"**top {len(c.suppliers)} suppliers cover {c.share:.2%}**" in text
+    rest = total - sum(spend[n] for n in c.suppliers)
+    assert f"other EUR {fmt(rest)}" in text
+    assert "# 5 0.85" in text
+
+
+def test_s3_plan_covers_exactly_the_significant_categories() -> None:
+    from datetime import datetime
+
+    import test_examples_scope3 as me
+
+    text = page("s3-data-plan.md")
+    significant = [r.category for r in me.screening_rows() if r.significant]
+    plan = EXAMPLE["data_plan"]
+    assert [r["category"] for r in plan] == significant
+    assert f"found {len(significant)} significant categories" in text
+    deadline = EXAMPLE["inventory_deadline"]
+    for r in plan:
+        row = (f"| {r['category']} | {r['data']} | {r['screening']} | {r['target']} | "
+               f"{r['owner']} | {r['source']} | {r['ready_by']} |")
+        assert row in text, r["category"]
+        ready = datetime.strptime(r["ready_by"], "%d %b %Y").date()
+        assert (deadline - ready).days >= 28, r["category"]      # "at least four weeks"
+    assert f"inventory by {deadline.day} {deadline:%B %Y}" in text
