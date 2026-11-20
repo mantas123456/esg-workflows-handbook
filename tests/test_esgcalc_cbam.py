@@ -22,6 +22,7 @@ def test_parameters_match_regulation_facts() -> None:
     assert P["certificate"]["tco2e_per_certificate"] == REGS["cbam-certificate-unit"]["values"]["tco2e_per_certificate"]
     assert P["cbam_factor_by_year"]["values"] == REGS["cbam-free-allocation-adjustment"]["values"]["cbam_factor_by_year"]
     assert P["default_value_markup_by_year"]["values"] == REGS["cbam-default-values"]["values"]["markup_by_year"]
+    assert P["default_value_markup_by_year"]["sector_markup"]["fertilisers"] == REGS["cbam-default-values"]["values"]["fertilisers_markup"]
     for block in ("threshold", "sectors", "certificate", "quarterly_holding"):
         assert P[block]["fact"] in REGS, block
 
@@ -223,3 +224,28 @@ def test_transitional_rule_edges() -> None:
     assert cbam.may_import_pending_decision(date(2026, 3, 31), 2026) is True   # last day counts
     assert cbam.may_import_pending_decision(date(2026, 4, 1), 2026) is False
     assert cbam.may_import_pending_decision(date(2026, 3, 1), 2027) is False   # 2026 imports only
+
+
+# --- default_value_with_markup ----------------------------------------------
+
+@pytest.mark.parametrize("year, expected", [
+    (2026, 2.2),   # 2.0 x 1.10
+    (2027, 2.4),   # 2.0 x 1.20
+    (2028, 2.6),   # 2.0 x 1.30
+    (2035, 2.6),   # 30% stays from 2028 onwards
+])
+def test_markup_by_year(year: int, expected: float) -> None:
+    assert cbam.default_value_with_markup(2.0, year, "aluminium") == pytest.approx(expected)
+
+
+def test_fertilisers_markup_is_one_percent_every_year() -> None:
+    # 2.0 x 1.01 = 2.02, in 2026 and in 2030
+    assert cbam.default_value_with_markup(2.0, 2026, "fertilisers") == pytest.approx(2.02)
+    assert cbam.default_value_with_markup(2.0, 2030, "fertilisers") == pytest.approx(2.02)
+
+
+def test_markup_rejects_bad_input() -> None:
+    with pytest.raises(ValueError):
+        cbam.default_value_with_markup(2.0, 2025, "aluminium")
+    with pytest.raises(ValueError):
+        cbam.default_value_with_markup(-1.0, 2026, "aluminium")

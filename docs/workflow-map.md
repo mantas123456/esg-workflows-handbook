@@ -13,7 +13,7 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | CB1 | CBAM | [Scope check - CN codes and the 50 t threshold](cbam/cb1-scope-check.md) | 0.2 | draft |
 | CB2 | CBAM | [Authorised CBAM declarant status](cbam/cb2-authorisation.md) | 0.2 | draft |
 | CB3 | CBAM | [Requesting data from installation operators](cbam/cb3-supplier-data.md) | 0.2 | draft |
-| CB4 | CBAM | [Embedded emissions - actual vs default values](cbam/cb4-embedded-emissions.md) | 0.2 | planned |
+| CB4 | CBAM | [Embedded emissions - actual vs default values](cbam/cb4-embedded-emissions.md) | 0.2 | draft |
 | CB5 | CBAM | [Precursors and complex goods](cbam/cb5-precursors.md) | 0.2 | planned |
 | CB6 | CBAM | [Verification of emissions data](cbam/cb6-verification.md) | 0.2 | planned |
 | CB7 | CBAM | [Carbon price paid abroad](cbam/cb7-carbon-price-paid.md) | 0.2 | planned |

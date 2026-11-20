@@ -85,10 +85,10 @@
   values: {tco2e_per_certificate: 1}
   last_checked: 2026-11-20
 - id: cbam-default-values
-  fact: Legally binding default values for the definitive period are in Implementing Regulation (EU) 2025/2621, corrected by Regulation (EU) 2026/1740; they include a mark-up of 10% in 2026, 20% in 2027 and 30% from 2028; default values can be used for all CBAM goods except electricity
-  article: Implementing Regulation (EU) 2025/2621; Regulation (EU) 2023/956, Article 7 and Annex IV
-  source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-legislation-and-guidance_en
-  values: {markup_by_year: {2026: 0.10, 2027: 0.20, 2028: 0.30}}
+  fact: Legally binding default values for the definitive period are in Implementing Regulation (EU) 2025/2621, corrected by Implementing Regulation (EU) 2026/1740; default values are increased by a mark-up of 10% in 2026, 20% in 2027 and 30% from 2028, except fertilisers, which have 1% from 2026; 2026/1740 deleted the tables' marked-up columns to avoid rounding inconsistencies, so the mark-up is applied to the base value; default values can be used for all CBAM goods except electricity
+  article: Implementing Regulation (EU) 2025/2621, Annexes I and IV, as corrected by Implementing Regulation (EU) 2026/1740; Regulation (EU) 2023/956, Article 7 and Annex IV
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601740
+  values: {markup_by_year: {2026: 0.10, 2027: 0.20, 2028: 0.30}, fertilisers_markup: 0.01}
   last_checked: 2026-11-20
 - id: cbam-verification
   fact: Actual embedded emissions declared must be verified by a verifier accredited for CBAM by a national accreditation body in the EU; verification rules are in Implementing Regulation (EU) 2025/2546

@@ -55,6 +55,7 @@ cbam_factor_by_year:
 
 default_value_markup_by_year:
   values: {2026: 0.10, 2027: 0.20, 2028: 0.30}   # 0.30 applies from 2028 onwards
+  sector_markup: {fertilisers: 0.01}            # from 2026 onwards
   fact: cbam-default-values
-  article: Implementing Regulation (EU) 2025/2621
-  source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-legislation-and-guidance_en
+  article: Implementing Regulation (EU) 2025/2621, as corrected by Implementing Regulation (EU) 2026/1740
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601740

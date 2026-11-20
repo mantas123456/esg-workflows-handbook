@@ -51,3 +51,19 @@ supplier_requests:
     sent: 2026-02-02
     answer: "Cannot arrange verification for 2026"
     outcome: default         # CB4 uses default values
+
+# CB4: data received from Installation A for 2026 production (made-up, verified).
+installation_A_2026:
+  product: Steel bars (CN 7214 20 00 and 7214 99 10), same process
+  production_mass_t: 100000
+  direct_tco2e: 8000          # rolling mill
+  indirect_tco2e: 12000       # electricity; does not count for iron and steel
+  precursors:
+    - {name: crude steel, mass_t: 104000, see_tco2e_per_t: 0.55}
+  verified: true
+
+# CB4: base default values without mark-up (MADE UP for illustration; the real
+# values are in Implementing Regulation (EU) 2025/2621 by country of origin).
+default_values_base:
+  aluminium_bars_B: {cn_code: "7604 29 10", sector: aluminium, base_direct_see_tco2e_per_t: 2.10}
+  steel_bars_A: {cn_code: "7214 20 00", sector: iron_steel, base_direct_see_tco2e_per_t: 1.60}

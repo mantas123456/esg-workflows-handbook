@@ -8,6 +8,7 @@ from collections import defaultdict
 from datetime import date, datetime
 from pathlib import Path
 
+import pytest
 import yaml
 
 from esgcalc.cbam import authorisation_decision_deadline, may_import_pending_decision, threshold_check
@@ -23,7 +24,9 @@ def page(name: str) -> str:
 
 
 def fmt(x: float) -> str:
-    return f"{x:,.0f}" if float(x).is_integer() else f"{x:,}"
+    """Format a number as the pages show it: thousands separators, no float noise."""
+    x = round(float(x), 6)   # 104,000 x 0.55 = 57,200.00000000001 in binary floats
+    return f"{x:,.0f}" if x.is_integer() else f"{x:,}"
 
 
 # --- CB1 Scope check -------------------------------------------------------
@@ -133,3 +136,73 @@ def test_cb3_tonnes_by_installation_and_outcomes() -> None:
     actual_share = sum(shares[i] for i, r in outcome.items() if r["outcome"] == "actual")
     assert f"**{actual_share}%** of Melita Metals' tonnes will have actual" in text
     assert f"other **{100 - actual_share}%**" in text
+
+
+# --- CB4 Embedded emissions ------------------------------------------------
+
+def _mass(inst: str) -> float:
+    return sum(l["mass_t"] for l in IMPORTS if l["installation"] == inst)
+
+
+def _installation_a():
+    from esgcalc.cbam import Precursor, embedded_emissions
+    a = EXAMPLE["installation_A_2026"]
+    return embedded_emissions(
+        sector="iron_steel", production_mass_t=a["production_mass_t"], direct_tco2e=a["direct_tco2e"],
+        indirect_tco2e=a["indirect_tco2e"],
+        precursors=[Precursor(p["mass_t"], p["see_tco2e_per_t"]) for p in a["precursors"]],
+        imported_mass_t=_mass("A"))
+
+
+def test_cb4_actual_values_installation_a() -> None:
+    text = page("cb4-embedded-emissions.md")
+    a = EXAMPLE["installation_A_2026"]
+    e = _installation_a()
+    prec = a["precursors"][0]
+    precursor_tco2e = prec["mass_t"] * prec["see_tco2e_per_t"]
+    # (8,000 + 104,000 x 0.55) / 100,000 = 65,200 / 100,000 = 0.652; x 400 t = 260.8
+    assert precursor_tco2e == pytest.approx(57_200)
+    assert e.see_tco2e_per_t == pytest.approx(0.652)
+    assert e.total_tco2e == pytest.approx(260.8)
+    assert e.indirect_included is False
+    for shown in (f"| {fmt(a['production_mass_t'])} t |", f"| {fmt(a['direct_tco2e'])} tCO2e |",
+                  f"| {fmt(a['indirect_tco2e'])} tCO2e, **not counted**",
+                  f"{fmt(prec['mass_t'])} t x {prec['see_tco2e_per_t']} tCO2e/t = {fmt(precursor_tco2e)} tCO2e",
+                  "SEE = (8,000 + 57,200) / 100,000 = **0.652 tCO2e/t**",
+                  "0.652 x 400 t = **260.8 tCO2e**",
+                  "print(a.see_tco2e_per_t, a.total_tco2e, a.indirect_included) # 0.652 260.8 False"):
+        assert shown in text, shown
+
+
+def test_cb4_default_values_installation_b_and_total() -> None:
+    from esgcalc.cbam import default_value_with_markup
+    text = page("cb4-embedded-emissions.md")
+    base = EXAMPLE["default_values_base"]["aluminium_bars_B"]["base_direct_see_tco2e_per_t"]
+    mass_b = _mass("B")
+    rows = {y: default_value_with_markup(base, y, "aluminium") for y in (2026, 2027, 2028)}
+    expected = {2026: (2.31, 80.85), 2027: (2.52, 88.2), 2028: (2.73, 95.55)}
+    for y, see in rows.items():
+        assert see == pytest.approx(expected[y][0])
+        assert see * mass_b == pytest.approx(expected[y][1])
+        markup = {2026: 10, 2027: 20, 2028: 30}[y]
+        assert f"| {y} | {markup}% | {expected[y][0]} | {expected[y][1]} |" in text
+    assert f"**{base:.2f} tCO2e/t**" in text
+    assert "SEE = 2.10 x 1.10 = **2.31 tCO2e/t**" in text
+    assert "2.31 x 35 t = **80.85 tCO2e**" in text
+    assert "print(round(b_see, 2), round(b_see * 35, 2)) # 2.31 80.85" in text
+
+    total = _installation_a().total_tco2e + rows[2026] * mass_b
+    assert total == pytest.approx(341.65)
+    assert "260.8 + 80.85 = **341.65 tCO2e**" in text
+
+
+def test_cb4_what_actual_data_was_worth() -> None:
+    from esgcalc.cbam import default_value_with_markup
+    text = page("cb4-embedded-emissions.md")
+    base = EXAMPLE["default_values_base"]["steel_bars_A"]["base_direct_see_tco2e_per_t"]
+    see = default_value_with_markup(base, 2026, "iron_steel")
+    assert see == pytest.approx(1.76)
+    assert see * _mass("A") == pytest.approx(704)
+    assert _mass("A") * see > _installation_a().total_tco2e
+    assert "1.60 x 1.10 = 1.76 tCO2e/t" in text
+    assert "1.76 x 400 t = **704 tCO2e**, instead of 260.8 tCO2e" in text

@@ -212,6 +212,38 @@ def embedded_emissions(
                              indirect_included=include_indirect)
 
 
+def default_value_with_markup(
+    base_see_tco2e_per_t: float,
+    year: int,
+    sector: str,
+    params: dict[str, Any] | None = None,
+) -> float:
+    """A default value with the yearly mark-up applied (tCO2e per tonne).
+
+    Implementing Regulation (EU) 2025/2621, as corrected by Implementing
+    Regulation (EU) 2026/1740: default values are increased by a mark-up of
+    10% in 2026, 20% in 2027 and 30% from 2028 onwards; fertilisers have 1%
+    from 2026. The correction deleted the tables' marked-up columns, so the
+    mark-up is applied here to the base value. The result is not rounded.
+
+    Args:
+        base_see_tco2e_per_t: the default value from the Annex, without mark-up.
+            For Annex II goods (iron and steel, aluminium, hydrogen) use the
+            direct-emissions value, since only direct emissions count.
+        year: the year the goods are imported.
+        sector: CBAM sector, e.g. ``aluminium`` or ``fertilisers``.
+    """
+    _non_negative("base_see_tco2e_per_t", base_see_tco2e_per_t)
+    p = (params or load_parameters())["default_value_markup_by_year"]
+    by_year = {int(y): float(v) for y, v in p["values"].items()}
+    first, last = min(by_year), max(by_year)
+    if year < first:
+        raise ValueError(f"default values with mark-up apply from {first}")
+    sector_markup = p.get("sector_markup", {})
+    markup = float(sector_markup[sector]) if sector in sector_markup else by_year[min(year, last)]
+    return base_see_tco2e_per_t * (1 + markup)
+
+
 # --- Certificates ----------------------------------------------------------
 
 def certificates_needed(
