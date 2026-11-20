@@ -1,6 +1,7 @@
 title: VSME Basic Module workbook
 type: Workbook
 description: One row per Basic Module datapoint of the voluntary standard, with the value, its source, an owner and a status, and completeness tracked overall and by disclosure.
+example_company: Gozo Fresh Foods Ltd
 instructions:
   - "The datapoint rows come from the handbook's list of the voluntary standard's Basic Module (Delegated Regulation (EU) 2026/1560, Annex I), in the handbook's own words. Read Annex I for the exact requirements."
   - "For each datapoint enter the value with its unit, the source document and who provides it, and choose a status."

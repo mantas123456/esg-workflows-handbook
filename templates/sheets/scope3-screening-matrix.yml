@@ -1,6 +1,7 @@
 title: Scope 3 screening matrix
 type: Workbook
 description: Screen all 15 Scope 3 categories with a rough estimate each, test them against a size threshold you choose and other criteria, and record the reason for every decision.
+example_company: Gozo Fresh Foods Ltd
 instructions:
   - Enter a rough estimate (tCO2e) for every one of the 15 categories. Enter 0 where a category does not apply, and write why.
   - "Settings: enter your size threshold as a share of the total (for example 2%). State it in your report and keep it the same next year."
