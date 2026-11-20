@@ -168,3 +168,20 @@
   article: Regulation (EU) 2023/956, Article 9(3), as amended by Regulation (EU) 2025/2083
   source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20
   last_checked: 2026-11-20
+
+# --- Scope 3 (GHG Protocol and ESRS E1) ---
+- id: ghgp-scope3-standard
+  fact: The GHG Protocol Corporate Value Chain (Scope 3) Standard (2011) is the current version; a revision is under way (Phase 1 progress update March 2026), with a consolidated draft for public consultation estimated for Q2 2027 (Standard Development Plan v2.0, 29 July 2026); the revised standard will be published jointly with ISO; the GHG Protocol accepts feedback only during the formal consultation
+  article: GHG Protocol Standard Development Plan v2.0; Scope 3 Phase 1 Progress Update, March 2026
+  source: https://ghgprotocol.org/sites/default/files/2026-07/Consolidated-StandardDevelopmentPlan(SDP)-2026.07.29.pdf
+  last_checked: 2026-11-20
+- id: ghgp-scope3-categories
+  fact: The Scope 3 Standard groups value-chain emissions into 15 categories, 8 upstream (1-8) and 7 downstream (9-15); a company screens all 15 and explains any exclusion
+  article: GHG Protocol Corporate Value Chain (Scope 3) Standard (cited, not copied)
+  source: https://ghgprotocol.org/corporate-value-chain-scope-3-standard
+  last_checked: 2026-11-20
+- id: esrs-e1-scope3
+  fact: Revised ESRS E1 requires gross Scope 3 GHG emissions as a total and for each significant Scope 3 category; significant categories are identified by the magnitude of their estimated emissions and other criteria such as spend, influence, transition risks and opportunities, or stakeholder views; screening uses the 15 GHG Protocol categories (ISO 14064-1 is an alternative); the significant categories are updated each year and the full inventory at least every three years or after a significant event; the GHG Protocol's Scope 3 calculation provisions can be considered; applies to financial years from 1 January 2027
+  article: Delegated Regulation (EU) 2026/1563, Annex (ESRS E1 Scope 3 disclosure, AR 24 and AR 46)
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R1563
+  last_checked: 2026-11-20

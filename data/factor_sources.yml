@@ -1,0 +1,97 @@
+# Emission-factor sources the handbook may point to. One entry per source.
+#
+# licence_status: verified (licence terms read) | unverified (licence not yet read)
+# republish: may the handbook copy factor VALUES onto its pages or into its
+#   templates? The handbook's text and templates are CC BY 4.0, so readers must
+#   be able to reuse them, also commercially.
+#     "yes"   - allowed
+#     "no"    - not allowed: link and cite only
+#     "check" - licence not yet read: link and cite only until it is
+# Until a source is "yes", worked examples use made-up factors.
+# Last checked: 2026-11-20.
+
+sources:
+  - id: desnz-2026
+    name: UK Government GHG Conversion Factors for Company Reporting
+    publisher: Department for Energy Security and Net Zero (DESNZ)
+    version: "2026"
+    year: 2026
+    published: "June 2026 (GOV.UK update log: 11 June 2026; the collection page shows 31 July 2026)"
+    coverage: "Activity-based factors for the UK: fuels, bioenergy, UK grid electricity (generation and T&D losses), passenger and freight transport, materials, waste, homeworking"
+    method: average_data
+    unit_basis: "kg CO2e per physical unit (kWh, litre, tonne, km, passenger.km, tonne.km)"
+    licence: "Open Government Licence v3.0 (GOV.UK publication page footer: all content under OGL v3.0 except where otherwise stated; no exception stated for the factor spreadsheets). Attribution required; commercial reuse allowed"
+    licence_status: verified
+    republish: "yes"
+    url: https://www.gov.uk/government/collections/government-conversion-factors-for-company-reporting
+    notes: "Updated every year, usually in June. UK factors: for EU electricity use a country-specific source."
+
+  - id: eea-electricity-intensity
+    name: Greenhouse gas emission intensity of electricity generation (country level)
+    publisher: European Environment Agency (EEA)
+    version: "Indicator covering 1990-2025 (latest years partly provisional)"
+    year: 2025
+    coverage: "EU Member States and the EU: CO2e from public electricity production divided by gross electricity production"
+    method: average_data
+    unit_basis: "g CO2e per kWh generated"
+    licence: "CC BY 4.0 (EEA legal notice, https://www.eea.europa.eu/en/legal-notice): commercial and non-commercial reuse allowed if the EEA is acknowledged as the source and the meaning is not distorted; third-party content excluded"
+    licence_status: verified
+    republish: "yes"
+    url: https://www.eea.europa.eu/en/analysis/indicators/greenhouse-gas-emission-intensity-of-1
+    notes: "Generation-based: no T&D losses, no imports. Built from Eurostat energy balances and national GHG inventories."
+
+  - id: exiobase-3
+    name: EXIOBASE 3 (multi-regional environmentally extended input-output database)
+    publisher: EXIOBASE consortium, on Zenodo
+    version: "3.11.2 per the EXIOBASE GitHub page (3.11.3 in preparation); the Zenodo record seen is 3.10.2 of 13 May 2026"
+    year: 2026
+    coverage: "Many countries and rest-of-world regions, about 200 products; monetary (spend-based) multipliers"
+    method: spend_based
+    unit_basis: "kg CO2e per EUR (base-year prices)"
+    licence: "v3.9 and later: customised derivative of CC BY-SA-NC (non-commercial academic use; commercial licences in development). v3.8.x and earlier: CC BY-SA 4.0"
+    licence_status: verified
+    republish: "no"
+    url: https://zenodo.org/records/14614930
+    notes: "v3.9+ is non-commercial, so its values cannot go into CC BY 4.0 material. v3.8.x is share-alike, which also conflicts with CC BY 4.0. Link and cite only."
+
+  - id: epa-useeio-v1-3
+    name: Supply Chain Greenhouse Gas Emission Factors for US Industries and Commodities (USEEIO-based)
+    publisher: US Environmental Protection Agency (EPA), Office of Research and Development
+    version: "v1.3 by NAICS-6 (data.gov record modified 2024-07-05)"
+    year: 2022
+    coverage: "1,016 US commodities (NAICS 2017, 6 digits), GHG data for 2022, with and without margins"
+    method: spend_based
+    unit_basis: "kg CO2e per USD (2022 prices)"
+    licence: "EPA Data License (https://pasteur.epa.gov/license/sciencehub-license.html): EPA data is public domain by default (17 U.S.C. 105) unless otherwise specified in the dataset's metadata; the v1.3 metadata has not yet been read"
+    licence_status: unverified
+    republish: check
+    url: https://catalog.data.gov/dataset/supply-chain-greenhouse-gas-emission-factors-v1-3-by-naics-6
+    notes: "US factors in USD: convert the currency and deflate to the factor year (esgcalc.scope3.spend_based). Using them for non-US purchases lowers the geography score."
+
+  - id: cbam-default-values
+    name: CBAM default values
+    publisher: "European Commission (Implementing Regulation (EU) 2025/2621, corrected by 2026/1740)"
+    version: "2025/2621 as corrected by 2026/1740"
+    year: 2026
+    coverage: "Default specific embedded emissions of CBAM goods by CN code and country of origin"
+    method: average_data
+    unit_basis: "t CO2e per tonne of goods"
+    licence: "EU legal act on EUR-Lex; the EUR-Lex legal notice could not be read (empty page), so the reuse terms are not yet confirmed"
+    licence_status: unverified
+    republish: check
+    url: https://eur-lex.europa.eu/eli/reg_impl/2025/2621/oj/eng
+    notes: "Made for CBAM. Can serve as a fallback cradle-to-gate factor for the same goods in Scope 3 category 1, with lower technology and geography scores."
+
+  - id: ecoinvent
+    name: ecoinvent life cycle inventory database
+    publisher: ecoinvent Association
+    version: "not tracked"
+    year: null
+    coverage: "Process-based life cycle inventories for many products and services"
+    method: average_data
+    unit_basis: "kg CO2e per physical unit"
+    licence: "Commercial licence"
+    licence_status: verified
+    republish: "no"
+    url: https://ecoinvent.org/
+    notes: "Licensed data: describe it, never paste its values (project rule in CLAUDE.md)."
