@@ -30,7 +30,7 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | S8 | Scope 3 | [Base year and recalculation](scope3/s8-base-year.md) | 0.3 | draft |
 | S9 | Scope 3 | [Reporting the inventory](scope3/s9-reporting.md) | 0.3 | draft |
 | V1 | VSME | [Choosing the modules](vsme/v1-modules.md) | 0.4 | draft |
-| V2 | VSME | [Basic module data collection](vsme/v2-basic.md) | 0.4 | planned |
+| V2 | VSME | [Basic module data collection](vsme/v2-basic.md) | 0.4 | draft |
 | V3 | VSME | [GHG emissions for VSME](vsme/v3-ghg.md) | 0.4 | planned |
 | V4 | VSME | [Comprehensive module](vsme/v4-comprehensive.md) | 0.4 | planned |
 | V5 | VSME | [Answering customer and bank requests](vsme/v5-requests.md) | 0.4 | planned |
