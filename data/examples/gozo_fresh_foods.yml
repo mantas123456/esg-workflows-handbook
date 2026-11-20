@@ -268,3 +268,18 @@ vsme_comprehensive:
     - {disclosure: C7, what: "Incidents in 2026: none recorded", source: HR and legal records, ready_by: 31 Jan 2027}
     - {disclosure: C8, what: "Check whether any revenue comes from the activities the standard lists; Gozo expects none", source: Finance, ready_by: 31 Jan 2027}
     - {disclosure: C9, what: "Board of 5: 2 women, 3 men", source: Company secretary, ready_by: 31 Jan 2027}
+
+# V5: the supermarket's supplier questionnaire for 2026 (MADE UP).
+# datapoint: the VSME datapoint that answers it, or null if the standard has none.
+# decision: answer (from the VSME report) | share (beyond the standard, shared voluntarily) | decline (for now)
+questionnaire:
+  requester: "Supermarket (reports under the CSRD)"
+  questions:
+    - {question: "How much energy did you use in 2026?", datapoint: B3-energy, decision: answer}
+    - {question: "What were your Scope 1 and Scope 2 emissions?", datapoint: B3-scope2-location, decision: answer}
+    - {question: "What were your Scope 3 emissions, by category?", datapoint: null, decision: share}
+    - {question: "Do you have a target to reduce emissions?", datapoint: C3-targets, decision: answer}
+    - {question: "How much waste did you produce, and how much was recycled?", datapoint: B7-waste, decision: answer}
+    - {question: "How many people work for you?", datapoint: B8-employees, decision: answer}
+    - {question: "How many work accidents did you have?", datapoint: B9-accidents, decision: answer}
+    - {question: "What is the carbon footprint per kg of each product you sell us?", datapoint: null, decision: decline}
