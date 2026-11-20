@@ -23,6 +23,15 @@ sectors:
   article: Regulation (EU) 2023/956, Article 7 and Annexes II and IV
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
 
+authorisation:
+  decision_days: 120             # calendar days from receipt of the application
+  max_extension_days: 30         # per request for more information
+  max_total_days: 180            # never longer than this from receipt
+  transitional_apply_by: 2026-03-31
+  fact: cbam-authorisation-procedure
+  article: Implementing Regulation (EU) 2025/486, Article 4; Regulation (EU) 2023/956, Article 17(7a)
+  source: https://eur-lex.europa.eu/eli/reg_impl/2025/486/oj/eng
+
 certificate:
   tco2e_per_certificate: 1
   fact: cbam-certificate-unit

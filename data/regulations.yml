@@ -46,7 +46,7 @@
   source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en
   last_checked: 2026-11-20
 - id: cbam-goods
-  fact: CBAM goods are the CN codes in Annex I in six sectors (cement, electricity, fertilisers, iron and steel, aluminium, hydrogen); where Annex I gives a code shorter than 8 digits, every CN code starting with it is covered; electricity is CN 2716 00 00 and hydrogen CN 2804 10 00
+  fact: CBAM goods are the CN codes in Annex I in six sectors (cement, electricity, fertilisers, iron and steel, aluminium, hydrogen); where Annex I gives a code shorter than 8 digits, every CN code starting with it is covered; iron and steel include chapter 72 as a whole, with listed exceptions (such as some ferro-alloys), and some chapter 73 goods; aluminium includes headings 7601 to 7616 as listed; electricity is CN 2716 00 00 and hydrogen CN 2804 10 00
   article: Regulation (EU) 2023/956, Article 2(1) and Annex I
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
   last_checked: 2026-11-20
@@ -65,6 +65,18 @@
   fact: Only an authorised CBAM declarant may import CBAM goods above the threshold (and any hydrogen or electricity); the importer, or an indirect customs representative, applies through the CBAM registry to the competent authority of its Member State; criteria include no serious or repeated infringements, financial and operational capacity, and an EORI number
   article: Regulation (EU) 2023/956, Articles 5, 17 and 25, as amended
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
+  last_checked: 2026-11-20
+- id: cbam-authorisation-procedure
+  fact: The competent authority assesses an application within 120 calendar days of receipt; when it asks for more information it may extend this by up to 30 calendar days and must say why, up to 180 days in total; before refusing, it tells the applicant and gives up to 30 calendar days to comment; a decision takes effect when it is registered in the CBAM registry and the applicant is notified there
+  article: Implementing Regulation (EU) 2025/486, Articles 4, 5 and 7, as amended by Implementing Regulation (EU) 2025/2549
+  source: https://eur-lex.europa.eu/eli/reg_impl/2025/486/oj/eng
+  values: {decision_days: 120, max_extension_days: 30, max_total_days: 180, refusal_comment_days: 30}
+  last_checked: 2026-11-20
+- id: cbam-authorisation-transitional-2026
+  fact: An importer or indirect customs representative that applied for authorisation by 31 March 2026 may keep importing CBAM goods in 2026, also above the threshold, until the decision on its application takes effect (the recital says "submitted", the implementing act says "registered in the CBAM registry" by that date)
+  article: Regulation (EU) 2023/956, Article 17(7a), as inserted by Regulation (EU) 2025/2083; Implementing Regulation (EU) 2025/2549
+  source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32025R2549
+  values: {apply_by: 2026-03-31}
   last_checked: 2026-11-20
 - id: cbam-certificate-unit
   fact: One CBAM certificate corresponds to one tonne of CO2e of embedded emissions

@@ -1,7 +1,13 @@
 # Glossary
 
+Authorised CBAM declarant
+:   A person or company authorised by a Member State's competent authority to import CBAM goods above the threshold, or any hydrogen or electricity. See [CB2](cbam/cb2-authorisation.md).
+
 CBAM
 :   Carbon Border Adjustment Mechanism. An EU charge on the embedded emissions of certain imported goods.
+
+CN code
+:   Combined Nomenclature code: the 8-digit EU customs code for a product. Annex I to the CBAM Regulation lists CBAM goods by CN code.
 
 CSRD
 :   Corporate Sustainability Reporting Directive.

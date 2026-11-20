@@ -10,8 +10,8 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | F2 | Foundations | [Data quality and uncertainty](foundations/data-quality.md) | 0.3 | planned |
 | F3 | Foundations | [One dataset, many reports](foundations/one-dataset-many-reports.md) | 0.1 | draft |
 | F4 | Foundations | [Keeping up with changes](foundations/keeping-up.md) | 0.6 | planned |
-| CB1 | CBAM | [Scope check - CN codes and the 50 t threshold](cbam/cb1-scope-check.md) | 0.2 | planned |
-| CB2 | CBAM | [Authorised CBAM declarant status](cbam/cb2-authorisation.md) | 0.2 | planned |
+| CB1 | CBAM | [Scope check - CN codes and the 50 t threshold](cbam/cb1-scope-check.md) | 0.2 | draft |
+| CB2 | CBAM | [Authorised CBAM declarant status](cbam/cb2-authorisation.md) | 0.2 | draft |
 | CB3 | CBAM | [Requesting data from installation operators](cbam/cb3-supplier-data.md) | 0.2 | planned |
 | CB4 | CBAM | [Embedded emissions - actual vs default values](cbam/cb4-embedded-emissions.md) | 0.2 | planned |
 | CB5 | CBAM | [Precursors and complex goods](cbam/cb5-precursors.md) | 0.2 | planned |

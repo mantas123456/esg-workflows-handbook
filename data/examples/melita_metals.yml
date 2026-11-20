@@ -1,0 +1,42 @@
+# Fictional worked example used through the CBAM track (CB1-CB10).
+# Melita Metals Ltd, Malta. All companies, installations and numbers are made up.
+# Every number shown on a page is recomputed from this file by
+# tests/test_examples_cbam.py using esgcalc.
+
+company:
+  name: Melita Metals Ltd
+  country: Malta
+  activity: Imports steel reinforcing bars and aluminium bars for construction
+
+installations:
+  A:
+    name: Installation A (steel mill)
+    location: outside the EU
+    sector: iron_steel
+  B:
+    name: Installation B (aluminium smelter and rolling mill)
+    location: outside the EU
+    sector: aluminium
+
+# Imports released for free circulation in 2026, net mass in tonnes, by quarter.
+imports_2026:
+  - {quarter: Q1, cn_code: "7214 20 00", description: "Steel bars with ribs (rebar)", installation: A, mass_t: 60}
+  - {quarter: Q1, cn_code: "7604 29 10", description: "Aluminium alloy bars and rods", installation: B, mass_t: 8}
+  - {quarter: Q2, cn_code: "7214 20 00", description: "Steel bars with ribs (rebar)", installation: A, mass_t: 70}
+  - {quarter: Q2, cn_code: "7214 99 10", description: "Other steel bars for concrete reinforcement", installation: A, mass_t: 40}
+  - {quarter: Q2, cn_code: "7604 29 10", description: "Aluminium alloy bars and rods", installation: B, mass_t: 9}
+  - {quarter: Q3, cn_code: "7214 20 00", description: "Steel bars with ribs (rebar)", installation: A, mass_t: 65}
+  - {quarter: Q3, cn_code: "7214 99 10", description: "Other steel bars for concrete reinforcement", installation: A, mass_t: 45}
+  - {quarter: Q3, cn_code: "7604 29 10", description: "Aluminium alloy bars and rods", installation: B, mass_t: 10}
+  - {quarter: Q4, cn_code: "7214 20 00", description: "Steel bars with ribs (rebar)", installation: A, mass_t: 55}
+  - {quarter: Q4, cn_code: "7214 99 10", description: "Other steel bars for concrete reinforcement", installation: A, mass_t: 65}
+  - {quarter: Q4, cn_code: "7604 29 10", description: "Aluminium alloy bars and rods", installation: B, mass_t: 8}
+
+# CB2: authorisation timeline (made-up dates).
+authorisation:
+  applicant: Melita Metals Ltd (applies itself, no customs representative)
+  received: 2026-01-12          # application received by the competent authority
+  info_requested: 2026-03-03    # authority asks for more information
+  extension_days: 30
+  decision_effective: 2026-05-28  # status registered in the CBAM registry
+  late_applicant_applied: 2026-04-15  # comparison: a company that applies after 31 March 2026

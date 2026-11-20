@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
+from datetime import date, timedelta
 from decimal import ROUND_HALF_UP, Decimal
 from functools import lru_cache
 from pathlib import Path
@@ -102,6 +103,44 @@ def threshold_check(imports: Iterable[tuple[str, float]], params: dict[str, Any]
         excluded_cn_codes=sorted(set(found_excluded)),
         notes=notes,
     )
+
+
+# --- Authorisation ---------------------------------------------------------
+
+def authorisation_decision_deadline(
+    received: date,
+    extension_days: int = 0,
+    params: dict[str, Any] | None = None,
+) -> date:
+    """Latest date for the competent authority's decision on an application.
+
+    Implementing Regulation (EU) 2025/486, Article 4: the authority assesses the
+    application within 120 calendar days of receipt. When it asks for more
+    information it may extend this by up to 30 calendar days, and the total may
+    not exceed 180 days from receipt.
+
+    Args:
+        received: date the competent authority received the application.
+        extension_days: days of extension the authority notified (0 if none).
+    """
+    p = (params or load_parameters())["authorisation"]
+    if not 0 <= extension_days <= int(p["max_extension_days"]):
+        raise ValueError(f"extension_days must be between 0 and {p['max_extension_days']}")
+    days = min(int(p["decision_days"]) + extension_days, int(p["max_total_days"]))
+    return received + timedelta(days=days)
+
+
+def may_import_pending_decision(applied: date, year: int, params: dict[str, Any] | None = None) -> bool:
+    """Whether the 2026 transitional rule lets an applicant import before the decision.
+
+    Regulation (EU) 2023/956, Article 17(7a): an application made by 31 March
+    2026 lets the applicant keep importing in 2026 until the decision takes
+    effect. Outside 2026, or for later applications, the answer is False:
+    authorisation is needed before importing above the threshold.
+    """
+    p = (params or load_parameters())["authorisation"]
+    apply_by = p["transitional_apply_by"]
+    return year == apply_by.year and applied <= apply_by
 
 
 # --- Embedded emissions ----------------------------------------------------

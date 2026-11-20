@@ -200,3 +200,26 @@ def test_quarterly_holding_adjustment_above_emissions() -> None:
 def test_quarterly_holding_rejects_negative() -> None:
     with pytest.raises(ValueError):
         cbam.quarterly_holding(-1, 2027)
+
+
+# --- authorisation ----------------------------------------------------------
+
+def test_decision_deadline() -> None:
+    from datetime import date
+    # 1 Feb + 120 days = 1 Jun; with 30-day extension = 1 Jul
+    assert cbam.authorisation_decision_deadline(date(2026, 2, 1)) == date(2026, 6, 1)
+    assert cbam.authorisation_decision_deadline(date(2026, 2, 1), 30) == date(2026, 7, 1)
+
+
+@pytest.mark.parametrize("bad", [-1, 31])
+def test_decision_deadline_rejects_bad_extension(bad: int) -> None:
+    from datetime import date
+    with pytest.raises(ValueError):
+        cbam.authorisation_decision_deadline(date(2026, 2, 1), bad)
+
+
+def test_transitional_rule_edges() -> None:
+    from datetime import date
+    assert cbam.may_import_pending_decision(date(2026, 3, 31), 2026) is True   # last day counts
+    assert cbam.may_import_pending_decision(date(2026, 4, 1), 2026) is False
+    assert cbam.may_import_pending_decision(date(2026, 3, 1), 2027) is False   # 2026 imports only

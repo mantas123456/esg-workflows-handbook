@@ -23,8 +23,8 @@ tracks:
     title: CBAM
     folder: cbam
     steps:
-      - {id: CB1, title: "Scope check - CN codes and the 50 t threshold", file: cb1-scope-check.md, release: "0.2", status: planned, tools: [cbam-threshold]}
-      - {id: CB2, title: "Authorised CBAM declarant status", file: cb2-authorisation.md, release: "0.2", status: planned}
+      - {id: CB1, title: "Scope check - CN codes and the 50 t threshold", file: cb1-scope-check.md, release: "0.2", status: draft, tools: [cbam-threshold]}
+      - {id: CB2, title: "Authorised CBAM declarant status", file: cb2-authorisation.md, release: "0.2", status: draft}
       - {id: CB3, title: "Requesting data from installation operators", file: cb3-supplier-data.md, release: "0.2", status: planned, templates: [cbam-supplier-request]}
       - {id: CB4, title: "Embedded emissions - actual vs default values", file: cb4-embedded-emissions.md, release: "0.2", status: planned, tools: [cbam-calculator], templates: [cbam-emissions-workbook]}
       - {id: CB5, title: "Precursors and complex goods", file: cb5-precursors.md, release: "0.2", status: planned}
