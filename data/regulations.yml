@@ -12,8 +12,9 @@
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ%3AL_202600470
   last_checked: 2026-11-20
 - id: csrd-scope
-  fact: CSRD applies to EU companies with over 1,000 employees and over EUR 450 m net turnover
+  fact: CSRD applies to EU companies with over 1,000 employees and over EUR 450 m net turnover (both conditions)
   source: https://eur-lex.europa.eu/eli/dir/2026/470/oj/eng
+  values: {min_employees_exclusive: 1000, min_turnover_eur_exclusive: 450000000}
   last_checked: 2026-11-20
 - id: csrd-wave1-exemption
   fact: Companies reporting from FY2024 (wave 1) that fall below the new thresholds leave CSRD scope from FY2027; Member States may exempt them for financial years starting 1 Jan 2025 to 31 Dec 2026 (an option, not automatic)
@@ -22,6 +23,11 @@
 - id: esrs-simplified
   fact: Revised ESRS adopted 3 Jul 2026 as Delegated Regulation (EU) 2026/1563, published in the OJ 21 Sep 2026, in force 10 Nov 2026; mandatory for financial years starting on or after 1 Jan 2027, optional for financial years starting in 2026
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601563
+  last_checked: 2026-11-20
+- id: csrd-value-chain-cap
+  fact: Companies reporting under the CSRD may not require value-chain companies with on average 1,000 employees or fewer (previous financial year, headcount only) to give more information than the voluntary standard covers; those companies may refuse requests beyond it, and the cap creates no duty to report
+  source: https://finance.ec.europa.eu/news/feedback-sustainability-reporting-standards-additional-explanatory-information-regarding-value-chain-2026-05-06_en
+  values: {max_employees: 1000}
   last_checked: 2026-11-20
 
 # --- VSME / voluntary standard ---
@@ -36,8 +42,9 @@
   source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en
   last_checked: 2026-11-20
 - id: cbam-threshold
-  fact: Single mass-based threshold of 50 tonnes net mass per importer per calendar year, all CN codes added together; does not apply to hydrogen or electricity
+  fact: An importer is exempt when the net mass of its CBAM goods does not exceed 50 tonnes in a calendar year, all CN codes added together; the exemption does not cover hydrogen or electricity; an exempt importer declares the exemption in its customs declaration; once the threshold is exceeded, obligations cover all goods imported that year, including those imported before
   source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
+  values: {max_exempt_mass_t: 50}
   last_checked: 2026-11-20
 - id: cbam-certificates
   fact: Certificate sales from 1 Feb 2027; price from EU ETS auctions, quarterly average for 2026 imports, weekly average from 1 Jan 2027
