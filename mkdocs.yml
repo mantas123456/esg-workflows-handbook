@@ -1,0 +1,138 @@
+site_name: ESG Workflows Handbook
+site_description: Free, practical step-by-step workflows for CBAM, Scope 3, VSME and CSRD/ESRS, with templates and tools.
+site_author: Mantas Valantinavicius
+site_url: https://mantas123456.github.io/esg-workflows-handbook/
+repo_url: https://github.com/mantas123456/esg-workflows-handbook
+repo_name: mantas123456/esg-workflows-handbook
+edit_uri: edit/main/docs/
+copyright: >-
+  Text and templates: CC BY 4.0 · Code: MIT ·
+  Not legal advice; the regulation and the competent authority take priority.
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - content.action.edit
+    - content.code.copy
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: green
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: green
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+extra:
+  status:
+    planned: "Planned: not written yet"
+    draft: "Draft: written, not yet reviewed"
+    examples-checked: "Examples checked: numbers re-run by code on every build"
+    reviewed: "Reviewed: checked by a practitioner"
+
+extra_css:
+  - stylesheets/extra.css
+
+exclude_docs: |
+  _chapter_template.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+  links:
+    not_found: warn
+    anchors: warn
+
+# --- generated nav: do not edit by hand ---
+nav:
+  - Home: index.md
+  - Start here:
+      - Workflow map: workflow-map.md
+      - Roadmap: roadmap.md
+      - "T1 Which regime applies to me?": start-here/triage.md
+      - "T2 Regulation timeline": start-here/timeline.md
+  - Foundations:
+      - "F1 Evidence locker and audit trail": foundations/evidence-locker.md
+      - "F2 Data quality and uncertainty": foundations/data-quality.md
+      - "F3 One dataset, many reports": foundations/one-dataset-many-reports.md
+      - "F4 Keeping up with changes": foundations/keeping-up.md
+  - CBAM:
+      - "CB1 Scope check - CN codes and the 50 t threshold": cbam/cb1-scope-check.md
+      - "CB2 Authorised CBAM declarant status": cbam/cb2-authorisation.md
+      - "CB3 Requesting data from installation operators": cbam/cb3-supplier-data.md
+      - "CB4 Embedded emissions - actual vs default values": cbam/cb4-embedded-emissions.md
+      - "CB5 Precursors and complex goods": cbam/cb5-precursors.md
+      - "CB6 Verification of emissions data": cbam/cb6-verification.md
+      - "CB7 Carbon price paid abroad": cbam/cb7-carbon-price-paid.md
+      - "CB8 Certificates - buying, holding, surrendering": cbam/cb8-certificates.md
+      - "CB9 The annual CBAM declaration": cbam/cb9-declaration.md
+      - "CB10 Records and evidence for CBAM": cbam/cb10-records.md
+  - Scope 3:
+      - "S1 Boundary and organisational approach": scope3/s1-boundary.md
+      - "S2 Screening the 15 categories": scope3/s2-screening.md
+      - "S3 Data collection plan": scope3/s3-data-plan.md
+      - "S4 Calculation methods": scope3/s4-methods.md
+      - "S5 Choosing emission factors": scope3/s5-emission-factors.md
+      - "S6 Data quality scoring": scope3/s6-data-quality.md
+      - "S7 Supplier engagement": scope3/s7-suppliers.md
+      - "S8 Base year and recalculation": scope3/s8-base-year.md
+      - "S9 Reporting the inventory": scope3/s9-reporting.md
+  - VSME:
+      - "V1 Choosing the modules": vsme/v1-modules.md
+      - "V2 Basic module data collection": vsme/v2-basic.md
+      - "V3 GHG emissions for VSME": vsme/v3-ghg.md
+      - "V4 Comprehensive module": vsme/v4-comprehensive.md
+      - "V5 Answering customer and bank requests": vsme/v5-requests.md
+      - "V6 Publishing and updating": vsme/v6-publishing.md
+  - CSRD / ESRS:
+      - "C1 Am I in scope after Omnibus I?": csrd/c1-scope.md
+      - "C2 Double materiality assessment": csrd/c2-dma.md
+      - "C3 Value chain and data requests": csrd/c3-value-chain.md
+      - "C4 General disclosures": csrd/c4-general.md
+      - "C5 Climate (E1)": csrd/c5-climate.md
+      - "C6 Other topical standards": csrd/c6-topical.md
+      - "C7 Datapoint gap analysis": csrd/c7-gap-analysis.md
+      - "C8 Assurance readiness": csrd/c8-assurance.md
+      - "C9 Digital tagging and publication": csrd/c9-tagging.md
+  - Reference:
+      - Glossary: glossary.md
+      - About: about.md
+# --- end generated nav ---

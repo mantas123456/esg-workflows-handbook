@@ -1,0 +1,32 @@
+# Regulatory facts the handbook relies on. check_regulations.py warns when
+# last_checked is older than 90 days. Update the date only after re-reading
+# the source.
+
+- id: omnibus-i
+  fact: Omnibus I Directive (EU) 2026/470 published in the OJ on 26 Feb 2026, in force 18 Mar 2026
+  source: https://cms.law/en/lux/legal-updates/final-adoption-of-omnibus-i-directive-simplifying-csrd-and-csddd
+  last_checked: 2026-11-20
+- id: csrd-scope
+  fact: CSRD applies to EU companies with over 1,000 employees and over EUR 450 m net turnover
+  source: https://www.cliffordchance.com/insights/resources/blogs/business-and-human-rights-insights/2026/02/omnibus-i-the-european-union-concludes-csddd-and-csrd-reforms.html
+  last_checked: 2026-11-20
+- id: esrs-simplified
+  fact: Simplified ESRS adopted as a delegated act on 3 Jul 2026; apply from FY2027, early use for FY2026 permitted once in force
+  source: https://www.efrag.org/en/news-and-calendar/news/european-commission-publishes-delegated-act-on-revised-esrs-and-voluntary-sustainability-reporting
+  last_checked: 2026-11-20
+- id: vsme
+  fact: Voluntary sustainability reporting standard adopted as a delegated act on 3 Jul 2026
+  source: https://www.efrag.org/en/news-and-calendar/news/european-commission-publishes-delegated-act-on-revised-esrs-and-voluntary-sustainability-reporting
+  last_checked: 2026-11-20
+- id: cbam-threshold
+  fact: Single mass-based threshold of 50 tonnes per year; does not apply to hydrogen or electricity
+  source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en
+  last_checked: 2026-11-20
+- id: cbam-certificates
+  fact: Certificate sales from 1 Feb 2027; price from EU ETS auctions, quarterly average in 2026, weekly from 2027
+  source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en
+  last_checked: 2026-11-20
+- id: cbam-declaration
+  fact: First annual declaration and surrender due 30 Sep 2027 for 2026 imports; 50% quarterly holding thereafter
+  source: https://www.jonesday.com/en/insights/2026/03/the-cbam-definitive-phase-between-regulatory-ambition-and-political-hesitation
+  last_checked: 2026-11-20
