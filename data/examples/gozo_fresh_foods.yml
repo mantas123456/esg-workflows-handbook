@@ -75,3 +75,34 @@ data_plan:     # one row per significant category from S2
   - {category: 7, data: "Distance, transport mode and days on site per employee", screening: "Average-data (estimate)", target: Average-data from a staff survey, owner: HR, source: Staff survey, ready_by: 31 Jan 2027}
   - {category: 9, data: "Storage time and transport distance of Gozo products at the supermarket", screening: "Average-data (estimate)", target: Average-data from the supermarket's figures, owner: Sales, source: The supermarket, ready_by: 28 Feb 2027}
   - {category: 12, data: "Packaging tonnes by material; share of food wasted by consumers", screening: Average-data, target: Average-data with material-specific factors, owner: Quality and packaging, source: "Packaging specifications, published food-waste studies", ready_by: 31 Jan 2027}
+
+# S4: the 2026 inventory with better data (MADE-UP numbers and factors).
+# Spend-based factors are priced in 2022; producer price index 2022 = 100, 2026 = 118.
+inventory:
+  price_index_factor_year: 100
+  price_index_spend_year: 118
+  lines:
+    - {category: 1, description: Maltese Farmers Cooperative, method: supplier_specific, supplier_total_tco2e: 12000, purchased: 3000, total: 40000}
+    - {category: 1, description: Sicilian Tomato Co, method: supplier_specific, supplier_total_tco2e: 30000, purchased: 2400, total: 60000}
+    - {category: 1, description: Gozo Greens Ltd, method: supplier_specific, supplier_total_tco2e: 2500, purchased: 1600, total: 8000}
+    - {category: 1, description: Island Dairy Ltd, method: supplier_specific, supplier_total_tco2e: 9000, purchased: 700, total: 15000}
+    - {category: 1, description: Mediterranean Oils, method: supplier_specific, supplier_total_tco2e: 20000, purchased: 250, total: 25000}
+    - {category: 1, description: Other ingredient suppliers, method: spend_based, spend_eur: 900000, factor: 0.9}
+    - {category: 1, description: "Services (cleaning, IT, maintenance)", method: spend_based, spend_eur: 500000, factor: 0.15}
+    - {category: 1, description: Cardboard packaging, method: average_data, activity: 400000, unit: kg, factor: 0.8}
+    - {category: 1, description: Plastic film packaging, method: average_data, activity: 150000, unit: kg, factor: 2.5}
+    - {category: 1, description: Glass jars, method: average_data, activity: 200000, unit: kg, factor: 0.9}
+    - {category: 2, description: Machinery and equipment bought in 2026, method: spend_based, spend_eur: 400000, factor: 0.4}
+    - {category: 3, description: Upstream emissions of purchased electricity, method: average_data, activity: 3000, unit: MWh, factor: 40}
+    - {category: 3, description: Upstream emissions of fuels burned, method: average_data, activity: 2000, unit: MWh, factor: 30}
+    - {category: 4, description: Road freight from haulier records, method: average_data, activity: 850000, unit: tonne.km, factor: 0.10}
+    - {category: 4, description: Chilled storage at Island Cold Store (30% of its capacity), method: supplier_specific, supplier_total_tco2e: 300, purchased: 30, total: 100}
+    - {category: 7, description: "Commuting by car (staff survey)", method: average_data, activity: 600000, unit: km, factor: 0.17}
+    - {category: 7, description: "Commuting by bus (staff survey)", method: average_data, activity: 150000, unit: passenger.km, factor: 0.10}
+    - {category: 9, description: Chilled storage at the supermarket (its figures), method: average_data, activity: 2800000, unit: kg, factor: 0.03}
+    - {category: 9, description: Supermarket transport to its stores (its figures), method: average_data, activity: 300000, unit: tonne.km, factor: 0.10}
+    - {category: 12, description: Cardboard at end of life, method: average_data, activity: 400000, unit: kg, factor: 0.02}
+    - {category: 12, description: Plastic film at end of life, method: average_data, activity: 150000, unit: kg, factor: 0.05}
+    - {category: 12, description: Glass at end of life, method: average_data, activity: 200000, unit: kg, factor: 0.01}
+    - {category: 12, description: Food wasted by consumers, method: average_data, activity: 150000, unit: kg, factor: 0.5}
+  kept_from_screening: [5, 6, 15]     # not significant: screening estimates carried over

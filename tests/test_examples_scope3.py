@@ -174,3 +174,92 @@ def test_s3_plan_covers_exactly_the_significant_categories() -> None:
         ready = datetime.strptime(r["ready_by"], "%d %b %Y").date()
         assert (deadline - ready).days >= 28, r["category"]      # "at least four weeks"
     assert f"inventory by {deadline.day} {deadline:%B %Y}" in text
+
+
+# --- S4 Calculation methods --------------------------------------------------
+
+def _inventory_tco2e(line: dict) -> float:
+    from esgcalc import scope3
+
+    inv = EXAMPLE["inventory"]
+    if line["method"] == "spend_based":
+        return scope3.spend_based(line["spend_eur"], line["factor"],
+                                  price_index_spend_year=inv["price_index_spend_year"],
+                                  price_index_factor_year=inv["price_index_factor_year"])
+    return _line_tco2e(line)
+
+
+def inventory_totals():
+    """The 2026 inventory per category (esgcalc.scope3.combine), as in S4."""
+    from esgcalc.scope3 import Line, combine
+
+    inv = EXAMPLE["inventory"]
+    lines = [Line(l["category"], l["method"], _inventory_tco2e(l), l["description"]) for l in inv["lines"]]
+    for cat in inv["kept_from_screening"]:
+        for l in EXAMPLE["screening"]["lines"]:
+            if l["category"] == cat:
+                lines.append(Line(cat, l["method"], _line_tco2e(l), l["description"]))
+    return combine(lines)
+
+
+def test_s4_category_1_lines() -> None:
+    text = page("s4-methods.md")
+    inv = EXAMPLE["inventory"]
+    method_name = {"supplier_specific": "Supplier-specific", "average_data": "Average-data", "spend_based": "Spend-based"}
+    for l in [x for x in inv["lines"] if x["category"] == 1]:
+        if l["method"] == "supplier_specific":
+            calc = f"{fmt(l['supplier_total_tco2e'])} t × {fmt(l['purchased'])} / {fmt(l['total'])}"
+        elif l["method"] == "spend_based":
+            calc = (f"EUR {fmt(l['spend_eur'])} × {inv['price_index_factor_year']}/{inv['price_index_spend_year']}"
+                    f" × {l['factor']} kg/EUR")
+        else:
+            calc = f"{fmt(l['activity'])} {l['unit']} × {l['factor']} kg/{l['unit']}"
+        row = f"| {l['description']} | {method_name[l['method']]} | {calc} | {_inventory_tco2e(l):,.2f} |"
+        assert row in text, row
+    # 3,220 supplier + 750 spend (885,000 / 1.18 kg) + 875 packaging = 4,845
+    category_1 = inventory_totals()[1].tco2e
+    assert category_1 == pytest.approx(4845.0)
+    assert f"| **Category 1** | | | **{category_1:,.2f}** |" in text
+
+
+def test_s4_all_categories_and_method_mix() -> None:
+    from esgcalc.scope3 import CATEGORY_NAMES, METHODS
+
+    text = page("s4-methods.md")
+    totals = inventory_totals()
+    assert sorted(totals) == [1, 2, 3, 4, 5, 6, 7, 9, 12, 15]
+    for c, ct in totals.items():
+        shares = " | ".join(f"{ct.share(m):.2%}" for m in METHODS)
+        row = f"| {c} | {CATEGORY_NAMES[c]} | {ct.tco2e:,.2f} | {shares} |"
+        assert row in text, row
+    grand = sum(ct.tco2e for ct in totals.values())
+    by_method = {m: sum(ct.by_method.get(m, 0.0) for ct in totals.values()) for m in METHODS}
+    assert grand == pytest.approx(5775.09322, abs=1e-5)
+    mix = " | ".join(f"**{by_method[m] / grand:.2%}**" for m in METHODS)
+    assert f"| | **Total Scope 3** | **{grand:,.2f}** | {mix} |" in text
+
+
+def test_s4_comparison_with_screening() -> None:
+    text = page("s4-methods.md")
+    totals = inventory_totals()
+    screened = {r.category: r.tco2e for r in screening_rows()}
+    for c in (1, 2, 4, 7, 9, 12):
+        assert f"| {c} | {screened[c]:,.2f} | {totals[c].tco2e:,.2f} |" in text, c
+    assert f"screening ({sum(screened.values()):,.2f} tCO2e)" in text
+    top5 = [l for l in EXAMPLE["inventory"]["lines"] if l["method"] == "supplier_specific" and l["category"] == 1]
+    own = sum(_inventory_tco2e(l) for l in top5)
+    spend_top5 = sum(EXAMPLE["ingredient_spend_by_supplier"][l["description"]] for l in top5)
+    assert (own, spend_top5) == (3220, 5_100_000)
+    assert f"own data gives {fmt(own)} tCO2e" in text
+    assert f"EUR {fmt(spend_top5)} of spend at 0.9 kg/EUR, without deflation, gave {fmt(spend_top5 * 0.9 / 1000)} tCO2e" in text
+    # the five supplier lines replace exactly that spend; the remaining spend line is the rest of the 6,000,000
+    rest = next(l for l in EXAMPLE["inventory"]["lines"] if l["description"] == "Other ingredient suppliers")
+    assert rest["spend_eur"] == 6_000_000 - spend_top5
+
+
+def test_s4_island_cold_store_overlap() -> None:
+    text = page("s4-methods.md")
+    totals = inventory_totals()
+    assert totals[4].by_method["supplier_specific"] == pytest.approx(90)
+    assert totals[15].tco2e == pytest.approx(75)
+    assert "(90 tCO2e, 30% of the cold store's emissions)" in text and "Gozo's 25% stake (75 tCO2e)" in text
