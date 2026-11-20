@@ -174,8 +174,8 @@ See [F1 Evidence locker and audit trail](../foundations/evidence-locker.md).
 
 ## Reuse in other reports
 
-The same import data, energy data and emission factors feed CBAM, Scope 3,
-VSME and ESRS E1. See
+Much of the data you collect for one regime also feeds the others. For
+example, import data by CN code feeds both CBAM and Scope 3. See
 [F3 One dataset, many reports](../foundations/one-dataset-many-reports.md).
 
 ## Sources

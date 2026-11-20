@@ -104,7 +104,7 @@ you report:
 
 | Column | Example |
 |---|---|
-| `report` | CBAM declaration 2026 |
+| `report` | VSME report 2026 |
 | `datapoint` | Electricity use Q1 2026 |
 | `value` | 1250 |
 | `unit` | MWh |
@@ -127,8 +127,9 @@ Keep the hashes and registers for as long as the files themselves.
 
 ## Worked example
 
-Melita Metals Ltd is a fictional importer in Malta. It reports electricity
-use for its CBAM and Scope 2 data. The numbers are made up.
+Melita Metals Ltd is a fictional importer in Malta. It reports its own
+electricity use in its VSME report, and uses it to answer customer
+emissions requests. The numbers are made up.
 
 **The number.** Electricity use in Q1 2026 is the sum of three monthly
 invoices:
@@ -196,8 +197,9 @@ calculation files, and a dated record of each `verify` run.
 ## Reuse in other reports
 
 One locker serves every regime. The same electricity invoice supports
-CBAM indirect emissions, Scope 2, VSME and ESRS E1. Register it once and
-link it from each report's rows in `reported_values.csv`. See
+Scope 2, VSME and ESRS E1. The same customs declaration supports CBAM and
+Scope 3. Register each file once and link it from each report's rows in
+`reported_values.csv`. See
 [F3 One dataset, many reports](one-dataset-many-reports.md).
 
 ## Sources
