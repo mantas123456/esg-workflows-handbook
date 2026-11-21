@@ -1,4 +1,4 @@
-"""CSRD scope after Omnibus I, the start year, and the value-chain cap.
+"""CSRD scope after Omnibus I, the start year, the value-chain cap and EU Taxonomy KPIs.
 
 The thresholds come from data/regulations.yml (facts csrd-scope and
 csrd-value-chain-cap), not from this code. These functions show the tests;
@@ -104,3 +104,52 @@ def protected_by_value_chain_cap(average_employees: float) -> bool:
     if average_employees < 0:
         raise ValueError("average_employees must be zero or more")
     return average_employees <= _facts()["csrd-value-chain-cap"]["values"]["max_employees"]
+
+
+TAXONOMY_STATUSES = ("Aligned", "Eligible, not aligned", "Not assessed (non-material)", "Not eligible")
+
+
+@dataclass(frozen=True)
+class TaxonomyKpi:
+    """One EU Taxonomy KPI (turnover, CapEx or OpEx) of a non-financial undertaking."""
+    denominator_eur: float
+    amounts_eur: dict[str, float]
+    """Amount per status, in the order of TAXONOMY_STATUSES."""
+
+    def share(self, status: str) -> float:
+        """Share of the denominator (0 to 1) with this status."""
+        return self.amounts_eur[status] / self.denominator_eur if self.denominator_eur else 0.0
+
+    @property
+    def eligible_share(self) -> float:
+        """Aligned plus eligible-not-aligned, as a share of the denominator."""
+        return self.share("Aligned") + self.share("Eligible, not aligned")
+
+
+def taxonomy_kpi(rows: Iterable[dict[str, Any]], denominator_eur: float) -> TaxonomyKpi:
+    """Split a Taxonomy KPI denominator by status.
+
+    Each row has ``amount_eur`` and ``status`` (one of TAXONOMY_STATUSES). The rows
+    must add up to the denominator: every euro of turnover, CapEx or OpEx gets one
+    status. Activities not assessed because they are non-material must together stay
+    below the threshold of Delegated Regulation (EU) 2026/73 (10% of the
+    denominator; fact eu-taxonomy-simplification). This only does the arithmetic:
+    whether an activity is eligible or aligned depends on the technical screening
+    criteria, the do-no-significant-harm criteria and the minimum safeguards.
+    """
+    if denominator_eur <= 0:
+        raise ValueError("denominator_eur must be more than zero")
+    amounts = {s: 0.0 for s in TAXONOMY_STATUSES}
+    for r in rows:
+        if r["status"] not in TAXONOMY_STATUSES:
+            raise ValueError(f"unknown status {r['status']!r}; use one of {TAXONOMY_STATUSES}")
+        if r["amount_eur"] < 0:
+            raise ValueError("amount_eur must be zero or more")
+        amounts[r["status"]] += float(r["amount_eur"])
+    total = sum(amounts.values())
+    if abs(total - denominator_eur) > 0.5:
+        raise ValueError(f"the rows add up to {total:,.0f}, not the denominator {denominator_eur:,.0f}")
+    limit = _facts()["eu-taxonomy-simplification"]["values"]["materiality_threshold"]
+    if amounts["Not assessed (non-material)"] >= limit * denominator_eur:
+        raise ValueError(f"activities not assessed reach {limit:.0%} of the denominator: assess them")
+    return TaxonomyKpi(float(denominator_eur), amounts)

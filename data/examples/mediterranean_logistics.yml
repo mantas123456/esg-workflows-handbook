@@ -126,3 +126,31 @@ publication:
   - {date: 2028-03-20, step: "Board approves the annual report, with the sustainability statement in its own section of the management report"}
   - {date: 2028-03-25, step: "Limited assurance opinion signed"}
   - {date: 2028-04-15, step: "Annual report published and filed under national law"}
+
+# C10: EU Taxonomy KPIs, a dry run on financial year 2026 figures (MADE UP), with the
+# rules as amended by Delegated Regulation (EU) 2026/73. Amounts in EUR. Each row has
+# one status; esgcalc.csrd.taxonomy_kpi checks the rows add up to the denominator.
+taxonomy_2026:
+  fleet: {trucks_n3: 150, zero_emission_n3: 12}
+  turnover:
+    denominator_eur: 520000000
+    rows:
+      - {item: "Road freight with the 12 battery-electric N3 trucks", activity: "6.6", status: Aligned, amount_eur: 15600000}
+      - {item: "Road freight with the diesel trucks (Euro VI)", activity: "6.6", status: "Eligible, not aligned", amount_eur: 294400000}
+      - {item: "Sale of surplus rooftop solar electricity", activity: "4.1", status: "Not assessed (non-material)", amount_eur: 1500000}
+      - {item: "Cold storage, handling and value-added services", activity: null, status: Not eligible, amount_eur: 208500000}
+  capex:
+    denominator_eur: 50000000
+    rows:
+      - {item: "12 battery-electric N3 trucks", activity: "6.6", status: Aligned, amount_eur: 9000000}
+      - {item: "Replacement diesel trucks (Euro VI)", activity: "6.6", status: "Eligible, not aligned", amount_eur: 6000000}
+      - {item: "New cold store (alignment not yet shown)", activity: "7.1", status: "Eligible, not aligned", amount_eur: 30000000}
+      - {item: "IT systems and racking", activity: null, status: Not eligible, amount_eur: 5000000}
+  opex:
+    material: true      # fleet maintenance is large for a haulier: the OpEx exemption is not used
+    denominator_eur: 18000000
+    rows:
+      - {item: "Maintenance of the battery-electric trucks", activity: "6.6", status: Aligned, amount_eur: 900000}
+      - {item: "Maintenance of the diesel fleet", activity: "6.6", status: "Eligible, not aligned", amount_eur: 13500000}
+      - {item: "Maintenance of warehouse equipment", activity: null, status: Not eligible, amount_eur: 3600000}
+

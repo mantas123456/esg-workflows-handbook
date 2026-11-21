@@ -72,3 +72,4 @@ tracks:
       - {id: C7, title: "Datapoint gap analysis", file: c7-gap-analysis.md, release: "0.5", status: draft, templates: [esrs-gap-list], tools: [esrs-gap]}
       - {id: C8, title: "Assurance readiness", file: c8-assurance.md, release: "0.5", status: draft}
       - {id: C9, title: "Digital tagging and publication", file: c9-tagging.md, release: "0.5", status: draft}
+      - {id: C10, title: "EU Taxonomy KPIs", file: c10-taxonomy.md, release: "1.1", status: draft}

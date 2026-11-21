@@ -81,8 +81,8 @@ company gives the **proportion of its turnover, capital expenditure and
 operating expenditure** linked to such activities, following the
 Commission's delegated act on content and method. The assurance opinion
 covers these figures ([C8](c8-assurance.md)), and they are tagged with the
-rest ([C9](c9-tagging.md)). This handbook does not yet explain the
-Taxonomy's technical screening criteria.
+rest ([C9](c9-tagging.md)). [C10](c10-taxonomy.md) explains how to
+prepare them.
 
 ### 5. Assign an owner and a date to each disclosure
 

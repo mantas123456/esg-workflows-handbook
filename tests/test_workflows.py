@@ -26,4 +26,4 @@ def test_every_cited_fact_id_exists() -> None:
         assert cited and cited <= ids, (page.name, sorted(cited - ids))
         checked.add(page.name)
     csrd = {p.name for p in (ROOT / "docs/csrd").glob("c*.md")}
-    assert len(csrd) == 9 and csrd <= checked                             # every CSRD page names its facts
+    assert len(csrd) == 10 and csrd <= checked                            # every CSRD page names its facts

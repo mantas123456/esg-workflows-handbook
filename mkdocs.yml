@@ -136,6 +136,7 @@ nav:
       - "C7 Datapoint gap analysis": csrd/c7-gap-analysis.md
       - "C8 Assurance readiness": csrd/c8-assurance.md
       - "C9 Digital tagging and publication": csrd/c9-tagging.md
+      - "C10 EU Taxonomy KPIs": csrd/c10-taxonomy.md
   - Tools and templates:
       - All tools: tools/index.md
       - All templates: templates.md

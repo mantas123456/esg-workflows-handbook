@@ -85,22 +85,22 @@ on GitHub. Please link the official source.
 | 30 Sep 2027 | First CBAM annual declaration and surrender, for 2026 imports | `cbam-declaration` |
 | Dec 2027 | Latest date to revise the CBAM default values and mark-ups | `cbam-default-values` |
 
-**The 90- and 180-day checks.** Of the 59 facts, 39 were last checked on
-20 November 2026 and 20 on 21 November 2026 (re-read in the Official
-Journal for 1.0):
+**The 90- and 180-day checks.** Of the 63 facts, 39 were last checked on
+20 November 2026 and 24 on 21 November 2026 (re-read in the Official
+Journal for 1.0 and 1.1):
 
 | Run on | Days since the oldest check | Result |
 |---|---|---|
-| 21 Nov 2026 | 1 | 59 facts ok |
-| 18 Feb 2027 | 90 | 39 warnings, 20 ok, build passes |
-| 19 May 2027 | 180 | 39 over 180 days, 20 warnings, **build fails** |
+| 21 Nov 2026 | 1 | 63 facts ok |
+| 18 Feb 2027 | 90 | 39 warnings, 24 ok, build passes |
+| 19 May 2027 | 180 | 39 over 180 days, 24 warnings, **build fails** |
 
 So the next full re-check is due by **18 February 2027**, before the
 Omnibus I transposition deadline.
 
 ```
 python scripts/check_regulations.py --today 2027-02-18
-# 59 facts checked on 2027-02-18: 0 over 180 days, 39 over 90 days
+# 63 facts checked on 2027-02-18: 0 over 180 days, 39 over 90 days
 ```
 
 ## Common mistakes
