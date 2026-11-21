@@ -82,9 +82,22 @@ transposed by the Corporate Sustainability Reporting Regulations, 2026
 dates the Minister sets by notice in the Government Gazette. This handbook
 found a commencement notice for parts of the related Act I of 2026 (Legal
 Notice 61 of 2026, in force 20 March 2026), but **no commencement notice
-for Legal Notice 39**, and no Maltese law transposing Omnibus I. Check
+for Legal Notice 39**, and no Maltese law transposing Omnibus I (last
+checked 21 November 2026). Check
 [legislation.mt](https://legislation.mt/eli/ln/2026/39/eng) and ask your
 adviser.
+
+!!! tip "How to check Malta's status yourself"
+    1. Open the page of Legal Notice 39 of 2026 on legislation.mt and look
+       for later legal notices that amend it or bring it into force.
+    2. Search the Government Gazette for new legal notices made under the
+       Companies Act (Cap. 386) that mention corporate sustainability
+       reporting.
+    3. Look for an amending Act or legal notice that transposes Directive
+       (EU) 2026/470 (Omnibus I). The deadline is 19 March 2027, so check
+       again soon after that date.
+    4. Note the date and what you found in your evidence locker
+       ([F1](../foundations/evidence-locker.md)).
 
 ### 5. Plan backwards from the first year
 
