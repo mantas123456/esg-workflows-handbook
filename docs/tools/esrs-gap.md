@@ -26,7 +26,7 @@ standards). Give each one a status and see how ready you are. See
   <button type="button" id="clear" class="md-button">Clear</button>
 </div>
 
-<h3>Material topics</h3>
+<h2>Material topics</h2>
 <div id="standards" class="tool-bar"></div>
 
 <table class="tool-results">
@@ -41,7 +41,7 @@ standards). Give each one a status and see how ready you are. See
   </tbody>
 </table>
 
-<h3>Datapoints in scope</h3>
+<h2>Datapoints in scope</h2>
 <div class="tool-scroll">
 <table id="points" class="tool-table">
   <thead><tr><th>Datapoint</th><th>Standard</th><th>What it covers</th><th>Dataset</th><th>Status</th></tr></thead>

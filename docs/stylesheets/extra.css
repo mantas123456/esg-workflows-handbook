@@ -155,3 +155,49 @@
 .md-typeset .tool-histogram .bar-in { fill: var(--md-primary-fg-color); }
 .md-typeset .tool-histogram .bar-out { fill: var(--md-default-fg-color--lighter); }
 .md-typeset .tool-histogram .axis { font-size: 11px; fill: var(--md-default-fg-color--light); }
+
+/* Accessibility (0.6): contrast of at least 4.5:1 for links, inline code and
+   highlighted buttons (WCAG 2.1 AA), and links underlined so they do not rely
+   on colour alone. Checked with axe-core in tests/test_tools_a11y.py. */
+[data-md-color-scheme="default"] {
+  --md-typeset-a-color: #2e7d32;
+  --md-code-fg-color: #1b5e20;
+}
+[data-md-color-scheme="slate"] {
+  --md-typeset-a-color: #81c784;
+}
+.md-typeset p a,
+.md-typeset li a,
+.md-typeset td a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.md-typeset .md-button {
+  color: var(--md-typeset-a-color);
+  border-color: currentcolor;
+}
+.md-typeset .md-button:focus,
+.md-typeset .md-button:hover {
+  color: #ffffff;
+  background-color: #bf360c;
+  border-color: #bf360c;
+}
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.md-typeset .md-button--primary {
+  color: #ffffff;
+  background-color: #2e7d32;
+  border-color: #2e7d32;
+}
+/* Keep visually hidden labels inside scrolling tool tables, so they cannot
+   widen the page on a phone. */
+.md-typeset .tool-scroll,
+.md-typeset .tool-table th {
+  position: relative;
+}

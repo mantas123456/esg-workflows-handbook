@@ -32,7 +32,7 @@ for the method.
 
 <div class="tool-scroll">
 <table id="lines" class="tool-table">
-  <thead><tr><th>Line</th><th>Value (tCO2e)</th><th>±95% (%)</th><th></th></tr></thead>
+  <thead><tr><th>Line</th><th>Value (tCO2e)</th><th>±95% (%)</th><th><span class="visually-hidden">Remove line</span></th></tr></thead>
   <tbody></tbody>
 </table>
 </div>
@@ -40,7 +40,7 @@ for the method.
 <p id="errors" class="tool-errors" role="alert"></p>
 
 <table class="tool-results">
-  <thead><tr><th></th><th>Sum rule</th><th>Monte Carlo</th></tr></thead>
+  <thead><tr><th><span class="visually-hidden">Result</span></th><th>Sum rule</th><th>Monte Carlo</th></tr></thead>
   <tbody>
     <tr><th>Central value</th><td id="sum-value" data-value=""></td><td id="mc-median" data-value=""></td></tr>
     <tr><th>95% interval</th><td id="sum-interval" data-low="" data-high=""></td><td id="mc-interval" data-low="" data-high=""></td></tr>

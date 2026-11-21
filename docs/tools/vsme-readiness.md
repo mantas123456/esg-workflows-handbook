@@ -41,10 +41,10 @@ and lists what is still to do, grouped by disclosure. See
   </tbody>
 </table>
 
-<h3>Still to do</h3>
+<h2>Still to do</h2>
 <ul id="todo" class="tool-todo"></ul>
 
-<h3>Datapoints</h3>
+<h2>Datapoints</h2>
 <div class="tool-scroll">
 <table id="points" class="tool-table">
   <thead><tr><th>Have it</th><th>Datapoint</th><th>What it covers</th></tr></thead>
