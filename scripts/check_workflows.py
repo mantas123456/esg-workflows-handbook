@@ -1,6 +1,5 @@
 """CI check: every step has a page with the right front matter, ids are unique,
-and regulation facts have been re-checked in the last 90 days (warning only)."""
-from datetime import date, timedelta
+and pages that list templates show them. Fact ages: scripts/check_regulations.py."""
 from pathlib import Path
 import sys
 import yaml
@@ -38,11 +37,6 @@ def main() -> int:
                         errors.append(f"{sid}: template {tid} has no source in templates/")
                 if step.get("templates") and TEMPLATES_MARKER not in text:
                     errors.append(f"{sid}: lists templates but the page has no generated download block")
-
-    regs = yaml.safe_load((ROOT / "data/regulations.yml").read_text(encoding="utf-8"))
-    for r in regs:
-        if date.today() - r["last_checked"] > timedelta(days=90):
-            print(f"WARNING: regulation fact '{r['id']}' last checked {r['last_checked']}")
 
     for e in errors:
         print(f"ERROR: {e}")

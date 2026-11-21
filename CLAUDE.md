@@ -24,6 +24,7 @@ Sister project with the same conventions: `mantas123456/lab-accreditation-handbo
 python scripts/build_templates.py  # Word/Excel templates into docs/downloads (mkdocs needs them)
 python scripts/build_pages.py      # placeholders, workflow map, nav, download links
 python scripts/check_workflows.py  # must print 0 errors
+python scripts/check_regulations.py  # facts: warns at 90 days, fails at 180
 pytest -q                          # must pass
 mkdocs build --strict              # must pass
 mkdocs serve                       # preview at http://127.0.0.1:8000

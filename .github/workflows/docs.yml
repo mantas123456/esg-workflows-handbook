@@ -30,6 +30,8 @@ jobs:
         run: python -m playwright install --with-deps chromium
       - name: Build the templates
         run: python scripts/build_templates.py --force
+      - name: Check how long ago each regulatory fact was checked (warn 90 days, fail 180)
+        run: python scripts/check_regulations.py
       - name: Generate pages and check every step
         run: python scripts/build_pages.py && python scripts/check_workflows.py
       - name: Test calculations, worked examples, templates and the browser tool
