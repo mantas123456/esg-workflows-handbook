@@ -73,3 +73,17 @@ def test_issue_form_asks_for_the_page_and_a_source() -> None:
     assert {"page", "kind", "what", "source"} <= ids
     f4 = (DOCS / "foundations/keeping-up.md").read_text(encoding="utf-8")
     assert "issues/new?template=report-error.yml" in f4
+
+
+def test_release_1_0_is_labelled_self_reviewed_and_cites_correctly() -> None:
+    """X-1: 1.0 says it is self-reviewed; no page claims an external review; the citation file matches."""
+    cff = yaml.safe_load((ROOT / "CITATION.cff").read_text(encoding="utf-8"))
+    assert cff["cff-version"] == "1.2.0" and cff["title"] == "ESG Workflows Handbook"
+    assert set(cff["license"]) == {"CC-BY-4.0", "MIT"} and cff["authors"]
+    assert "not yet reviewed by an external practitioner" in cff["abstract"]
+    for _, step, _ in _steps():
+        assert step["status"] in ("draft", "planned"), step["id"]          # "reviewed" only after an external review
+    home = (DOCS / "index.md").read_text(encoding="utf-8")
+    assert "self-reviewed, not yet externally reviewed" in home
+    assert "Self-reviewed by its author; not yet reviewed by an external practitioner" in \
+        (ROOT / "scripts/build_pdf.py").read_text(encoding="utf-8")

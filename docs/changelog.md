@@ -4,6 +4,47 @@ What changed in the handbook, newest first. Regulatory updates are listed
 here too, with the date the facts were re-checked. See the
 [roadmap](roadmap.md) for what comes next.
 
+## 1.0 (21 November 2026)
+
+All four tracks, self-reviewed and corrected. Every page is still a draft:
+no external practitioner has reviewed the handbook yet.
+
+**Self-review and fixes**
+
+- A self-review read each track as a CBAM customs specialist, a GHG verifier
+  and a CSRD limited-assurance provider: 32 findings, none critical, all
+  fixed ([review on GitHub](https://github.com/mantas123456/esg-workflows-handbook/blob/main/review/self-review-1.0.md)).
+- The key facts were re-read in the Official Journal: the consolidated CBAM
+  Regulation and its implementing acts on verification (2025/2546), free
+  allocation (2025/2620) and carbon prices paid (2026/2498); the
+  consolidated Accounting Directive (Articles 19a, 29a, 29d, 34, 40a); the
+  revised ESRS (2026/1563); the voluntary standard (2026/1560); and the
+  Taxonomy Regulation (Article 8). 20 facts were added or corrected.
+- Corrections a reader should know about:
+  - **Scope 3 (Gozo Fresh Foods):** the cold store's emissions were counted
+    in two categories; now counted once. The total is **5,750 ± 420
+    tCO2e** (was 5,780 ± 420).
+  - **ESRS codes:** health and safety is **S1-13**, not S1-14.
+  - **Value-chain cap:** it covers only the datapoints in Annex II of the
+    voluntary standard, fewer for companies with 10 employees or fewer (C3,
+    V5).
+  - **CBAM data in Scope 3:** add the electricity CBAM leaves out for steel
+    and aluminium, and remove the default-value mark-up (CB3, CB4, CB9,
+    F3).
+  - **Malta:** only parts of Act I of 2026 are in force (Legal Notice 61
+    of 2026); no commencement notice for Legal Notice 39 was found.
+- New content: groups and non-EU parents in C1, the EU Taxonomy step in
+  C4, the CBAM guarantee (CB2), verification opinion and site visits (CB6),
+  the carbon-price conversion (CB7), the free allocation formula (CB8), and
+  the declaration review (CB9).
+
+**PDF edition and citation**
+
+- Each release now has a [PDF edition](https://github.com/mantas123456/esg-workflows-handbook/releases/latest) and a ZIP of the templates,
+  built in CI (`scripts/build_pdf.py`).
+- A citation file (`CITATION.cff`). A DOI will follow once releases are
+  archived on Zenodo.
+
 ## 0.6 Polish (21 November 2026)
 
 Keeping the handbook current, consistent and usable. No new rules: the
