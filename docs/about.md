@@ -12,8 +12,10 @@ Companion to the [Lab Accreditation Handbook](https://mantas123456.github.io/lab
 Version 1.0 was **self-reviewed** by the author, reading each track as a
 CBAM customs specialist, a GHG verifier and a CSRD limited-assurance
 provider would, and the key facts were re-read in the Official Journal.
-It has **not yet been reviewed by an external practitioner**, so every page
-is marked as a draft. A page will be marked reviewed only after an external
+Version 1.1 adds C10 (EU Taxonomy KPIs) and extends CB7, with the facts
+read in the Official Journal in the same way. The handbook has **not yet
+been reviewed by an external practitioner**, so every page is marked as a
+draft. A page will be marked reviewed only after an external
 practitioner has reviewed it.
 
 ## PDF edition and citation

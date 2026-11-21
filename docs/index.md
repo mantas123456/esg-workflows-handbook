@@ -17,7 +17,7 @@ Not sure which applies? Start with [Which regime applies to me?](start-here/tria
     The regulation, the Commission's guidance and your competent authority
     always take priority. Every page shows when its facts were last checked.
 
-!!! info "Version 1.0: self-reviewed, not yet externally reviewed"
+!!! info "Version 1.1: self-reviewed, not yet externally reviewed"
     The author reviewed every track from three practitioner viewpoints and
     re-read the key facts in the Official Journal. No external practitioner
     has reviewed the handbook yet, so every page is still marked as a draft.

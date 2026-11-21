@@ -4,6 +4,36 @@ What changed in the handbook, newest first. Regulatory updates are listed
 here too, with the date the facts were re-checked. See the
 [roadmap](roadmap.md) for what comes next.
 
+## 1.1 (21 November 2026)
+
+Fills three gaps left open by the 1.0 self-review. Every page is still a
+draft.
+
+- **New page C10, EU Taxonomy KPIs:** eligibility, the 10% non-material
+  rule and the OpEx exemption of Delegated Regulation (EU) 2026/73,
+  alignment (substantial contribution, do no significant harm, minimum
+  safeguards), with road freight (activity 6.6) as the example and a dry
+  run of Mediterranean Logistics Group's turnover, CapEx and OpEx KPIs.
+  New function `esgcalc.csrd.taxonomy_kpi`. The revised technical screening
+  criteria, consulted on in spring 2026, were not confirmed as adopted;
+  the page says so.
+- **CB7, carbon price paid abroad:** now covers the operator's carbon price
+  report (Implementing Regulation (EU) 2026/2498, Articles 8 to 10, 15 and
+  19, Annexes I and III): the price per tonne for each type of mechanism,
+  attribution of covered and rebated emissions to goods, the 10% limit on
+  international credits, precursors made elsewhere, and certification.
+  The worked example now builds Installation A's EUR 1.00 per tonne of
+  bars. New function `esgcalc.cbam.effective_carbon_price_per_t`.
+- **C1, Malta:** re-checked; still no commencement notice for Legal Notice
+  39 of 2026 and no transposition of Omnibus I. Added steps to check it
+  yourself.
+- **Correction:** Implementing Regulation (EU) 2026/2498 was adopted on
+  5 November 2026 and published on 16 November 2026 (it was given as
+  adopted on 16 November). Fixed in the facts, CB7 and the timeline.
+- Facts: 4 added (`cbam-carbon-price-report`, `eu-taxonomy-alignment`,
+  `eu-taxonomy-simplification`, `eu-taxonomy-road-freight`), 1 corrected;
+  63 in total, re-checked 21 November 2026.
+
 ## 1.0 (21 November 2026)
 
 All four tracks, self-reviewed and corrected. Every page is still a draft:
