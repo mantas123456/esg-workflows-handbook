@@ -4,6 +4,44 @@ What changed in the handbook, newest first. Regulatory updates are listed
 here too, with the date the facts were re-checked. See the
 [roadmap](roadmap.md) for what comes next.
 
+## 0.6 Polish (21 November 2026)
+
+Keeping the handbook current, consistent and usable. No new rules: the
+facts are as checked on 20 November 2026.
+
+**New pages**
+
+- [F4 Keeping up with changes](foundations/keeping-up.md): one fact list,
+  a 90/180-day re-check cycle, and a watch list of known dates to the end
+  of 2027.
+- [All tools](tools/index.md) and [All templates](templates.md), with the
+  steps that use each one.
+
+**Checks**
+
+- `scripts/check_regulations.py` runs in CI: a warning when a fact has not
+  been re-checked for 90 days, a failed build at 180.
+- Tests now check that every written page follows the chapter format and
+  has a `last_checked` date, that every template is linked from a step, and
+  that every tool has a page, a step and a browser test.
+- `scripts/check_links.py` checks the external links by hand.
+- Tool links in `data/workflows.yml` now name real tool pages (CB1, CB8, F2).
+
+**Accessibility**
+
+- The six browser tools pass axe-core checks in light and dark mode, and
+  work with the keyboard alone: stronger link, code and button contrast,
+  underlined links, labelled table headers, ordered headings.
+
+**Report an error**
+
+- A GitHub [issue form](https://github.com/mantas123456/esg-workflows-handbook/issues/new?template=report-error.yml)
+  asks for the page, the problem and the official source.
+
+**Known gaps:** EUR-Lex refuses automated requests, so its links are
+checked by hand; the accessibility check covers the tools, not every page;
+the open fact checks listed under 0.5 remain open.
+
 ## 0.5 CSRD / ESRS track (20 November 2026)
 
 The CSRD and revised ESRS after Omnibus I, with Mediterranean Logistics

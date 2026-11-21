@@ -18,12 +18,16 @@ One page per step: what it is, inputs, steps, a worked example with made-up
 numbers, common mistakes, templates, tools and sources. Emissions numbers
 are treated as measurements, with traceable inputs and stated uncertainty.
 
-**Status:** version 0.5 released 20 November 2026: the CSRD / ESRS track
-(C1-C9) with a DMA scoring tool, an ESRS gap check and three workbooks, on
-top of 0.4 (VSME, V1-V6), 0.3 (Scope 3, S1-S9, and data quality and
-uncertainty, F2), 0.2 (CBAM, CB1-CB10) and 0.1 (triage, timeline, evidence
-locker, data reuse map). All four tracks are written. All pages are drafts.
-Next: 0.6 tools polish. See the
+**Status:** version 0.6 released 21 November 2026: keeping up with changes
+(F4, with a regulation date check in CI), tools and templates index pages,
+accessible browser tools and an error-report form, on top of 0.5 (CSRD /
+ESRS, C1-C9), 0.4 (VSME, V1-V6), 0.3 (Scope 3, S1-S9, F2), 0.2 (CBAM,
+CB1-CB10) and 0.1 (triage, timeline, evidence locker, data reuse map). All
+four tracks are written. All pages are drafts. Next: 1.0, after a
+practitioner review.
+
+Found an error or an outdated rule?
+[Report it](https://github.com/mantas123456/esg-workflows-handbook/issues/new?template=report-error.yml). See the
 [changelog](docs/changelog.md), the [roadmap](docs/roadmap.md),
 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) and the
 [staged build prompts](prompts/STAGED_PROMPTS.md).
