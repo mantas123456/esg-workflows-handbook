@@ -275,3 +275,21 @@ def test_records_retention_end() -> None:
     # declaration in 2027 -> end of the fourth year after: 31 Dec 2031
     assert cbam.records_retention_end(2027) == date(2031, 12, 31)
     assert cbam.records_retention_end(2030) == date(2034, 12, 31)
+
+
+def test_specific_embedded_free_allocation_follows_the_cbam_factor() -> None:
+    from esgcalc.cbam import specific_embedded_free_allocation as sefa
+    assert sefa(1.0, 2026) == pytest.approx(0.975)          # CBAM factor 97.5% in 2026
+    assert sefa(1.0, 2030, 0.9) == pytest.approx(0.515 * 0.9)
+    assert sefa(1.0, 2040) == 0.0                           # none from 2034 onwards
+    with pytest.raises(ValueError):
+        sefa(1.0, 2020)
+
+
+def test_carbon_price_reduction() -> None:
+    from esgcalc.cbam import carbon_price_reduction
+    assert carbon_price_reduction(2.0, 80.0, 100) == pytest.approx(2.5)   # 2 / 80 x 100
+    with pytest.raises(ValueError):
+        carbon_price_reduction(1.0, 0.0, 10)
+    with pytest.raises(ValueError):
+        carbon_price_reduction(-1.0, 80.0, 10)

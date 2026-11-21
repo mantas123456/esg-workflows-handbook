@@ -1,7 +1,7 @@
 ---
 step: "S4"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # S4 Calculation methods
@@ -44,7 +44,10 @@ or revenue). The supplier's figure should cover the goods you bought, from
 cradle to their gate. **A supplier's Scope 1 and 2 alone are not cradle to
 gate**: they leave out what the supplier buys (fertiliser, feed, packaging).
 If that is all you get, add an estimate for the missing upstream part, or
-score completeness lower and say so ([S6](s6-data-quality.md)).
+score completeness lower and say so ([S6](s6-data-quality.md)). For farm
+inputs, also ask whether the figure includes land use and land-use change:
+from 1 January 2027 the GHG Protocol Land Sector and Removals Standard
+applies to them.
 
 ### 2. Average-data: quantity x average factor
 
@@ -71,6 +74,15 @@ the spend first.
 
 One category can use all three. When better data replaces an estimate,
 **remove the estimate**. Each purchase belongs on one line only.
+
+The 15 categories are meant not to overlap. If the same emissions could
+land in two categories, report them **once**, say where, and cross-refer
+(Scope 3 Standard, chapter 5).
+
+**Keep biogenic CO2 separate.** CO2 from burning or rotting biomass (food
+waste in anaerobic digestion, wood, biofuels) is not counted in the
+scopes. The Scope 3 Standard asks for it to be reported separately, for
+each category.
 
 ### 5. Keep the screening estimate for categories that are not significant
 
@@ -104,6 +116,20 @@ priced in 2022; the producer price index is **100 in 2022** and **118 in
 | Glass jars | Average-data | 200,000 kg × 0.9 kg/kg | 180.00 |
 | **Category 1** | | | **4,845.00** |
 
+**What each supplier's figure covers, and how it is allocated:**
+
+| Supplier | Covers | Allocated by | Verified? |
+|---|---|---|---|
+| Maltese Farmers Cooperative | Cradle to gate: farms, fertiliser, fuel and packing | tonnes of vegetables | Yes |
+| Sicilian Tomato Co | Cradle to gate: growing, processing and cans | tonnes of tomato products | Yes |
+| Gozo Greens Ltd | Cradle to gate: growing and packing | tonnes of salad and herbs | No |
+| Island Dairy Ltd | Cradle to gate: farms, feed and dairy plant | tonnes of milk products | No |
+| Mediterranean Oils | Scope 1 and 2 of the mill only, nine months; olive growing missing | tonnes of oil | No |
+
+Mediterranean Oils' figure is not cradle to gate and covers part of the
+year, so it scores lower on completeness ([S6](s6-data-quality.md)) and
+carries a wider uncertainty ([F2](../foundations/data-quality.md)).
+
 The five supplier lines **replace** EUR 5,100,000 of ingredient spend.
 That spend is no longer on a spend-based line; only the other EUR 900,000
 is. Packaging is now calculated from tonnes by material instead of spend.
@@ -121,11 +147,12 @@ is. Packaging is now calculated from tonnes by material instead of spend.
 | 7 | Employee commuting | 117.00 | 0.00% | 100.00% | 0.00% |
 | 9 | Downstream transportation and distribution | 114.00 | 0.00% | 100.00% | 0.00% |
 | 12 | End-of-life treatment of sold products | 92.50 | 0.00% | 100.00% | 0.00% |
-| 15 | Investments | 75.00 | 100.00% | 0.00% | 0.00% |
-| | **Total Scope 3** | **5,775.09** | **58.61%** | **25.88%** | **15.51%** |
+| 15 | Investments | 52.50 | 100.00% | 0.00% | 0.00% |
+| | **Total Scope 3** | **5,752.59** | **58.45%** | **25.98%** | **15.57%** |
 
-Categories 5, 6 and 15 are not significant: their screening estimates are
-carried over. Categories 8, 10, 11, 13 and 14 are zero, with the reasons
+Categories 5 and 6 are not significant: their screening estimates are
+carried over. Category 15 is not significant either, but it is
+recalculated so that no emissions are counted twice (below). Categories 8, 10, 11, 13 and 14 are zero, with the reasons
 given in [S2](s2-screening.md).
 
 **Why the inventory is lower than the screening (7,489.08 tCO2e).**
@@ -138,16 +165,19 @@ given in [S2](s2-screening.md).
 | 7 | 157.08 | 117.00 | Staff survey: some staff take the bus |
 | 9 | 126.00 | 114.00 | The supermarket's own figures |
 | 12 | 195.00 | 92.50 | End-of-life factors by packaging material |
+| 15 | 75.00 | 52.50 | Storage already in category 4 left out |
 
 For example, the five suppliers' own data gives 3,220 tCO2e. Their
 EUR 5,100,000 of spend at 0.9 kg/EUR, without deflation, gave 4,590 tCO2e
 at screening.
 
-**Island Cold Store, counted twice on purpose.** Category 4 holds the
-storage service Gozo buys (90 tCO2e, 30% of the cold store's emissions).
-Category 15 holds Gozo's 25% stake (75 tCO2e). Both come from the same 300
-tCO2e. Gozo keeps both, because they are two different relationships, and
-discloses the overlap in its inventory notes ([S9](s9-reporting.md)).
+**Island Cold Store, counted once.** Category 4 holds the storage service
+Gozo buys (90 tCO2e, 30% of the cold store's emissions). Category 15 holds
+Gozo's 25% stake, but only in the cold store's other emissions: 25% x (300
+- 90) = **52.50 tCO2e**, not 25% x 300 = 75. At screening the stake was
+counted on all 300 tCO2e, so 22.50 tCO2e of the storage would have been
+counted twice. Gozo explains this in its inventory notes
+([S9](s9-reporting.md)).
 
 In Python, with
 [`esgcalc`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/scope3.py):
@@ -174,8 +204,9 @@ print(round(category_1.tco2e, 2), round(category_1.share("supplier_specific"), 4
 - **Mixing units.** kg with a factor per tonne is out by a factor of 1,000.
 - **Allocating by the wrong quantity.** Use the same unit for what you
   bought and the supplier's total output.
-- **Hiding overlaps.** If the same emissions appear in two categories for
-  different reasons, say so.
+- **Counting overlaps twice.** If the same emissions could appear in two
+  categories, report them once and say where.
+- **Mixing biogenic CO2 into the scopes.** Report it separately.
 - **Leaving out the method mix.** Readers need to know how much rests on
   rough spend-based factors.
 

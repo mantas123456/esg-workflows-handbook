@@ -1,7 +1,7 @@
 ---
 step: "S2"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # S2 Screening the 15 categories
@@ -51,6 +51,12 @@ Use the quickest method that gives an order of magnitude:
 - **supplier-specific** where a supplier already gave you its figure.
 
 [S4](s4-methods.md) explains the methods.
+
+**Food, drink and other farm-based goods:** emissions from land use and
+land-use change on the farms can be a large part of category 1. The GHG
+Protocol Land Sector and Removals Standard takes effect on 1 January 2027.
+Note in the screening which purchases come from farms or forests, so the
+inventory can treat them under that standard.
 
 ### 3. Rank and work out each share
 

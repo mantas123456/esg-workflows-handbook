@@ -1,7 +1,7 @@
 ---
 step: "C9"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # C9 Digital tagging and publication
@@ -46,8 +46,9 @@ format** (Delegated Regulation (EU) 2019/815, "ESEF").
 ### 3. Get ready to tag
 
 The sustainability reporting, including the EU Taxonomy disclosures, is
-to be **marked up (tagged)** with a digital taxonomy. As of 20 November
-2026 this is **not yet mandatory**:
+to be **marked up (tagged)** in that format (Article 29d). Article 29d also
+says that, until the marking-up rules are adopted, companies are **not
+required** to tag. As of 21 November 2026 they are not adopted:
 
 - EFRAG published a draft XBRL taxonomy for the revised ESRS, with
   consultation until 11 November 2026, and plans to hand the final
@@ -67,7 +68,9 @@ assurance fieldwork, board approval, the assurance opinion, publication.
 ## Worked example
 
 Mediterranean Logistics Group (fictional) plans its first report, for
-financial year 2027. The dates are its own plan, not legal deadlines:
+financial year 2027. The dates are its own plan, not legal deadlines, and
+the order of board approval and the assurance opinion is an assumption:
+national law and practice decide it.
 
 | Date | Step |
 |---|---|
@@ -114,7 +117,11 @@ digital template ([V6](../vsme/v6-publishing.md)). See
 ## Sources
 
 Facts come from `data/regulations.yml` (ids `csrd-management-report`,
-`esrs-digital-tagging`), last checked 20 November 2026.
+`esrs-digital-tagging`), last checked 21 November 2026.
+
+- Directive 2013/34/EU, Articles 19a, 29a and 29d, consolidated text of
+  18 March 2026:
+  [EUR-Lex](https://eur-lex.europa.eu/eli/dir/2013/34/2026-03-18/eng)
 
 - Directive (EU) 2022/2464 (CSRD), consolidated:
   [EUR-Lex](https://eur-lex.europa.eu/eli/dir/2022/2464/2026-03-18/eng)

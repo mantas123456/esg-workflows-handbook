@@ -1,0 +1,36 @@
+# The value-chain cap: the datapoints listed in Annex II of Delegated Regulation (EU)
+# 2026/1560 (OJ L, 21.9.2026), in the handbook's own short words. A company reporting
+# under the CSRD may not require more than these from a value-chain undertaking with
+# on average 1,000 employees or fewer (fact csrd-value-chain-cap).
+#
+# id:          disclosure plus paragraph reference
+# small:       in the cap for undertakings with 10 employees or fewer
+# large:       in the cap for undertakings with more than 10 employees
+# Last checked: 2026-11-21 against the Official Journal text.
+source: https://eur-lex.europa.eu/eli/reg_del/2026/1560/oj/eng
+applies_from: financial years beginning on or after 1 January 2027 (Article 3, Article 4)
+
+datapoints:
+  - {id: B1-27a, disclosure: B1, reference: "Para 27(a)(i) and (ii)", description: "Module option chosen (Basic and/or Comprehensive)", small: true, large: true}
+  - {id: B1-27c, disclosure: B1, reference: "Para 27(c)", description: "Reporting basis (individual or consolidated)", small: true, large: true}
+  - {id: B1-27e, disclosure: B1, reference: "Para 27(e)(i) to (vii)", description: "General information about the undertaking", small: true, large: true}
+  - {id: B3-32, disclosure: B3, reference: "Para 32, first sentence", description: "Total energy consumption in MWh", small: false, large: true}
+  - {id: B3-33, disclosure: B3, reference: "Para 33", description: "Estimated gross GHG emissions: Scope 1 and location-based Scope 2", small: false, large: true}
+  - {id: B6-36, disclosure: B6, reference: "Para 36", description: "Total water withdrawal", small: false, large: true}
+  - {id: B7-38, disclosure: B7, reference: "Para 38, first sentence", description: "Whether circular economy principles are applied", small: false, large: true}
+  - {id: B7-39a, disclosure: B7, reference: "Para 39(a)", description: "Total waste generated, hazardous and non-hazardous", small: false, large: true}
+  - {id: B7-39b, disclosure: B7, reference: "Para 39(b)", description: "Share of waste diverted to recycling or reuse", small: false, large: true}
+  - {id: B8-40a, disclosure: B8, reference: "Para 40(a)", description: "Number of employees by type of contract", small: true, large: true}
+  - {id: B8-40b, disclosure: B8, reference: "Para 40(b)", description: "Number of employees by gender", small: true, large: true}
+  - {id: B9-41a, disclosure: B9, reference: "Para 41(a)", description: "Number and rate of recordable work-related accidents", small: true, large: true}
+  - {id: B10-42a, disclosure: B10, reference: "Para 42(a)", description: "Whether pay is at or above the applicable minimum wage", small: true, large: true}
+  - {id: B10-42c, disclosure: B10, reference: "Para 42(c)", description: "Share of employees covered by collective bargaining", small: true, large: true}
+  - {id: B10-42d, disclosure: B10, reference: "Para 42(d)", description: "Average annual training hours per employee", small: true, large: true}
+  - {id: C1-46a, disclosure: C1, reference: "Para 46(a)", description: "Significant groups of products or services", small: false, large: true}
+  - {id: C1-46b, disclosure: C1, reference: "Para 46(b)", description: "Significant markets", small: false, large: true}
+  - {id: C1-46c, disclosure: C1, reference: "Para 46(c)", description: "Main business relationships", small: false, large: true}
+  - {id: C5-58, disclosure: C5, reference: "Para 58", description: "Employee turnover rate", small: false, large: true}
+  - {id: C6-61a, disclosure: C6, reference: "Para 61(a)", description: "Code of conduct or human rights policy", small: false, large: true}
+  - {id: C6-61c, disclosure: C6, reference: "Para 61(c)", description: "Complaints-handling mechanism", small: false, large: true}
+  - {id: C7-62a, disclosure: C7, reference: "Para 62(a)(i) to (v)", description: "Confirmed incidents in its own workforce", small: false, large: true}
+  - {id: C7-62c, disclosure: C7, reference: "Para 62(c), first sentence", description: "Confirmed incidents involving value-chain workers, communities or consumers", small: false, large: true}

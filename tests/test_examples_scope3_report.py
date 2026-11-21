@@ -4,6 +4,10 @@ Builds on the helpers in test_examples_scope3.py, so S2-S9 and F2 all come from 
 same data (data/examples/gozo_fresh_foods.yml) and the same esgcalc functions.
 """
 import pytest
+import yaml
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
 
 from esgcalc import quality, scope3
 from esgcalc.quality import DataQuality, category_score
@@ -130,9 +134,10 @@ def test_s8_recalculation() -> None:
     assert f"| **Added up (absolute)** | | | **{check.cumulative_abs_tco2e:,.2f}** | **{check.share:.2%}** |" in text
     net = sum(effects.values())
     assert f"= **{base + net:,.2f} tCO2e**" in text
-    assert f"−{abs(net):,.2f} tCO2e ({abs(net) / base:.2%})" in text
+    sign = "+" if net > 0 else "−"
+    assert f"{sign}{abs(net):,.2f} tCO2e ({abs(net) / base:.2%})" in text
     assert f"at **{base:,.2f} tCO2e** of Scope 3" in text
-    assert "# 0.0562 True" in text
+    assert f"# {round(check.share, 4)} True" in text and round(check.share, 4) == 0.0525
 
 
 # --- S9 Reporting the inventory -------------------------------------------------
@@ -151,7 +156,7 @@ def test_s9_inventory_table_and_total() -> None:
     assert (f"| | **Total Scope 3** | **{total.value:,.2f}** | | **{inventory_score():.2f}** | "
             f"**{total.u95_rel:.1%}** | |") in text
     v, u = quality.round_result(total.value, total.u95_abs)
-    assert (v, u) == (5780.0, 420.0)
+    assert (v, u) == (5750.0, 420.0)
     assert f"**Reported total: {v:,.0f} ± {u:,.0f} tCO2e (95%).**" in text
     sig_total = sum(summary[c]["tco2e"] for c in sig)
     assert f"**{sig_total:,.2f} tCO2e**, {sig_total / total.value:.2%} of the total" in text
@@ -172,11 +177,15 @@ def test_s9_method_mix_note_matches_s4() -> None:
 
 def test_s9_python_snippet() -> None:
     text = page("s9-reporting.md")
-    categories = [4845.00, 135.59, 180.00, 175.00, 31.00, 10.00, 117.00, 114.00, 92.50, 75.00]
-    u95 = [0.0836, 0.50, 0.1498, 0.1332, 0.4145, 0.50, 0.2203, 0.3095, 0.4083, 0.15]
+    categories = [4845.00, 135.59, 180.00, 175.00, 31.00, 10.00, 117.00, 114.00, 92.50, 52.50]
+    u95 = [0.0836, 0.50, 0.1498, 0.1332, 0.4147, 0.50, 0.2203, 0.3095, 0.4083, 0.15]
+    # the snippet's rounded inputs are the category results of S9's table
+    summary = category_summary()
+    assert [round(v["tco2e"], 2) for v in summary.values()] == categories
+    assert [round(v["u95_rel"], 4) for v in summary.values()] == u95
     total = quality.sum_uncertainty(categories, u95)
-    assert quality.round_result(total.value, total.u95_abs) == (5780.0, 420.0)
-    assert "# (5780.0, 420.0)" in text
+    assert quality.round_result(total.value, total.u95_abs) == (5750.0, 420.0)
+    assert "# (5750.0, 420.0)" in text
 
 
 # --- esgcalc.scope3.check_recalculation ------------------------------------------
@@ -191,3 +200,20 @@ def test_check_recalculation_adds_absolute_changes() -> None:
         scope3.check_recalculation(0, {"a": 1}, 0.05)
     with pytest.raises(ValueError):
         scope3.check_recalculation(1000, {"a": 1}, 1.5)
+
+
+
+def test_s9_provisional_gwp_and_biogenic_notes() -> None:
+    """GHG-2, GHG-3, GHG-5: the S9 notes name the GWP basis, biogenic CO2 and the placeholder share."""
+    from test_examples_scope3 import _inventory_tco2e
+    text = page("s9-reporting.md")
+    register = EXAMPLE["factor_register"]
+    placeholders = [l for l in EXAMPLE["inventory"]["lines"] if register.get(l["description"]) == "to-choose"]
+    ph = sum(_inventory_tco2e(l) for l in placeholders)
+    total = sum(s["tco2e"] for s in category_summary().values())
+    assert len(placeholders) == 4
+    assert f"**{ph:,.2f} tCO2e ({ph / total:.1%})**" in text
+    regs = {r["id"]: r for r in yaml.safe_load((ROOT / "data/regulations.yml").read_text(encoding="utf-8"))}
+    assert "AR5: CH4 28, N2O 265" in regs["desnz-2026-gwp"]["fact"]
+    assert "(AR5:\n    methane 28, nitrous oxide 265)".replace("\n    ", " ") in text
+    assert "12. **Biogenic CO2:**" in text

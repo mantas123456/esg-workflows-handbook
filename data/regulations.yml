@@ -12,10 +12,21 @@
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ%3AL_202600470
   last_checked: 2026-11-20
 - id: csrd-scope
-  fact: CSRD applies to EU companies with over 1,000 employees and over EUR 450 m net turnover (both conditions)
-  source: https://eur-lex.europa.eu/eli/dir/2026/470/oj/eng
+  fact: "CSRD applies to undertakings that, on their balance sheet dates, exceed a net turnover of EUR 450 m and an average number of 1,000 employees during the financial year (both conditions, Article 19a(1)); a parent undertaking of a group reports on a consolidated basis when the group exceeds the same two thresholds on a consolidated basis (Article 29a(1)); the information goes in a dedicated section of the (consolidated) management report"
+  article: "Directive 2013/34/EU, Articles 19a(1) and 29a(1), as amended by Directive (EU) 2026/470"
+  source: https://eur-lex.europa.eu/eli/dir/2013/34/2026-03-18/eng
   values: {min_employees_exclusive: 1000, min_turnover_eur_exclusive: 450000000}
-  last_checked: 2026-11-20
+  last_checked: 2026-11-21
+- id: csrd-subsidiary-exemption
+  fact: "A subsidiary undertaking is exempted from its own sustainability reporting where it and its subsidiaries are included in the consolidated management report of its parent undertaking drawn up under Articles 29 and 29a, or in the consolidated sustainability reporting of a third-country parent made in accordance with the ESRS or an equivalent standard, subject to the conditions set out in Article 19a(9)"
+  article: "Directive 2013/34/EU, Article 19a(9), as amended"
+  source: https://eur-lex.europa.eu/eli/dir/2013/34/2026-03-18/eng
+  last_checked: 2026-11-21
+- id: csrd-third-country
+  fact: "An EU subsidiary of a third-country ultimate parent, with net turnover above EUR 200 m in the preceding financial year, or (where there is no such subsidiary) an EU branch of a third-country undertaking with net turnover above EUR 200 m, publishes a sustainability report at the group level of the third-country undertaking, where that undertaking generated a net turnover in the Union above EUR 450 m in each of the last two consecutive financial years; the report follows standards adopted under Article 40b"
+  article: "Directive 2013/34/EU, Article 40a(1) and (2), as amended by Directive (EU) 2026/470"
+  source: https://eur-lex.europa.eu/eli/dir/2013/34/2026-03-18/eng
+  last_checked: 2026-11-21
 - id: csrd-wave1-exemption
   fact: Companies reporting from FY2024 (wave 1) that fall below the new thresholds leave CSRD scope from FY2027; Member States may exempt them for financial years starting 1 Jan 2025 to 31 Dec 2026 (an option, not automatic)
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ%3AL_202600470
@@ -31,10 +42,10 @@
   source: https://knowledgehub.efrag.org/interactive/simplified-esrs/esrs-1
   last_checked: 2026-11-20
 - id: esrs-phase-in
-  fact: "ESRS 1 chapter 10 (section 10.3) lists phased-in disclosure requirements, by type of undertaking. In the text read (EFRAG Knowledge Hub), undertakings first reporting for financial years from 2027 may omit, in their first years: E4, S2, S3 and S4 disclosures (first two years); anticipated financial effects (first two years, except some E1 paragraphs); quantitative anticipated financial effects (first four years); substances-of-concern data (first three years); and comparative information (first year). Undertakings using a phase-in say so (BP-2) and, for some, whether the topic was assessed as material. Earlier voluntary use does not start the phase-in clock. No phase-in specific to Scope 3 was found. The years have not been checked against the Official Journal text"
-  article: Delegated Regulation (EU) 2026/1563, Annex I, ESRS 1 chapter 10 and ESRS 2 BP-2
-  source: https://knowledgehub.efrag.org/eng/interactive/simplified-esrs/esrs-1/delegated-act
-  last_checked: 2026-11-20
+  fact: "ESRS 1 chapter 10 sets the transitional provisions. 'Other undertakings' (required to report from financial years starting on or after 1 January 2027) may omit: all DRs of E4, S2, S3 and S4 for their first two financial years; anticipated financial effects (ESRS 2 paragraph 27 and E1-11) for their first two years, except E1-11 paragraphs 39(a)(b) and 40(a)(b); quantitative anticipated financial effects for their first four years (same exception); quantitative information on substances of concern (E2-5) for their first three years; information on substances of very high concern in articles they use for their first year; S1-6, S1-7 for employees outside the EEA, S1-10, S1-11, S1-12, S1-13 paragraph 37(d) and (e) and non-employee datapoints, and S1-14 for their first year; comparative information for their first year. For their first three financial years, where not all value-chain information is available, they explain their efforts, why it could not be obtained, and their plans. Earlier voluntary use does not start the phase-in clock. Undertakings using a phase-in say so (BP-2). No phase-in specific to Scope 3 exists"
+  article: "Delegated Regulation (EU) 2026/1563, Annex I, ESRS 1 paragraphs 121 to 127, and ESRS 2 BP-2"
+  source: https://eur-lex.europa.eu/eli/reg_del/2026/1563/oj/eng
+  last_checked: 2026-11-21
 - id: esrs-dma-method
   fact: "Impact materiality: the severity of an impact is assessed on its scale, scope and irremediable character, and any one of the three can make a negative impact severe; actual negative impacts are assessed on severity, potential negative impacts on severity and likelihood, and for potential human rights impacts severity takes precedence over likelihood; actual positive impacts on scale and scope, potential positive impacts on scale, scope and likelihood; prevention and mitigation count only if already implemented and reasonably assumed to be effective. Financial materiality: a topic is material if it triggers, or could reasonably be expected to trigger, material financial effects over the short, medium or long term; material risks and opportunities can arise from material impacts. The undertaking decides materiality with qualitative considerations and quantitative thresholds it sets; the ESRS give no numeric thresholds"
   article: Delegated Regulation (EU) 2026/1563, Annex I, ESRS 1 chapter 3 (impact and financial materiality)
@@ -46,36 +57,41 @@
   source: https://finance.ec.europa.eu/news/commission-seeks-feedback-limited-assurance-standards-sustainability-reporting-2026-11-12_en
   last_checked: 2026-11-20
 - id: csrd-assurance-scope
-  fact: "The statutory auditor (or audit firm) gives a limited assurance opinion on the sustainability reporting, covering its compliance with the ESRS, the process the undertaking carried out to identify the reported information (the materiality assessment), compliance with the marking-up requirement of Article 29d, and the EU Taxonomy disclosures under Article 8 of Regulation (EU) 2020/852; Member States may also allow a different auditor, or an independent assurance services provider accredited under Regulation (EC) No 765/2008, to give the opinion; until the Commission adopts assurance standards, national standards may apply. Read in summaries and the consolidated texts' references; the Article 34 wording was not read directly"
-  article: Directive 2013/34/EU, Article 34, as amended by Directive (EU) 2022/2464 and Directive (EU) 2026/470; Directive 2006/43/EC, Article 26a
-  source: https://eur-lex.europa.eu/eli/dir/2022/2464/2026-03-18/eng
-  last_checked: 2026-11-20
+  fact: "The statutory auditor or audit firm expresses an opinion based on a limited assurance engagement on the compliance of the sustainability reporting with the Directive, including compliance with the ESRS, the process carried out by the undertaking to identify the information reported, compliance with the marking-up requirement of Article 29d, and compliance with Article 8 of Regulation (EU) 2020/852; the opinion must fully respect the right of value-chain undertakings with on average 1,000 employees or fewer to decline information beyond the voluntary standard; Member States may allow a different statutory auditor, or an independent assurance services provider, to give the opinion"
+  article: "Directive 2013/34/EU, Article 34(1), second subparagraph, point (aa), and Article 34(2a), (3) and (4), as amended by Directive (EU) 2026/470"
+  source: https://eur-lex.europa.eu/eli/dir/2013/34/2026-03-18/eng
+  last_checked: 2026-11-21
 - id: csrd-management-report
-  fact: "Sustainability reporting goes in a dedicated, clearly identifiable section of the management report (or the consolidated management report of a parent); the management report is prepared in the European single electronic format (Delegated Regulation (EU) 2019/815), and the sustainability reporting, including the EU Taxonomy disclosures under Article 8 of Regulation (EU) 2020/852, is to be marked up with a digital taxonomy, which is not yet adopted (see esrs-digital-tagging). Read in the consolidated CSRD and in summaries; the Article 29d wording was not read directly"
-  article: Directive 2013/34/EU, Articles 19a, 29a and 29d, as amended by Directive (EU) 2022/2464 and Directive (EU) 2026/470
-  source: https://eur-lex.europa.eu/eli/dir/2022/2464/2026-03-18/eng
-  last_checked: 2026-11-20
+  fact: "Sustainability reporting is clearly identifiable within the management report (or consolidated management report), through a dedicated section; the management report is prepared in the electronic reporting format of Article 3 of Delegated Regulation (EU) 2019/815, and the sustainability reporting, including the disclosures under Article 8 of Regulation (EU) 2020/852, is to be marked up in that format; until the marking-up rules are adopted in that Delegated Regulation, undertakings are not required to mark up their sustainability reporting"
+  article: "Directive 2013/34/EU, Articles 19a(1), 29a(1) and 29d, as amended by Directive (EU) 2026/470"
+  source: https://eur-lex.europa.eu/eli/dir/2013/34/2026-03-18/eng
+  last_checked: 2026-11-21
+- id: eu-taxonomy-article8
+  fact: "Undertakings subject to Article 19a or 29a of Directive 2013/34/EU disclose how and to what extent their activities are associated with environmentally sustainable economic activities under the Taxonomy Regulation; non-financial undertakings disclose the proportion of their turnover, capital expenditure and operating expenditure associated with such activities; a delegated act specifies content, presentation and methodology; the disclosures are covered by the assurance opinion and the marking-up requirement"
+  article: "Regulation (EU) 2020/852, Article 8(1), (2) and (4); Directive 2013/34/EU, Articles 29d and 34"
+  source: https://eur-lex.europa.eu/eli/reg/2020/852/oj/eng
+  last_checked: 2026-11-21
 - id: esrs-digital-tagging
   fact: "Digital (XBRL) tagging of ESRS sustainability statements is not yet mandatory and is not expected for financial year 2026: EFRAG published a draft XBRL taxonomy for the revised ESRS, with consultation until 11 November 2026, and plans to hand the final taxonomy to ESMA and the Commission by the end of 2026; ESMA then drafts tagging rules (RTS) and the Commission adopts them by amending the ESEF Regulation (Delegated Regulation (EU) 2019/815)"
   article: Delegated Regulation (EU) 2019/815 (ESEF), to be amended
   source: https://www.efrag.org/en/news-and-calendar/news/efrag-releases-draft-esrs-xbrl-taxonomy-for-the-revised-esrs-and-launches-public-consultation
   last_checked: 2026-11-20
 - id: malta-csrd
-  fact: "Malta transposed the original CSRD through the Corporate Sustainability Reporting Regulations, 2026 (Legal Notice 39 of 2026, Government Gazette 13 February 2026, made under the Companies Act, Cap. 386), and Act I of 2026 amending laws on corporate sustainability reporting (in force 20 March 2026); the commencement of Legal Notice 39 was not confirmed; no Maltese law transposing Omnibus I (Directive (EU) 2026/470) was found; the transposition deadline is 19 March 2027"
-  article: Legal Notice 39 of 2026; Act I of 2026; Directive (EU) 2026/470 (transposition deadline)
+  fact: "Malta transposed the original CSRD through the Corporate Sustainability Reporting Regulations, 2026 (Legal Notice 39 of 2026, Government Gazette 13 February 2026, made under the Companies Act, Cap. 386); regulation 1(2) says they come into force on dates the Minister sets by notice in the Gazette, and no such commencement notice was found; Legal Notice 61 of 2026 (Gazette 20 March 2026) brought into force articles 17, 26 to 29, 31, 41 and 42 of Act I of 2026 (Various Laws relating to Corporate Sustainability Reporting (Amendment) Act, 2026); no Maltese law transposing Omnibus I (Directive (EU) 2026/470) was found; the transposition deadline is 19 March 2027"
+  article: "Legal Notice 39 of 2026, regulation 1(2); Legal Notice 61 of 2026; Directive (EU) 2026/470 (transposition deadline)"
   source: https://legislation.mt/eli/ln/2026/39/eng
-  last_checked: 2026-11-20
+  last_checked: 2026-11-21
 - id: csrd-stop-the-clock
   fact: "The 'stop-the-clock' Directive (EU) 2025/794 (adopted 14 April 2025, published 16 April 2025, to be transposed by 31 December 2025) postponed by two years the CSRD start for large companies that had not yet started reporting (the second and third waves) and for listed SMEs; those companies are not subject to the reporting requirements for financial years 2025 or 2026, so a large company still in scope after Omnibus I that never reported starts with financial year 2027"
   article: Directive (EU) 2025/794
   source: https://eur-lex.europa.eu/eli/dir/2025/794/oj/eng
   last_checked: 2026-11-20
 - id: csrd-value-chain-cap
-  fact: "Companies reporting under the CSRD may not require value-chain companies with on average 1,000 employees or fewer (previous financial year, headcount only) to give more information than the voluntary standard covers (the datapoints in Annex II of Delegated Regulation (EU) 2026/1560); a reporting company that asks for more must say which information goes beyond the cap and tell the value-chain company that it has a right to refuse it; it may rely on the value-chain company's self-declaration of size unless it knows or should know it is manifestly wrong; the cap creates no duty to report, does not stop voluntary sharing of information commonly shared in a sector, and does not override existing contractual or legal duties; it applies to value-chain reporting from financial year 2027"
-  article: Directive 2013/34/EU, Article 29b(4), as amended by Directive (EU) 2026/470; Delegated Regulation (EU) 2026/1560, Annex II
+  fact: "Companies reporting under the CSRD may not require value-chain companies with on average 1,000 employees or fewer (previous financial year, headcount only) to give more information than the voluntary standard covers (the datapoints in Annex II of Delegated Regulation (EU) 2026/1560); a reporting company that asks for more must say which information goes beyond the cap and tell the value-chain company that it has a right to refuse it; it may rely on the value-chain company's self-declaration of size unless it knows or should know it is manifestly wrong; the cap creates no duty to report, does not stop voluntary sharing of information commonly shared in a sector, and does not override existing contractual or legal duties; it applies to value-chain reporting from financial year 2027; the cap comprises only the datapoints listed in Annex II of Delegated Regulation (EU) 2026/1560, which lists fewer datapoints for undertakings with 10 employees or fewer (for example, energy and GHG emissions are within the cap only for undertakings with more than 10 employees); Article 3 of that Regulation applies from financial years beginning on or after 1 January 2027"
+  article: "Directive 2013/34/EU, Article 29b(4), as amended by Directive (EU) 2026/470; Delegated Regulation (EU) 2026/1560, Annex II"
   source: https://finance.ec.europa.eu/news/feedback-sustainability-reporting-standards-additional-explanatory-information-regarding-value-chain-2026-05-06_en
   values: {max_employees: 1000}
-  last_checked: 2026-11-20
+  last_checked: 2026-11-21
 
 # --- VSME / voluntary standard ---
 - id: vsme
@@ -113,6 +129,11 @@
   article: Regulation (EU) 2023/956, Article 2(1) and Annex I
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
   last_checked: 2026-11-20
+- id: cbam-iron-steel-scope
+  fact: "In Annex I, iron and steel covers chapter 72 except ferro-silicon (7202 2), ferro-silico-manganese (7202 30 00), ferro-silico-chromium (7202 50 00), ferro-molybdenum (7202 70 00), ferro-tungsten and ferro-silico-tungsten (7202 80 00), ferro-titanium and ferro-silico-titanium (7202 91 00), ferro-vanadium (7202 92 00), ferro-niobium (7202 93 00), other ferro-alloys under 7202 99, and heading 7204 (ferrous waste and scrap; remelting scrap ingots); it also covers agglomerated iron ores (2601 12 00) and listed headings of chapter 73"
+  article: "Regulation (EU) 2023/956, Annex I, as amended by Regulation (EU) 2025/2083"
+  source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20/eng
+  last_checked: 2026-11-21
 - id: cbam-exempt-origins
   fact: CBAM does not apply to goods originating in the countries and territories in Annex III point 1 - Iceland, Liechtenstein, Norway and Switzerland, and Buesingen, Heligoland, Livigno, Ceuta and Melilla; precursors originating there count as zero; the Commission can amend the list
   article: Regulation (EU) 2023/956, Article 2(4) and Annex III, point 1
@@ -144,6 +165,11 @@
   article: Regulation (EU) 2023/956, Articles 5, 17 and 25, as amended
   source: https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020
   last_checked: 2026-11-20
+- id: cbam-guarantee
+  fact: "The competent authority shall require a guarantee if the applicant was not established throughout the two financial years preceding the year of the application; the amount is the value of the CBAM certificates the declarant would have to surrender for the imports it reported in its application, after the free allocation adjustment; it is a bank guarantee payable at first demand by a financial institution operating in the Union, or an equivalent; the authority may require an additional or replacement guarantee, and releases it immediately after 30 September of the second year in which the declarant has surrendered certificates"
+  article: "Regulation (EU) 2023/956, Article 17(4) to (7), as amended by Regulation (EU) 2025/2083"
+  source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20/eng
+  last_checked: 2026-11-21
 - id: cbam-authorisation-procedure
   fact: The competent authority assesses an application within 120 calendar days of receipt; when it asks for more information it may extend this by up to 30 calendar days and must say why, up to 180 days in total; before refusing, it tells the applicant and gives up to 30 calendar days to comment; a decision takes effect when it is registered in the CBAM registry and the applicant is notified there
   article: Implementing Regulation (EU) 2025/486, Articles 4, 5 and 7, as amended by Implementing Regulation (EU) 2025/2549
@@ -169,10 +195,10 @@
   values: {markup_by_year: {2026: 0.10, 2027: 0.20, 2028: 0.30}, fertilisers_markup: 0.01}
   last_checked: 2026-11-20
 - id: cbam-verification
-  fact: Actual embedded emissions declared must be verified by a verifier accredited for CBAM by a national accreditation body in the EU, and the accreditation must be valid when the verifier issues the final verification report; verification rules are in Implementing Regulation (EU) 2025/2546
-  article: Regulation (EU) 2023/956, Articles 8 and 18; Implementing Regulation (EU) 2025/2546
-  source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-verification_en
-  last_checked: 2026-11-20
+  fact: "Actual embedded emissions declared must be verified by a verifier accredited for CBAM by a national accreditation body in the EU, and the accreditation must be valid when the verifier issues the final verification report; the verifier aims at a verification opinion with reasonable assurance that the report is free from material misstatement ('verified as satisfactory'); a physical site visit is required in the first year subject to verification, may be replaced by a virtual visit or waived in a second consecutive year only if a physical visit took place the year before, and should take place at least every two years; materiality levels are 5% of the total specific embedded emissions and 5% of the total specific embedded free allocation, per tonne of each good by CN code"
+  article: "Regulation (EU) 2023/956, Articles 8 and 18; Implementing Regulation (EU) 2025/2546, recitals 3 and 5, Articles 2, 3 and 5"
+  source: https://eur-lex.europa.eu/eli/reg_impl/2025/2546/oj/eng
+  last_checked: 2026-11-21
 - id: cbam-actual-or-default
   fact: The declarant may use actual embedded emissions only when the installation operator provides data verified by an accredited verifier; without verified actual data it uses the Commission's default values; actual data for a precursor may be used only from a verification report that covers the period the precursor was produced; for operators the reporting period is the calendar year in which the goods were produced
   article: Regulation (EU) 2023/956, Articles 7 and 8 and Annex IV
@@ -184,37 +210,42 @@
   source: https://taxation-customs.ec.europa.eu/system/files/2026-08/Guidance%20No.%202%20-%20Quick%20guide%20for%20non-EU%20operators%20on%20CBAM%20implementation.pdf
   last_checked: 2026-11-20
 - id: cbam-carbon-price-paid
-  fact: The declarant may reduce the certificates to surrender by the carbon price effectively paid in the country of origin, net of any rebate or compensation (including free allowances); the documentation must be certified by a person independent of the declarant and of the third country's authorities; where the price effectively paid cannot be determined, yearly default carbon prices may be used, which the Commission may set from 2027; Implementing Regulation (EU) 2026/2498, adopted 16 Nov 2026, sets the evidence, certification, attribution to embedded emissions and conversion into fewer certificates; international carbon credits count only if authorised and issued under Article 6 of the Paris Agreement; for 2026 and 2027 accredited CBAM verifiers may certify the evidence, and from 2028 the certifier needs a specific accreditation from an EU national accreditation body
-  article: Regulation (EU) 2023/956, Article 9, as amended by Regulation (EU) 2025/2083; Implementing Regulation (EU) 2026/2498
-  source: https://taxation-customs.ec.europa.eu/news/cbam-commission-adopts-rules-recognition-carbon-prices-paid-non-eu-countries-2026-11-16_en
-  last_checked: 2026-11-20
+  fact: "The declarant may reduce the certificates to surrender by the carbon price effectively paid in the country of origin, net of any rebate or compensation (including free allowances); the documentation must be certified by a person independent of the declarant and of the third country's authorities; where the price effectively paid cannot be determined, yearly default carbon prices may be used, which the Commission may set from 2027; Implementing Regulation (EU) 2026/2498, adopted 16 Nov 2026, sets the evidence, certification, attribution to embedded emissions and conversion into fewer certificates; international carbon credits count only if authorised and issued under Article 6 of the Paris Agreement; for 2026 and 2027 accredited CBAM verifiers may certify the evidence, and from 2028 the certifier needs a specific accreditation from an EU national accreditation body; the operator converts the effective carbon price into euro at the yearly average exchange rate published by the Commission; the reduction per good is (effective carbon price in EUR per tonne of good / yearly reference price of CBAM certificates) x quantity of the good declared, or, with a default carbon price, (default carbon price x specific embedded emissions / reference price) x quantity; the yearly reference price is the average of the published CBAM certificate prices for the year of import, rounded to the nearest cent"
+  article: "Regulation (EU) 2023/956, Article 9, as amended by Regulation (EU) 2025/2083; Implementing Regulation (EU) 2026/2498, Articles 3, 6 and 7"
+  source: https://eur-lex.europa.eu/eli/reg_impl/2026/2498/oj/eng
+  last_checked: 2026-11-21
 - id: cbam-free-allocation-adjustment
-  fact: Certificates to surrender are adjusted for EU ETS free allocation to EU producers of the same goods; the adjustment uses a CBAM benchmark per CN code, the cross-sectoral correction factor and the CBAM factor, is set by Implementing Regulation (EU) 2025/2620, and is zero for electricity; the CBAM factor is 97.5% (2026), 95% (2027), 90% (2028), 77.5% (2029), 51.5% (2030), 39% (2031), 26.5% (2032), 14% (2033) and none from 2034
-  article: Regulation (EU) 2023/956, Article 31; Directive 2003/87/EC, Article 10a(1a), as amended by Directive (EU) 2023/959; Implementing Regulation (EU) 2025/2620
+  fact: "Certificates to surrender are adjusted for EU ETS free allocation to EU producers of the same goods; the adjustment uses a CBAM benchmark per CN code, the cross-sectoral correction factor and the CBAM factor, is set by Implementing Regulation (EU) 2025/2620, and is zero for electricity; the CBAM factor is 97.5% (2026), 95% (2027), 90% (2028), 77.5% (2029), 51.5% (2030), 39% (2031), 26.5% (2032), 14% (2033) and none from 2034; per good, the adjustment is the specific embedded free allocation (SEFA) times the mass imported; with default values, SEFA = CBAM factor x cross-sectoral correction factor x the default CBAM benchmark for the CN code and country of origin (Annex point 5, column B); with actual data, the process-level free allocation (CBAM factor x cross-sectoral correction factor x the process benchmark, column A) plus, for complex goods, the SEFA of each precursor times its specific mass consumed"
+  article: "Regulation (EU) 2023/956, Article 31; Directive 2003/87/EC, Article 10a(1a); Implementing Regulation (EU) 2025/2620, Articles 1 to 4 and Annex points 2 to 4"
   source: https://eur-lex.europa.eu/eli/reg_impl/2025/2620/oj/eng
-  values: {cbam_factor_by_year: {2026: 0.975, 2027: 0.95, 2028: 0.90, 2029: 0.775, 2030: 0.515, 2031: 0.39, 2032: 0.265, 2033: 0.14, 2034: 0.0}}
-  last_checked: 2026-11-20
+  values: {cbam_factor_by_year: {2026: 0.975, 2027: 0.95, 2028: 0.9, 2029: 0.775, 2030: 0.515, 2031: 0.39, 2032: 0.265, 2033: 0.14, 2034: 0.0}}
+  last_checked: 2026-11-21
 - id: cbam-certificates
   fact: Certificate sales from 1 Feb 2027 on the common central platform; price from EU ETS auctions weighted by auction volume; for 2026 imports, the quarterly average for the quarter in which the goods were imported; weekly average from 1 Jan 2027
   article: Regulation (EU) 2023/956, Articles 20 and 21, as amended
   source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en
   last_checked: 2026-11-20
 - id: cbam-quarterly-holding
-  fact: From 2027, at the end of each quarter the declarant must hold certificates for at least 50% of embedded emissions in goods imported since the start of the year, measured with default values without mark-up or with the previous year's surrendered certificates, taking into account the free allocation adjustment
-  article: Regulation (EU) 2023/956, Article 22(2), as amended by Regulation (EU) 2025/2083
-  source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
-  values: {min_share: 0.5, from_year: 2027}
-  last_checked: 2026-11-20
+  fact: "From 2027, at the end of each quarter the declarant must hold certificates for at least 50% of embedded emissions in goods imported since the start of the year, measured with default values without mark-up or with the previous year's surrendered certificates, taking into account the free allocation adjustment; an importer must meet this obligation by the end of the quarter following the one in which it exceeds the 50-tonne threshold; Article 22 sets no rounding rule for the number of certificates"
+  article: "Regulation (EU) 2023/956, Article 22(1), (2) and (2a), as amended by Regulation (EU) 2025/2083"
+  source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20/eng
+  values: {from_year: 2027, min_share: 0.5}
+  last_checked: 2026-11-21
 - id: cbam-declaration
   fact: First annual declaration and surrender due 30 Sep 2027 for 2026 imports
   article: Regulation (EU) 2023/956, Articles 6(1) and 22(1), as amended
   source: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en
   last_checked: 2026-11-20
 - id: cbam-declaration-content
-  fact: The annual declaration states the total quantity of each type of goods imported in the previous year, their total embedded emissions, the number of certificates to surrender (after the carbon-price-paid reduction and the free allocation adjustment), and copies of verification reports where actual values are used
-  article: Regulation (EU) 2023/956, Article 6(2), as amended by Regulation (EU) 2025/2083
-  source: https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng
-  last_checked: 2026-11-20
+  fact: "The annual declaration states the total quantity of each type of goods imported in the previous year (in tonnes, or MWh for electricity), including goods imported below the 50-tonne threshold; their total embedded emissions; the number of certificates to surrender (after the carbon-price-paid reduction and the free allocation adjustment); and copies of verification reports where actual values are used; implementing acts set the standard format, including detail for each installation, country of origin and type of goods"
+  article: "Regulation (EU) 2023/956, Article 6(1), (2) and (6), as amended by Regulation (EU) 2025/2083"
+  source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20/eng
+  last_checked: 2026-11-21
+- id: cbam-review
+  fact: "The Commission, and the competent authority, may review a CBAM declaration until the end of the fourth year after the year it should have been submitted; where the competent authority concludes that too few certificates were declared, it notifies the declarant, who must surrender the additional certificates within one month; certificates surrendered in excess are repurchased"
+  article: "Regulation (EU) 2023/956, Article 19, as amended by Regulation (EU) 2025/2083"
+  source: https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20/eng
+  last_checked: 2026-11-21
 - id: cbam-penalties
   fact: A declarant that does not surrender enough certificates by 30 Sep pays, per missing certificate, the EU ETS excess emissions penalty (Directive 2003/87/EC, Article 16(3) and (4)) of the import year, and must still surrender them; an importer without authorisation that exceeds the threshold faces a penalty on all embedded emissions of that year, at least the same per tonne, which may be reduced where the threshold was exceeded by no more than 10%
   article: Regulation (EU) 2023/956, Article 26(1), (1a), (2a) and (3), as amended by Regulation (EU) 2025/2083
@@ -248,6 +279,16 @@
   article: GHG Protocol Corporate Value Chain (Scope 3) Standard (cited, not copied)
   source: https://ghgprotocol.org/corporate-value-chain-scope-3-standard
   last_checked: 2026-11-20
+- id: ghgp-scope3-reporting
+  fact: "The Scope 3 categories are designed to be mutually exclusive; where a company finds possible double counting between or within categories, it should report the emissions from the activity only once, explain where they are reported and cross-refer; biogenic CO2 emissions in the value chain are not included in the scopes but are reported separately for each category; for each category the company describes the types and sources of data, including activity data, emission factors and global warming potential (GWP) values, and the data quality"
+  article: "GHG Protocol Corporate Value Chain (Scope 3) Standard, chapters 5 and 11 (cited, not copied)"
+  source: https://ghgprotocol.org/sites/default/files/standards/Corporate-Value-Chain-Accounting-Reporing-Standard_041613_2.pdf
+  last_checked: 2026-11-21
+- id: desnz-2026-gwp
+  fact: "The 2026 UK Government (DESNZ) GHG conversion factors express methane and nitrous oxide as CO2e with GWP values from the IPCC Fifth Assessment Report (AR5: CH4 28, N2O 265), consistent with UNFCCC reporting; the methodology report lists some factors still on an AR4 basis (for example well-to-tank bioenergy) and refrigerants on AR5, or AR6 where no AR5 value exists"
+  article: "DESNZ, 2026 Government GHG Conversion Factors, methodology report, paragraphs 1.9 and 1.21, Table 1"
+  source: https://assets.publishing.service.gov.uk/media/6a2940543b15d05a7ce3202e/2026-GHG-conversion-factors-methodology-report.pdf
+  last_checked: 2026-11-21
 - id: ghgp-base-year
   fact: "A company chooses a base year and a base-year recalculation policy; under the Scope 3 Standard it establishes and discloses the significance threshold that triggers a recalculation (the threshold may be quantitative or qualitative; guidance gives 2% as an example); recalculation is triggered by significant structural changes, changes in calculation methodology or data sources, and the discovery of significant errors, including several errors that are significant together; after a significant method change the base year is recalculated with the new method; a structural change during the year is applied to the base year for the whole year; the Corporate Standard's base-year rules are under revision"
   article: GHG Protocol Corporate Standard, chapter 5, and Scope 3 Standard (cited, not copied); Corporate Standard working group materials 2025
@@ -264,10 +305,10 @@
   source: https://www.bipm.org/en/doi/10.59161/jcgm100-2008e
   last_checked: 2026-11-20
 - id: esrs-e1-scope2
-  fact: "Revised ESRS E1 asks for gross Scope 2 GHG emissions on both a location-based and a market-based basis; read in two summaries of the revised standard, not yet checked against the Official Journal text"
-  article: Delegated Regulation (EU) 2026/1563, Annex (ESRS E1, gross Scope 1, 2 and 3 GHG emissions)
-  source: https://foretica.org/wp-content/uploads/2026/09/ANEXOS-Estandares-Tematicos-ESRS.pdf
-  last_checked: 2026-11-20
+  fact: "Revised ESRS E1 (Disclosure Requirement E1-8) asks for gross Scope 2 GHG emissions on both a location-based and a market-based basis, alongside Scope 1 and each significant Scope 3 category"
+  article: "Delegated Regulation (EU) 2026/1563, Annex I, ESRS E1, E1-8, paragraph 30(a)"
+  source: https://eur-lex.europa.eu/eli/reg_del/2026/1563/oj/eng
+  last_checked: 2026-11-21
 - id: esrs-e1-scope3
   fact: Revised ESRS E1 requires gross Scope 3 GHG emissions as a total and for each significant Scope 3 category; significant categories are identified by the magnitude of their estimated emissions and other criteria such as spend, influence, transition risks and opportunities, or stakeholder views; screening uses the 15 GHG Protocol categories (ISO 14064-1 is an alternative); the significant categories are updated each year and the full inventory at least every three years or after a significant event; the GHG Protocol's Scope 3 calculation provisions can be considered; applies to financial years from 1 January 2027
   article: Delegated Regulation (EU) 2026/1563, Annex (ESRS E1 Scope 3 disclosure, AR 24 and AR 46)

@@ -1,7 +1,7 @@
 ---
 step: "CB6"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # CB6 Verification of emissions data
@@ -47,17 +47,29 @@ The operator's reporting period is the **calendar year of production**.
 For a precursor with actual data, the report must cover the period the
 precursor was produced ([CB5](cb5-precursors.md)).
 
-### 4. Match the numbers
+### 4. Check the opinion and the site visit
+
+The verifier aims for **reasonable assurance** that the operator's report
+is free from material misstatement, and states whether it is **verified as
+satisfactory**. Do not use a report that is not. Material means, per tonne
+of each good, 5% of the specific embedded emissions or 5% of the specific
+embedded free allocation, plus the verifier's judgement. A **physical site
+visit** is required in the first year an installation is verified; in a
+second consecutive year the verifier may replace it with a virtual visit
+or waive it, but only after a physical visit the year before, and physical
+visits should take place at least every two years.
+
+### 5. Match the numbers
 
 The specific embedded emissions in the report should be the ones the
 operator sent you and the ones you use in [CB4](cb4-embedded-emissions.md).
 
-### 5. Keep a copy for the declaration
+### 6. Keep a copy for the declaration
 
 Where you use actual values, the CBAM declaration includes copies of the
 verification reports ([CB9](cb9-declaration.md)).
 
-### 6. If something is missing
+### 7. If something is missing
 
 Without a valid verification, you cannot use the actual data. Use the
 default values for those goods (see [CB4](cb4-embedded-emissions.md)) and
@@ -75,6 +87,8 @@ and dates are made up.
 | Accreditation valid when report issued | Report issued 15 Mar 2027; accreditation valid until 30 Jun 2029 | Yes |
 | Goods covered | Steel bars CN 7214 20 00 and 7214 99 10 | Yes |
 | Period | Production year 2026 | Yes |
+| Opinion | Verified as satisfactory (reasonable assurance) | Yes |
+| Site visit | Physical site visit in March 2027 (first year verified) | Yes |
 | Numbers match | 0.652 tCO2e/t, as used in CB4 | Yes |
 
 Melita Metals can use Installation A's actual data. That covers **260.8
@@ -93,6 +107,8 @@ other 80.85 tCO2e (Installation B) use default values.
   verified figure.
 - **Forgetting precursors.** Precursor actual data needs its own valid
   verification.
+- **Not reading the opinion.** A report that is not verified as
+  satisfactory cannot support actual values.
 
 ## Evidence to keep
 
@@ -122,7 +138,8 @@ Note "verified" in your data-quality scoring.
 
 Facts come from `data/regulations.yml` (ids `cbam-verification`,
 `cbam-actual-or-default`, `cbam-declaration-content`), last checked
-20 November 2026.
+21 November 2026. Opinion, site visits and materiality: Implementing
+Regulation (EU) 2025/2546, recitals 3 and 5 and Articles 2, 3 and 5.
 
 - Regulation (EU) 2023/956, Articles 8 and 18, consolidated text:
   [EUR-Lex](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020)

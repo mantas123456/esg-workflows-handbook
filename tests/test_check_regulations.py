@@ -38,20 +38,25 @@ def test_missing_date_is_an_error(tmp_path) -> None:
 
 
 def test_f4_check_table() -> None:
-    checked = {f["last_checked"] for f in FACTS.values()}
-    assert checked == {date(2026, 11, 20)}                                # "All 51 facts were last checked on 20 November 2026"
+    oldest = min(f["last_checked"] for f in FACTS.values())
     n = len(FACTS)
-    assert f"All {n} facts were last checked on 20 November 2026" in F4
-    for run, days, result in ((date(2026, 11, 21), 1, f"{n} facts ok"),
-                              (date(2027, 2, 18), 90, f"{n} warnings, build passes"),
-                              (date(2027, 5, 19), 180, f"{n} over 180 days, **build fails**")):
+    by_date = {d: sum(f["last_checked"] == d for f in FACTS.values()) for d in {f["last_checked"] for f in FACTS.values()}}
+    assert oldest == date(2026, 11, 20) and set(by_date) == {date(2026, 11, 20), date(2026, 11, 21)}
+    old, new = by_date[date(2026, 11, 20)], by_date[date(2026, 11, 21)]
+    assert f"Of the {n} facts, {old} were last checked on 20 November 2026 and {new} on 21 November 2026" in F4
+    expected = {date(2026, 11, 21): (1, f"{n} facts ok"),
+                date(2027, 2, 18): (90, f"{old} warnings, {new} ok, build passes"),
+                date(2027, 5, 19): (180, f"{old} over 180 days, {new} warnings, **build fails**")}
+    for run, (days, result) in expected.items():
         ages = cr.fact_ages(run)
-        assert {a.days for a in ages} == {days}
-        level = {1: "ok", 90: "warn", 180: "fail"}[days]
-        assert {a.level for a in ages} == {level}
+        assert max(a.days for a in ages) == days
+        counts = {lvl: sum(a.level == lvl for a in ages) for lvl in ("ok", "warn", "fail")}
+        assert counts == {date(2026, 11, 21): {"ok": n, "warn": 0, "fail": 0},
+                          date(2027, 2, 18): {"ok": new, "warn": old, "fail": 0},
+                          date(2027, 5, 19): {"ok": 0, "warn": new, "fail": old}}[run]
         assert f"| {run.day} {run:%b %Y} | {days} | {result} |" in F4, run
     assert "due by **18 February 2027**" in F4
-    assert f"# {n} facts checked on 2027-02-18: 0 over 180 days, {n} over 90 days" in F4
+    assert f"# {n} facts checked on 2027-02-18: 0 over 180 days, {old} over 90 days" in F4
 
 
 WATCH = {   # row on the F4 page -> (fact id, phrase in the fact)

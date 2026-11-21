@@ -1,7 +1,7 @@
 ---
 step: "F3"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # F3 One dataset, many reports
@@ -116,7 +116,10 @@ Two examples of reuse:
   Scope 3 category 1.
 - **Supplier emissions.** The steel mill sends emissions data per tonne of
   product. Melita Metals uses it as embedded emissions for CBAM, and the
-  same figure replaces a spend-based estimate in its Scope 3 inventory.
+  same data replaces a spend-based estimate in its Scope 3 inventory, after
+  two adjustments: it adds the electricity emissions CBAM leaves out for
+  steel, and it takes the mark-up off any default value
+  ([C5](../csrd/c5-climate.md)).
 
 ## Common mistakes
 

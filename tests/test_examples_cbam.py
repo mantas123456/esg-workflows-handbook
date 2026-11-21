@@ -312,8 +312,49 @@ def test_cb7_what_if_reduction() -> None:
     assert (str(cost_base), str(cost_if)) == ("3152.00", "2752.00")
     assert f"| Certificates to surrender | {fmt(round(base, 6))} | {fmt(round(what_if, 6))} |" in text
     assert "| EUR 3,152.00 | EUR 2,752.00 |" in text
-    assert f"reduction of **{cp['what_if_reduction_certificates']} certificates**" in text
+    from esgcalc.cbam import carbon_price_reduction
+    reduction = carbon_price_reduction(cp["what_if_effective_price_eur_per_t"], cp["reference_price_eur_per_tco2e"],
+                                       _mass("A"))
+    assert reduction == pytest.approx(cp["what_if_reduction_certificates"]) == pytest.approx(5)   # 1.00 / 80.00 x 400
+    assert (f"**EUR {cp['what_if_effective_price_eur_per_t']:.2f} per tonne of bars**" in text
+            and f"**EUR {cp['reference_price_eur_per_tco2e']:.2f}**" in text)
+    assert "reduction = 1.00 / 80.00 x 400 t = 5 certificates" in text
     assert "# 34.4 2752.00" in text
+
+
+def test_cb8_free_allocation_is_built_from_benchmarks() -> None:
+    from esgcalc.cbam import specific_embedded_free_allocation
+    text = page("cb8-certificates.md")
+    fi = EXAMPLE["free_allocation_inputs"]
+    for year in (2026, 2027):
+        for inst in ("A", "B"):
+            sefa = specific_embedded_free_allocation(fi["benchmark_tco2e_per_t"][inst], year,
+                                                     fi["cross_sectoral_correction_factor"])
+            assert sefa == pytest.approx(EXAMPLE["free_allocation_adjustment_tco2e_per_t"][year][inst]), (year, inst)
+    assert "steel 0.975 x 1.0 x 0.60 = **0.585**" in text and "aluminium 0.975 x 1.0 x 2.00 = **1.95**" in text
+    assert "0.57 and 1.90" in text and "Article 22(2a)" in text
+    with pytest.raises(ValueError):
+        specific_embedded_free_allocation(-1, 2026)
+
+
+def test_cb1_cb2_cb6_cb9_review_fixes() -> None:
+    regs = {r["id"]: r for r in yaml.safe_load((ROOT / "data/regulations.yml").read_text(encoding="utf-8"))}
+    assert "heading 7204" in regs["cbam-iron-steel-scope"]["fact"] and "**heading 7204," in page("cb1-scope-check.md")
+    assert "two financial years preceding" in regs["cbam-guarantee"]["fact"]
+    cb2 = page("cb2-authorisation.md")
+    assert "**two financial years before**" in cb2 and "28 May 2026" in cb2
+    v = EXAMPLE["verification_A"]
+    cb6 = page("cb6-verification.md")
+    assert f"| Opinion | {v['opinion']} | Yes |" in cb6 and f"| Site visit | {v['site_visit']} | Yes |" in cb6
+    assert "5% of the specific embedded emissions" in cb6 and "5% of the total specific embedded emissions" in regs["cbam-verification"]["fact"]
+    cb9 = page("cb9-declaration.md")
+    assert "**including goods imported below the 50-tonne threshold**" in cb9
+    assert "including goods imported below the 50-tonne threshold" in regs["cbam-declaration-content"]["fact"]
+    assert "**within one month**" in cb9 and "within one month" in regs["cbam-review"]["fact"]
+    # CBAM-1: no page tells readers to reuse CBAM figures in Scope 3 unchanged
+    for name in ("cb3-supplier-data.md", "cb4-embedded-emissions.md", "cb9-declaration.md"):
+        assert "**direct emissions only**" in page(name) and "**mark-up**" in page(name), name
+    assert "Use the same figures there" not in page("cb4-embedded-emissions.md")
 
 
 def test_cb8_certificates_and_cost() -> None:

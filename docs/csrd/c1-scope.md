@@ -1,7 +1,7 @@
 ---
 step: "C1"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # C1 Am I in scope after Omnibus I?
@@ -26,7 +26,9 @@ the result depends on that year's figures and on national law.
 ## Inputs
 
 - Your average number of employees and your net turnover, from the annual
-  accounts.
+  accounts. For a group: the consolidated figures.
+- Your group structure: your parent, your subsidiaries, and whether the
+  ultimate parent is outside the EU.
 - Whether you already reported under the CSRD for financial year 2024.
 - The national law of your Member State.
 
@@ -34,46 +36,63 @@ the result depends on that year's figures and on national law.
 
 ### 1. Apply both conditions
 
-After Omnibus I (Directive (EU) 2026/470), the CSRD covers EU companies
-with:
+After Omnibus I (Directive (EU) 2026/470), the CSRD covers companies that,
+on their balance sheet date, have:
 
-- **more than 1,000 employees, and**
+- **an average of more than 1,000 employees during the year, and**
 - **more than EUR 450 million net turnover.**
 
 **Both** must be met. A company with 1,300 employees but EUR 400 million
-turnover is not in scope.
+turnover does not meet the test.
 
-### 2. Find your first reporting year
+### 2. Groups, subsidiaries and non-EU parents
+
+- **Parent of a group:** apply the same two conditions to the **group, on
+  a consolidated basis** (Article 29a(1)). If the group meets both, the
+  parent reports for the whole group in its consolidated management report.
+- **Subsidiary:** a subsidiary that meets the conditions on its own is
+  **exempted** if it and its own subsidiaries are included in its parent's
+  consolidated report (or in a third-country parent's report made under the
+  ESRS or an equivalent standard), on the conditions of Article 19a(9).
+- **Non-EU parent:** if the ultimate parent is outside the EU, a separate
+  rule applies (Article 40a). An EU subsidiary (or, if there is none, an EU
+  branch) with **more than EUR 200 million** net turnover publishes a report
+  for the non-EU group, where the group's **net turnover in the EU** was
+  above **EUR 450 million** in each of the last two years.
+
+### 3. Find your first reporting year
 
 | Your situation | What it means |
 |---|---|
 | Never reported, and meet both conditions | First report for **financial year 2027**: the "stop-the-clock" Directive (EU) 2025/794 postponed later waves by two years |
 | Reported from financial year 2024 ("wave one"), and meet both conditions | Keep reporting |
 | Wave one, but below the new thresholds | Out of scope from 2027; your Member State **may** exempt you for 2025 and 2026 |
-| Below the thresholds, never reported | Not in scope; see step 5 |
+| Below the thresholds, never reported | Not in scope; see step 6 |
 
 The revised ESRS apply to financial years from 1 January 2027
 ([C4](c4-general.md)).
 
-### 3. Check your national law
+### 4. Check your national law
 
 Member States must transpose the CSRD changes of Omnibus I by **19 March
 2027**. Until your country has done so, your national law may still follow
 the original CSRD. In **Malta**, for example, the original CSRD was
 transposed by the Corporate Sustainability Reporting Regulations, 2026
-(Legal Notice 39 of 2026), and Act I of 2026 amended related laws. This
-handbook did not find a Maltese law transposing Omnibus I, and could not
-confirm when Legal Notice 39 starts to apply: check
+(Legal Notice 39 of 2026). Its regulation 1(2) says it comes into force on
+dates the Minister sets by notice in the Government Gazette. This handbook
+found a commencement notice for parts of the related Act I of 2026 (Legal
+Notice 61 of 2026, in force 20 March 2026), but **no commencement notice
+for Legal Notice 39**, and no Maltese law transposing Omnibus I. Check
 [legislation.mt](https://legislation.mt/eli/ln/2026/39/eng) and ask your
 adviser.
 
-### 4. Plan backwards from the first year
+### 5. Plan backwards from the first year
 
 A first report for financial year 2027 means collecting 2027 data during
 2027. The double materiality assessment ([C2](c2-dma.md)) and the data
 requests to suppliers ([C3](c3-value-chain.md)) should start in 2026.
 
-### 5. If you are not in scope
+### 6. If you are not in scope
 
 You may still be asked for data by customers that are. Companies with on
 average 1,000 employees or fewer are protected by the value-chain cap: see
@@ -82,8 +101,10 @@ average 1,000 employees or fewer are protected by the value-chain cap: see
 ## Worked example
 
 Mediterranean Logistics Group (fictional, Malta) distributes chilled and
-frozen food and runs its own warehouses and trucks. It is not listed and
-has never reported under the CSRD. Two of its suppliers are the fictional
+frozen food and runs its own warehouses and trucks. Its Maltese parent
+company owns all its subsidiaries, so the test uses the **consolidated**
+figures of the group, and the parent would report for the whole group. It
+is not listed and has never reported under the CSRD. Two of its suppliers are the fictional
 companies from the other tracks. All numbers are made up.
 
 | Company | Employees | Net turnover (EUR) | More than 1,000 employees? | More than EUR 450 m? | In scope? | First year |
@@ -118,6 +139,10 @@ print(protected_by_value_chain_cap(140))            # True
 ## Common mistakes
 
 - **Checking one condition.** Both must be met.
+- **Testing a group company by company.** A parent tests the group on
+  consolidated figures; a subsidiary in the group's report is exempted.
+- **Forgetting a non-EU parent.** Article 40a can apply even when no EU
+  company meets the main test.
 - **Using the old thresholds.** Omnibus I replaced the earlier scope rules
   with these two conditions.
 - **Assuming the EU text applies directly.** It applies through your
@@ -153,13 +178,18 @@ the same headcount drives the value-chain cap for your suppliers
 ## Sources
 
 Facts come from `data/regulations.yml` (ids `csrd-scope`,
-`csrd-wave1-exemption`, `csrd-stop-the-clock`, `omnibus-i-transposition`,
-`malta-csrd`, `csrd-value-chain-cap`, `esrs-simplified`), last checked
-20 November 2026.
+`csrd-subsidiary-exemption`, `csrd-third-country`, `csrd-wave1-exemption`,
+`csrd-stop-the-clock`, `omnibus-i-transposition`, `malta-csrd`,
+`csrd-value-chain-cap`, `esrs-simplified`), last checked 21 November 2026.
+
+- Directive 2013/34/EU, Articles 19a(1), 19a(9), 29a(1) and 40a,
+  consolidated text of 18 March 2026:
+  [EUR-Lex](https://eur-lex.europa.eu/eli/dir/2013/34/2026-03-18/eng)
 
 - Directive (EU) 2026/470 (Omnibus I):
   [EUR-Lex](https://eur-lex.europa.eu/eli/dir/2026/470/oj/eng)
 - Directive (EU) 2025/794 (stop-the-clock):
   [EUR-Lex](https://eur-lex.europa.eu/eli/dir/2025/794/oj/eng)
 - Malta, Legal Notice 39 of 2026:
-  [legislation.mt](https://legislation.mt/eli/ln/2026/39/eng)
+  [legislation.mt](https://legislation.mt/eli/ln/2026/39/eng), and Legal
+  Notice 61 of 2026: [legislation.mt](https://legislation.mt/eli/ln/2026/61/eng)

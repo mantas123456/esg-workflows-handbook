@@ -127,7 +127,15 @@ def test_c2_topic_rollup() -> None:
 
 # --- C3 Value chain and data requests --------------------------------------------------
 
-VSME_IDS = {d["id"] for d in yaml.safe_load((ROOT / "data/vsme_datapoints.yml").read_text(encoding="utf-8"))["datapoints"]}
+CAP = {d["id"]: d for d in yaml.safe_load((ROOT / "data/value_chain_cap.yml").read_text(encoding="utf-8"))["datapoints"]}
+
+
+def _cap_label(cap_id: str) -> str:
+    """'B3-32' -> 'B3 para 32'; 'B8-40a' -> 'B8 para 40(a)'."""
+    disc, ref = cap_id.split("-")
+    num = "".join(ch for ch in ref if ch.isdigit())
+    letter = ref[len(num):]
+    return f"{disc} para {num}" + (f"({letter})" if letter else "")
 
 
 def test_c3_suppliers_are_protected() -> None:
@@ -141,15 +149,21 @@ def test_c3_request_table() -> None:
     text = page("c3-value-chain.md")
     for r in MLG["data_requests"]:
         for q in r["questions"]:
-            if q["vsme"] is not None:
-                assert set(q["vsme"]) <= VSME_IDS, q["vsme"]
-                cells = f"{', '.join(q['vsme'])} | Yes"
+            if q["cap"] is not None:
+                assert set(q["cap"]) <= set(CAP), q["cap"]
+                # both suppliers have more than 10 employees: the longer list applies
+                assert all(CAP[c]["large"] for c in q["cap"]), q["cap"]
+                cells = f"{', '.join(_cap_label(c) for c in q['cap'])} | Yes"
             else:
                 assert q["outcome"] in ("shared voluntarily", "declined")     # beyond: the supplier chose
                 cells = "none | No: flagged, may refuse"
             row = f"| {r['supplier']} | {q['ask']} | {cells} | {q['outcome']} |"
             assert row in text, row
     assert "right to refuse" in text
+    assert all(e > 10 for _, e, _ in companies()[1:]) and "more than 10 employees" in text
+    # energy and GHG are outside the cap for the smallest suppliers
+    assert not CAP["B3-32"]["small"] and not CAP["B3-33"]["small"] and CAP["B8-40a"]["small"]
+    assert "shorter for suppliers with 10 employees or fewer" in text
 
 
 # --- C4 General disclosures -------------------------------------------------------------
@@ -167,7 +181,9 @@ def test_c4_plan_covers_every_esrs2_datapoint() -> None:
     dates = {p["datapoint"]: p["ready_by"] for p in plan}
     assert min(dates, key=dates.get) == "ESRS2-materiality-process"       # "ready first"
     assert max(dates, key=dates.get) == "ESRS2-basis"
-    assert "not yet checked against the Official Journal" in text
+    assert "ESRS 1 chapter 10" in text and "paragraph 127" in text
+    assert "first three years" in text and "(paragraph 123)" in text
+    assert "proportion of its turnover, capital expenditure and" in text            # Taxonomy (CSRD-4)
 
 
 def test_c4_phase_ins_not_needed_for_non_material_topics() -> None:
@@ -311,7 +327,7 @@ WHOLE_STANDARD_PHASE_IN = {"E4", "S2", "S3", "S4"}            # fact esrs-phase-
 def test_c6_overview_table() -> None:
     text = page("c6-topical.md")
     regs = {r["id"]: r for r in yaml.safe_load((ROOT / "data/regulations.yml").read_text(encoding="utf-8"))}
-    assert "E4, S2, S3 and S4 disclosures (first two years)" in regs["esrs-phase-in"]["fact"]
+    assert "all DRs of E4, S2, S3 and S4 for their first two financial years" in regs["esrs-phase-in"]["fact"]
     assert {d["standard"] for d in ESRS.values()} - {"ESRS 2"} == set(TOPICAL)
     material = _material_standards()
     for std in TOPICAL:
@@ -398,3 +414,33 @@ def test_c5_e1_datapoints_and_datasets() -> None:
     for dp in ("E1-scope1", "E1-scope2", "E1-scope3", "E1-scope3-suppliers"):
         d = ESRS[dp]
         assert f"| {dp}: {d['description']} | {d['dataset']} |" in text, dp
+
+
+
+# --- 7.2 review fixes ---------------------------------------------------------------------
+
+REGS = {r["id"]: r for r in yaml.safe_load((ROOT / "data/regulations.yml").read_text(encoding="utf-8"))}
+
+
+def test_c1_groups_subsidiaries_and_non_eu_parents() -> None:
+    text = page("c1-scope.md")
+    assert "group, on a consolidated basis" in text and "29a(1)" in REGS["csrd-scope"]["article"]
+    assert "**exempted**" in text and "Article 19a(9)" in REGS["csrd-subsidiary-exemption"]["article"]
+    third = REGS["csrd-third-country"]["fact"]
+    assert "above EUR 200 m" in third and "above EUR 450 m in each of the last two" in third
+    assert "**more than EUR 200 million**" in text and "**EUR 450 million** in each of the last two years" in text
+    assert "uses the **consolidated**" in text
+
+
+def test_c1_malta_wording_matches_the_fact() -> None:
+    text = page("c1-scope.md")
+    fact = REGS["malta-csrd"]["fact"]
+    assert "no such commencement notice was found" in fact and "Legal Notice 61 of 2026" in fact
+    assert "**no commencement notice for Legal Notice 39**" in text
+    assert "Legal Notice 61 of 2026, in force 20 March 2026" in text
+
+
+def test_c8_and_c9_cite_the_articles_read() -> None:
+    c8, c9 = page("c8-assurance.md"), page("c9-tagging.md")
+    assert "Article 34(2a)" in c8 and "34(2a)" in REGS["csrd-assurance-scope"]["article"]
+    assert "not required** to tag" in c9 and "not required to mark up" in REGS["csrd-management-report"]["fact"]

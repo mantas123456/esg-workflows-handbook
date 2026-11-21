@@ -1,7 +1,7 @@
 ---
 step: "CB9"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # CB9 The annual CBAM declaration
@@ -39,11 +39,14 @@ Everything from the earlier steps:
 The declaration states:
 
 1. the **total quantity of each type of goods** imported in the previous
-   year;
+   year, **including goods imported below the 50-tonne threshold**;
 2. their **total embedded emissions**;
 3. the **number of certificates to surrender**, after the carbon-price-paid
    reduction and the free allocation adjustment;
 4. **copies of the verification reports** where actual values are used.
+
+The standard format, set by implementing act, asks for the detail behind
+these totals for each installation, country of origin and type of goods.
 
 ### 2. Check it against the evidence
 
@@ -58,6 +61,15 @@ Your account must hold enough certificates to surrender
 ### 4. Submit and surrender by 30 September
 
 Submit early. Leave time to fix registry or data problems.
+
+### 5. Expect a review
+
+The Commission and your competent authority may review a declaration until
+the end of the **fourth year** after the year it was due. If the authority
+finds too few certificates were declared, it tells you, and you must
+surrender the extra certificates **within one month**. Certificates
+surrendered in excess are bought back. Keep your evidence for that period
+([CB10](cb10-records.md)).
 
 ## Worked example
 
@@ -102,14 +114,19 @@ are made up.
 
 ## Reuse in other reports
 
-The declared embedded emissions are a verified number you can reuse in
-Scope 3 category 1 for these goods.
+The declared embedded emissions can feed Scope 3 category 1 for these
+goods, but they are not all verified: only the part based on actual values
+is (in the example, 260.8 of 341.65 tCO2e). Two cautions before you use them there
+([C5](../csrd/c5-climate.md)): for iron and steel and aluminium, CBAM
+counts **direct emissions only**, so add the electricity used if the
+operator has the figure; and default values carry a **mark-up**, which is a
+penalty, not an emission, so take it off.
 
 ## Sources
 
 Facts come from `data/regulations.yml` (ids `cbam-declaration`,
-`cbam-declaration-content`, `cbam-certificates`), last checked
-20 November 2026.
+`cbam-declaration-content`, `cbam-review`, `cbam-certificates`), last
+checked 21 November 2026.
 
 - Regulation (EU) 2023/956, Articles 6 and 22, as amended by Regulation
   (EU) 2025/2083:

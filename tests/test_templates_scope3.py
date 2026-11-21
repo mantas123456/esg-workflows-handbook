@@ -75,7 +75,7 @@ def test_inventory_totals_match_s9(built) -> None:
     total = quality.sum_uncertainty([s["tco2e"] for s in summary.values()], [s["u95_rel"] for s in summary.values()])
     totals = inventory_totals()
     grand = sum(t.tco2e for t in totals.values())
-    assert got["TOTALS!B1"] == pytest.approx(total.value) == pytest.approx(5775.09322, abs=1e-5)
+    assert got["TOTALS!B1"] == pytest.approx(total.value) == pytest.approx(5752.59322, abs=1e-5)
     for row, method in ((2, "supplier_specific"), (3, "average_data"), (4, "spend_based")):
         share = sum(t.by_method.get(method, 0.0) for t in totals.values()) / grand
         assert got[f"TOTALS!B{row}"] == pytest.approx(share), method

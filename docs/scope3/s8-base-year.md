@@ -1,7 +1,7 @@
 ---
 step: "S8"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # S8 Base year and recalculation
@@ -72,7 +72,7 @@ next to the inventory ([S9](s9-reporting.md)).
 ## Worked example
 
 Gozo Fresh Foods Ltd (fictional) takes **2026** as its base year, at
-**5,775.09 tCO2e** of Scope 3 ([S4](s4-methods.md)). Its policy: recalculate
+**5,752.59 tCO2e** of Scope 3 ([S4](s4-methods.md)). Its policy: recalculate
 if the absolute changes found in a year add up to **5%** or more of the
 base-year total. All numbers are made up.
 
@@ -80,19 +80,19 @@ base-year total. All numbers are made up.
 
 | Change | Type | Effect on the 2026 base year | tCO2e | Share of base year |
 |---|---|---|---|---|
-| Acquisition of 100% of Island Cold Store (1 July 2027) | Structural | Its emissions move into Scope 1 and 2: remove category 4 storage (90 t) and category 15 equity (75 t) from the base year | -165.00 | 2.86% |
-| New spend factor for other ingredient suppliers | Methodology | Factor source chosen (S5): 1.1 instead of 0.9 kg/EUR, same deflation | +152.54 | 2.64% |
+| Acquisition of 100% of Island Cold Store (1 July 2027) | Structural | Its emissions move into Scope 1 and 2: remove category 4 storage (90 t) and category 15 equity (52.5 t) from the base year | -142.50 | 2.48% |
+| New spend factor for other ingredient suppliers | Methodology | Factor source chosen (S5): 1.1 instead of 0.9 kg/EUR, same deflation | +152.54 | 2.65% |
 | Commuting survey counted part-time staff as full-time | Error | Car km corrected from 600,000 to 560,000 | -6.80 | 0.12% |
-| **Added up (absolute)** | | | **324.34** | **5.62%** |
+| **Added up (absolute)** | | | **301.84** | **5.25%** |
 
-On its own, no change reaches 5%. Together they reach **5.62%**, so Gozo
+On its own, no change reaches 5%. Together they reach **5.25%**, so Gozo
 **recalculates** the 2026 base year. Applying all three, Scope 3 for 2026
-becomes 5,775.09 − 165.00 + 152.54 − 6.80 = **5,755.84 tCO2e**. Gozo also
+becomes 5,752.59 − 142.50 + 152.54 − 6.80 = **5,755.84 tCO2e**. Gozo also
 adds the cold store's emissions to its 2026 Scope 1 and 2 base year, for
 the whole year, and discloses all three changes.
 
 Had Gozo let changes in opposite directions cancel out, the net change,
-−19.26 tCO2e (0.33%), would have hidden a real change in what the base year
++3.24 tCO2e (0.06%), would have hidden a real change in what the base year
 contains.
 
 In Python, with
@@ -101,9 +101,9 @@ In Python, with
 ```python
 from esgcalc.scope3 import check_recalculation
 
-check = check_recalculation(5775.09, {"acquisition": -165.0, "new factor": 152.54,
+check = check_recalculation(5752.59, {"acquisition": -142.5, "new factor": 152.54,
                                       "survey error": -6.80}, threshold_share=0.05)
-print(round(check.share, 4), check.recalculate)   # 0.0562 True
+print(round(check.share, 4), check.recalculate)   # 0.0525 True
 ```
 
 ## Common mistakes

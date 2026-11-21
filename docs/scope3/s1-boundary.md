@@ -1,7 +1,7 @@
 ---
 step: "S1"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # S1 Boundary and organisational approach
@@ -56,13 +56,13 @@ The GHG Protocol Corporate Standard offers three:
 | **Financial control** | 100% of the companies you financially control; none of the others |
 | **Operational control** | 100% of the companies whose operating policies you set; none of the others |
 
-Use the **same approach** for all companies and every year. Many
-companies use a control approach.
+Use the **same approach** for all companies and every year.
 
 !!! info "A revision is being discussed"
     A GHG Protocol proposal of December 2025, **not final**, would require
     a control approach, recommend financial control and drop equity share.
-    If you choose now, a control approach is the safer choice.
+    If you choose an approach now, note that equity share may not remain
+    available, and check the final text before your next base-year review.
 
 ### 3. Put each company in or out
 

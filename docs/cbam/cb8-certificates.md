@@ -1,7 +1,7 @@
 ---
 step: "CB8"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # CB8 Certificates: buying, holding, surrendering
@@ -60,6 +60,18 @@ every year:
 So the adjustment is large at first and shrinks to nothing by 2034. For
 electricity it is zero.
 
+Per good, Implementing Regulation (EU) 2025/2620 sets:
+
+```text
+free allocation adjustment (tCO2e) = SEFA (tCO2e per tonne) x tonnes imported
+SEFA, with default values = CBAM factor x cross-sectoral correction factor
+                            x default CBAM benchmark for the CN code and country
+```
+
+With actual data, the benchmark is the one for the production process, and
+for complex goods the SEFA of each precursor, times the tonnes of it used per
+tonne of goods, is added. The benchmarks are in the Annex to 2025/2620.
+
 ### 2. Know the price
 
 The price comes from EU ETS auctions, weighted by auction volume:
@@ -76,7 +88,9 @@ Buy on the common central platform from **1 February 2027**.
 
 At the end of each quarter, your account must hold certificates for at
 least **50%** of the embedded emissions in goods imported since 1 January,
-taking the free allocation adjustment into account. Measure the
+taking the free allocation adjustment into account. In the year you first
+go over the 50-tonne threshold, this starts at the end of the quarter
+**after** the one in which you went over (Article 22(2a)). Measure the
 emissions with default values without mark-up, or based on the previous
 year's surrendered certificates.
 
@@ -98,8 +112,14 @@ still surrender the missing certificates.
 ## Worked example
 
 Melita Metals Ltd (fictional) imported 400 t of steel bars and 35 t of
-aluminium bars in 2026. The adjustment per tonne and the price are made
-up.
+aluminium bars in 2026. The benchmarks, the correction factor and the price
+are made up.
+
+**Free allocation per tonne (SEFA).** With made-up benchmarks of 0.60
+tCO2e/t for the steel bars and 2.00 tCO2e/t for the aluminium bars, and a
+made-up correction factor of 1.0: steel 0.975 x 1.0 x 0.60 = **0.585**;
+aluminium 0.975 x 1.0 x 2.00 = **1.95** tCO2e/t in 2026, and 0.57 and 1.90
+in 2027, when the CBAM factor is 95%.
 
 **Certificates for 2026 imports.**
 
@@ -144,8 +164,9 @@ print(round(certs, 2), certificate_cost(round(certs, 6), 80.00))   # 39.4 3152.0
 print(round(quarterly_holding(112.8, 2027, 49.4), 2))              # 31.7
 ```
 
-The example keeps one decimal place. How the registry rounds
-certificates is not covered here.
+The figures are shown as calculated. Article 22 of the CBAM Regulation
+sets no rounding rule for the number of certificates; check the CBAM
+registry's instructions.
 
 ## Common mistakes
 
@@ -190,10 +211,10 @@ a useful number in supplier negotiations.
 Facts come from `data/regulations.yml` (ids `cbam-certificate-unit`,
 `cbam-free-allocation-adjustment`, `cbam-certificates`,
 `cbam-quarterly-holding`, `cbam-declaration`, `cbam-penalties`), last
-checked 20 November 2026.
+checked 21 November 2026.
 
-- Regulation (EU) 2023/956, Articles 20, 21, 22, 26 and 31, as amended:
-  [EUR-Lex](https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng)
+- Regulation (EU) 2023/956, Articles 20, 21, 22, 26 and 31, consolidated
+  text: [EUR-Lex](https://eur-lex.europa.eu/eli/reg/2023/956/2025-10-20/eng)
 - Directive 2003/87/EC, Article 10a(1a) (CBAM factor), as amended by
   Directive (EU) 2023/959:
   [EUR-Lex](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A32023L0959)

@@ -1,7 +1,7 @@
 ---
 step: "F2"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # F2 Data quality and uncertainty
@@ -153,7 +153,17 @@ percentile matches its stated uncertainty, 200,000 draws, seed 20260101:
 
 The Monte Carlo interval is **asymmetric**: it reaches as high as the sum
 rule but not as low, because the lognormal lines cannot fall as far below
-their central value as they can rise above it.
+their central value as they can rise above it. The close match at the top
+is not chance: with other seeds, and with a million draws, the upper end
+stays between 5,250 and 5,252 tCO2e.
+
+**Correlation check.** The three packaging lines use factors from the same
+publisher. Treated as independent, their uncertainties combine to ±108.19
+tCO2e. If the factors were fully correlated (all too high or all too low
+together), they would add up instead: 65.97 + 77.31 + 37.11 = ±180.39
+tCO2e. The category's uncertainty then grows from ±405.23 to **±430.17
+tCO2e** (8.9%), reported as **4,850 ± 430 tCO2e**. The truth lies between
+the two; report the wider one if you cannot tell.
 
 **What the budget says.** One line, the spend-based estimate for the other
 ingredient suppliers, contributes **71.7%** of the variance. Getting

@@ -1,7 +1,7 @@
 ---
 step: "CB4"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # CB4 Embedded emissions: actual vs default values
@@ -196,8 +196,12 @@ print(round(b_see, 2), round(b_see * 35, 2))                     # 2.31 80.85
 ## Reuse in other reports
 
 The embedded emissions per tonne are also supplier-specific emission
-factors for Scope 3 category 1. Use the same figures there, and note
-whether each is actual or default. See
+factors for Scope 3 category 1, and note whether each is actual or
+default. Two cautions before you use them there
+([C5](../csrd/c5-climate.md)): for iron and steel and aluminium, CBAM
+counts **direct emissions only**, so add the electricity used if the
+operator has the figure; and default values carry a **mark-up**, which is a
+penalty, not an emission, so take it off. See
 [F3](../foundations/one-dataset-many-reports.md).
 
 ## Sources

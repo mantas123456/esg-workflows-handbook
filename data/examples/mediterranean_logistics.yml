@@ -33,20 +33,21 @@ dma:
     - {id: G1-R1, topic: G1, kind: risk, magnitude: 2, likelihood: 2, description: "Bribery at ports and customs"}
 
 # C3: data requests to suppliers protected by the value-chain cap (MADE UP).
-# vsme: the voluntary-standard datapoints that cover the question (data/vsme_datapoints.yml), or null if none.
+# cap: the Annex II datapoints of Delegated Regulation (EU) 2026/1560 that cover the question
+#      (data/value_chain_cap.yml), or null if the question goes beyond the cap.
 # outcome: answered | shared voluntarily | declined
 data_requests:
   - supplier: Gozo Fresh Foods Ltd
     questions:
-      - {ask: "Energy use and Scope 1 and 2 emissions for 2026", vsme: [B3-energy, B3-scope1, B3-scope2-location], outcome: answered}
-      - {ask: "Number of employees and work accidents", vsme: [B8-employees, B9-accidents], outcome: answered}
-      - {ask: "Cradle-to-gate emissions of all products sold in 2026", vsme: null, outcome: shared voluntarily}
-      - {ask: "Carbon footprint per kg of each product", vsme: null, outcome: declined}
+      - {ask: "Energy use and Scope 1 and 2 emissions for 2026", cap: [B3-32, B3-33], outcome: answered}
+      - {ask: "Number of employees and work accidents", cap: [B8-40a, B8-40b, B9-41a], outcome: answered}
+      - {ask: "Cradle-to-gate emissions of all products sold in 2026", cap: null, outcome: shared voluntarily}
+      - {ask: "Carbon footprint per kg of each product", cap: null, outcome: declined}
   - supplier: Melita Metals Ltd
     questions:
-      - {ask: "Scope 1 and 2 emissions for 2026", vsme: [B3-scope1, B3-scope2-location], outcome: answered}
-      - {ask: "Embedded emissions per tonne of the steel and aluminium bars sold to the group", vsme: null, outcome: shared voluntarily}
-      - {ask: "Indirect emissions per tonne at the steel mill", vsme: null, outcome: shared voluntarily}
+      - {ask: "Scope 1 and 2 emissions for 2026", cap: [B3-33], outcome: answered}
+      - {ask: "Embedded emissions per tonne of the steel and aluminium bars sold to the group", cap: null, outcome: shared voluntarily}
+      - {ask: "Indirect emissions per tonne at the steel mill", cap: null, outcome: shared voluntarily}
 
 # C4: ESRS 2 general disclosures plan for the first report, financial year 2027 (MADE UP).
 esrs2_plan:

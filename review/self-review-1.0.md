@@ -273,3 +273,52 @@ and fail from 19 May 2027.
   points above.
 - The browser tools and templates beyond what the tests check.
 - Accessibility of pages other than the tools.
+
+---
+
+## Resolution (7.2, 21 November 2026)
+
+All 32 findings were approved and handled. The sources were read in the
+Official Journal (PDF texts from EUR-Lex) or the primary publisher, not in
+summaries. 20 facts were added or updated in `data/regulations.yml` and
+dated 21 November 2026.
+
+| Id | What was done | Source read |
+|---|---|---|
+| CBAM-1 | CB3, CB4, CB9 and F3 now give the two cautions C5 gives (direct only; mark-up off); CB9 no longer calls the total verified | Regulation (EU) 2023/956, Article 7 and Annex II |
+| CBAM-2 | CB1 lists the chapter 72 exclusions, including heading 7204 (ferrous waste and scrap), and the inclusion of 2601 12 00 | Regulation (EU) 2023/956, Annex I, consolidated 20.10.2025 |
+| CBAM-3 | CB2 explains the guarantee for applicants not established throughout the two previous financial years | Regulation (EU) 2023/956, Article 17(4) to (7) |
+| CBAM-4 | CB8 gives the free allocation formula and rebuilds the example's figures from (made-up) benchmarks; CB7 gives the Article 7 conversion, with `esgcalc.cbam.carbon_price_reduction` | Implementing Regulations (EU) 2025/2620 (Annex points 2 to 4) and 2026/2498 (Articles 6 and 7) |
+| CBAM-5 | CB2 says the 2026 rule covered all imports until the decision took effect | Unchanged fact |
+| CBAM-6 | CB8 says Article 22 sets no rounding rule; the example no longer claims one decimal place | Regulation (EU) 2023/956, Article 22 |
+| CBAM-7 | CB8 links the consolidated text | - |
+| CBAM-8 | CB6 adds the satisfactory opinion, site visits and the 5% materiality levels | Implementing Regulation (EU) 2025/2546, recitals 3 and 5, Articles 2, 3 and 5 |
+| CBAM-9 | CB9 adds goods below the threshold, the per-installation format, and the review and one-month rule | Regulation (EU) 2023/956, Articles 6 and 19 |
+| GHG-1 | Category 15 now covers the cold store's other 210 tCO2e only; total 5,752.59 tCO2e (reported 5,750 ± 420); S4, S6, S8, S9, V3, V5, V6 and the inventory template updated | Scope 3 Standard, chapter 5 (categories mutually exclusive; report once) |
+| GHG-2 | S5 asks for the GWP basis; S9 note 10 states the DESNZ 2026 basis (AR5, some AR4 and AR6) | Scope 3 Standard, chapter 11; DESNZ 2026 methodology report, 1.9 and 1.21 |
+| GHG-3 | S4 step on biogenic CO2; S9 note 12 says it is not yet quantified and will be reported separately | Scope 3 Standard, chapters 5 and 11 |
+| GHG-4 | S4 table of what each supplier's figure covers and how it is allocated | - |
+| GHG-5 | S9 marks the total provisional: 969.59 tCO2e (16.9%) on placeholder factors | - |
+| GHG-6 | F2 shows the fully correlated bound for the packaging lines (±430 instead of ±410); S9 note 7 refers to it | - |
+| GHG-7 | Checked: other seeds and a million draws give an upper end of 5,250 to 5,252 tCO2e; the match is real. F2 says so and a test runs two more seeds | - |
+| GHG-8 | S1 unsupported sentence removed, advice reworded | - |
+| GHG-9 | S2 and S4 raise land use where decisions are made | Fact ghgp-land-sector |
+| GHG-10 | C5 states the boundary of Gozo's cradle-to-gate figure | - |
+| CSRD-1 | C1 adds groups (consolidated test), the subsidiary exemption and non-EU parents (Article 40a); the example uses consolidated figures | Directive 2013/34/EU, Articles 19a(1), 19a(9), 29a(1), 40a, consolidated 18.03.2026 |
+| CSRD-2 | Articles 19a, 29a, 29d and 34, the phase-ins (ESRS 1 paragraphs 121 to 127), Scope 2 (E1-8 paragraph 30(a)) and all disclosure requirement codes read in the OJ text. One error found and fixed: health and safety is **S1-13**, not S1-14. A test now pins every code | Directive 2013/34/EU (consolidated); Delegated Regulation (EU) 2026/1563 |
+| CSRD-3 | New `data/value_chain_cap.yml` lists Annex II; C3 and V5 now test against it (with the shorter list for 10 employees or fewer); `vsme_datapoints.yml` links each datapoint to its cap rows | Delegated Regulation (EU) 2026/1560, Article 3 and Annex II |
+| CSRD-4 | C4 adds the EU Taxonomy disclosures step; C8 and C9 cite them | Regulation (EU) 2020/852, Article 8 |
+| CSRD-5 | Malta: Legal Notice 39 comes into force by ministerial notice, none found; Legal Notice 61 of 2026 brought parts of Act I of 2026 into force on 20 March 2026 (the fact said the whole Act) | Legal Notices 39 and 61 of 2026 |
+| CSRD-6 | C2 adds where each item arises, its time horizon and stakeholder engagement | - |
+| CSRD-7 | C8 says to check its list against the limited assurance standards when adopted; adds Article 34(2a) | Directive 2013/34/EU, Article 34 |
+| CSRD-8 | C9 says the order of approval and opinion is an assumption | - |
+| CSRD-9 | E5 datapoint unlinked from `imports_by_cn_code`; renamed to resource outflows (E5-5) | Delegated Regulation (EU) 2026/1563 |
+| CSRD-10 | C6 phase-ins now cite ESRS 1 paragraph 127 | Delegated Regulation (EU) 2026/1563 |
+| X-1 | 1.0 is labelled self-reviewed in the README, changelog and home page; all pages stay `draft` | - |
+| X-2 | The key EUR-Lex texts were read as PDFs; the HTML pages still refuse automated link checks | - |
+| X-3 | F4 recomputed for facts dated 20 and 21 November 2026; next re-check due by 18 February 2027 | - |
+
+**Still open after 7.2:** the commencement of Malta's Legal Notice 39 and
+Malta's transposition of Omnibus I; the EU Taxonomy's technical screening
+criteria (not covered); the carbon price report itself (CB7, Annex I of
+2026/2498); and an external practitioner review.

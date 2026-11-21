@@ -101,7 +101,7 @@ sheets:
       - [1, "Island Dairy Ltd", 9000, 700, 15000, null, 2, 1, 1, 2, 3, null, 0.15]
       - [1, "Mediterranean Oils", 20000, 250, 25000, null, 2, 2, 2, 3, 3, null, 0.2]
       - [4, "Chilled storage at Island Cold Store (30% of its capacity)", 300, 30, 100, null, 1, 1, 1, 2, 3, null, 0.15]
-      - [15, "25% equity in Island Cold Store (Scope 1 and 2: 300 t)", 300, 25, 100, null, 2, 1, 1, 2, 3, null, 0.15]
+      - [15, "25% equity in Island Cold Store, excluding the storage in category 4", 210, 25, 100, null, 2, 1, 1, 2, 3, null, 0.15]
   - name: Summary
     rows: 15
     columns:
