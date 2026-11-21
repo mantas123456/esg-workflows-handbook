@@ -136,7 +136,9 @@ nav:
       - "C7 Datapoint gap analysis": csrd/c7-gap-analysis.md
       - "C8 Assurance readiness": csrd/c8-assurance.md
       - "C9 Digital tagging and publication": csrd/c9-tagging.md
-  - Tools:
+  - Tools and templates:
+      - All tools: tools/index.md
+      - All templates: templates.md
       - "CBAM calculator": tools/cbam-calculator.md
       - "DMA scoring": tools/dma-scoring.md
       - "ESRS gap check": tools/esrs-gap.md
