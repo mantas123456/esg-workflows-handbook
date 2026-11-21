@@ -316,6 +316,39 @@ def specific_embedded_free_allocation(
     return float(factor) * cross_sectoral_correction_factor * benchmark_tco2e_per_t
 
 
+def effective_carbon_price_per_t(
+    emissions_tco2e_per_t: float,
+    rebated_tco2e_per_t: float,
+    price_per_tco2e: float,
+    refund_per_tco2e: float = 0.0,
+    eur_per_local_unit: float = 1.0,
+) -> float:
+    """Carbon price effectively paid on one good under one carbon price mechanism, EUR per tonne.
+
+    Implementing Regulation (EU) 2026/2498, Annex I:
+    - effective price per tonne of covered emissions = price - monetary refund per tonne
+      (section 3.4, equation 6);
+    - price paid per tonne of good = (covered emissions attributed per tonne of good
+      - rebated emissions per tonne of good) x effective price (section 6.1, equation 12);
+    - converted into euro at the Commission's yearly average exchange rate, given here
+      as euro per unit of local currency (section 7.1, equation 15).
+    Rebated emissions are those with free allowances, below a baseline or threshold, or
+    otherwise exempted (section 5). Add the results of several mechanisms and of
+    precursors made elsewhere (sections 7.2 and 7.3) before ``carbon_price_reduction``.
+    """
+    for name, value in (("emissions_tco2e_per_t", emissions_tco2e_per_t),
+                        ("rebated_tco2e_per_t", rebated_tco2e_per_t),
+                        ("price_per_tco2e", price_per_tco2e),
+                        ("refund_per_tco2e", refund_per_tco2e),
+                        ("eur_per_local_unit", eur_per_local_unit)):
+        _non_negative(name, value)
+    if rebated_tco2e_per_t > emissions_tco2e_per_t:
+        raise ValueError("rebated emissions cannot exceed the covered emissions of the good")
+    if refund_per_tco2e > price_per_tco2e:
+        raise ValueError("the refund per tonne cannot exceed the carbon price per tonne")
+    return (emissions_tco2e_per_t - rebated_tco2e_per_t) * (price_per_tco2e - refund_per_tco2e) * eur_per_local_unit
+
+
 def carbon_price_reduction(
     effective_carbon_price_eur_per_t: float,
     reference_price_eur_per_tco2e: float,

@@ -44,3 +44,4 @@ Every step in the handbook. Generated from `data/workflows.yml`.
 | C7 | CSRD / ESRS | [Datapoint gap analysis](csrd/c7-gap-analysis.md) | 0.5 | draft |
 | C8 | CSRD / ESRS | [Assurance readiness](csrd/c8-assurance.md) | 0.5 | draft |
 | C9 | CSRD / ESRS | [Digital tagging and publication](csrd/c9-tagging.md) | 0.5 | draft |
+| C10 | CSRD / ESRS | [EU Taxonomy KPIs](csrd/c10-taxonomy.md) | 1.1 | draft |

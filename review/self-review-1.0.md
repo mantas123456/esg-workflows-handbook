@@ -322,3 +322,8 @@ dated 21 November 2026.
 Malta's transposition of Omnibus I; the EU Taxonomy's technical screening
 criteria (not covered); the carbon price report itself (CB7, Annex I of
 2026/2498); and an external practitioner review.
+
+**Addressed in 1.1:** C10 covers the Taxonomy KPIs and the road freight
+criteria (the revised criteria were not confirmed as adopted); CB7 covers
+the carbon price report; Malta was re-checked (no change; check again
+after 19 March 2027). Still open: the external practitioner review.

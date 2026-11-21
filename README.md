@@ -18,7 +18,7 @@ One page per step: what it is, inputs, steps, a worked example with made-up
 numbers, common mistakes, templates, tools and sources. Emissions numbers
 are treated as measurements, with traceable inputs and stated uncertainty.
 
-**Status:** version 1.0 released 21 November 2026: all four tracks (CBAM,
+**Status:** version 1.1 released 21 November 2026: all four tracks (CBAM,
 Scope 3, VSME, CSRD / ESRS), self-reviewed by the author from three
 practitioner viewpoints ([review](review/self-review-1.0.md)), with the key
 facts re-read in the Official Journal. **Not yet reviewed by an external

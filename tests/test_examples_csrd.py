@@ -444,3 +444,62 @@ def test_c8_and_c9_cite_the_articles_read() -> None:
     c8, c9 = page("c8-assurance.md"), page("c9-tagging.md")
     assert "Article 34(2a)" in c8 and "34(2a)" in REGS["csrd-assurance-scope"]["article"]
     assert "not required** to tag" in c9 and "not required to mark up" in REGS["csrd-management-report"]["fact"]
+
+
+# --- C10 EU Taxonomy KPIs ------------------------------------------------------------
+
+def _pct(x: float) -> str:
+    return f"{100 * x:.1f}%"
+
+
+def test_c10_taxonomy_tables_and_summary() -> None:
+    from esgcalc.csrd import TAXONOMY_STATUSES, taxonomy_kpi
+    text = page("c10-taxonomy.md")
+    tax = MLG["taxonomy_2026"]
+    assert tax["turnover"]["denominator_eur"] == MLG["company"]["net_turnover_eur"]
+    expected = {"turnover": ("3.0%", "59.6%"), "capex": ("18.0%", "90.0%"), "opex": ("5.0%", "80.0%")}
+    for name, (aligned, eligible) in expected.items():
+        kpi = taxonomy_kpi(tax[name]["rows"], tax[name]["denominator_eur"])
+        assert (_pct(kpi.share("Aligned")), _pct(kpi.eligible_share)) == (aligned, eligible)
+        assert f"(denominator EUR {tax[name]['denominator_eur']:,})" in text
+        for r in tax[name]["rows"]:
+            row = (f"| {r['item']} | {r['activity'] or '-'} | {r['status']} | {r['amount_eur']:,} | "
+                   f"{_pct(r['amount_eur'] / tax[name]['denominator_eur'])} |")
+            assert row in text, row
+        assert f"| {'CapEx' if name == 'capex' else 'OpEx' if name == 'opex' else 'Turnover'} | {aligned} | {eligible} |" in text
+        assert abs(sum(kpi.share(s) for s in TAXONOMY_STATUSES) - 1) < 1e-9
+    solar = next(r for r in tax["turnover"]["rows"] if r["activity"] == "4.1")
+    assert f"only {_pct(solar['amount_eur'] / tax['turnover']['denominator_eur'])} of turnover" in text
+    assert f"It runs {tax['fleet']['trucks_n3']} heavy N3 trucks; {tax['fleet']['zero_emission_n3']} of them" in text
+    assert tax["opex"]["material"] is True and "does not use the OpEx exemption" in text
+    assert "# turnover 3.0% 59.6% / capex 18.0% 90.0% / opex 5.0% 80.0%" in text
+
+
+def test_taxonomy_kpi_checks() -> None:
+    from esgcalc.csrd import taxonomy_kpi
+    ok = [{"status": "Aligned", "amount_eur": 30}, {"status": "Not assessed (non-material)", "amount_eur": 9.99},
+          {"status": "Not eligible", "amount_eur": 60.01}]
+    k = taxonomy_kpi(ok, 100)
+    assert k.share("Aligned") == pytest.approx(0.30) and k.eligible_share == pytest.approx(0.30)
+    with pytest.raises(ValueError):            # non-material reaches 10%
+        taxonomy_kpi([{"status": "Not assessed (non-material)", "amount_eur": 10},
+                      {"status": "Not eligible", "amount_eur": 90}], 100)
+    with pytest.raises(ValueError):            # rows do not add up to the denominator
+        taxonomy_kpi(ok[:2], 100)
+    with pytest.raises(ValueError):
+        taxonomy_kpi([{"status": "Green", "amount_eur": 100}], 100)
+    with pytest.raises(ValueError):
+        taxonomy_kpi([{"status": "Aligned", "amount_eur": -1}, {"status": "Not eligible", "amount_eur": 101}], 100)
+    with pytest.raises(ValueError):
+        taxonomy_kpi([], 0)
+
+
+def test_c10_cites_the_facts_and_the_threshold() -> None:
+    from esgcalc.csrd import _facts
+    text = page("c10-taxonomy.md")
+    facts = _facts()
+    assert facts["eu-taxonomy-simplification"]["values"]["materiality_threshold"] == 0.10
+    assert "less than **10%** of the turnover denominator" in text
+    for fid in ("eu-taxonomy-article8", "eu-taxonomy-alignment", "eu-taxonomy-simplification", "eu-taxonomy-road-freight"):
+        assert f"`{fid}`" in text and fid in facts
+    assert "[C10](c10-taxonomy.md)" in page("c4-general.md")
