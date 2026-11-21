@@ -4,6 +4,11 @@ What changed in the handbook, newest first. Regulatory updates are listed
 here too, with the date the facts were re-checked. See the
 [roadmap](roadmap.md) for what comes next.
 
+## 1.1.1 (21 November 2026)
+
+Same content as 1.1. Adds `.zenodo.json`, the metadata Zenodo reads when it
+archives a release, so that the release gets a DOI.
+
 ## 1.1 (21 November 2026)
 
 Fills three gaps left open by the 1.0 self-review. Every page is still a

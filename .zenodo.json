@@ -1,0 +1,15 @@
+{
+  "title": "ESG Workflows Handbook",
+  "upload_type": "software",
+  "description": "<p>Free, practical step-by-step workflows for CBAM, Scope 3, VSME and CSRD / ESRS, with worked examples on fictional companies, Excel and Word templates, browser tools and a Python package (esgcalc) that recomputes every number.</p><p>Self-reviewed by its author; not yet reviewed by an external practitioner. Not legal advice.</p><p>Website: <a href=\"https://mantas123456.github.io/esg-workflows-handbook/\">mantas123456.github.io/esg-workflows-handbook</a>. The handbook text is licensed CC BY 4.0; the code is licensed MIT.</p>",
+  "creators": [
+    {"name": "Valantinavičius, Mantas"}
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "language": "eng",
+  "keywords": ["CBAM", "Scope 3", "GHG Protocol", "VSME", "CSRD", "ESRS", "EU Taxonomy", "sustainability reporting"],
+  "related_identifiers": [
+    {"identifier": "https://mantas123456.github.io/esg-workflows-handbook/", "relation": "isDocumentedBy", "resource_type": "publication"}
+  ]
+}
