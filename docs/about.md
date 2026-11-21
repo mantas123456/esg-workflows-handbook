@@ -21,8 +21,11 @@ practitioner has reviewed it.
 ## PDF edition and citation
 
 Each release on GitHub has a [PDF edition](https://github.com/mantas123456/esg-workflows-handbook/releases/latest) of the whole handbook and
-a ZIP of the templates. To cite the handbook, use the
-[citation file](https://github.com/mantas123456/esg-workflows-handbook/blob/main/CITATION.cff).
+a ZIP of the templates. Each release is also archived on Zenodo. To cite
+the handbook, use its DOI
+[10.5281/zenodo.24423578](https://doi.org/10.5281/zenodo.24423578), which
+always points to the latest version (each release also has its own DOI), or
+the [citation file](https://github.com/mantas123456/esg-workflows-handbook/blob/main/CITATION.cff).
 
 ## Help review
 
