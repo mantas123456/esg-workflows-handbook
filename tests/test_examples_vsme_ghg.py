@@ -13,7 +13,7 @@ def test_v3_emissions_table() -> None:
     s1 = sum(s1_lines)
     s3 = sum(s["tco2e"] for s in category_summary().values())          # the S9 inventory total
     total = s1 + s2 + s3
-    assert (s1, s2, round(s3, 2)) == (600.0, 1200.0, 5775.09)
+    assert (s1, s2, round(s3, 2)) == (600.0, 1200.0, 5752.59)
     for name, value, status in (("Scope 1", s1, "Required"), ("Scope 2 (location-based)", s2, "Required"),
                                 ("Scope 3", s3, "Added voluntarily")):
         assert f"| {name} | {value:,.2f} | {value / total:.2%} | {status} |" in text, name
@@ -36,6 +36,6 @@ def test_v3_intensity_and_same_figures() -> None:
 
 def test_v3_python_snippet() -> None:
     text = page("v3-ghg.md")
-    assert round(5775.09 / (600 + 1200 + 5775.09), 4) == 0.7624
+    assert round(5752.59 / (600 + 1200 + 5752.59), 4) == 0.7617
     assert round(vsme.ghg_intensity(1800, 14_000_000), 2) == pytest.approx(128.57)
-    assert "# 0.7624" in text and "# 128.57" in text
+    assert "# 0.7617" in text and "# 128.57" in text

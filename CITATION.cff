@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this handbook, please cite it as below."
+type: software
+title: "ESG Workflows Handbook"
+abstract: >-
+  Free, practical step-by-step workflows for CBAM, Scope 3, VSME and CSRD / ESRS,
+  with worked examples on fictional companies, Excel and Word templates, browser
+  tools and a Python package (esgcalc) that recomputes every number.
+  Self-reviewed by its author; not yet reviewed by an external practitioner.
+  Not legal advice.
+authors:
+  - family-names: "Valantinavičius"
+    given-names: "Mantas"
+version: "1.0"
+date-released: 2026-11-21
+license:
+  - CC-BY-4.0
+  - MIT
+repository-code: "https://github.com/mantas123456/esg-workflows-handbook"
+url: "https://mantas123456.github.io/esg-workflows-handbook/"
+keywords:
+  - CBAM
+  - Scope 3
+  - GHG Protocol
+  - VSME
+  - CSRD
+  - ESRS
+  - sustainability reporting

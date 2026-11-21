@@ -1,7 +1,7 @@
 ---
 step: "C2"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # C2 Double materiality assessment
@@ -46,7 +46,13 @@ Go through each topical standard. For each topic, write down:
   costs, access to finance or value.
 
 Mark each impact as **actual or potential**, **negative or positive**, and
-whether it concerns **human rights**.
+whether it concerns **human rights**. Note for each item **where** it arises
+(own operations, upstream or downstream) and its **time horizon** (short,
+medium or long term): the financial side asks about effects over all three
+horizons. The IRO register (download below) has columns for both.
+
+Talk to affected stakeholders, or their representatives, before scoring,
+and keep a note of who you spoke to and what they said.
 
 ### 2. Score impact materiality
 
@@ -90,8 +96,10 @@ including how it covered own operations and the value chain
 
 ## Worked example
 
-Mediterranean Logistics Group (fictional) scores nine items. All scores
-are made up.
+Mediterranean Logistics Group (fictional) scores nine items, after
+talking to drivers' and warehouse staff representatives, two supermarket
+customers and its main hauliers. The IRO register records where each item
+arises and its time horizon. All scores are made up.
 
 | Item | Topic | Description | Type | How it is scored | Score | Material? |
 |---|---|---|---|---|---|---|

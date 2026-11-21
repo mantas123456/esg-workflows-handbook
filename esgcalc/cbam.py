@@ -292,6 +292,52 @@ def certificates_needed(
     return max(0.0, total_tco2e - free_allocation_adjustment_tco2e - carbon_price_paid_tco2e) / per_cert
 
 
+def specific_embedded_free_allocation(
+    benchmark_tco2e_per_t: float,
+    year: int,
+    cross_sectoral_correction_factor: float = 1.0,
+    params: dict[str, Any] | None = None,
+) -> float:
+    """Specific embedded free allocation (SEFA) of a good, tCO2e per tonne.
+
+    Implementing Regulation (EU) 2025/2620, Annex point 4 (default values):
+    SEFA = CBAM factor (year) x cross-sectoral correction factor x CBAM benchmark.
+    With actual data (point 3) the benchmark is the process benchmark, and for a
+    complex good the SEFA of each precursor times its specific mass is added;
+    pass that sum as ``benchmark_tco2e_per_t`` if you have it.
+    The free allocation adjustment of a good is SEFA x mass imported (point 2).
+    """
+    _non_negative("benchmark_tco2e_per_t", benchmark_tco2e_per_t)
+    _non_negative("cross_sectoral_correction_factor", cross_sectoral_correction_factor)
+    factors = (params or load_parameters())["cbam_factor_by_year"]["values"]
+    factor = factors.get(year, factors[max(factors)] if year > max(factors) else None)
+    if factor is None:
+        raise ValueError(f"no CBAM factor for {year}")
+    return float(factor) * cross_sectoral_correction_factor * benchmark_tco2e_per_t
+
+
+def carbon_price_reduction(
+    effective_carbon_price_eur_per_t: float,
+    reference_price_eur_per_tco2e: float,
+    quantity_t: float,
+) -> float:
+    """Reduction in certificates for a carbon price effectively paid abroad.
+
+    Implementing Regulation (EU) 2026/2498, Article 7(1):
+    reduction = (effective carbon price in EUR per tonne of good
+                 / yearly reference price of CBAM certificates) x quantity declared.
+    The effective price comes from the certified carbon price report, already
+    net of rebates and converted into euro at the Commission's yearly average
+    exchange rate (Article 6). The reference price is the average of the
+    published certificate prices for the year of import, rounded to the cent.
+    """
+    _non_negative("effective_carbon_price_eur_per_t", effective_carbon_price_eur_per_t)
+    _non_negative("quantity_t", quantity_t)
+    if not reference_price_eur_per_tco2e > 0:
+        raise ValueError("reference_price_eur_per_tco2e must be more than zero")
+    return effective_carbon_price_eur_per_t / reference_price_eur_per_tco2e * quantity_t
+
+
 def certificate_cost(certificates: float | Decimal, price_eur_per_tco2e: float | Decimal) -> Decimal:
     """Cost in EUR of buying certificates at one price, rounded to the cent.
 

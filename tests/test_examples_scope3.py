@@ -234,7 +234,7 @@ def test_s4_all_categories_and_method_mix() -> None:
         assert row in text, row
     grand = sum(ct.tco2e for ct in totals.values())
     by_method = {m: sum(ct.by_method.get(m, 0.0) for ct in totals.values()) for m in METHODS}
-    assert grand == pytest.approx(5775.09322, abs=1e-5)
+    assert grand == pytest.approx(5752.59322, abs=1e-5)
     mix = " | ".join(f"**{by_method[m] / grand:.2%}**" for m in METHODS)
     assert f"| | **Total Scope 3** | **{grand:,.2f}** | {mix} |" in text
 
@@ -261,8 +261,12 @@ def test_s4_island_cold_store_overlap() -> None:
     text = page("s4-methods.md")
     totals = inventory_totals()
     assert totals[4].by_method["supplier_specific"] == pytest.approx(90)
-    assert totals[15].tco2e == pytest.approx(75)
-    assert "(90 tCO2e, 30% of the cold store's emissions)" in text and "Gozo's 25% stake (75 tCO2e)" in text
+    # GHG-1: the stake covers only the emissions not already in category 4
+    cold_store_total = 300
+    assert totals[15].tco2e == pytest.approx(0.25 * (cold_store_total - totals[4].by_method["supplier_specific"])) == pytest.approx(52.5)
+    assert "(90 tCO2e, 30% of the cold store's emissions)" in text
+    assert "25% x (300 - 90) = **52.50 tCO2e**" in text and "22.50 tCO2e of the storage would have been" in text
+    assert "| 15 | 75.00 | 52.50 | Storage already in category 4 left out |" in text
 
 
 # --- S5 Choosing emission factors --------------------------------------------
@@ -418,3 +422,50 @@ def test_f2_python_snippet_output() -> None:
     assert quality.round_result(total.value, total.u95_abs) == (4850.0, 410.0)
     assert round(quality.variance_shares(values, u95)[5], 3) == 0.717
     assert "# (4850.0, 410.0)" in text and "# 0.717" in text
+
+
+
+def test_s4_supplier_boundaries() -> None:
+    """GHG-4: the page says what each supplier's figure covers and how it is allocated."""
+    text = page("s4-methods.md")
+    for a in EXAMPLE["supplier_answers"]:
+        row = f"| {a['supplier']} | {a['covers']} | {a['allocated_by']} | {yes(a['verified'])} |"
+        assert row in text, row
+    partial = [a for a in EXAMPLE["supplier_answers"] if not a["covers"].startswith("Cradle to gate")]
+    assert [a["supplier"] for a in partial] == ["Mediterranean Oils"]
+    q = {l["description"]: l for l in EXAMPLE["uncertainty_category_1"]["lines"]}["Mediterranean Oils"]
+    assert q["quality"][3] == 3 and q["u95"] == 0.20                    # completeness scored lower, wider uncertainty
+
+
+def test_s2_s4_land_and_biogenic_notes() -> None:
+    regs = {r["id"]: r for r in yaml.safe_load((ROOT / "data/regulations.yml").read_text(encoding="utf-8"))}
+    assert "takes effect on 1 January 2027" in regs["ghgp-land-sector"]["fact"]
+    assert "takes effect on 1 January 2027" in page("s2-screening.md")
+    assert "**Keep biogenic CO2 separate.**" in page("s4-methods.md")
+    assert "reported separately for each category" in regs["ghgp-scope3-reporting"]["fact"]
+    assert "Many companies use a control approach" not in page("s1-boundary.md")
+
+
+
+def test_f2_correlation_check_and_other_seeds() -> None:
+    """GHG-6 and GHG-7: the fully correlated packaging bound, and the Monte Carlo upper end with other seeds."""
+    import math
+    from esgcalc import quality
+    text = page("data-quality.md", "foundations")
+    rows = _f2_budget()
+    U = [r["value"] * r["u95"] for r in rows]
+    pack = [u for r, u in zip(rows, U) if "packaging" in r["line"]["description"] or "jars" in r["line"]["description"]]
+    assert len(pack) == 3
+    independent = math.sqrt(sum(u * u for u in U))
+    pack_ind, pack_cor = math.sqrt(sum(u * u for u in pack)), sum(pack)
+    correlated = math.sqrt(independent ** 2 - pack_ind ** 2 + pack_cor ** 2)
+    assert f"±{pack_ind:,.2f}" in text and f"= ±{pack_cor:,.2f}" in text
+    assert f"from ±{independent:,.2f} to **±{correlated:,.2f}" in text
+    v, u = quality.round_result(4845.0, correlated)
+    assert f"**{v:,.0f} ± {u:,.0f} tCO2e**" in text
+    values = [r["value"] for r in rows]
+    gsds = [quality.gsd_from_u95(r["u95"]) for r in rows]
+    for seed in (1, 2):
+        high = quality.monte_carlo_sum(values, [1.0] * len(values), gsds, n=200_000, seed=seed).high
+        assert 5_250 <= high <= 5_252, (seed, high)
+    assert "stays between 5,250 and 5,252 tCO2e" in text

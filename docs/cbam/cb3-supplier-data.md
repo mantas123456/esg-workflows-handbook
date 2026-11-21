@@ -1,7 +1,7 @@
 ---
 step: "CB3"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # CB3 Requesting data from installation operators
@@ -153,7 +153,11 @@ File them under `cbam/suppliers/` in the evidence locker (see
 
 The same verified data per installation is **supplier-specific data** for
 Scope 3 category 1. It replaces a spend-based estimate for those goods.
-Send one request that covers both. See
+Two cautions before you use them there
+([C5](../csrd/c5-climate.md)): for iron and steel and aluminium, CBAM
+counts **direct emissions only**, so add the electricity used if the
+operator has the figure; and default values carry a **mark-up**, which is a
+penalty, not an emission, so take it off. Send one request that covers both. See
 [F3](../foundations/one-dataset-many-reports.md).
 
 ## Sources

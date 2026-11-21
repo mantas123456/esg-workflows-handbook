@@ -1,7 +1,7 @@
 ---
 step: "C4"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # C4 General disclosures
@@ -43,28 +43,48 @@ for financial years starting in 2026, if you say so.
 The revised ESRS are 12 standards: ESRS 1 (general requirements), ESRS 2
 (general disclosures) and ten topical standards. ESRS 2 covers:
 
-- **basis for preparation**, including any phase-in used;
-- **governance**: who oversees sustainability matters, and how;
-- **strategy**: business model, value chain, and financial effects;
+- **basis for preparation**, including any phase-in used (BP-1, BP-2);
+- **governance**: who oversees sustainability matters, and how (GOV-1 to
+  GOV-4);
+- **strategy**: business model, value chain, and financial effects (SBM-1
+  to SBM-3);
 - **management of impacts, risks and opportunities**, including a concise
   description of the materiality assessment, covering own operations and
-  the value chain.
+  the value chain (IRO-1, IRO-2).
 
 ### 3. Decide which phase-ins you use
 
-The revised ESRS let first-time reporters leave some disclosures out in
-their first years. In the text this handbook read, companies first
-reporting for financial years from 2027 may omit, for example:
+ESRS 1 chapter 10 lets companies that first report for financial years
+from 2027 leave some disclosures out in their first years (paragraph 127):
 
-- E4, S2, S3 and S4 disclosures (first two years);
-- anticipated financial effects (first two years, except some E1
-  paragraphs), and their quantitative part (first four years);
-- comparative information (first year).
+- all disclosure requirements of E4, S2, S3 and S4 (first two years);
+- anticipated financial effects (ESRS 2 and E1-11, first two years, except
+  E1-11 paragraphs 39(a)(b) and 40(a)(b)), and their quantitative part
+  (first four years);
+- quantitative information on substances of concern (E2-5, first three
+  years), and on substances of very high concern in articles you use
+  (first year);
+- some own-workforce datapoints (S1-6, S1-7 outside the EEA, S1-10 to
+  S1-12, parts of S1-13, and S1-14, first year);
+- comparative information (first year, paragraph 124).
 
-Say which phase-ins you use in the basis for preparation. These years were
-read in EFRAG's text and **not yet checked against the Official Journal**.
+For their **first three years**, where not all value-chain information is
+available, they explain their efforts, why it could not be obtained, and
+their plans (paragraph 123). Say which phase-ins you use (BP-2).
 
-### 4. Assign an owner and a date to each disclosure
+### 4. Add the EU Taxonomy disclosures
+
+A company in CSRD scope also reports, in the same sustainability
+statement, how far its activities are **environmentally sustainable under
+the EU Taxonomy** (Article 8 of Regulation (EU) 2020/852). A non-financial
+company gives the **proportion of its turnover, capital expenditure and
+operating expenditure** linked to such activities, following the
+Commission's delegated act on content and method. The assurance opinion
+covers these figures ([C8](c8-assurance.md)), and they are tagged with the
+rest ([C9](c9-tagging.md)). This handbook does not yet explain the
+Taxonomy's technical screening criteria.
+
+### 5. Assign an owner and a date to each disclosure
 
 Treat each disclosure as a small project with an owner and a deadline
 before the statement goes to the auditor ([C8](c8-assurance.md)).
@@ -95,6 +115,8 @@ disclosures, for financial year 2027:
 - **Using a phase-in without saying so.** State it in the basis for
   preparation.
 - **Mixing the old and revised ESRS.** Say which version you used.
+- **Forgetting the Taxonomy figures.** They belong in the sustainability
+  statement and are assured with it.
 
 ## Evidence to keep
 
@@ -120,8 +142,12 @@ See [F3](../foundations/one-dataset-many-reports.md).
 ## Sources
 
 Facts come from `data/regulations.yml` (ids `esrs-simplified`,
-`esrs-structure`, `esrs-phase-in`), last checked 20 November 2026. ESRS
-text is summarised, not copied.
+`esrs-structure`, `esrs-phase-in`, `eu-taxonomy-article8`), last checked
+21 November 2026. ESRS text is summarised, not copied; the phase-ins were
+read in the Official Journal text (ESRS 1 paragraphs 121 to 127).
+
+- Regulation (EU) 2020/852 (Taxonomy), Article 8:
+  [EUR-Lex](https://eur-lex.europa.eu/eli/reg/2020/852/oj/eng)
 
 - Delegated Regulation (EU) 2026/1563 (revised ESRS):
   [EUR-Lex](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ%3AL_202601563)

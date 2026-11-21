@@ -1,7 +1,7 @@
 ---
 step: "C6"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # C6 Other topical standards
@@ -56,9 +56,10 @@ for each topic you found not material.
 
 ### 3. Check the phase-ins
 
-First-time reporters may leave out E4, S2, S3 and S4 disclosures in their
-first two years, and some datapoints in other standards (see
-[C4](c4-general.md)). Say so in the basis for preparation.
+First-time reporters may leave out all E4, S2, S3 and S4 disclosures in
+their first two years, and some datapoints in E1 (E1-11), E2 (E2-5) and
+S1 (ESRS 1 paragraph 127; see [C4](c4-general.md)). Say so in the basis
+for preparation (BP-2).
 
 ### 4. Plan the data for each material topic
 
@@ -71,7 +72,7 @@ the owner and the date. Reuse data you already collect for other reports
 
 Mediterranean Logistics Group (fictional) found E1, E5 and S1 material in
 C2. Its overview of the topical standards, with the key datapoints this
-handbook lists:
+handbook lists and the phase-ins of ESRS 1 paragraph 127:
 
 | Standard | Material for the group? | Key datapoints | Phase-in for first-time reporters |
 |---|---|---|---|

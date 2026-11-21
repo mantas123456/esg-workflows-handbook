@@ -1,7 +1,7 @@
 ---
 step: "S9"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # S9 Reporting the inventory
@@ -85,11 +85,14 @@ supermarket. All numbers are made up.
 | 7 | Employee commuting | 117.00 | Average-data | 2.20 | 22.0% | Yes |
 | 9 | Downstream transportation and distribution | 114.00 | Average-data | 2.55 | 30.9% | Yes |
 | 12 | End-of-life treatment of sold products | 92.50 | Average-data | 2.85 | 40.8% | Yes |
-| 15 | Investments | 75.00 | Supplier-specific | 1.80 | 15.0% | No |
-| | **Total Scope 3** | **5,775.09** | | **1.94** | **7.2%** | |
+| 15 | Investments | 52.50 | Supplier-specific | 1.80 | 15.0% | No |
+| | **Total Scope 3** | **5,752.59** | | **1.94** | **7.2%** | |
 
-**Reported total: 5,780 ± 420 tCO2e (95%).** Significant categories:
-**5,659.09 tCO2e**, 97.99% of the total.
+**Reported total: 5,750 ± 420 tCO2e (95%).** Significant categories:
+**5,659.09 tCO2e**, 98.37% of the total. The total is **provisional** for
+one reason: four lines, **969.59 tCO2e (16.9%)**, still use placeholder
+factors (note 5), and their ± does not include the chance that the chosen
+factor differs.
 
 **Not included, with reasons:** 8 upstream leased assets, 10 processing
 of sold products, 11 use of sold products, 13 downstream leased assets and
@@ -102,33 +105,42 @@ of sold products, 11 use of sold products, 13 downstream leased assets and
 2. **Period:** calendar year 2026.
 3. **Significance:** categories at or above 2% of the screened total, or
    significant for another reason (category 9: customer request).
-4. **Methods:** 58.61% supplier-specific, 25.88% average-data, 15.51%
+4. **Methods:** 58.45% supplier-specific, 25.98% average-data, 15.57%
    spend-based ([S4](s4-methods.md)). Spend is deflated to the factor's
    price year.
 5. **Factors:** DESNZ 2026 conversion factors (Open Government Licence
-   v3.0) for 13 lines; 4 lines still use placeholder factors while a
-   usable source is chosen ([S5](s5-emission-factors.md)).
+   v3.0) for 13 lines; 4 lines (other ingredient suppliers, services,
+   machinery, chilled storage at the supermarket) still use placeholder
+   factors while a usable source is chosen ([S5](s5-emission-factors.md)).
 6. **Data quality:** scored 1 (very good) to 5 (very poor) on five
    indicators with the guide in [S6](s6-data-quality.md), weighted by
    emissions.
 7. **Uncertainty:** 95% intervals combined by the sum and product rules,
    treating lines and categories as independent
-   ([F2](../foundations/data-quality.md)). Lines sharing the same DESNZ
-   factors are in fact correlated, so the total's uncertainty is somewhat
-   understated.
-8. **Overlap:** Island Cold Store's emissions appear in category 4 (the
-   storage service, 90 tCO2e) and category 15 (Gozo's 25% stake, 75
-   tCO2e), from the same 300 tCO2e ([S4](s4-methods.md)).
+   ([F2](../foundations/data-quality.md)). Lines sharing DESNZ factors are
+   in fact correlated, so the total's uncertainty is somewhat understated:
+   F2 shows that treating category 1's three packaging factors as fully
+   correlated widens that category from ±410 to ±430 tCO2e.
+8. **Island Cold Store:** the storage service Gozo buys is in category 4
+   (90 tCO2e). Gozo's 25% stake is in category 15 on the cold store's other
+   210 tCO2e only (52.50 tCO2e), so nothing is counted twice
+   ([S4](s4-methods.md)).
 9. **Base year:** 2026. Recalculation policy: 5% of the base-year total,
    changes added up in absolute terms ([S8](s8-base-year.md)).
-10. **Gases:** all greenhouse gases as CO2e, with the global warming
-    potentials used by the factor sources. All sources should use the same
-    IPCC assessment report values; this is checked as factors are chosen
-    ([S5](s5-emission-factors.md)).
+10. **Gases and GWPs:** all greenhouse gases as CO2e. The DESNZ 2026
+    factors use GWP values from the IPCC Fifth Assessment Report (AR5:
+    methane 28, nitrous oxide 265), except a few factors DESNZ still gives
+    on an AR4 basis (such as well-to-tank bioenergy) and refrigerants with
+    AR6 values where AR5 has none. Supplier figures state their own GWPs
+    in their answers ([S5](s5-emission-factors.md)).
 11. **Land:** emissions from land use and land-use change on the farms
     behind the ingredients are not separated. The GHG Protocol Land Sector
     and Removals Standard takes effect on 1 January 2027, so the 2027
     inventory will need to follow it.
+12. **Biogenic CO2:** not included in the categories above, as the Scope 3
+    Standard requires. Gozo has not yet quantified the biogenic CO2 of its
+    value chain (for example, food waste in anaerobic digestion in category
+    5); it will report it separately, per category, from 2027.
 
 In Python, with
 [`esgcalc`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/quality.py):
@@ -136,10 +148,10 @@ In Python, with
 ```python
 from esgcalc.quality import round_result, sum_uncertainty
 
-categories = [4845.00, 135.59, 180.00, 175.00, 31.00, 10.00, 117.00, 114.00, 92.50, 75.00]
-u95 = [0.0836, 0.50, 0.1498, 0.1332, 0.4145, 0.50, 0.2203, 0.3095, 0.4083, 0.15]
+categories = [4845.00, 135.59, 180.00, 175.00, 31.00, 10.00, 117.00, 114.00, 92.50, 52.50]
+u95 = [0.0836, 0.50, 0.1498, 0.1332, 0.4147, 0.50, 0.2203, 0.3095, 0.4083, 0.15]
 total = sum_uncertainty(categories, u95)
-print(round_result(total.value, total.u95_abs))   # (5780.0, 420.0)
+print(round_result(total.value, total.u95_abs))   # (5750.0, 420.0)
 ```
 
 ## Common mistakes
@@ -149,7 +161,10 @@ print(round_result(total.value, total.u95_abs))   # (5780.0, 420.0)
 - **Exclusions without reasons.** Every category not reported needs one.
 - **No uncertainty.** A number without it suggests more precision than
   there is.
-- **Hiding overlaps and placeholders.** Disclose them; they will be found.
+- **Hiding overlaps and placeholders.** Count overlaps once, and mark a
+  total that rests on placeholder factors as provisional.
+- **No GWP basis.** Say which IPCC values your factors use.
+- **Biogenic CO2 in the total.** Keep it out, and report it separately.
 - **Ignoring land.** For food, drink and other farm-based goods, land use
   and land-use change can be a large part of category 1. Check the Land
   Sector and Removals Standard.

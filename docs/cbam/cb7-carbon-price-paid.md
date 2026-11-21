@@ -1,16 +1,17 @@
 ---
 step: "CB7"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # CB7 Carbon price paid abroad
 
 !!! warning "New rules, not legal advice"
-    The detailed rules were adopted on 16 November 2026 in Implementing
-    Regulation (EU) 2026/2498. This page explains the principle and the
-    evidence. It does **not** model the conversion into certificates,
-    because this handbook has not yet checked the text of that formula.
+    The detailed rules were adopted in Implementing Regulation (EU)
+    2026/2498 (published 16 November 2026). This page explains the
+    principle, the evidence and the conversion formula of its Article 7.
+    The carbon price report itself, and how a price is attributed to each
+    good (its Annex I), are not covered.
 
 ## In one sentence
 
@@ -67,9 +68,20 @@ may set from 2027 for countries with carbon pricing rules.
 
 ### 6. Claim it in the declaration
 
-The reduction lowers the number of certificates to surrender. It can
-bring the number down to zero, not below. The conversion follows
-Implementing Regulation (EU) 2026/2498.
+The operator converts the effective carbon price into euro at the yearly
+average exchange rate the Commission publishes. Then, for each good:
+
+```text
+reduction (certificates) = effective carbon price (EUR per tonne of good)
+                           / yearly reference price of CBAM certificates (EUR per tCO2e)
+                           x tonnes of the good declared
+```
+
+The reference price is the average of the published certificate prices for
+the year of import, rounded to the cent. With a default carbon price
+instead, the price per tonne of good is the default price x the specific
+embedded emissions. The reduction lowers the number of certificates to
+surrender. It can bring the number down to zero, not below.
 
 ## Worked example
 
@@ -77,14 +89,19 @@ Installation A's country (fictional) has a carbon price, and the operator
 offers certified evidence for 2026. Installation B's data is on default
 values and no evidence was offered. All numbers are made up.
 
-**Main example: no reduction claimed.** The conversion rules are new and
-not modelled here, so Melita Metals claims no reduction in this example.
+**Main example: no reduction claimed.** The certified evidence for 2026
+was not ready when Melita Metals prepared its figures, so the main example
+claims no reduction.
 From [CB8](cb8-certificates.md): 341.65 tCO2e embedded emissions, minus a
 302.25 tCO2e free allocation adjustment, gives **39.4 certificates**.
 
-**What if the evidence is worth 5 certificates?** Suppose that, under the
-2026/2498 rules, Installation A's certified evidence converts into a
-reduction of **5 certificates** (a made-up figure):
+**What if the evidence is certified?** Suppose Installation A's certified
+report shows an effective carbon price of **EUR 1.00 per tonne of bars**,
+and the reference price for 2026 is **EUR 80.00** (both made up):
+
+```text
+reduction = 1.00 / 80.00 x 400 t = 5 certificates
+```
 
 | | No claim | With a reduction of 5 |
 |---|---|---|
@@ -125,9 +142,9 @@ File them under `cbam/carbon-price-paid/` (see
 
 ## Templates and tools
 
-- [`esgcalc.cbam.certificates_needed`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/cbam.py)
-  takes the reduction as `carbon_price_paid_tco2e`, already converted into
-  certificates. It does not do the 2026/2498 conversion.
+- [`esgcalc.cbam.carbon_price_reduction`](https://github.com/mantas123456/esg-workflows-handbook/blob/main/esgcalc/cbam.py):
+  the Article 7(1) conversion; pass the result to `certificates_needed` as
+  `carbon_price_paid_tco2e`.
 
 ## Reuse in other reports
 
@@ -138,7 +155,9 @@ risk in ESRS E1 and for supplier engagement in Scope 3.
 
 Facts come from `data/regulations.yml` (ids `cbam-carbon-price-paid`,
 `cbam-carbon-price-records`, `cbam-declaration-content`), last checked
-20 November 2026.
+21 November 2026. The conversion is in Implementing Regulation (EU)
+2026/2498, Articles 6 and 7:
+[EUR-Lex](https://eur-lex.europa.eu/eli/reg_impl/2026/2498/oj/eng).
 
 - Regulation (EU) 2023/956, Article 9, as amended by Regulation (EU)
   2025/2083: [EUR-Lex](https://eur-lex.europa.eu/eli/reg/2025/2083/oj/eng)

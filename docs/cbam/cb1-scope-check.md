@@ -1,7 +1,7 @@
 ---
 step: "CB1"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # CB1 Scope check: CN codes and the 50 t threshold
@@ -59,8 +59,12 @@ cement, electricity, fertilisers, iron and steel, aluminium and hydrogen.
 
 - Where Annex I lists a code shorter than 8 digits, **every** CN code that
   starts with it is covered.
-- Iron and steel cover **chapter 72 as a whole**, with listed exceptions
-  (for example some ferro-alloys), and some chapter 73 goods.
+- Iron and steel cover **chapter 72**, except listed ferro-alloys under
+  7202 (ferro-silicon, ferro-silico-manganese, ferro-silico-chromium,
+  ferro-molybdenum, ferro-tungsten, ferro-titanium, ferro-vanadium,
+  ferro-niobium and other ferro-alloys under 7202 99) and **heading 7204,
+  ferrous waste and scrap**. They also cover agglomerated iron ores
+  (2601 12 00) and listed chapter 73 goods.
 - Aluminium covers the headings **7601 to 7616** that Annex I lists.
 - Electricity is CN 2716 00 00 and hydrogen is CN 2804 10 00.
 
@@ -165,6 +169,7 @@ print(result.total_mass_t, result.above_threshold)   # 435.0 True
 - **Counting goods from Norway, Switzerland, Iceland or Liechtenstein.**
   Goods originating there are outside CBAM. Check the origin on the
   customs declaration, not the supplier's address.
+- **Counting scrap.** Ferrous waste and scrap (7204) is not a CBAM good.
 - **Using a 4- or 6-digit code from an invoice.** Use the 8-digit CN code
   from the customs declaration, and check it against Annex I.
 
@@ -199,9 +204,9 @@ estimates) and category 4 (transport). See
 
 ## Sources
 
-Facts come from `data/regulations.yml` (ids `cbam-goods`, `cbam-exempt-origins`,
-`cbam-threshold`, `cbam-authorisation`, `cbam-penalties`), last checked
-20 November 2026.
+Facts come from `data/regulations.yml` (ids `cbam-goods`,
+`cbam-iron-steel-scope`, `cbam-exempt-origins`, `cbam-threshold`,
+`cbam-authorisation`, `cbam-penalties`), last checked 21 November 2026.
 
 - Regulation (EU) 2023/956, Article 2(1) and Annex I (CBAM goods), Article
   2(4) and Annex III (exempt origins), Article

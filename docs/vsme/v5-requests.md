@@ -1,7 +1,7 @@
 ---
 step: "V5"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # V5 Answering customer and bank requests
@@ -74,8 +74,16 @@ be a different matter.
 | Do you have a human rights policy? | C6-human-rights-policies |
 | What is the footprint of each product? | Not in the standard |
 
-The datapoints are listed in [V1](v1-modules.md). Check Annex II of the act
-for the exact list the cap refers to.
+The datapoints are listed in [V1](v1-modules.md). **The cap is narrower than
+the standard.** It covers only the datapoints in Annex II of Delegated
+Regulation (EU) 2026/1560. In the table above, for a company with more than
+10 employees, the cap covers energy, Scope 1 and 2, waste, employees, work
+accidents and the human rights policy. It does **not** cover Scope 3,
+targets, climate risks, water consumption (the cap has water withdrawal
+only), fatalities, the pay gap, corruption or product footprints. For a
+company with 10 employees or fewer, energy, emissions, waste and the
+human rights policy are outside the cap too. See
+[C3](../csrd/c3-value-chain.md) for the customer's side.
 
 ### 3. Answer from your VSME report
 
@@ -135,16 +143,16 @@ employees) reports under the CSRD and sends an eight-question supplier
 questionnaire for 2026. Gozo is well under 1,000 employees, so the cap
 protects it. All questions are made up.
 
-| # | Question | VSME datapoint | Gozo's decision |
-|---|---|---|---|
-| 1 | How much energy did you use in 2026? | B3-energy | Answer from the VSME report |
-| 2 | What were your Scope 1 and Scope 2 emissions? | B3-scope1, B3-scope2-location | Answer from the VSME report |
-| 3 | What were your Scope 3 emissions, by category? | Beyond the standard | Share voluntarily |
-| 4 | Do you have a target to reduce emissions? | C3-targets | Answer from the VSME report |
-| 5 | How much waste did you produce, and how much was recycled? | B7-waste | Answer from the VSME report |
-| 6 | How many people work for you? | B8-employees | Answer from the VSME report |
-| 7 | How many work accidents did you have? | B9-accidents | Answer from the VSME report |
-| 8 | What is the carbon footprint per kg of each product you sell us? | Beyond the standard | Decline for now |
+| # | Question | VSME datapoint | In the cap? | Gozo's decision |
+|---|---|---|---|---|
+| 1 | How much energy did you use in 2026? | B3-energy | Yes | Answer from the VSME report |
+| 2 | What were your Scope 1 and Scope 2 emissions? | B3-scope1, B3-scope2-location | Yes | Answer from the VSME report |
+| 3 | What were your Scope 3 emissions, by category? | Beyond the standard | No | Share voluntarily |
+| 4 | Do you have a target to reduce emissions? | C3-targets | No | Answer from the VSME report |
+| 5 | How much waste did you produce, and how much was recycled? | B7-waste | Yes | Answer from the VSME report |
+| 6 | How many people work for you? | B8-employees | Yes | Answer from the VSME report |
+| 7 | How many work accidents did you have? | B9-accidents | Yes | Answer from the VSME report |
+| 8 | What is the carbon footprint per kg of each product you sell us? | Beyond the standard | No | Decline for now |
 
 Gozo's report for 2026 follows the 2025 Recommendation, as the delegated act
 applies from 2027, and its reply says so.
@@ -154,10 +162,15 @@ applies from 2027, and its reply says so.
 standard:
 
 - **Scope 3 (question 3):** Gozo already has it ([S9](../scope3/s9-reporting.md))
-  and shares it voluntarily: 5,780 ± 420 tCO2e, with the inventory notes.
+  and shares it voluntarily: 5,750 ± 420 tCO2e, with the inventory notes.
 - **Footprint per kg (question 8):** Gozo has no product-level figures and
   declines for now, using the polite wording above, and offers to discuss
   it for next year.
+
+Question 4 (targets) is in the voluntary standard but **outside the cap**:
+the supermarket could not require it. Gozo answers it anyway, because the
+answer is already in its report. So **5 of 8** questions are within the cap,
+and **3** are outside it.
 
 Gozo also asks the supermarket to confirm which questions it considers
 beyond the cap, as the supermarket is required to say.

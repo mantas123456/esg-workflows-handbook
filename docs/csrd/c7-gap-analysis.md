@@ -1,7 +1,7 @@
 ---
 step: "C7"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # C7 Datapoint gap analysis
@@ -75,7 +75,7 @@ Mediterranean Logistics Group (fictional) after its 2026 dry run
 | E1-scope3 | E1 | purchased_goods_spend | Partial |
 | E1-scope3-suppliers | E1 | supplier_emissions | Partial |
 | E1-financial-effects | E1 | – | Phase-in |
-| E5-resources-waste | E5 | imports_by_cn_code | Partial |
+| E5-resources-waste | E5 | – | Partial |
 | S1-headcount | S1 | headcount | Ready |
 | S1-health-safety | S1 | headcount | Ready |
 

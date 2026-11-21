@@ -1,7 +1,7 @@
 ---
 step: "C8"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # C8 Assurance readiness
@@ -34,18 +34,22 @@ trial run on the dry-run figures.
 ### 1. Know what the opinion covers
 
 After Omnibus I, sustainability statements need **limited assurance only**;
-the planned move to reasonable assurance was removed. The opinion covers:
+the planned move to reasonable assurance was removed. Under Article
+34(1)(aa) of Directive 2013/34/EU, the opinion covers:
 
-- compliance with the ESRS;
+- compliance with the Directive and the ESRS;
 - the process used to identify the reported information (the materiality
   assessment);
-- the marking-up (digital tagging) requirement;
-- the EU Taxonomy disclosures.
+- the marking-up (digital tagging) requirement of Article 29d;
+- the EU Taxonomy disclosures (Article 8 of Regulation (EU) 2020/852).
 
 The statutory auditor gives it. Member States may also allow a different
-auditor or an accredited independent assurance services provider. The
-Commission must adopt limited assurance standards by **1 July 2027**;
-until then, national standards may apply.
+auditor or an independent assurance services provider (Article 34(3) and
+(4)). The opinion must respect the right of value-chain companies with
+1,000 employees or fewer to decline information beyond the cap (Article
+34(2a); see [C3](c3-value-chain.md)). The Commission must adopt limited
+assurance standards by **1 July 2027**; until then, national standards may
+apply. When they are adopted, check the list in step 2 against them.
 
 ### 2. Expect what a provider asks for
 
@@ -128,10 +132,12 @@ The same evidence trail supports a CBAM verification
 ## Sources
 
 Facts come from `data/regulations.yml` (ids `csrd-assurance`,
-`csrd-assurance-scope`), last checked 20 November 2026.
+`csrd-assurance-scope`, `eu-taxonomy-article8`), last checked 21 November
+2026.
 
 - Directive 2013/34/EU, Article 34, as amended by Directive (EU)
-  2026/470: [EUR-Lex](https://eur-lex.europa.eu/eli/dir/2026/470/oj/eng)
+  2026/470, consolidated text of 18 March 2026:
+  [EUR-Lex](https://eur-lex.europa.eu/eli/dir/2013/34/2026-03-18/eng)
 - Directive (EU) 2022/2464 (CSRD), consolidated:
   [EUR-Lex](https://eur-lex.europa.eu/eli/dir/2022/2464/2026-03-18/eng)
 - European Commission, consultation on limited assurance standards:

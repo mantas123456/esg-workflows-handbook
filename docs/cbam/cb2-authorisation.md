@@ -1,7 +1,7 @@
 ---
 step: "CB2"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # CB2 Authorised CBAM declarant status
@@ -35,6 +35,8 @@ the finance director or the person responsible for customs.
   run CBAM are a sensible start.
 - Access to the CBAM registry for your company.
 - Your CB1 import list, so you can show expected volumes.
+- If your company was set up less than two full financial years before the
+  year you apply: a **bank guarantee** (see step 2).
 
 ## Steps
 
@@ -55,6 +57,15 @@ The competent authority checks, in short:
 - no serious or repeated breaches of customs, tax or CBAM rules;
 - the **financial and operational capacity** to meet CBAM obligations;
 - an **EORI number**.
+
+**Guarantee for young companies.** If your company was not established
+throughout the **two financial years before** the year you apply, the
+authority **must** ask for a guarantee. The amount is the value of the
+certificates you would have to surrender for the imports you expect, after
+the free allocation adjustment. It is a bank guarantee payable at first
+demand from a bank operating in the EU, or an equivalent. It is released
+after 30 September of the second year in which you have surrendered
+certificates (Article 17(5) to (7)).
 
 If something in your history may raise questions, explain it in the
 application instead of waiting to be asked.
@@ -113,8 +124,11 @@ itself, without a customs representative. All dates are made up.
 | 11 Jun 2026 | Extended deadline (receipt + 150 days, below the 180-day maximum) |
 
 Because Melita Metals applied before 31 March 2026, it could keep
-importing while the application was pending. That covered the **68
-tonnes** it imported in the first quarter.
+importing while the application was pending, until the decision took
+effect on 28 May 2026. That covered the **68 tonnes** of the first quarter
+and the second-quarter imports made before that date. Melita Metals has
+traded for many years, so no guarantee was needed. A company set up in
+2025 would have had to provide one.
 
 **Comparison.** A company that applies on 15 April 2026 is too late for
 the transitional rule. It needs the decision before it goes over 50
@@ -147,6 +161,9 @@ print(may_import_pending_decision(date(2026, 4, 15), 2026))          # False
   never covers them. Any quantity needs an authorised declarant.
 - **Slow answers to the authority.** Each request for information can add
   up to 30 days.
+- **A young company without a guarantee ready.** If you were not
+  established for the two previous financial years, the guarantee is
+  required.
 
 ## Evidence to keep
 
@@ -175,7 +192,7 @@ bank or customer may ask for in a VSME or supplier questionnaire.
 
 Facts come from `data/regulations.yml` (ids `cbam-authorisation`,
 `cbam-authorisation-procedure`, `cbam-authorisation-transitional-2026`,
-`cbam-threshold`), last checked 20 November 2026.
+`cbam-guarantee`, `cbam-threshold`), last checked 21 November 2026.
 
 - Regulation (EU) 2023/956, Articles 5, 17 and 25, consolidated text:
   [EUR-Lex](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020)

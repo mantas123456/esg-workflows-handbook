@@ -1,7 +1,7 @@
 ---
 step: "C5"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # C5 Climate (E1)
@@ -33,10 +33,10 @@ year before your first reporting year, so gaps show up in time.
 ### 1. Calculate gross Scope 1 and Scope 2
 
 As in [V2](../vsme/v2-basic.md): activity x emission factor, for each fuel,
-refrigerant and electricity supply. Revised E1 asks for Scope 2 both
-**location-based** (the grid average) and **market-based** (your contracts,
-or the residual mix if you have none). This handbook read that in summaries
-of the standard; check it in the Official Journal text.
+refrigerant and electricity supply. Revised E1 (disclosure requirement
+E1-8, paragraph 30(a)) asks for Scope 2 both **location-based** (the grid
+average) and **market-based** (your contracts, or the residual mix if you
+have none).
 
 ### 2. Screen all 15 Scope 3 categories
 
@@ -87,7 +87,10 @@ a year before its first report. All numbers and factors are made up.
 
 Gozo Fresh Foods shared its cradle-to-gate total for 2026: Scope 1 and 2
 of 1,800 tCO2e plus upstream Scope 3 (categories 1 to 8) of 5,493.6 tCO2e,
-**7,294 tCO2e** rounded. The group bought EUR 3,500,000 of Gozo's EUR
+**7,294 tCO2e** rounded. That boundary is the two companies' own choice:
+it includes Gozo's waste, business travel and commuting (categories 5 to
+7), which a product footprint might leave out. The group records the
+boundary with the figure. The group bought EUR 3,500,000 of Gozo's EUR
 14,000,000 sales:
 
 ```

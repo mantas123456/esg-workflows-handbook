@@ -158,13 +158,13 @@ standards). Give each one a status and see how ready you are. See
   },
   {
    "dataset": null,
-   "description": "Biodiversity and ecosystems (phase-in applies)",
+   "description": "Metrics related to biodiversity and ecosystems change (phase-in applies)",
    "id": "E4-biodiversity",
    "standard": "E4"
   },
   {
-   "dataset": "imports_by_cn_code",
-   "description": "Resource use, circular economy and waste",
+   "dataset": null,
+   "description": "Resource outflows, including waste",
    "id": "E5-resources-waste",
    "standard": "E5"
   },
@@ -200,7 +200,7 @@ standards). Give each one a status and see how ready you are. See
   },
   {
    "dataset": null,
-   "description": "Business conduct, including corruption and bribery",
+   "description": "Metrics related to corruption or bribery",
    "id": "G1-business-conduct",
    "standard": "G1"
   }

@@ -1,7 +1,7 @@
 ---
 step: "S5"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # S5 Choosing emission factors
@@ -48,7 +48,7 @@ score.
 | Geography | Is it for the country where the goods were made? |
 | Time | Is it for the reporting year, or close to it? |
 | Technology | Does it match how the goods were made? |
-| Gases | Does it cover all greenhouse gases as CO2e, with the same global warming potentials as the rest of your inventory? |
+| Gases | Does it cover all greenhouse gases as CO2e? Which global warming potentials (GWPs) does it use, for example from the IPCC's Fifth (AR5) or Sixth (AR6) Assessment Report? Record them: the Scope 3 Standard asks you to describe the GWP values used in each category. |
 
 ### 3. Check the licence allows **your** use
 

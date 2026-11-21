@@ -1,7 +1,7 @@
 ---
 step: "S6"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # S6 Data quality scoring
@@ -84,8 +84,8 @@ categories. All scores are made up.
 | 7 | Employee commuting | 117.00 | 2.20 | Yes | Yes |
 | 9 | Downstream transportation and distribution | 114.00 | 2.55 | Yes | No |
 | 12 | End-of-life treatment of sold products | 92.50 | 2.85 | Yes | No |
-| 15 | Investments | 75.00 | 1.80 | No | – |
-| | **Whole inventory** | **5,775.09** | **1.94** | | |
+| 15 | Investments | 52.50 | 1.80 | No | – |
+| | **Whole inventory** | **5,752.59** | **1.94** | | |
 
 Three significant categories miss the target: **2, 9 and 12**. Category 2
 rests on a spend-based factor; categories 9 and 12 on customer figures and

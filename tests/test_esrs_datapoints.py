@@ -17,9 +17,11 @@ def test_every_datapoint_is_complete_and_unique() -> None:
     for p in POINTS:
         assert set(p) == REQUIRED, p["id"]
         assert p["standard"] in STANDARDS, p["id"]
-        assert p["basis"] in {"efrag-kh", "title"}, p["id"]
+        assert p["basis"] in {"oj", "oj-topic"}, p["id"]
+        assert (p["dr"] is None) == (p["basis"] == "oj-topic"), p["id"]
         assert p["id"].split("-")[0] == p["standard"].replace(" ", ""), p["id"]
-        assert p["dr"] is None or p["dr"].startswith(p["standard"] + "-"), p["id"]
+        prefixes = ("BP-", "GOV-", "SBM-", "IRO-") if p["standard"] == "ESRS 2" else (p["standard"] + "-",)
+        assert p["dr"] is None or p["dr"].startswith(prefixes), p["id"]
         assert p["description"] and p["unit"], p["id"]
 
 
@@ -45,3 +47,28 @@ def test_consistent_with_the_facts() -> None:
         assert "phase-in applies" in by_id[pid]["description"], pid
     assert "No phase-in specific to Scope 3" in REGS["esrs-phase-in"]["fact"]
     assert "phase-in" not in by_id["E1-scope3"]["description"]
+
+
+# Disclosure requirement codes and titles read in Delegated Regulation (EU) 2026/1563 (OJ L, 21.9.2026).
+OJ_DRS = {
+    "BP-1": "Basis for preparation of the sustainability statement",
+    "GOV-1": "The role of the administrative, management and supervisory bodies",
+    "SBM-1": "Strategy, business model and value chain",
+    "IRO-1": "Description of the process to identify and assess material impacts, risks and opportunities",
+    "E1-1": "Transition plan for climate change mitigation", "E1-6": "Targets related to climate change",
+    "E1-7": "Energy consumption and mix", "E1-8": "Gross scope 1, 2, 3 GHG emissions",
+    "E1-11": "Anticipated financial effects from material physical and transition risks",
+    "E2-4": "Pollution of air, water and soil", "E2-5": "Substances of concern and substances of very high concern",
+    "E3-4": "Water metrics", "E4-5": "Metrics related to biodiversity and ecosystems change",
+    "E5-5": "Resource outflows", "S1-5": "Characteristics of the undertaking's employees",
+    "S1-13": "Health and safety metrics", "G1-4": "Metrics related to corruption or bribery",
+}
+
+
+def test_every_code_is_a_real_disclosure_requirement() -> None:
+    used = {p["dr"] for p in POINTS if p["dr"]}
+    assert used == set(OJ_DRS)
+    by_id = {p["id"]: p for p in POINTS}
+    assert by_id["S1-health-safety"]["dr"] == "S1-13"                    # S1-14 is work-life balance
+    assert {by_id[i]["dr"] for i in ("E1-scope1", "E1-scope2", "E1-scope3", "E1-scope3-suppliers")} == {"E1-8"}
+    assert "location-based and a market-based" in REGS["esrs-e1-scope2"]["fact"]

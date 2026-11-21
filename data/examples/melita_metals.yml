@@ -80,6 +80,8 @@ installation_A_crude_steel_2026:
 
 # CB6: verification of Installation A's 2026 data (made-up).
 verification_A:
+  opinion: Verified as satisfactory (reasonable assurance)
+  site_visit: Physical site visit in March 2027 (first year verified)
   verifier: Verifier V (fictional), accredited for CBAM by an EU national accreditation body
   report_issued: 2027-03-15
   accreditation_valid_until: 2029-06-30
@@ -91,9 +93,18 @@ verification_A:
 carbon_price_paid:
   claimed_certificates: 0
   what_if_reduction_certificates: 5
+  what_if_effective_price_eur_per_t: 1.00   # MADE UP: certified effective carbon price per tonne of bars
+  reference_price_eur_per_tco2e: 80.00      # MADE UP: yearly reference price for 2026
 
 # CB8: free allocation adjustment per tonne (MADE UP; the real figures come from
 # the CBAM benchmarks in IR 2025/2620 and fall each year with the CBAM factor).
+# How the made-up adjustments per tonne are built (2025/2620, Annex point 4):
+# SEFA = CBAM factor x cross-sectoral correction factor x CBAM benchmark. The
+# benchmarks and the correction factor are MADE UP; the real ones are in the
+# Annex of 2025/2620 (point 5) and published by the Commission.
+free_allocation_inputs:
+  cross_sectoral_correction_factor: 1.0
+  benchmark_tco2e_per_t: {A: 0.60, B: 2.00}
 free_allocation_adjustment_tco2e_per_t:
   2026: {A: 0.585, B: 1.95}
   2027: {A: 0.57, B: 1.90}

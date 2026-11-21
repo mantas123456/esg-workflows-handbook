@@ -1,7 +1,7 @@
 ---
 step: "V6"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # V6 Publishing and updating
@@ -90,7 +90,7 @@ restates 2026 in its 2027 report:
 | 2026 figure | As published | Restated | Why |
 |---|---|---|---|
 | Scope 1 and 2 (tCO2e) | 1,800.00 | 2,100.00 | Island Cold Store's 300 tCO2e now inside the boundary |
-| Scope 3 (tCO2e) | 5,775.09 | 5,755.84 | Acquisition, new spend factor and survey error ([S8](../scope3/s8-base-year.md)) |
+| Scope 3 (tCO2e) | 5,752.59 | 5,755.84 | Acquisition, new spend factor and survey error ([S8](../scope3/s8-base-year.md)) |
 
 **Rebasing the C3 target.** The target was −30% on 2026 Scope 1 and 2
 ([V4](v4-comprehensive.md)). On the restated base: 2,100 × 0.70 =

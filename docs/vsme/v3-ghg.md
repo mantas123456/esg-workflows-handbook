@@ -1,7 +1,7 @@
 ---
 step: "V3"
 status: draft
-last_checked: 2026-11-20
+last_checked: 2026-11-21
 ---
 
 # V3 GHG emissions for VSME
@@ -82,10 +82,10 @@ All numbers are made up.
 
 | Emissions | tCO2e | Share | In the Basic Module? | Source |
 |---|---|---|---|---|
-| Scope 1 | 600.00 | 7.92% | Required | [V2](v2-basic.md) |
-| Scope 2 (location-based) | 1,200.00 | 15.84% | Required | [V2](v2-basic.md) |
-| Scope 3 | 5,775.09 | 76.24% | Added voluntarily | [S9](../scope3/s9-reporting.md) |
-| **Total** | **7,575.09** | **100%** | | |
+| Scope 1 | 600.00 | 7.94% | Required | [V2](v2-basic.md) |
+| Scope 2 (location-based) | 1,200.00 | 15.89% | Required | [V2](v2-basic.md) |
+| Scope 3 | 5,752.59 | 76.17% | Added voluntarily | [S9](../scope3/s9-reporting.md) |
+| **Total** | **7,552.59** | **100%** | | |
 
 - **Intensity (B3):** Scope 1 and 2, 1,800 tCO2e / EUR 14,000,000 =
   **128.57 tCO2e per EUR million**. Gozo states that the intensity does
@@ -95,7 +95,7 @@ All numbers are made up.
   supermarket asks for Scope 3.
 - **Same figures everywhere.** The 1,800 tCO2e of Scope 1 and 2 is the
   same as in the Scope 3 inventory's boundary ([S1](../scope3/s1-boundary.md)).
-  Gozo sends the supermarket the same Scope 3 figure, 5,780 ± 420 tCO2e
+  Gozo sends the supermarket the same Scope 3 figure, 5,750 ± 420 tCO2e
   as rounded in [S9](../scope3/s9-reporting.md).
 
 In Python, with
@@ -104,8 +104,8 @@ In Python, with
 ```python
 from esgcalc.vsme import ghg_intensity
 
-scope1, scope2, scope3 = 600.0, 1200.0, 5775.09
-print(round(scope3 / (scope1 + scope2 + scope3), 4))   # 0.7624
+scope1, scope2, scope3 = 600.0, 1200.0, 5752.59
+print(round(scope3 / (scope1 + scope2 + scope3), 4))   # 0.7617
 print(round(ghg_intensity(scope1 + scope2, 14_000_000), 2))   # 128.57
 ```
 

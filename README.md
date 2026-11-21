@@ -18,13 +18,13 @@ One page per step: what it is, inputs, steps, a worked example with made-up
 numbers, common mistakes, templates, tools and sources. Emissions numbers
 are treated as measurements, with traceable inputs and stated uncertainty.
 
-**Status:** version 0.6 released 21 November 2026: keeping up with changes
-(F4, with a regulation date check in CI), tools and templates index pages,
-accessible browser tools and an error-report form, on top of 0.5 (CSRD /
-ESRS, C1-C9), 0.4 (VSME, V1-V6), 0.3 (Scope 3, S1-S9, F2), 0.2 (CBAM,
-CB1-CB10) and 0.1 (triage, timeline, evidence locker, data reuse map). All
-four tracks are written. All pages are drafts. Next: 1.0, after a
-practitioner review.
+**Status:** version 1.0 released 21 November 2026: all four tracks (CBAM,
+Scope 3, VSME, CSRD / ESRS), self-reviewed by the author from three
+practitioner viewpoints ([review](review/self-review-1.0.md)), with the key
+facts re-read in the Official Journal. **Not yet reviewed by an external
+practitioner**, so every page is still marked draft. A
+[PDF edition](https://github.com/mantas123456/esg-workflows-handbook/releases/latest) and a ZIP of the templates are attached to each
+release.
 
 Found an error or an outdated rule?
 [Report it](https://github.com/mantas123456/esg-workflows-handbook/issues/new?template=report-error.yml). See the
@@ -45,7 +45,9 @@ pip install -r requirements-dev.txt
 python scripts/build_templates.py # Word and Excel templates into docs/downloads
 python scripts/build_pages.py     # placeholder pages, workflow map, nav, download links
 python scripts/check_workflows.py
+python scripts/check_regulations.py # facts: warns at 90 days, fails at 180
 mkdocs serve                      # http://127.0.0.1:8000
+mkdocs build --strict && python scripts/build_pdf.py   # PDF edition
 ```
 
 ## How it is built
@@ -69,6 +71,11 @@ mkdocs serve                      # http://127.0.0.1:8000
   written page lacks a standard heading, and warns when a regulation fact
   has not been re-checked for 90 days.
 - `docs/_chapter_template.md` is the format every step page follows.
+
+## How to cite
+
+See [CITATION.cff](CITATION.cff); GitHub shows a "Cite this repository"
+button. A DOI will be added once the releases are archived on Zenodo.
 
 ## Licences
 
