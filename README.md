@@ -3,6 +3,7 @@
 [![docs](https://github.com/mantas123456/esg-workflows-handbook/actions/workflows/docs.yml/badge.svg)](https://github.com/mantas123456/esg-workflows-handbook/actions/workflows/docs.yml)
 [![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey.svg)](LICENSE-docs)
 [![Code: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24423578.svg)](https://doi.org/10.5281/zenodo.24423578)
 
 **Read it here: https://mantas123456.github.io/esg-workflows-handbook/**
 
@@ -25,6 +26,11 @@ facts re-read in the Official Journal. **Not yet reviewed by an external
 practitioner**, so every page is still marked draft. A
 [PDF edition](https://github.com/mantas123456/esg-workflows-handbook/releases/latest) and a ZIP of the templates are attached to each
 release.
+
+**How to cite:** Valantinavičius, M. *ESG Workflows Handbook*. Zenodo.
+[doi:10.5281/zenodo.24423578](https://doi.org/10.5281/zenodo.24423578)
+(this DOI always points to the latest version; each release also has its own
+DOI on Zenodo). See [CITATION.cff](CITATION.cff).
 
 Found an error or an outdated rule?
 [Report it](https://github.com/mantas123456/esg-workflows-handbook/issues/new?template=report-error.yml). See the

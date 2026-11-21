@@ -17,3 +17,12 @@ def test_zenodo_json_matches_citation_cff() -> None:
     assert zen["upload_type"] == cff["type"] == "software"
     assert set(cff["keywords"]) <= set(zen["keywords"])
     assert "version" not in zen                                  # Zenodo takes the version from the release tag
+
+
+def test_concept_doi_is_the_same_everywhere() -> None:
+    doi = "10.5281/zenodo.24423578"                              # Zenodo concept DOI (all versions)
+    cff = yaml.safe_load((ROOT / "CITATION.cff").read_text(encoding="utf-8"))
+    assert cff["doi"] == doi and cff["identifiers"][0]["value"] == doi
+    for path in ("README.md", "docs/about.md"):
+        text = (ROOT / path).read_text(encoding="utf-8")
+        assert f"https://doi.org/{doi}" in text, path
