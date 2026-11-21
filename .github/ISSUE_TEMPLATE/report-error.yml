@@ -1,0 +1,50 @@
+name: Report an error or outdated rule
+description: Something in the handbook is wrong, unclear or out of date.
+title: "[Error] "
+labels: ["error-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Please do not include confidential or client data.
+        The handbook is not legal advice; this form is for errors in the handbook itself.
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: The page link or step id (for example CB4 or C3).
+      placeholder: https://mantas123456.github.io/esg-workflows-handbook/...
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem?
+      options:
+        - A rule or date is out of date
+        - A fact is wrong
+        - A calculation or worked example is wrong
+        - A template or tool does not work
+        - Unclear wording
+        - Broken link
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong, and what should it say?
+      description: Quote the sentence or number if you can.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Official source
+      description: A link to the regulation, Official Journal, Commission, EFRAG or GHG Protocol page that shows the correct rule.
+      placeholder: https://eur-lex.europa.eu/...
+  - type: input
+    id: fact
+    attributes:
+      label: Fact id (optional)
+      description: If you know it, the id in data/regulations.yml (for example csrd-value-chain-cap).

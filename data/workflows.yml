@@ -15,22 +15,22 @@ tracks:
     folder: foundations
     steps:
       - {id: F1, title: "Evidence locker and audit trail", file: evidence-locker.md, release: "0.1", status: draft}
-      - {id: F2, title: "Data quality and uncertainty", file: data-quality.md, release: "0.3", status: draft}
+      - {id: F2, title: "Data quality and uncertainty", file: data-quality.md, release: "0.3", status: draft, tools: [uncertainty-demo]}
       - {id: F3, title: "One dataset, many reports", file: one-dataset-many-reports.md, release: "0.1", status: draft}
-      - {id: F4, title: "Keeping up with changes", file: keeping-up.md, release: "0.6", status: planned}
+      - {id: F4, title: "Keeping up with changes", file: keeping-up.md, release: "0.6", status: draft}
 
   - id: cbam
     title: CBAM
     folder: cbam
     steps:
-      - {id: CB1, title: "Scope check - CN codes and the 50 t threshold", file: cb1-scope-check.md, release: "0.2", status: draft, tools: [cbam-threshold], templates: [cbam-goods-register]}
+      - {id: CB1, title: "Scope check - CN codes and the 50 t threshold", file: cb1-scope-check.md, release: "0.2", status: draft, tools: [cbam-calculator], templates: [cbam-goods-register]}
       - {id: CB2, title: "Authorised CBAM declarant status", file: cb2-authorisation.md, release: "0.2", status: draft}
       - {id: CB3, title: "Requesting data from installation operators", file: cb3-supplier-data.md, release: "0.2", status: draft, templates: [cbam-supplier-request]}
       - {id: CB4, title: "Embedded emissions - actual vs default values", file: cb4-embedded-emissions.md, release: "0.2", status: draft, tools: [cbam-calculator], templates: [cbam-emissions-workbook]}
       - {id: CB5, title: "Precursors and complex goods", file: cb5-precursors.md, release: "0.2", status: draft, templates: [cbam-emissions-workbook]}
       - {id: CB6, title: "Verification of emissions data", file: cb6-verification.md, release: "0.2", status: draft, templates: [cbam-declaration-checklist]}
       - {id: CB7, title: "Carbon price paid abroad", file: cb7-carbon-price-paid.md, release: "0.2", status: draft}
-      - {id: CB8, title: "Certificates - buying, holding, surrendering", file: cb8-certificates.md, release: "0.2", status: draft, tools: [cbam-cost], templates: [cbam-emissions-workbook]}
+      - {id: CB8, title: "Certificates - buying, holding, surrendering", file: cb8-certificates.md, release: "0.2", status: draft, tools: [cbam-calculator], templates: [cbam-emissions-workbook]}
       - {id: CB9, title: "The annual CBAM declaration", file: cb9-declaration.md, release: "0.2", status: draft, templates: [cbam-declaration-checklist]}
       - {id: CB10, title: "Records and evidence for CBAM", file: cb10-records.md, release: "0.2", status: draft}
 

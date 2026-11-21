@@ -44,7 +44,7 @@ package and the steps in [CB1](../cbam/cb1-scope-check.md),
     <tr>
       <th>Quarter</th><th>CN code</th><th>Sector</th><th>Net mass (t)</th><th>Basis</th>
       <th>Actual SEE (tCO2e/t)</th><th>Base default value (tCO2e/t)</th>
-      <th>Free allocation adjustment per t</th><th>Embedded emissions (tCO2e)</th><th></th>
+      <th>Free allocation adjustment per t</th><th>Embedded emissions (tCO2e)</th><th><span class="visually-hidden">Remove line</span></th>
     </tr>
   </thead>
   <tbody></tbody>
@@ -66,7 +66,7 @@ package and the steps in [CB1](../cbam/cb1-scope-check.md),
 </table>
 <p id="out-notes" class="tool-notes"></p>
 
-<h3>Minimum quarterly holding</h3>
+<h2>Minimum quarterly holding</h2>
 <p id="holding-note" class="tool-notes"></p>
 <table id="holding" class="tool-table">
   <thead><tr><th>End of</th><th>Emissions YTD (tCO2e)</th><th>Adjustment YTD (tCO2e)</th><th>Minimum holding (certificates)</th></tr></thead>

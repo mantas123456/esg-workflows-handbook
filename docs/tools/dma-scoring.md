@@ -40,7 +40,7 @@ side or both. See [C2 Double materiality assessment](../csrd/c2-dma.md).
 </table>
 </div>
 
-<h3>Topics</h3>
+<h2>Topics</h2>
 <div class="tool-scroll">
 <table id="topics" class="tool-table" data-material="">
   <thead><tr><th>Standard</th><th>Topic</th><th>Items</th><th>Impact material?</th><th>Financial material?</th><th>Material?</th></tr></thead>
