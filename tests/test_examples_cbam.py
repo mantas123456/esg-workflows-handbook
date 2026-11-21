@@ -316,10 +316,43 @@ def test_cb7_what_if_reduction() -> None:
     reduction = carbon_price_reduction(cp["what_if_effective_price_eur_per_t"], cp["reference_price_eur_per_tco2e"],
                                        _mass("A"))
     assert reduction == pytest.approx(cp["what_if_reduction_certificates"]) == pytest.approx(5)   # 1.00 / 80.00 x 400
-    assert (f"**EUR {cp['what_if_effective_price_eur_per_t']:.2f} per tonne of bars**" in text
-            and f"**EUR {cp['reference_price_eur_per_tco2e']:.2f}**" in text)
+    assert f"**EUR {cp['reference_price_eur_per_tco2e']:.2f}**" in text
     assert "reduction = 1.00 / 80.00 x 400 t = 5 certificates" in text
-    assert "# 34.4 2752.00" in text
+    assert "# 1.0 34.4 2752.00" in text
+
+
+def test_cb7_carbon_price_report_builds_the_price_per_tonne() -> None:
+    """Annex I of IR 2026/2498: (covered - rebated per t) x (price - refund) x exchange rate."""
+    from esgcalc.cbam import effective_carbon_price_per_t
+    text = page("cb7-carbon-price-paid.md")
+    r, cp = EXAMPLE["carbon_price_report"], EXAMPLE["carbon_price_paid"]
+    a_crude, a_bars = EXAMPLE["installation_A_crude_steel_2026"], EXAMPLE["installation_A_2026"]
+    assert r["cpm_emissions_tco2e"] == a_crude["direct_tco2e"] + a_bars["direct_tco2e"] == 38600
+    assert r["bars_t"] == a_bars["production_mass_t"]
+    assert r["units_surrendered"] == r["cpm_emissions_tco2e"]
+    covered, rebated = r["cpm_emissions_tco2e"] / r["bars_t"], r["free_allowances_tco2e"] / r["bars_t"]
+    refund = r["refund_crowns"] / r["cpm_emissions_tco2e"]
+    price = effective_carbon_price_per_t(covered, rebated, r["price_crowns_per_tco2e"], refund, r["eur_per_crown"])
+    assert price == pytest.approx(cp["what_if_effective_price_eur_per_t"]) == pytest.approx(1.00)
+    pig = EXAMPLE["installation_A_crude_steel_2026"]["precursors"][0]
+    assert r["pig_iron_from_C_tco2e_per_t"] == pytest.approx(pig["mass_t"] * pig["see_tco2e_per_t"] / r["bars_t"])
+    assert covered + r["pig_iron_from_C_tco2e_per_t"] == pytest.approx(_installation_a().see_tco2e_per_t)   # 0.652
+    for s in (f"| Covered emissions (arc furnace {fmt(a_crude['direct_tco2e'])} + rolling mill "
+              f"{fmt(a_bars['direct_tco2e'])}) | {fmt(r['cpm_emissions_tco2e'])} tCO2e |",
+              f"| Of which covered by free allowances (rebated) | {fmt(r['free_allowances_tco2e'])} tCO2e |",
+              f"| Compliance units surrendered | {fmt(r['units_surrendered'])} |",
+              f"| Weighted average auction price, 2026 | {r['price_crowns_per_tco2e']} crowns per tCO2e |",
+              f"| Exchange rate (Commission yearly average) | EUR {r['eur_per_crown']:.2f} per crown |",
+              f"| Bars produced (all covered emissions relate to them) | {fmt(r['bars_t'])} t |",
+              f"covered emissions = {fmt(r['cpm_emissions_tco2e'])} / {fmt(r['bars_t'])} = {covered:.3f} tCO2e",
+              f"rebated emissions = {fmt(r['free_allowances_tco2e'])} / {fmt(r['bars_t'])} = {rebated:.3f} tCO2e",
+              f"price paid = ({covered:.3f} - {rebated:.3f}) x ({r['price_crowns_per_tco2e']} - 0) x "
+              f"{r['eur_per_crown']:.2f} = EUR {price:.2f} per tonne of bars",
+              f"adds {r['pig_iron_from_C_tco2e_per_t']:.3f} tCO2e per tonne of bars",
+              f"{covered:.3f} + {r['pig_iron_from_C_tco2e_per_t']:.3f} = {_installation_a().see_tco2e_per_t:.3f} tCO2e per tonne",
+              f"effective_carbon_price_per_t({covered:.3f}, {rebated:.3f}, price_per_tco2e={r['price_crowns_per_tco2e']}, "
+              f"eur_per_local_unit={r['eur_per_crown']:.2f})"):
+        assert s in text, s
 
 
 def test_cb8_free_allocation_is_built_from_benchmarks() -> None:

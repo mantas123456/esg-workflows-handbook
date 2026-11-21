@@ -293,3 +293,15 @@ def test_carbon_price_reduction() -> None:
         carbon_price_reduction(1.0, 0.0, 10)
     with pytest.raises(ValueError):
         carbon_price_reduction(-1.0, 80.0, 10)
+
+
+def test_effective_carbon_price_per_t() -> None:
+    from esgcalc.cbam import effective_carbon_price_per_t as eff
+    assert eff(0.5, 0.2, 30.0) == pytest.approx(9.0)                          # (0.5 - 0.2) x 30
+    assert eff(0.5, 0.2, 30.0, refund_per_tco2e=10.0) == pytest.approx(6.0)   # refund taken off the price
+    assert eff(0.5, 0.2, 30.0, eur_per_local_unit=0.5) == pytest.approx(4.5)  # converted into euro
+    assert eff(0.5, 0.5, 30.0) == 0.0                                         # all emissions rebated
+    for bad in ((0.2, 0.5, 30.0), (0.5, 0.2, 30.0, 40.0), (-0.1, 0.0, 30.0), (0.5, 0.2, 30.0, 0.0, -1.0)):
+        with pytest.raises(ValueError):
+            eff(*bad)
+

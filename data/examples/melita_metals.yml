@@ -87,14 +87,28 @@ verification_A:
   accreditation_valid_until: 2029-06-30
   covers: Installation A, steel bars CN 7214 20 00 and 7214 99 10, production year 2026
 
-# CB7: carbon price paid. Installation A's country has a carbon price; the operator
-# sends certified evidence. The conversion rules (IR 2026/2498) are not modelled,
-# so the main example claims no reduction; the what-if uses a made-up figure.
+# CB7: carbon price paid. Installation A's country (fictional) has an emissions
+# trading system. The certified report was not ready in time, so the main example
+# claims no reduction; the what-if shows how the operator's carbon price report
+# builds the price per tonne of bars (IR 2026/2498, Annex I). All MADE UP.
 carbon_price_paid:
   claimed_certificates: 0
   what_if_reduction_certificates: 5
-  what_if_effective_price_eur_per_t: 1.00   # MADE UP: certified effective carbon price per tonne of bars
+  what_if_effective_price_eur_per_t: 1.00   # result of carbon_price_report below
   reference_price_eur_per_tco2e: 80.00      # MADE UP: yearly reference price for 2026
+
+carbon_price_report:
+  mechanism: Emissions trading system of Installation A's country (fictional)
+  currency: crown (fictional local currency)
+  reporting_period: calendar year 2026, same as the verified emissions report
+  cpm_emissions_tco2e: 38600          # covered direct emissions: EAF 30,600 + rolling mill 8,000 (CB4, CB5)
+  free_allowances_tco2e: 28600        # emissions covered by free allowances: rebated
+  refund_crowns: 0                    # no monetary refund
+  price_crowns_per_tco2e: 50          # weighted average auction price for 2026
+  eur_per_crown: 0.20                 # Commission yearly average exchange rate (made up)
+  bars_t: 100000                      # all covered emissions relate to the bars
+  pig_iron_from_C_tco2e_per_t: 0.266  # precursor made at Installation C: no certification report, no price counted
+  units_surrendered: 38600            # compliance units surrendered for 2026 (28,600 of them free)
 
 # CB8: free allocation adjustment per tonne (MADE UP; the real figures come from
 # the CBAM benchmarks in IR 2025/2620 and fall each year with the CBAM factor).
